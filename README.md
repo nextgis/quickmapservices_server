@@ -1,0 +1,2 @@
+# quickmapservices_server
+QuickMapServices Server
