@@ -1,0 +1,27 @@
+"""
+Django settings for qms_site project.
+"""
+
+# Override
+DEBUG = False
+ALLOWED_HOSTS = ['qms.nextgis.com']
+
+# Database
+# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': '',
+        'USER': '',	                # SET THIS!
+        'PASSWORD': '',             # SET THIS!
+        'HOST': '',                 # SET THIS!
+        'PORT': '5432',
+    }
+}
+
+# Secure
+SECRET_KEY = 'ASDFLKAL;SKDF;LKN3M,N2LKJ34H5KJF;GHSUI898993243(N	KLS-FQ9'
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
