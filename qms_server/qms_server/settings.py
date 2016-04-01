@@ -24,9 +24,8 @@ SECRET_KEY = '*p1di8)2ac9=+eb^j=y_6(8a#z%6a(usjo9$83+rb1pn)tl644'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
-
+SITE_ID = 1
 
 # Application definition
 
@@ -120,6 +119,8 @@ STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.path.pardir, os.path.par
 # URLs
 ROOT_URLCONF = 'qms_server.urls'
 
+# Custom User Model
+AUTH_USER_MODEL = 'qms_core.NextgisUser'
 
 # try to load local machine settings
 try:
