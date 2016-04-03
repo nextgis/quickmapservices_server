@@ -18,30 +18,48 @@ __author__ = 'yellow'
 class Command(BaseCommand):
     help = 'Import existing services from github'
     output_transaction = True
-    CONTRIBUTE_REPO_URL = 'https://api.github.com/repos/nextgis/quickmapservices_contrib'
+
+    REPOS_INFO = {
+        'contrib': {
+            'url': 'https://api.github.com/repos/nextgis/quickmapservices_contrib',
+            'subdir': 'data_sources',
+        },
+        'base': {
+            'url': 'https://api.github.com/repos/nextgis/quickmapservices',
+            'subdir': 'src/data_sources',
+        }
+    }
 
     def add_arguments(self, parser):
         parser.add_argument('--clear', action='store_true', help='Remove existing data and create new')
+        parser.add_argument('--base', action='store_true', help='Import data sources from base repo')
+        parser.add_argument('--contrib', action='store_true', help='Import data sources from contrib repo')
+
 
     def handle(self, *args, **options):
         if options['clear']:
             GeoService.objects.all().delete()
+        if options['base']:
+            self.import_from_repo(self.REPOS_INFO['base'])
+        if options['contrib']:
+            self.import_from_repo(self.REPOS_INFO['contrib'])
 
+
+    def import_from_repo(self, repo_info):
         count = 0
-        services_dir = self.load_contrib_pack()
-        services_dirs = os.listdir(os.path.join(services_dir, 'data_sources'))
+        services_dir = self.load_contrib_pack(repo_info['url'])
+        services_dirs = os.listdir(os.path.join(services_dir, repo_info['subdir']))
 
         for s_dir in services_dirs:
-            src_dir = os.path.join(services_dir, 'data_sources', s_dir)
+            src_dir = os.path.join(services_dir, repo_info['subdir'], s_dir)
             metadata_pth = os.path.join(src_dir, 'metadata.ini')
             ds = DataSourceSerializer.read_from_ini(metadata_pth)
-
+            print(ds.alias, ds.id)
             if ds.type == KNOWN_DRIVERS.TMS:
                 service = TmsService(name=ds.alias,
                                      url=ds.tms_url,
                                      z_min=ds.tms_zmin,
-                                     z_max=ds.tms_zmax,
-                                     )
+                                     z_max=ds.tms_zmax)
 
                 if ds.tms_y_origin_top is not None:
                     service.y_origin_top = ds.tms_y_origin_top
@@ -51,8 +69,9 @@ class Command(BaseCommand):
                 service = WmsService(name=ds.alias,
                                      url=ds.wms_url,
                                      params=ds.wms_params,
-                                     layers=ds.wms_layers,
-                                     turn_over=ds.wms_turn_over)
+                                     layers=ds.wms_layers)
+                if ds.wms_turn_over is not None:
+                    service.turn_over = ds.wms_turn_over
                 service.save()
 
             if ds.type == KNOWN_DRIVERS.WFS:
@@ -70,9 +89,9 @@ class Command(BaseCommand):
         self.stdout.write('Successfully import %s services of %s' % (count, len(services_dirs)))
 
 
-    def load_contrib_pack(self):
+    def load_contrib_pack(self, url):
         # get info
-        latest_release_info = self._get_latest_release_info()
+        latest_release_info = self._get_latest_release_info(url)
         name = latest_release_info['name']
         zip_url = latest_release_info['zipball_url']
 
@@ -80,11 +99,11 @@ class Command(BaseCommand):
         self.tmp_dir = tempfile.mkdtemp()
 
         # download zip file
-        zip_file_path = os.path.join(self.tmp_dir, 'contrib.zip')
+        zip_file_path = os.path.join(self.tmp_dir, 'repo.zip')
         self._download_file(zip_url, zip_file_path)
 
         # extract zip to tmp dir
-        tmp_extract_dir = os.path.join(self.tmp_dir, 'contrib')
+        tmp_extract_dir = os.path.join(self.tmp_dir, 'repo')
         self._extract_zip(zip_file_path, tmp_extract_dir)
 
         # first dir - our content
@@ -100,8 +119,8 @@ class Command(BaseCommand):
             shutil.rmtree(self.tmp_dir, ignore_errors=True)
 
 
-    def _get_latest_release_info(self):
-        response = urllib2.urlopen('%s/%s/%s' % (self.CONTRIBUTE_REPO_URL, 'releases', 'latest'))
+    def _get_latest_release_info(self, url):
+        response = urllib2.urlopen('%s/%s/%s' % (url, 'releases', 'latest'))
         latest_release_info = json.loads(response.read().decode('utf-8'))
         return latest_release_info
 
