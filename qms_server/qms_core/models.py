@@ -125,3 +125,47 @@ class NextgisUser(AbstractBaseUser, PermissionsMixin):
         Sends an email to this User.
         """
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+
+class GeoService(models.Model):
+    service_type = 'generic'
+
+    def save(self, *args, **kwargs):
+        self.type = self.service_type
+        super(GeoService, self).save(*args, **kwargs)
+
+    guid = models.UUIDField(_('service guid'), default=uuid.uuid4, editable=False)
+    name = models.CharField(_('service name'), unique=True, max_length=100, blank=False, null=False)
+    description = models.TextField(_('description'), blank=True, null=True)
+    type = models.CharField(_('service type'), max_length=20, editable=False, null=False)
+
+    #license
+    #tags
+    #icon
+
+
+class TmsService(GeoService):
+    service_type = 'tms'
+
+    url = models.URLField(blank=False, null=False)
+    z_min = models.IntegerField(blank=True, null=True)
+    z_max = models.IntegerField(blank=True, null=True)
+    y_origin_top = models.BooleanField(default=False, blank=True)
+
+
+class WmsService(GeoService):
+    service_type = 'wms'
+
+    url = models.URLField(blank=False, null=False)
+    params = models.CharField(max_length=1024, blank=True, null=True)
+    layers = models.CharField(max_length=1024, blank=True, null=True)
+    turn_over = models.BooleanField(default=False, blank=True)
+
+
+class WfsService(GeoService):
+    service_type = 'wfs'
+
+    url = models.URLField(blank=False, null=False)
+
+
+#self.gdal_source_file = None

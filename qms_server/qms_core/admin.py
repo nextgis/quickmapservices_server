@@ -1,3 +1,63 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from django.utils.translation import ugettext as _
+from qms_core.models import NextgisUser, GeoService, TmsService, WmsService, WfsService
 
-# Register your models here.
+
+@admin.register(NextgisUser)
+class NextgisUserAdmin(UserAdmin):
+
+    service_readonly_fields = ('nextgis_id', 'nextgis_guid',)
+
+    fieldsets = (
+        (None, {'fields': ('username', 'password')}),
+        (_('NextGIS ID'), {'fields': ('nextgis_id', 'nextgis_guid',)}),
+        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email')}),
+        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
+                                       'groups', 'user_permissions')}),
+        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
+    )
+
+@admin.register(GeoService)
+class GeoServiceAdmin(admin.ModelAdmin):
+    readonly_fields = GeoService._meta.get_all_field_names()
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+
+service_readonly_fields = ('guid', 'type',)
+common_fieldset = (_('Common'), {'fields': ('guid', 'type', 'name', 'description')})
+
+
+@admin.register(TmsService)
+class TmsServiceAdmin(admin.ModelAdmin):
+    readonly_fields = service_readonly_fields
+
+    fieldsets = (
+        common_fieldset,
+        (_('TMS'), {'fields': ('url', 'z_min', 'z_max', 'y_origin_top')}),
+    )
+
+
+@admin.register(WmsService)
+class WmsServiceAdmin(admin.ModelAdmin):
+    readonly_fields = service_readonly_fields
+
+    fieldsets = (
+        common_fieldset,
+        (_('WMS'), {'fields': ('url', 'params', 'layers', 'turn_over')}),
+    )
+
+
+@admin.register(WfsService)
+class WfsServiceAdmin(admin.ModelAdmin):
+    readonly_fields = service_readonly_fields
+
+    fieldsets = (
+        common_fieldset,
+        (_('WFS'), {'fields': ('url',)}),
+    )
