@@ -21,6 +21,9 @@ class NextgisUserAdmin(UserAdmin):
 @admin.register(GeoService)
 class GeoServiceAdmin(admin.ModelAdmin):
     readonly_fields = GeoService._meta.get_all_field_names()
+    list_display = ('id', 'type', 'name', 'description')
+    list_filter = ('type',)
+    search_fields = ('name', 'description')
 
     def has_add_permission(self, request):
         return False
@@ -29,13 +32,17 @@ class GeoServiceAdmin(admin.ModelAdmin):
         return False
 
 
+
 service_readonly_fields = ('guid', 'type',)
 common_fieldset = (_('Common'), {'fields': ('guid', 'type', 'name', 'description')})
+common_list_display = ('id', 'type', 'name', 'description')
 
 
 @admin.register(TmsService)
 class TmsServiceAdmin(admin.ModelAdmin):
     readonly_fields = service_readonly_fields
+    list_display = common_list_display
+    search_fields = ('name', 'description')
 
     fieldsets = (
         common_fieldset,
@@ -46,6 +53,8 @@ class TmsServiceAdmin(admin.ModelAdmin):
 @admin.register(WmsService)
 class WmsServiceAdmin(admin.ModelAdmin):
     readonly_fields = service_readonly_fields
+    list_display = common_list_display
+    search_fields = ('name', 'description')
 
     fieldsets = (
         common_fieldset,
@@ -56,6 +65,8 @@ class WmsServiceAdmin(admin.ModelAdmin):
 @admin.register(WfsService)
 class WfsServiceAdmin(admin.ModelAdmin):
     readonly_fields = service_readonly_fields
+    list_display = common_list_display
+    search_fields = ('name', 'description')
 
     fieldsets = (
         common_fieldset,
