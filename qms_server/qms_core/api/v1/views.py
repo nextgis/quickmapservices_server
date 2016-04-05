@@ -1,4 +1,4 @@
-from rest_framework.filters import SearchFilter
+from rest_framework.filters import SearchFilter, DjangoFilterBackend
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.serializers import ModelSerializer
@@ -38,7 +38,8 @@ class GeoServiceListView(ListAPIView):
     queryset = GeoService.objects.all()
     serializer_class = GeoServiceSerializer
     pagination_class = LimitOffsetPagination
-    filter_backends = (SearchFilter,)
+    filter_backends = (SearchFilter, DjangoFilterBackend)
+    filter_fields = ('type',)
     search_fields = ('name', 'description')
 
 class GeoServiceDetailedView(RetrieveAPIView):
