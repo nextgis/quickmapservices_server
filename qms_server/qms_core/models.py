@@ -136,7 +136,7 @@ class GeoService(models.Model):
 
     guid = models.UUIDField(_('service guid'), default=uuid.uuid4, editable=False)
     name = models.CharField(_('service name'), unique=True, max_length=100, blank=False, null=False)
-    description = models.TextField(_('description'), blank=True, null=True)
+    desc = models.TextField(_('description'), blank=True, null=True)
     type = models.CharField(_('service type'), max_length=20, editable=False, null=False)
 
     #license
