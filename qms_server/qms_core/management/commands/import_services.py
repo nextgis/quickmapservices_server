@@ -54,15 +54,20 @@ class Command(BaseCommand):
             src_dir = os.path.join(services_dir, repo_info['subdir'], s_dir)
             metadata_pth = os.path.join(src_dir, 'metadata.ini')
             ds = DataSourceSerializer.read_from_ini(metadata_pth)
-            print(ds.alias, ds.id)
+            print(ds.alias)
             if ds.type == KNOWN_DRIVERS.TMS:
                 service = TmsService(name=ds.alias,
                                      url=ds.tms_url,
                                      z_min=ds.tms_zmin,
-                                     z_max=ds.tms_zmax)
+                                     z_max=ds.tms_zmax,
+                                     epsg=3857)
 
                 if ds.tms_y_origin_top is not None:
                     service.y_origin_top = ds.tms_y_origin_top
+
+                if ds.tms_epsg_crs_id is not None:
+                    service.epsg = ds.tms_epsg_crs_id
+
                 service.save()
 
             if ds.type == KNOWN_DRIVERS.WMS:

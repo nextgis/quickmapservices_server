@@ -138,6 +138,7 @@ class GeoService(models.Model):
     name = models.CharField(_('service name'), unique=True, max_length=100, blank=False, null=False)
     desc = models.TextField(_('description'), blank=True, null=True)
     type = models.CharField(_('service type'), max_length=20, editable=False, null=False)
+    epsg = models.IntegerField(_('EPSG Code'), null=True, blank=True)
 
     #license
     #tags

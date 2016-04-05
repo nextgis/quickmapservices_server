@@ -14,7 +14,7 @@ from qms_core.models import GeoService, TmsService, WmsService, WfsService
 class GeoServiceSerializer(ModelSerializer):
     class Meta:
         model = GeoService
-        fields = ('id', 'guid', 'name', 'desc', 'type')
+        fields = ('id', 'guid', 'name', 'desc', 'type', 'epsg')
 
 
 class TmsServiceSerializer(ModelSerializer):
@@ -43,7 +43,7 @@ class GeoServiceListView(ListAPIView):
     serializer_class = GeoServiceSerializer
     pagination_class = LimitOffsetPagination
     filter_backends = (SearchFilter, DjangoFilterBackend)
-    filter_fields = ('type',)
+    filter_fields = ('type', 'epsg')
     search_fields = ('name', 'desc')
 
 
