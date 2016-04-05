@@ -1,7 +1,11 @@
+from rest_framework.decorators import api_view
 from rest_framework.filters import SearchFilter, DjangoFilterBackend
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, GenericAPIView
 from rest_framework.pagination import LimitOffsetPagination
+from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer
+from rest_framework.reverse import reverse
+from rest_framework.views import APIView
 
 from qms_core.models import GeoService, TmsService, WmsService, WfsService
 
@@ -65,3 +69,18 @@ class GeoServiceDetailedView(RetrieveAPIView):
             if instance.type == WfsService.service_type:
                 return WfsServiceSerializer(instance)
         return GeoServiceSerializer(instance)
+
+
+
+# === API ROOT and others
+
+
+class ApiRootView(APIView):
+
+    def get(self, request, format=None):
+        return Response({
+            'geoservices_url': reverse('geoservice_list', request=request, format=format),
+            #'geoservices_search_url': reverse('geoservice_list', request=request, format=format) + '?search={query}',
+            #'snippets': reverse('snippet-list', request=request, format=format)
+        })
+
