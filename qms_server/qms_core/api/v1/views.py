@@ -3,11 +3,14 @@ from rest_framework.filters import SearchFilter, DjangoFilterBackend
 from rest_framework.generics import ListAPIView, RetrieveAPIView, GenericAPIView
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, URLField, SerializerMethodField, OrderedDict
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 
-from qms_core.models import GeoService, TmsService, WmsService, WfsService
+from ...icon_renderer import IconRenderer
+from ...icon_serializer import IconSerializer
+from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIcon
+
 
 # === Serializers
 
@@ -35,8 +38,13 @@ class WfsServiceSerializer(ModelSerializer):
         fields = '__all__'
 
 
+class ServiceIconSerializer(ModelSerializer):
+    class Meta:
+        model = ServiceIcon
+        fields = ('id', 'guid', 'name')
 
-# === Views
+
+# === Views Geoservices
 
 class GeoServiceListView(ListAPIView):
     queryset = GeoService.objects.all()
@@ -71,17 +79,40 @@ class GeoServiceDetailedView(RetrieveAPIView):
                 return WfsServiceSerializer(instance)
         return GeoServiceSerializer(instance)
 
+# === Views Icons
 
+class ServiceIconListView(ListAPIView):
+    queryset = ServiceIcon.objects.all()
+    serializer_class = ServiceIconSerializer
+    pagination_class = LimitOffsetPagination
+    filter_backends = (SearchFilter, DjangoFilterBackend)
+    search_fields = ('name')
+
+
+class ServiceIconDetailedView(RetrieveAPIView):
+    queryset = ServiceIcon.objects.all()
+    serializer_class = ServiceIconSerializer
+
+
+class IconRetrieve(RetrieveAPIView):
+    queryset = ServiceIcon.objects.all()
+    serializer_class = IconSerializer
+    renderer_classes = [ IconRenderer, ]
 
 # === API ROOT and others
-
 
 class ApiRootView(APIView):
 
     def get(self, request, format=None):
-        return Response({
-            'geoservices_url': reverse('geoservice_list', request=request, format=format),
-            #'geoservices_search_url': reverse('geoservice_list', request=request, format=format) + '?search={query}',
-            #'snippets': reverse('snippet-list', request=request, format=format)
-        })
+        temp_rep_val = 2110112
+        simple_url = lambda name: reverse(name, request=request, format=format)
+        repl_id_ulr = lambda name: reverse(name, kwargs={'pk': temp_rep_val}, request=request, format=format).replace(str(temp_rep_val), '{id}')
+        return Response(OrderedDict((
+            ('geoservices_url', simple_url('geoservice_list')),
+            ('geoservice_detail_url', repl_id_ulr('geoservice_detail')),
+            ('icons_url', simple_url('service_icon_list')),
+            ('icon_detail_url', repl_id_ulr('service_icon_detail')),
+            ('icon_content_url', repl_id_ulr('service_icon_retrieve')),
+        )))
+
 

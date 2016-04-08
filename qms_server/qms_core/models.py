@@ -14,7 +14,7 @@ from django.utils.translation import ugettext as _
 # Create your models here.
 from supported_languages import SupportedLanguages
 
-
+# USERS
 class NextgisUserManager(BaseUserManager):
     """
     Полная копия UserManager
@@ -126,7 +126,7 @@ class NextgisUser(AbstractBaseUser, PermissionsMixin):
         """
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
-
+# SERVICES
 class GeoService(models.Model):
     service_type = 'generic'
 
@@ -168,5 +168,9 @@ class WfsService(GeoService):
 
     url = models.URLField(blank=False, null=False)
 
-
-#self.gdal_source_file = None
+# ICONS
+class ServiceIcon(models.Model):
+    guid = models.UUIDField(_('icon guid'), default=uuid.uuid4, editable=False)
+    icon = models.ImageField(_('icon'), upload_to='service_icon/', max_length=200, null=False, blank=False)
+    name = models.CharField(_('icon name'), max_length=200, null=False, blank=False)
+    is_private = models.BooleanField(_('icon is private'), default=False)
