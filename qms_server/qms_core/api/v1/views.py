@@ -1,3 +1,4 @@
+import os
 from rest_framework.decorators import api_view
 from rest_framework.filters import SearchFilter, DjangoFilterBackend
 from rest_framework.generics import ListAPIView, RetrieveAPIView, GenericAPIView
@@ -94,10 +95,19 @@ class ServiceIconDetailedView(RetrieveAPIView):
     serializer_class = ServiceIconSerializer
 
 
-class IconRetrieve(RetrieveAPIView):
+class IconRetrieveView(RetrieveAPIView):
     queryset = ServiceIcon.objects.all()
     serializer_class = IconSerializer
-    renderer_classes = [ IconRenderer, ]
+    renderer_classes = [IconRenderer, ]
+
+
+class DefaultIconRetrieveView(APIView):
+    renderer_classes = [IconRenderer, ]
+
+    def get(self, request, *args, **kwargs):
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        return Response(open(os.path.join(BASE_DIR, os.pardir, 'static/qms_core/img/default_icon.png'), mode='rb'))
+
 
 # === API ROOT and others
 
@@ -107,12 +117,14 @@ class ApiRootView(APIView):
         temp_rep_val = 2110112
         simple_url = lambda name: reverse(name, request=request, format=format)
         repl_id_ulr = lambda name: reverse(name, kwargs={'pk': temp_rep_val}, request=request, format=format).replace(str(temp_rep_val), '{id}')
+
         return Response(OrderedDict((
             ('geoservices_url', simple_url('geoservice_list')),
             ('geoservice_detail_url', repl_id_ulr('geoservice_detail')),
             ('icons_url', simple_url('service_icon_list')),
             ('icon_detail_url', repl_id_ulr('service_icon_detail')),
             ('icon_content_url', repl_id_ulr('service_icon_retrieve')),
+            ('default_icon_url', simple_url('service_icon_default'))
         )))
 
 

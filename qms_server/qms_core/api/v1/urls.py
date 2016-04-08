@@ -1,7 +1,7 @@
 from django.conf.urls import url
 
 from .views import GeoServiceListView, GeoServiceDetailedView, ApiRootView, ServiceIconListView, ServiceIconDetailedView, \
-    IconRetrieve
+    IconRetrieveView, DefaultIconRetrieveView
 
 urlpatterns = [
     url(r'^$', ApiRootView.as_view(), name='api_root'),
@@ -12,7 +12,8 @@ urlpatterns = [
     # icons
     url(r'^icons/$', ServiceIconListView.as_view(), name='service_icon_list'),
     url(r'^icons/(?P<pk>[0-9]+)/$', ServiceIconDetailedView.as_view(), name='service_icon_detail'),
-    url(r'^icons/(?P<pk>[0-9]+)/content$', IconRetrieve.as_view(), name='service_icon_retrieve'),
+    url(r'^icons/(?P<pk>[0-9]+)/content$', IconRetrieveView.as_view(), name='service_icon_retrieve'),
+    url(r'^icons/default$', DefaultIconRetrieveView.as_view(), name='service_icon_default'),
 
     # popular
 ]
