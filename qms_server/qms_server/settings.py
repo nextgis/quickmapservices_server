@@ -128,6 +128,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.path.pardir, os.path.pardir, 'static'))
 
+MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.path.pardir, os.path.pardir, 'media'))
+
 # URLs
 ROOT_URLCONF = 'qms_server.urls'
 
