@@ -126,6 +126,14 @@ class NextgisUser(AbstractBaseUser, PermissionsMixin):
         """
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
+# ICONS
+class ServiceIcon(models.Model):
+    guid = models.UUIDField(_('icon guid'), default=uuid.uuid4, editable=False)
+    icon = models.ImageField(_('icon'), upload_to='service_icon/', max_length=200, null=False, blank=False)
+    name = models.CharField(_('icon name'), max_length=200, null=False, blank=False)
+    is_private = models.BooleanField(_('icon is private'), default=False)
+
+
 # SERVICES
 class GeoService(models.Model):
     service_type = 'generic'
@@ -139,10 +147,10 @@ class GeoService(models.Model):
     desc = models.TextField(_('description'), blank=True, null=True)
     type = models.CharField(_('service type'), max_length=20, editable=False, null=False)
     epsg = models.IntegerField(_('EPSG Code'), null=True, blank=True)
+    icon = models.ForeignKey(ServiceIcon, models.SET_NULL, blank=True, null=True)
 
     #license
     #tags
-    #icon
 
 
 class TmsService(GeoService):
@@ -167,10 +175,3 @@ class WfsService(GeoService):
     service_type = 'wfs'
 
     url = models.URLField(blank=False, null=False)
-
-# ICONS
-class ServiceIcon(models.Model):
-    guid = models.UUIDField(_('icon guid'), default=uuid.uuid4, editable=False)
-    icon = models.ImageField(_('icon'), upload_to='service_icon/', max_length=200, null=False, blank=False)
-    name = models.CharField(_('icon name'), max_length=200, null=False, blank=False)
-    is_private = models.BooleanField(_('icon is private'), default=False)
