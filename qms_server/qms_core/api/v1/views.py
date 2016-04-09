@@ -1,6 +1,6 @@
 import os
 from rest_framework.decorators import api_view
-from rest_framework.filters import SearchFilter, DjangoFilterBackend
+from rest_framework.filters import SearchFilter, DjangoFilterBackend, OrderingFilter
 from rest_framework.generics import ListAPIView, RetrieveAPIView, GenericAPIView
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
@@ -51,9 +51,11 @@ class GeoServiceListView(ListAPIView):
     queryset = GeoService.objects.all()
     serializer_class = GeoServiceSerializer
     pagination_class = LimitOffsetPagination
-    filter_backends = (SearchFilter, DjangoFilterBackend)
+    filter_backends = (OrderingFilter, SearchFilter, DjangoFilterBackend)
     filter_fields = ('type', 'epsg')
     search_fields = ('name', 'desc')
+    ordering_fields = ('id', 'name', )
+    ordering = ('name',)
 
 
 class GeoServiceDetailedView(RetrieveAPIView):
@@ -123,6 +125,7 @@ class ApiRootView(APIView):
             ('geoservices_type_filter_url', simple_url('geoservice_list') + '?type={tms|wms|wfs}'),
             ('geoservices_epsg_filter_url', simple_url('geoservice_list') + '?epsg={any_epsg_code}'),
             ('geoservices_search_url', simple_url('geoservice_list') + '?search={q}'),
+            ('geoservices_ordering_url', simple_url('geoservice_list') + '?ordering={name|-name|id|-id}'),
             ('geoservices_pagination_url', simple_url('geoservice_list') + '?limit={int}&offset={int}'),
             ('geoservice_detail_url', repl_id_ulr('geoservice_detail')),
             ('icons_url', simple_url('service_icon_list')),
