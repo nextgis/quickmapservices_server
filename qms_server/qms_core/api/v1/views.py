@@ -87,7 +87,7 @@ class ServiceIconListView(ListAPIView):
     serializer_class = ServiceIconSerializer
     pagination_class = LimitOffsetPagination
     filter_backends = (SearchFilter, DjangoFilterBackend)
-    search_fields = ('name')
+    search_fields = ('name',)
 
 
 class ServiceIconDetailedView(RetrieveAPIView):
@@ -120,8 +120,14 @@ class ApiRootView(APIView):
 
         return Response(OrderedDict((
             ('geoservices_url', simple_url('geoservice_list')),
+            ('geoservices_type_filter_url', simple_url('geoservice_list') + '?type={tms|wms|wfs}'),
+            ('geoservices_epsg_filter_url', simple_url('geoservice_list') + '?epsg={any_epsg_code}'),
+            ('geoservices_search_url', simple_url('geoservice_list') + '?search={q}'),
+            ('geoservices_pagination_url', simple_url('geoservice_list') + '?limit={int}&offset={int}'),
             ('geoservice_detail_url', repl_id_ulr('geoservice_detail')),
             ('icons_url', simple_url('service_icon_list')),
+            ('icons_search_url', simple_url('service_icon_list') + '?search={q}'),
+            ('icons_pagination_url', simple_url('service_icon_list') + '?limit={int}&offset={int}'),
             ('icon_detail_url', repl_id_ulr('service_icon_detail')),
             ('icon_content_url', repl_id_ulr('service_icon_retrieve')),
             ('default_icon_url', simple_url('service_icon_default'))
