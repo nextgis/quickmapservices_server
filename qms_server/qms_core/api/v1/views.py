@@ -1,10 +1,9 @@
 import os
-from rest_framework.decorators import api_view
 from rest_framework.filters import SearchFilter, DjangoFilterBackend, OrderingFilter
-from rest_framework.generics import ListAPIView, RetrieveAPIView, GenericAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
-from rest_framework.serializers import ModelSerializer, URLField, SerializerMethodField, OrderedDict
+from rest_framework.serializers import ModelSerializer, OrderedDict
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 
@@ -118,7 +117,10 @@ class ApiRootView(APIView):
     def get(self, request, format=None):
         temp_rep_val = 2110112
         simple_url = lambda name: reverse(name, request=request, format=format)
-        repl_id_ulr = lambda name: reverse(name, kwargs={'pk': temp_rep_val}, request=request, format=format).replace(str(temp_rep_val), '{id}')
+        repl_id_ulr = lambda name: reverse(name,
+                                           kwargs={'pk': temp_rep_val},
+                                           request=request,
+                                           format=format).replace(str(temp_rep_val), '{id}')
 
         return Response(OrderedDict((
             ('geoservices_url', simple_url('geoservice_list')),
@@ -133,7 +135,6 @@ class ApiRootView(APIView):
             ('icons_pagination_url', simple_url('service_icon_list') + '?limit={int}&offset={int}'),
             ('icon_detail_url', repl_id_ulr('service_icon_detail')),
             ('icon_content_url', repl_id_ulr('service_icon_retrieve')),
+            ('icon_resized_content_url', repl_id_ulr('service_icon_retrieve') + '?width={16<=x<=64}&height={16<=y<=64}'),
             ('default_icon_url', simple_url('service_icon_default'))
         )))
-
-
