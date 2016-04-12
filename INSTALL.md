@@ -3,7 +3,7 @@
 ## Установка необходимых пакетов  
 ```bash  
     sudo apt-get update
-    sudo apt-get install python-virtualenv git libpq-dev python-dev gettext
+    sudo apt-get install python-virtualenv git libpq-dev python-dev gettext libjpeg-dev libtiff-dev libfreetype6-dev
 ```
 
 
