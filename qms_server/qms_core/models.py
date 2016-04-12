@@ -130,7 +130,7 @@ class NextgisUser(AbstractBaseUser, PermissionsMixin):
 class ServiceIcon(models.Model):
     guid = models.UUIDField(_('icon guid'), default=uuid.uuid4, editable=False)
     icon = models.ImageField(_('icon'), upload_to='service_icon/', max_length=200, null=False, blank=False)
-    name = models.CharField(_('icon name'), max_length=200, null=False, blank=False)
+    name = models.CharField(_('icon name'), max_length=200, null=False, blank=False, )  # unique=True,
     is_private = models.BooleanField(_('icon is private'), default=False)
 
 

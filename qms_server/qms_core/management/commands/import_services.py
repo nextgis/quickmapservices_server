@@ -6,11 +6,13 @@ from zipfile import ZipFile
 
 import os
 import shutil
+
+from django.core.files import File
 from django.core.management import BaseCommand
 
 from .qms_plugin.data_source_serializer import DataSourceSerializer
 from .qms_plugin.supported_drivers import KNOWN_DRIVERS
-from qms_core.models import GeoService, TmsService, WmsService, WfsService
+from qms_core.models import GeoService, TmsService, WmsService, WfsService, ServiceIcon
 
 __author__ = 'yellow'
 
@@ -39,6 +41,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         if options['clear']:
             GeoService.objects.all().delete()
+            ServiceIcon.objects.all().delete()
         if options['base']:
             self.import_from_repo(self.REPOS_INFO['base'])
         if options['contrib']:
@@ -55,19 +58,18 @@ class Command(BaseCommand):
             metadata_pth = os.path.join(src_dir, 'metadata.ini')
             ds = DataSourceSerializer.read_from_ini(metadata_pth)
             print(ds.alias)
+
             if ds.type == KNOWN_DRIVERS.TMS:
                 service = TmsService(name=ds.alias,
                                      url=ds.tms_url,
                                      z_min=ds.tms_zmin,
                                      z_max=ds.tms_zmax,
                                      epsg=3857)
-
                 if ds.tms_y_origin_top is not None:
                     service.y_origin_top = ds.tms_y_origin_top
-
                 if ds.tms_epsg_crs_id is not None:
                     service.epsg = ds.tms_epsg_crs_id
-
+                self.apply_img(ds, service)
                 service.save()
 
             if ds.type == KNOWN_DRIVERS.WMS:
@@ -77,11 +79,13 @@ class Command(BaseCommand):
                                      layers=ds.wms_layers)
                 if ds.wms_turn_over is not None:
                     service.turn_over = ds.wms_turn_over
+                self.apply_img(ds, service)
                 service.save()
 
             if ds.type == KNOWN_DRIVERS.WFS:
                 service = WfsService(name=ds.alias,
                                      url=ds.wfs_url)
+                self.apply_img(ds, service)
                 service.save()
 
             if ds.type == KNOWN_DRIVERS.GDAL:
@@ -139,3 +143,29 @@ class Command(BaseCommand):
     def _extract_zip(self, zip_path, out_path):
         zf = ZipFile(zip_path)
         zf.extractall(out_path)
+
+    def get_exists_img(self, icon_name):
+        icons = ServiceIcon.objects.filter(name=icon_name)
+        if icons:
+            return icons[0]
+        else:
+            return None
+
+    def apply_img(self, ds, service):
+        if ds.icon_path \
+                and os.path.exists(ds.icon_path) \
+                and os.path.splitext(ds.icon_path)[1] in ('.png', '.jpg'):
+
+            icon_name = os.path.basename(os.path.splitext(ds.icon_path)[0])
+
+            exists_img = self.get_exists_img(icon_name)
+
+            if exists_img:
+                service.icon = exists_img
+            else:
+                new_icon = ServiceIcon(name=icon_name)
+                new_icon.icon.save(
+                    os.path.basename(ds.icon_path),
+                    File(open(ds.icon_path))
+                )
+                service.icon = new_icon
