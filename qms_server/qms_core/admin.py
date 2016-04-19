@@ -34,7 +34,7 @@ class GeoServiceAdmin(admin.ModelAdmin):
 
 
 service_readonly_fields = ('guid', 'type',)
-common_fieldset = (_('Common'), {'fields': ('guid', 'type', 'name', 'desc', 'icon')})
+common_fieldset = (_('Common'), {'fields': ('guid', 'type', 'name', 'desc', 'epsg', 'icon')})
 common_list_display = ('id', 'type', 'name', 'desc')
 
 
