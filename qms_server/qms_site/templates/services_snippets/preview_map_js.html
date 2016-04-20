@@ -18,8 +18,8 @@
             {% if service.epsg == 3857 or service.epsg == 4326 or service.egsg == 3395 %}
             ,crs: L.CRS.EPSG{{ service.epsg }}
             {% endif %}
-            {% if 'png' in  service.wmsservice.params%}
-            ,format: "image/png"
+            {% if service.wmsservice.format %}
+            ,format: "{{ service.wmsservice.format }}"
             {% endif %}
         }).addTo(preview_map);
     {% elif service.type == 'wfs' %}

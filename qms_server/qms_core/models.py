@@ -167,12 +167,28 @@ class TmsService(GeoService):
 
 
 class WmsService(GeoService):
+    OUTPUT_FORMATS = (
+        ('image/png', 'PNG'),
+        ('image/png8', 'PNG8'),
+        ('image/png24', 'PNG24'),
+        ('image/png32', 'PNG32'),
+        ('image/gif', 'GIF'),
+        ('image/bmp', 'BMP'),
+        ('image/jpeg', 'JPEG'),
+        ('image/tiff', 'TIFF'),
+        ('image/tiff8', 'TIFF8'),
+        ('image/geotiff', 'GeoTIFF'),
+        ('image/geotiff8', 'GeoTIFF8'),
+        ('image/svg+xml', 'SVG')
+    )
+
     service_type = 'wms'
 
     url = models.URLField(blank=False, null=False)
     params = models.CharField(max_length=1024, blank=True, null=True)
     layers = models.CharField(max_length=1024, blank=True, null=True)
     turn_over = models.BooleanField(default=False, blank=True)
+    format = models.CharField(max_length=128, blank=True, null=True, choices=OUTPUT_FORMATS)
 
 
 class WfsService(GeoService):

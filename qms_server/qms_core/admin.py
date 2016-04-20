@@ -58,7 +58,7 @@ class WmsServiceAdmin(admin.ModelAdmin):
 
     fieldsets = (
         common_fieldset,
-        (_('WMS'), {'fields': ('url', 'params', 'layers', 'turn_over')}),
+        (_('WMS'), {'fields': ('url', 'params', 'layers', 'turn_over', 'format')}),
     )
 
 
