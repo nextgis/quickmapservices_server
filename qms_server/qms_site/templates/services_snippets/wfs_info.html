@@ -1,0 +1,8 @@
+{% load i18n %}
+
+<div class="panel panel-default">
+  <div class="panel-body">
+      <h4>{% trans 'WFS info' %}</h4>
+      URL: {{ service.wfsservice.url|default_if_none:'None' }} <br>
+  </div>
+</div>

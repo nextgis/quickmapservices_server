@@ -1,0 +1,9 @@
+{% load gravatar %}
+
+<span class="user-photo">
+    <i class="user-photo__icon person_outline withripple">
+        {% gravatar request.user.email 30 %}
+    </i>
+    {# <i class="user-photo__icon material-icons person_outline withripple"></i> #}
+    {# <img src="img/avatar.jpg" alt="username"> if avatar loaded #}
+</span>

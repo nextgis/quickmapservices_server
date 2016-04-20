@@ -1,0 +1,27 @@
+{% load i18n %}
+{% load external_url %}
+
+<footer class="footer">
+    <div class="container">
+        <ul class="social list-unstyled">
+            <li class="social__item">
+                <a class="social__link icon icon-facebook" href="https://www.facebook.com/nextgis/" target="_blank"></a>
+            </li>
+            <li class="social__item">
+                <a class="social__link icon icon-google" href="https://plus.google.com/106080702686527456816" target="_blank"></a>
+            </li>
+            <li class="social__item">
+                <a class="social__link icon icon-twitter" href="https://twitter.com/nextgis" target="_blank"></a>
+            </li>
+        </ul>
+        <ul class="footer-menu list-unstyled hide-on-sm">
+            <li class="footer-menu__item">
+                <a href="{% external_url 'terms_of_service' %}">{% trans 'Terms of Service' %}</a>
+            </li>
+            <li class="footer-menu__item">
+                <a href="{% external_url 'privacy_policy' %}">{% trans 'Privacy policy' %}</a>
+            </li>
+        </ul>
+        2016 — NextGIS<span class="hide-on-xs">. {% trans 'Open geospatial technologies' %}</span>
+    </div>
+</footer>

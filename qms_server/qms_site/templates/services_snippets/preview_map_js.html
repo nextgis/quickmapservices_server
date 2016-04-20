@@ -1,0 +1,46 @@
+{% load i18n %}
+
+<script type="text/javascript">
+    var preview_map = L.map('mapid').setView([55, 44], 2);
+    {% if service.type == 'tms' %}
+        L.tileLayer("{{ service.tmsservice.url|safe }}", {
+            minZoom: {{ service.tmsservice.z_min|default_if_none:0}},
+            maxZoom: {{ service.tmsservice.z_max|default_if_none:18}},
+        }).addTo(preview_map);
+    {% elif service.type == 'wms' %}
+        L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+                {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}
+        ).addTo(preview_map);
+
+        L.tileLayer.wms("{{ service.wmsservice.url|safe }}?{{ service.wmsservice.params|safe }}", {
+            layers: "{{ service.wmsservice.layers }}",
+            transparent: true
+            {% if service.epsg == 3857 or service.epsg == 4326 or service.egsg == 3395 %}
+            ,crs: L.CRS.EPSG{{ service.epsg }}
+            {% endif %}
+            {% if 'png' in  service.wmsservice.params%}
+            ,format: "image/png"
+            {% endif %}
+        }).addTo(preview_map);
+    {% elif service.type == 'wfs' %}
+        L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+                {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}
+        ).addTo(preview_map);
+
+        var wfs_lyr = new L.WFST({
+            url: '{{ service.wfsservice.url|safe }}',
+            typeNS: 'WFS_structures',
+            typeName: 'USGS_TNM_Structures',
+            style: {
+              color: 'blue',
+              weight: 2
+            }
+            {% if service.epsg == 3857 or service.epsg == 4326 or service.egsg == 3395 %}
+            ,crs: L.CRS.EPSG{{ service.epsg }}
+            {% endif %}
+          }).addTo(preview_map)
+            .once('load', function () {
+              preview_map.fitBounds(wfs_lyr);
+            });
+    {% endif %}
+</script>

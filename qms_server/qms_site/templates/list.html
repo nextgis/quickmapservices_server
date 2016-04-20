@@ -1,0 +1,40 @@
+{% extends "base_cab.html" %}
+
+{% load i18n %}
+
+
+{% block head_title %}{% trans 'List of services' %}{% endblock %}
+{% block content_title %}{% trans 'List of services' %}{% endblock %}
+{% block content_title_mobile %}{% trans 'List of services' %}{% endblock %}
+
+{% block body_content %}
+    <div class="row">
+        {% for service in services%}
+        <div class="panel panel-default">
+              <div class="panel-body">
+                  <h3>
+                  {% if service.icon %}
+                  <img src="{% url 'service_icon_retrieve' pk=service.icon.id %}" />
+                  {% else %}
+                  <img src="{% url 'service_icon_default' %}" />
+                  {% endif %}
+                  <a href="{% url 'geoservice_detail' pk=service.id %}">{{ service.name }}</a>
+                  </h3>
+                  Description: {{ service.desc }} <br>
+                  Type: {{ service.type }} <br>
+                  CRS: {{ service.epsg }} <br>
+              </div>
+        </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}
+
+{% block form_messages %}
+{% for error in form.non_field_errors %}
+    <div class="alert-error alert alert-danger fade in" data-form="auth-form">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{error}}
+    </div>
+{% endfor %}
+{% endblock %}

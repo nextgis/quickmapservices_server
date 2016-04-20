@@ -1,0 +1,11 @@
+{% load i18n %}
+
+<div class="panel panel-default">
+  <div class="panel-body">
+      <h4>{% trans 'TMS info' %}</h4>
+      URL: {{ service.tmsservice.url|default_if_none:'None' }} <br>
+      Z Min: {{ service.tmsservice.z_min|default_if_none:'None' }} <br>
+      Z max: {{ service.tmsservice.z_max|default_if_none:'None' }} <br>
+      Y Origin Top: {{ service.tmsservice.y_origin_top|default_if_none:'None' }} <br>
+  </div>
+</div>

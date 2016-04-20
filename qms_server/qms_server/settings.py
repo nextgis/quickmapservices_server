@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'qms_core',
+    'qms_site',
+
+    'django_gravatar',
 
     'rest_framework',
 ]

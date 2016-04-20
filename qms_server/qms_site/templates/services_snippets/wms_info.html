@@ -1,0 +1,11 @@
+{% load i18n %}
+
+<div class="panel panel-default">
+  <div class="panel-body">
+      <h4>{% trans 'WMS info' %}</h4>
+      URL: {{ service.wmsservice.url|default_if_none:'None' }} <br>
+      Parameters: {{ service.wmsservice.params|default_if_none:'None' }} <br>
+      Layers: {{ service.wmsservice.layers|default_if_none:'None' }} <br>
+      Turn over: {{ service.wmsservice.turn_over|default_if_none:'None' }} <br>
+  </div>
+</div>

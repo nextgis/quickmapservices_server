@@ -23,5 +23,6 @@ import admin as localadmin  # For admin customization
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^api/', include('qms_core.urls'))
+    url(r'^api/', include('qms_core.urls')),
+    url(r'', include('qms_site.urls'))
 ]
