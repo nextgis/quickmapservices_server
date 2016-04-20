@@ -70,7 +70,7 @@ class WfsServiceAdmin(admin.ModelAdmin):
 
     fieldsets = (
         common_fieldset,
-        (_('WFS'), {'fields': ('url',)}),
+        (_('WFS'), {'fields': ('url', 'layer')}),
     )
 
 

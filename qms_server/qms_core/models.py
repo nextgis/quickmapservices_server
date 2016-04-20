@@ -195,3 +195,4 @@ class WfsService(GeoService):
     service_type = 'wfs'
 
     url = models.URLField(blank=False, null=False)
+    layer = models.CharField(_('Layer name (namespace:featuretype)'), max_length=1024, blank=False, null=False)
