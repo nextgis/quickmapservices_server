@@ -18,7 +18,7 @@
                   {% else %}
                   <img src="{% url 'service_icon_default' %}" />
                   {% endif %}
-                  <a href="{% url 'geoservice_detail' pk=service.id %}">{{ service.name }}</a>
+                  <a href="{% url 'site_geoservice_detail' pk=service.id %}">{{ service.name }}</a>
                   </h3>
                   Description: {{ service.desc }} <br>
                   Type: {{ service.type }} <br>
