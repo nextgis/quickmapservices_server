@@ -34,7 +34,6 @@
               color: 'blue',
               weight: 2
             },
-            geometryField: 'the_geom',
             typeName: '{{ service.wfsservice.layer|wfs_layer_name }}'
             {% if service.wfsservice.layer|wfs_layer_namespace %}
             ,typeNS: '{{ service.wfsservice.layer|wfs_layer_namespace }}'
@@ -45,6 +44,24 @@
           }).addTo(preview_map)
             .once('load', function () {
               preview_map.fitBounds(wfs_lyr);
+            });
+    {% elif service.type == 'geojson' %}
+        L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+                {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}
+        ).addTo(preview_map);
+
+        var geojson_lyr = new L.geoJson({
+            url: '{{ service.geojsonservice.url|safe }}',
+            style: {
+              color: 'blue',
+              weight: 2
+            }
+            {% if service.epsg == 3857 or service.epsg == 4326 or service.egsg == 3395 %}
+            ,crs: L.CRS.EPSG{{ service.epsg }}
+            {% endif %}
+          }).addTo(preview_map)
+            .once('load', function () {
+              preview_map.fitBounds(geojson_lyr);
             });
     {% endif %}
 </script>

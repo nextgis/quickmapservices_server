@@ -24,6 +24,8 @@
         {% include 'services_snippets/wms_info.html' %}
     {% elif service.type == 'wfs' %}
         {% include 'services_snippets/wfs_info.html' %}
+    {% elif service.type == 'geojson' %}
+        {% include 'services_snippets/geojson_info.html' %}
     {% endif %}
     {% include 'services_snippets/preview_map.html' %}
     </div>

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext as _
-from qms_core.models import NextgisUser, GeoService, TmsService, WmsService, WfsService, ServiceIcon
+from qms_core.models import NextgisUser, GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService
 
 
 @admin.register(NextgisUser)
@@ -71,6 +71,18 @@ class WfsServiceAdmin(admin.ModelAdmin):
     fieldsets = (
         common_fieldset,
         (_('WFS'), {'fields': ('url', 'layer')}),
+    )
+
+
+@admin.register(GeoJsonService)
+class GeoJsonServiceAdmin(admin.ModelAdmin):
+    readonly_fields = service_readonly_fields
+    list_display = common_list_display
+    search_fields = ('name', 'desc')
+
+    fieldsets = (
+        common_fieldset,
+        (_('GeoJSON'), {'fields': ('url', )}),
     )
 
 

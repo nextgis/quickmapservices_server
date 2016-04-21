@@ -196,3 +196,9 @@ class WfsService(GeoService):
 
     url = models.URLField(blank=False, null=False)
     layer = models.CharField(_('Layer name (namespace:featuretype)'), max_length=1024, blank=False, null=False)
+
+
+class GeoJsonService(GeoService):
+    service_type = 'geojson'
+
+    url = models.URLField(blank=False, null=False)

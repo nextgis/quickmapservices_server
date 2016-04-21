@@ -9,7 +9,7 @@ from rest_framework.views import APIView
 
 from ...icon_renderer import IconRenderer
 from ...icon_serializer import IconSerializer
-from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIcon
+from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService
 
 
 # === Serializers
@@ -38,6 +38,12 @@ class WfsServiceSerializer(ModelSerializer):
         fields = '__all__'
 
 
+class GeoJsonServiceSerializer(ModelSerializer):
+    class Meta:
+        model = GeoJsonService
+        fields = '__all__'
+
+
 class ServiceIconSerializer(ModelSerializer):
     class Meta:
         model = ServiceIcon
@@ -58,7 +64,11 @@ class GeoServiceListView(ListAPIView):
 
 
 class GeoServiceDetailedView(RetrieveAPIView):
-    queryset = GeoService.objects.select_related('tmsservice').select_related('wmsservice').select_related('wfsservice')
+    queryset = GeoService.objects\
+        .select_related('tmsservice')\
+        .select_related('wmsservice')\
+        .select_related('wfsservice')\
+        .select_related('geojsonservice')
 
     def get_object(self):
         obj = super(GeoServiceDetailedView, self).get_object()
@@ -69,6 +79,8 @@ class GeoServiceDetailedView(RetrieveAPIView):
                 obj = obj.wmsservice
             if obj.type == WfsService.service_type:
                 obj = obj.wfsservice
+            if obj.type == GeoJsonService.service_type:
+                obj = obj.geojsonservice
         return obj
 
     def get_serializer(self, instance):
@@ -79,6 +91,9 @@ class GeoServiceDetailedView(RetrieveAPIView):
                 return WmsServiceSerializer(instance)
             if instance.type == WfsService.service_type:
                 return WfsServiceSerializer(instance)
+            if instance.type == GeoJsonService.service_type:
+                return GeoJsonServiceSerializer(instance)
+
         return GeoServiceSerializer(instance)
 
 # === Views Icons
@@ -124,7 +139,7 @@ class ApiRootView(APIView):
 
         return Response(OrderedDict((
             ('geoservices_url', simple_url('geoservice_list')),
-            ('geoservices_type_filter_url', simple_url('geoservice_list') + '?type={tms|wms|wfs}'),
+            ('geoservices_type_filter_url', simple_url('geoservice_list') + '?type={tms|wms|wfs|geojson}'),
             ('geoservices_epsg_filter_url', simple_url('geoservice_list') + '?epsg={any_epsg_code}'),
             ('geoservices_search_url', simple_url('geoservice_list') + '?search={q}'),
             ('geoservices_ordering_url', simple_url('geoservice_list') + '?ordering={name|-name|id|-id}'),
