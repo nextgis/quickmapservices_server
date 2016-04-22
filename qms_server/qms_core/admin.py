@@ -36,7 +36,7 @@ class GeoServiceAdmin(admin.ModelAdmin):
 
 service_readonly_fields = ('guid', 'type',)
 common_fieldset = (_('Common'), {'fields': ('guid', 'type', 'name', 'desc', 'epsg', 'icon')})
-license_fieldset = (_('License & Copyright'), {'fields': ('license_name', 'license_url', 'copyright_text', 'copyright_link', 'terms_of_use_url')})
+license_fieldset = (_('License & Copyright'), {'fields': ('license_name', 'license_url', 'copyright_text', 'copyright_url', 'terms_of_use_url')})
 common_list_display = ('id', 'type', 'name', 'desc')
 
 

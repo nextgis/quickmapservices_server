@@ -156,7 +156,7 @@ class GeoService(models.Model):
     license_name = models.CharField(_('license name'), max_length=256, blank=True, null=True)
     license_url = models.URLField(_('license url'), blank=True, null=True)
     copyright_text = models.CharField(_('copyright text'), max_length=2048, blank=True, null=True)
-    copyright_link = models.URLField(_('copyright url'), blank=True, null=True)
+    copyright_url = models.URLField(_('copyright url'), blank=True, null=True)
     terms_of_use_url = models.URLField(_('terms of use url'), blank=True, null=True)
 
     #tags
