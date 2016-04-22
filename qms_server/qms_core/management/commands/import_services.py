@@ -70,6 +70,7 @@ class Command(BaseCommand):
                 if ds.tms_epsg_crs_id is not None:
                     service.epsg = ds.tms_epsg_crs_id
                 self.apply_img(ds, service)
+                self.apply_lic(ds, service)
                 service.save()
 
             if ds.type == KNOWN_DRIVERS.WMS:
@@ -80,12 +81,14 @@ class Command(BaseCommand):
                 if ds.wms_turn_over is not None:
                     service.turn_over = ds.wms_turn_over
                 self.apply_img(ds, service)
+                self.apply_lic(ds, service)
                 service.save()
 
             if ds.type == KNOWN_DRIVERS.WFS:
                 service = WfsService(name=ds.alias,
                                      url=ds.wfs_url)
                 self.apply_img(ds, service)
+                self.apply_lic(ds, service)
                 service.save()
 
             if ds.type == KNOWN_DRIVERS.GDAL:
@@ -169,3 +172,15 @@ class Command(BaseCommand):
                     File(open(ds.icon_path))
                 )
                 service.icon = new_icon
+
+    def apply_lic(self, ds, service):
+        if ds.lic_name:
+            service.license_name = ds.lic_name
+        if ds.lic_link:
+            service.license_url = ds.lic_link
+        if ds.copyright_text:
+            service.copyright_text = ds.copyright_text
+        if ds.copyright_link:
+            service.copyright_url = ds.copyright_link
+        if ds.terms_of_use:
+            service.terms_of_use_url = ds.terms_of_use
