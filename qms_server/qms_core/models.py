@@ -152,8 +152,13 @@ class GeoService(models.Model):
     type = models.CharField(_('service type'), max_length=20, editable=False, null=False)
     epsg = models.IntegerField(_('EPSG Code'), null=True, blank=True)
     icon = models.ForeignKey(ServiceIcon, models.SET_NULL, blank=True, null=True)
-
     #license
+    license_name = models.CharField(_('license name'), max_length=256, blank=True, null=True)
+    license_url = models.URLField(_('license url'), blank=True, null=True)
+    copyright_text = models.CharField(_('copyright text'), max_length=2048, blank=True, null=True)
+    copyright_link = models.URLField(_('copyright url'), blank=True, null=True)
+    terms_of_use_url = models.URLField(_('terms of use url'), blank=True, null=True)
+
     #tags
 
 
@@ -195,7 +200,7 @@ class WfsService(GeoService):
     service_type = 'wfs'
 
     url = models.URLField(blank=False, null=False)
-    layer = models.CharField(_('Layer name (namespace:featuretype)'), max_length=1024, blank=False, null=False)
+    layer = models.CharField(_('Layer name ([namespace:]featuretype)'), max_length=1024, blank=False, null=False)
 
 
 class GeoJsonService(GeoService):

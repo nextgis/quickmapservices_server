@@ -18,6 +18,7 @@ class NextgisUserAdmin(UserAdmin):
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
 
+
 @admin.register(GeoService)
 class GeoServiceAdmin(admin.ModelAdmin):
     readonly_fields = [f.name for f in GeoService._meta.get_fields()]
@@ -35,6 +36,7 @@ class GeoServiceAdmin(admin.ModelAdmin):
 
 service_readonly_fields = ('guid', 'type',)
 common_fieldset = (_('Common'), {'fields': ('guid', 'type', 'name', 'desc', 'epsg', 'icon')})
+license_fieldset = (_('License & Copyright'), {'fields': ('license_name', 'license_url', 'copyright_text', 'copyright_link', 'terms_of_use_url')})
 common_list_display = ('id', 'type', 'name', 'desc')
 
 
@@ -46,6 +48,7 @@ class TmsServiceAdmin(admin.ModelAdmin):
 
     fieldsets = (
         common_fieldset,
+        license_fieldset,
         (_('TMS'), {'fields': ('url', 'z_min', 'z_max', 'y_origin_top')}),
     )
 
@@ -58,6 +61,7 @@ class WmsServiceAdmin(admin.ModelAdmin):
 
     fieldsets = (
         common_fieldset,
+        license_fieldset,
         (_('WMS'), {'fields': ('url', 'params', 'layers', 'turn_over', 'format')}),
     )
 
@@ -70,6 +74,7 @@ class WfsServiceAdmin(admin.ModelAdmin):
 
     fieldsets = (
         common_fieldset,
+        license_fieldset,
         (_('WFS'), {'fields': ('url', 'layer')}),
     )
 
@@ -82,6 +87,7 @@ class GeoJsonServiceAdmin(admin.ModelAdmin):
 
     fieldsets = (
         common_fieldset,
+        license_fieldset,
         (_('GeoJSON'), {'fields': ('url', )}),
     )
 
