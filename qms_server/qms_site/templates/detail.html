@@ -18,6 +18,7 @@
         {{ service.name }}
     </h3>
     {% include 'services_snippets/general_info.html' %}
+    {% include 'services_snippets/license_info.html' %}
     {% if service.type == 'tms' %}
         {% include 'services_snippets/tms_info.html' %}
     {% elif service.type == 'wms' %}
