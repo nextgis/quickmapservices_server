@@ -16,7 +16,7 @@
         L.tileLayer.wms("{{ service.wmsservice.url|safe }}?{{ service.wmsservice.params|safe }}", {
             layers: "{{ service.wmsservice.layers }}",
             transparent: true
-            {% if service.epsg == 3857 or service.epsg == 4326 or service.egsg == 3395 %}
+            {% if service.epsg == 3857 or service.epsg == 4326 or service.epsg == 3395 %}
             ,crs: L.CRS.EPSG{{ service.epsg }}
             {% endif %}
             {% if service.wmsservice.format %}
@@ -38,7 +38,7 @@
             {% if service.wfsservice.layer|wfs_layer_namespace %}
             ,typeNS: '{{ service.wfsservice.layer|wfs_layer_namespace }}'
             {% endif %}
-            {% if service.epsg == 3857 or service.epsg == 4326 or service.egsg == 3395 %}
+            {% if service.epsg == 3857 or service.epsg == 4326 or service.epsg == 3395 %}
             ,crs: L.CRS.EPSG{{ service.epsg }}
             {% endif %}
           }).addTo(preview_map)
@@ -50,18 +50,15 @@
                 {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}
         ).addTo(preview_map);
 
-        var geojson_lyr = new L.geoJson({
+        $.ajax({
             url: '{{ service.geojsonservice.url|safe }}',
-            style: {
-              color: 'blue',
-              weight: 2
+            dataType: 'json',
+            success: function (response) {
+                geojson_lyr = L.Proj.geoJson(response, {
+                    style: { color: 'blue', weight: 2 }
+                }).addTo(preview_map)
+                .once('load', function () { preview_map.fitBounds(geojson_lyr); });
             }
-            {% if service.epsg == 3857 or service.epsg == 4326 or service.egsg == 3395 %}
-            ,crs: L.CRS.EPSG{{ service.epsg }}
-            {% endif %}
-          }).addTo(preview_map)
-            .once('load', function () {
-              preview_map.fitBounds(geojson_lyr);
-            });
+        });
     {% endif %}
 </script>
