@@ -137,6 +137,8 @@ class ServiceIcon(models.Model):
     name = models.CharField(_('icon name'), max_length=200, null=False, blank=False, unique=True)
     is_private = models.BooleanField(_('icon is private'), default=False)
 
+    def __str__(self):
+        return self.name
 
 # SERVICES
 class GeoService(models.Model):
@@ -160,6 +162,9 @@ class GeoService(models.Model):
     terms_of_use_url = models.URLField(_('terms of use url'), blank=True, null=True)
 
     #tags
+
+    def __str__(self):
+        return self.name
 
 
 class TmsService(GeoService):
