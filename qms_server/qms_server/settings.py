@@ -43,9 +43,11 @@ INSTALLED_APPS = [
     'django_gravatar',
 
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE_CLASSES = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -138,6 +140,14 @@ ROOT_URLCONF = 'qms_server.urls'
 
 # Custom User Model
 AUTH_USER_MODEL = 'qms_core.NextgisUser'
+
+# CORS
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_URLS_REGEX = r'^/api/.*$'
+CORS_ALLOW_METHODS = (
+    'GET',
+    'OPTIONS',
+)
 
 # try to load local machine settings
 try:
