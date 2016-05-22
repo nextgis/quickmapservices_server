@@ -1,5 +1,5 @@
 {% extends "base_cab.html" %}
-
+{% load staticfiles %}
 {% load i18n %}
 
 
@@ -9,32 +9,34 @@
 
 {% block body_content %}
     <div class="row">
-        {% for service in services%}
-        <div class="panel panel-default">
-              <div class="panel-body">
-                  <h3>
-                  {% if service.icon %}
-                  <img src="{% url 'service_icon_retrieve' pk=service.icon.id %}" />
-                  {% else %}
-                  <img src="{% url 'service_icon_default' %}" />
-                  {% endif %}
-                  <a href="{% url 'site_geoservice_detail' pk=service.id %}">{{ service.name }}</a>
-                  </h3>
-                  Description: {{ service.desc }} <br>
-                  Type: {{ service.type }} <br>
-                  CRS: {{ service.epsg }} <br>
-              </div>
+        <div class="input-group">
+            <div class="input-group-addon"><i class="material-icons">search</i></div>
+            <div class="form-group is-empty">
+                <input class="form-control" id="txt_search" maxlength="256" placeholder="{% trans 'Search map service...' %}" type="search" aria-required="true">
+            </div>
         </div>
-        {% endfor %}
+        <label><input type="checkbox" id="chk_tms"/>All</label>
+        <label><input type="checkbox" id="chk_tms"/>TMS</label>
+        <label><input type="checkbox" id="chk_wms"/>WMS</label>
+        <label><input type="checkbox" id="chk_wfs"/>WFS</label>
+        <label><input type="checkbox" id="chk_geojson"/>GeoJSON</label>
 
+    </div>
+    <div class="row">
+        <div id="results"></div>
     </div>
 {% endblock %}
 
-{% block form_messages %}
-{% for error in form.non_field_errors %}
-    <div class="alert-error alert alert-danger fade in" data-form="auth-form">
-        <button type="button" class="close" data-dismiss="alert">×</button>
-        {{error}}
-    </div>
-{% endfor %}
+{% block extra_scripts %}
+    <script type="text/javascript">
+        element_template_url = "{% static 'qms_site/templates/service_element.html' %}";
+        no_results_templ_url = "{% static 'qms_site/templates/no_results.html' %}";
+        default_icon_url = "{% url 'service_icon_default' %}";
+        icon_url = "/api/v1/icons/%id/content";  //REPLACE IT!
+        service_url = "/geoservices/%id"; //REPLACE IT!
+    </script>
+
+    <script src="{% static 'qms_site/js/vendor/handlebars.min.js' %}"></script>
+    <script src="{% static 'qms_site/js/search_engine.js' %}"></script>
+    <script src="{% static 'qms_site/js/filter-widget.js' %}"></script>
 {% endblock %}

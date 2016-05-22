@@ -2,43 +2,54 @@
  * Created by yellow on 4/19/16.
  */
 
-//Add search by cities
-citys_bh = new Bloodhound({
-    datumTokenizer: function (d) {
-        return Bloodhound.tokenizers.whitespace(d.name);
-    },
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    remote: {
-        url: 'http://rgada.info/nextgisweb/resource/875/store/?like=%QUERY',
-        wildcard: '%QUERY'
+// load templates
+$.get(element_template_url, function(source) {
+        element_template = Handlebars.compile(source);
+});
+
+$.get(no_results_templ_url, function(source) {
+        no_result_template = Handlebars.compile(source);
+});
+
+// renderer handler
+render_services = function(data) {
+    // clear
+    $("#results").fadeOut(200, function () {
+        $("#results").empty().show();
+
+    // render
+    if(data.length < 1) {
+        var context = {};
+        var elem    = no_result_template(context);
+        $(elem).hide().appendTo('#results').fadeIn(200);
     }
-});
+    else {
+        $.each(data, function (index, service) {
+            var context = {
+                service: service,
+                service_desc: service.desc ? service.desc : "None",
+                service_epsg: service.epsg ? service.epsg : "None",
+                service_url: service_url.replace('%id', service.id),
+                icon_url: service.icon ? icon_url.replace('%id', service.icon) : default_icon_url
+            };
+            var elem    = element_template(context);
+            $(elem).hide().appendTo('#results').fadeIn(200);
+        });
+    }
 
-citys_bh.initialize();
-
-all_data_sources.push({
-        name: 'city',
-        display: 'name',
-        source: cityMinLengthFilter,
-        templates: { header: '<h3>Поселения</h3>' }
-});
-
+    });
+};
 
 // Create search control
-$('#bloodhound .typeahead').typeahead({
-        hint: true,
-        highlight: true,
-        minLength: 1
-    },
-	  all_data_sources
-    ).on("typeahead:selected", function (obj, datum) {
-        if(datum.hasOwnProperty('MendeName')) { // bad check !
-            showCityPopup(datum);
-        }
-        else {
-            showPopupById(datum.id);
-        }
-    }).on("change", function(event) {
-        popup.hide();
-    });
+t = new SearchEngine({
+  url: "/api/v1/geoservices/",
+  param: "search",
+  delay: 250,
+  loading_css: "#spinner",
+  result_f: render_services
+});
 
+t.addTextBox($("#txt_search").first());
+
+// update data
+$("#txt_search").keyup();
