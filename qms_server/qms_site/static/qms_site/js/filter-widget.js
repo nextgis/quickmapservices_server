@@ -44,9 +44,8 @@ render_services = function(data) {
 searcher = new SearchEngine({
   url: "/api/v1/geoservices/",
   param: "search",
-  delay: 250,
-  loading_css: "#spinner",
-  result_f: render_services
+  delay: 500,
+  on_success: render_services
 });
 
 searcher.addTextBox($("#txt_search").first());

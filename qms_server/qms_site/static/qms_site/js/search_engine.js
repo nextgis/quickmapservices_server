@@ -8,9 +8,8 @@ function SearchEngine(config) {
 SearchEngine.prototype.default_config = {
     url: '/search',
     param: 'query',
-    dom_id: '#results',
-    result_f: null,
-    delay: 100,
+    on_success: null,
+    delay: 500,
     loading_css: '#loading'
 };
 
@@ -40,7 +39,7 @@ SearchEngine.prototype.process = function () {
     var req_params = $.extend({}, this._activeFilters);
     req_params[this._settings.param] = this._editBox.val();
     $.get(this._settings.url, req_params, $.proxy(function (data) {
-         this._settings.result_f(data);
+         this._settings.on_success(data);
     }, this));
 };
 
