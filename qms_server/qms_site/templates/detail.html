@@ -8,7 +8,6 @@
 {% block content_title_mobile %}{% trans 'Detail of service' %}{% endblock %}
 
 {% block body_content %}
-    <div class="row">
     <h3>
         {% if service.icon %}
         <img src="{% url 'service_icon_retrieve' pk=service.icon.id %}" />
@@ -29,7 +28,6 @@
         {% include 'services_snippets/geojson_info.html' %}
     {% endif %}
     {% include 'services_snippets/preview_map.html' %}
-    </div>
 {% endblock %}
 
 {% block extra_head %}

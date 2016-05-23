@@ -8,23 +8,36 @@
 {% block content_title_mobile %}{% trans 'List of services' %}{% endblock %}
 
 {% block body_content %}
-    <div class="row">
-        <div class="input-group">
-            <div class="input-group-addon"><i class="material-icons">search</i></div>
-            <div class="form-group is-empty">
-                <input class="form-control" id="txt_search" maxlength="256" placeholder="{% trans 'Search map service...' %}" type="search" aria-required="true">
+    <div class="qms__filter row">        
+        <div class="col-xs-12 col-sm-4 col-sm-push-8">
+            <div class="input-group">
+                <div class="input-group-addon"><i class="material-icons">search</i></div>
+                <div class="form-group">
+                    <input class="form-control" id="txt_search" maxlength="256" placeholder="{% trans 'Search map service...' %}" type="search">
+                </div>
             </div>
         </div>
-        <label><input type="checkbox" id="chk_tms"/>All</label>
-        <label><input type="checkbox" id="chk_tms"/>TMS</label>
-        <label><input type="checkbox" id="chk_wms"/>WMS</label>
-        <label><input type="checkbox" id="chk_wfs"/>WFS</label>
-        <label><input type="checkbox" id="chk_geojson"/>GeoJSON</label>
-
+        <div class="col-xs-12 col-sm-8 col-sm-pull-4">
+            <ul class="qms__filter__list filter-links list-inline">
+                <li class="filter-links__item">
+                    <a class="filter-link active" href="#"><span class="filter-link__inner">Все сервисы</span></a>
+                </li>
+                <li class="filter-links__item">
+                    <a class="filter-link" href="#"><span class="filter-link__inner">TMS</span></a>
+                </li>
+                <li class="filter-links__item">
+                    <a class="filter-link" href="#"><span class="filter-link__inner">WMS</span></a>
+                </li>
+                <li class="filter-links__item">
+                    <a class="filter-link" href="#"><span class="filter-link__inner">WFS</span></a>
+                </li>
+                <li class="filter-links__item">
+                    <a class="filter-link" href="#"><span class="filter-link__inner">GeoJSON</span></a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="row">
-        <div id="results"></div>
-    </div>
+    <div id="results"></div>
 {% endblock %}
 
 {% block extra_scripts %}
