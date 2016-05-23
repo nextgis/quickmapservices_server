@@ -135,11 +135,11 @@ a, a:hover, a:focus {
       .input-group-btn .btn:not(.btn-raised):not(.btn-link):hover, .theme-dark
       .input-group-btn .btn:not(.btn-raised):not(.btn-link):focus {
         background-color: rgba(204, 204, 204, 0.15); }
-  .btn.btn-raised, .btn.btn-raised.btn-default, .btn.btn-fab, .btn.btn-fab.btn-default,
+  .btn.btn-raised, .btn.btn-action, .input-group-btn .btn.btn-action, .btn.btn-raised.btn-default, .btn.btn-default.btn-action, .btn.btn-fab, .btn.btn-fab.btn-default,
   .btn-group-raised .btn,
   .btn-group-raised .btn.btn-default,
-  .input-group-btn .btn.btn-raised,
-  .input-group-btn .btn.btn-raised.btn-default,
+  .input-group-btn .btn.btn-raised, .input-group-btn .btn.btn-action,
+  .input-group-btn .btn.btn-raised.btn-default, .input-group-btn .btn.btn-default.btn-action,
   .input-group-btn .btn.btn-fab,
   .input-group-btn .btn.btn-fab.btn-default,
   .btn-group-raised
@@ -148,69 +148,69 @@ a, a:hover, a:focus {
   .input-group-btn .btn.btn-default {
     background-color: #fefefe;
     color: rgba(0,0,0, 0.87); }
-  .btn.btn-raised.btn-inverse, .btn.btn-fab.btn-inverse,
+  .btn.btn-raised.btn-inverse, .btn.btn-inverse.btn-action, .btn.btn-fab.btn-inverse,
   .btn-group-raised .btn.btn-inverse,
-  .input-group-btn .btn.btn-raised.btn-inverse,
+  .input-group-btn .btn.btn-raised.btn-inverse, .input-group-btn .btn.btn-inverse.btn-action,
   .input-group-btn .btn.btn-fab.btn-inverse,
   .btn-group-raised
   .input-group-btn .btn.btn-inverse {
     background-color: #009688;
     color: #ffffff; }
-  .btn.btn-raised.btn-primary, .btn.btn-fab.btn-primary,
+  .btn.btn-raised.btn-primary, .btn.btn-primary.btn-action, .btn.btn-fab.btn-primary,
   .btn-group-raised .btn.btn-primary,
-  .input-group-btn .btn.btn-raised.btn-primary,
+  .input-group-btn .btn.btn-raised.btn-primary, .input-group-btn .btn.btn-primary.btn-action,
   .input-group-btn .btn.btn-fab.btn-primary,
   .btn-group-raised
   .input-group-btn .btn.btn-primary {
     background-color: #2880ac;
     color: rgb(255,255,255); }
-  .btn.btn-raised.btn-success, .btn.btn-fab.btn-success,
+  .btn.btn-raised.btn-success, .btn.btn-success.btn-action, .btn.btn-fab.btn-success,
   .btn-group-raised .btn.btn-success,
-  .input-group-btn .btn.btn-raised.btn-success,
+  .input-group-btn .btn.btn-raised.btn-success, .input-group-btn .btn.btn-success.btn-action,
   .input-group-btn .btn.btn-fab.btn-success,
   .btn-group-raised
   .input-group-btn .btn.btn-success {
     background-color: #7AD67E;
     color: rgb(255,255,255); }
-  .btn.btn-raised.btn-info, .btn.btn-fab.btn-info,
+  .btn.btn-raised.btn-info, .btn.btn-info.btn-action, .btn.btn-fab.btn-info,
   .btn-group-raised .btn.btn-info,
-  .input-group-btn .btn.btn-raised.btn-info,
+  .input-group-btn .btn.btn-raised.btn-info, .input-group-btn .btn.btn-info.btn-action,
   .input-group-btn .btn.btn-fab.btn-info,
   .btn-group-raised
   .input-group-btn .btn.btn-info {
     background-color: #03a9f4;
     color: rgb(255,255,255); }
-  .btn.btn-raised.btn-warning, .btn.btn-fab.btn-warning,
+  .btn.btn-raised.btn-warning, .btn.btn-warning.btn-action, .btn.btn-fab.btn-warning,
   .btn-group-raised .btn.btn-warning,
-  .input-group-btn .btn.btn-raised.btn-warning,
+  .input-group-btn .btn.btn-raised.btn-warning, .input-group-btn .btn.btn-warning.btn-action,
   .input-group-btn .btn.btn-fab.btn-warning,
   .btn-group-raised
   .input-group-btn .btn.btn-warning {
     background-color: #fff9c4;
     color: rgb(255,255,255); }
-  .btn.btn-raised.btn-danger, .btn.btn-fab.btn-danger,
+  .btn.btn-raised.btn-danger, .btn.btn-danger.btn-action, .btn.btn-fab.btn-danger,
   .btn-group-raised .btn.btn-danger,
-  .input-group-btn .btn.btn-raised.btn-danger,
+  .input-group-btn .btn.btn-raised.btn-danger, .input-group-btn .btn.btn-danger.btn-action,
   .input-group-btn .btn.btn-fab.btn-danger,
   .btn-group-raised
   .input-group-btn .btn.btn-danger {
     background-color: #F96A67;
     color: rgb(255,255,255); }
-  .btn.btn-raised:not(.btn-link),
+  .btn.btn-raised:not(.btn-link), .btn.btn-action:not(.btn-link),
   .btn-group-raised .btn:not(.btn-link),
-  .input-group-btn .btn.btn-raised:not(.btn-link),
+  .input-group-btn .btn.btn-raised:not(.btn-link), .input-group-btn .btn.btn-action:not(.btn-link),
   .btn-group-raised
   .input-group-btn .btn:not(.btn-link) {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); }
-    .btn.btn-raised:not(.btn-link):hover, .btn.btn-raised:not(.btn-link):focus, .btn.btn-raised:not(.btn-link).active, .btn.btn-raised:not(.btn-link):active,
+    .btn.btn-raised:not(.btn-link):hover, .btn.btn-action:not(.btn-link):hover, .btn.btn-raised:not(.btn-link):focus, .btn.btn-action:not(.btn-link):focus, .btn.btn-raised:not(.btn-link).active, .btn.btn-action:not(.btn-link).active, .btn.btn-raised:not(.btn-link):active, .btn.btn-action:not(.btn-link):active,
     .btn-group-raised .btn:not(.btn-link):hover,
     .btn-group-raised .btn:not(.btn-link):focus,
     .btn-group-raised .btn:not(.btn-link).active,
     .btn-group-raised .btn:not(.btn-link):active,
-    .input-group-btn .btn.btn-raised:not(.btn-link):hover,
-    .input-group-btn .btn.btn-raised:not(.btn-link):focus,
-    .input-group-btn .btn.btn-raised:not(.btn-link).active,
-    .input-group-btn .btn.btn-raised:not(.btn-link):active,
+    .input-group-btn .btn.btn-raised:not(.btn-link):hover, .input-group-btn .btn.btn-action:not(.btn-link):hover,
+    .input-group-btn .btn.btn-raised:not(.btn-link):focus, .input-group-btn .btn.btn-action:not(.btn-link):focus,
+    .input-group-btn .btn.btn-raised:not(.btn-link).active, .input-group-btn .btn.btn-action:not(.btn-link).active,
+    .input-group-btn .btn.btn-raised:not(.btn-link):active, .input-group-btn .btn.btn-action:not(.btn-link):active,
     .btn-group-raised
     .input-group-btn .btn:not(.btn-link):hover,
     .btn-group-raised
@@ -220,7 +220,7 @@ a, a:hover, a:focus {
     .btn-group-raised
     .input-group-btn .btn:not(.btn-link):active {
       outline: 0; }
-      .btn.btn-raised:not(.btn-link):hover, .btn.btn-raised:not(.btn-link):hover.btn-default, .btn.btn-raised:not(.btn-link):focus, .btn.btn-raised:not(.btn-link):focus.btn-default, .btn.btn-raised:not(.btn-link).active, .btn.btn-raised:not(.btn-link).active.btn-default, .btn.btn-raised:not(.btn-link):active, .btn.btn-raised:not(.btn-link):active.btn-default,
+      .btn.btn-raised:not(.btn-link):hover, .btn.btn-action:not(.btn-link):hover, .btn.btn-raised:not(.btn-link):hover.btn-default, .btn.btn-action:not(.btn-link):hover.btn-default, .btn.btn-raised:not(.btn-link):focus, .btn.btn-action:not(.btn-link):focus, .btn.btn-raised:not(.btn-link):focus.btn-default, .btn.btn-action:not(.btn-link):focus.btn-default, .btn.btn-raised:not(.btn-link).active, .btn.btn-action:not(.btn-link).active, .btn.btn-raised:not(.btn-link).active.btn-default, .btn.btn-action:not(.btn-link).active.btn-default, .btn.btn-raised:not(.btn-link):active, .btn.btn-action:not(.btn-link):active, .btn.btn-raised:not(.btn-link):active.btn-default, .btn.btn-action:not(.btn-link):active.btn-default,
       .btn-group-raised .btn:not(.btn-link):hover,
       .btn-group-raised .btn:not(.btn-link):hover.btn-default,
       .btn-group-raised .btn:not(.btn-link):focus,
@@ -229,14 +229,14 @@ a, a:hover, a:focus {
       .btn-group-raised .btn:not(.btn-link).active.btn-default,
       .btn-group-raised .btn:not(.btn-link):active,
       .btn-group-raised .btn:not(.btn-link):active.btn-default,
-      .input-group-btn .btn.btn-raised:not(.btn-link):hover,
-      .input-group-btn .btn.btn-raised:not(.btn-link):hover.btn-default,
-      .input-group-btn .btn.btn-raised:not(.btn-link):focus,
-      .input-group-btn .btn.btn-raised:not(.btn-link):focus.btn-default,
-      .input-group-btn .btn.btn-raised:not(.btn-link).active,
-      .input-group-btn .btn.btn-raised:not(.btn-link).active.btn-default,
-      .input-group-btn .btn.btn-raised:not(.btn-link):active,
-      .input-group-btn .btn.btn-raised:not(.btn-link):active.btn-default,
+      .input-group-btn .btn.btn-raised:not(.btn-link):hover, .input-group-btn .btn.btn-action:not(.btn-link):hover,
+      .input-group-btn .btn.btn-raised:not(.btn-link):hover.btn-default, .input-group-btn .btn.btn-action:not(.btn-link):hover.btn-default,
+      .input-group-btn .btn.btn-raised:not(.btn-link):focus, .input-group-btn .btn.btn-action:not(.btn-link):focus,
+      .input-group-btn .btn.btn-raised:not(.btn-link):focus.btn-default, .input-group-btn .btn.btn-action:not(.btn-link):focus.btn-default,
+      .input-group-btn .btn.btn-raised:not(.btn-link).active, .input-group-btn .btn.btn-action:not(.btn-link).active,
+      .input-group-btn .btn.btn-raised:not(.btn-link).active.btn-default, .input-group-btn .btn.btn-action:not(.btn-link).active.btn-default,
+      .input-group-btn .btn.btn-raised:not(.btn-link):active, .input-group-btn .btn.btn-action:not(.btn-link):active,
+      .input-group-btn .btn.btn-raised:not(.btn-link):active.btn-default, .input-group-btn .btn.btn-action:not(.btn-link):active.btn-default,
       .btn-group-raised
       .input-group-btn .btn:not(.btn-link):hover,
       .btn-group-raised
@@ -254,15 +254,15 @@ a, a:hover, a:focus {
       .btn-group-raised
       .input-group-btn .btn:not(.btn-link):active.btn-default {
         background-color: #f4f4f4; }
-      .btn.btn-raised:not(.btn-link):hover.btn-inverse, .btn.btn-raised:not(.btn-link):focus.btn-inverse, .btn.btn-raised:not(.btn-link).active.btn-inverse, .btn.btn-raised:not(.btn-link):active.btn-inverse,
+      .btn.btn-raised:not(.btn-link):hover.btn-inverse, .btn.btn-action:not(.btn-link):hover.btn-inverse, .btn.btn-raised:not(.btn-link):focus.btn-inverse, .btn.btn-action:not(.btn-link):focus.btn-inverse, .btn.btn-raised:not(.btn-link).active.btn-inverse, .btn.btn-action:not(.btn-link).active.btn-inverse, .btn.btn-raised:not(.btn-link):active.btn-inverse, .btn.btn-action:not(.btn-link):active.btn-inverse,
       .btn-group-raised .btn:not(.btn-link):hover.btn-inverse,
       .btn-group-raised .btn:not(.btn-link):focus.btn-inverse,
       .btn-group-raised .btn:not(.btn-link).active.btn-inverse,
       .btn-group-raised .btn:not(.btn-link):active.btn-inverse,
-      .input-group-btn .btn.btn-raised:not(.btn-link):hover.btn-inverse,
-      .input-group-btn .btn.btn-raised:not(.btn-link):focus.btn-inverse,
-      .input-group-btn .btn.btn-raised:not(.btn-link).active.btn-inverse,
-      .input-group-btn .btn.btn-raised:not(.btn-link):active.btn-inverse,
+      .input-group-btn .btn.btn-raised:not(.btn-link):hover.btn-inverse, .input-group-btn .btn.btn-action:not(.btn-link):hover.btn-inverse,
+      .input-group-btn .btn.btn-raised:not(.btn-link):focus.btn-inverse, .input-group-btn .btn.btn-action:not(.btn-link):focus.btn-inverse,
+      .input-group-btn .btn.btn-raised:not(.btn-link).active.btn-inverse, .input-group-btn .btn.btn-action:not(.btn-link).active.btn-inverse,
+      .input-group-btn .btn.btn-raised:not(.btn-link):active.btn-inverse, .input-group-btn .btn.btn-action:not(.btn-link):active.btn-inverse,
       .btn-group-raised
       .input-group-btn .btn:not(.btn-link):hover.btn-inverse,
       .btn-group-raised
@@ -272,15 +272,15 @@ a, a:hover, a:focus {
       .btn-group-raised
       .input-group-btn .btn:not(.btn-link):active.btn-inverse {
         background-color: #008276; }
-      .btn.btn-raised:not(.btn-link):hover.btn-primary, .btn.btn-raised:not(.btn-link):focus.btn-primary, .btn.btn-raised:not(.btn-link).active.btn-primary, .btn.btn-raised:not(.btn-link):active.btn-primary,
+      .btn.btn-raised:not(.btn-link):hover.btn-primary, .btn.btn-action:not(.btn-link):hover.btn-primary, .btn.btn-raised:not(.btn-link):focus.btn-primary, .btn.btn-action:not(.btn-link):focus.btn-primary, .btn.btn-raised:not(.btn-link).active.btn-primary, .btn.btn-action:not(.btn-link).active.btn-primary, .btn.btn-raised:not(.btn-link):active.btn-primary, .btn.btn-action:not(.btn-link):active.btn-primary,
       .btn-group-raised .btn:not(.btn-link):hover.btn-primary,
       .btn-group-raised .btn:not(.btn-link):focus.btn-primary,
       .btn-group-raised .btn:not(.btn-link).active.btn-primary,
       .btn-group-raised .btn:not(.btn-link):active.btn-primary,
-      .input-group-btn .btn.btn-raised:not(.btn-link):hover.btn-primary,
-      .input-group-btn .btn.btn-raised:not(.btn-link):focus.btn-primary,
-      .input-group-btn .btn.btn-raised:not(.btn-link).active.btn-primary,
-      .input-group-btn .btn.btn-raised:not(.btn-link):active.btn-primary,
+      .input-group-btn .btn.btn-raised:not(.btn-link):hover.btn-primary, .input-group-btn .btn.btn-action:not(.btn-link):hover.btn-primary,
+      .input-group-btn .btn.btn-raised:not(.btn-link):focus.btn-primary, .input-group-btn .btn.btn-action:not(.btn-link):focus.btn-primary,
+      .input-group-btn .btn.btn-raised:not(.btn-link).active.btn-primary, .input-group-btn .btn.btn-action:not(.btn-link).active.btn-primary,
+      .input-group-btn .btn.btn-raised:not(.btn-link):active.btn-primary, .input-group-btn .btn.btn-action:not(.btn-link):active.btn-primary,
       .btn-group-raised
       .input-group-btn .btn:not(.btn-link):hover.btn-primary,
       .btn-group-raised
@@ -290,15 +290,15 @@ a, a:hover, a:focus {
       .btn-group-raised
       .input-group-btn .btn:not(.btn-link):active.btn-primary {
         background-color: #24749b; }
-      .btn.btn-raised:not(.btn-link):hover.btn-success, .btn.btn-raised:not(.btn-link):focus.btn-success, .btn.btn-raised:not(.btn-link).active.btn-success, .btn.btn-raised:not(.btn-link):active.btn-success,
+      .btn.btn-raised:not(.btn-link):hover.btn-success, .btn.btn-action:not(.btn-link):hover.btn-success, .btn.btn-raised:not(.btn-link):focus.btn-success, .btn.btn-action:not(.btn-link):focus.btn-success, .btn.btn-raised:not(.btn-link).active.btn-success, .btn.btn-action:not(.btn-link).active.btn-success, .btn.btn-raised:not(.btn-link):active.btn-success, .btn.btn-action:not(.btn-link):active.btn-success,
       .btn-group-raised .btn:not(.btn-link):hover.btn-success,
       .btn-group-raised .btn:not(.btn-link):focus.btn-success,
       .btn-group-raised .btn:not(.btn-link).active.btn-success,
       .btn-group-raised .btn:not(.btn-link):active.btn-success,
-      .input-group-btn .btn.btn-raised:not(.btn-link):hover.btn-success,
-      .input-group-btn .btn.btn-raised:not(.btn-link):focus.btn-success,
-      .input-group-btn .btn.btn-raised:not(.btn-link).active.btn-success,
-      .input-group-btn .btn.btn-raised:not(.btn-link):active.btn-success,
+      .input-group-btn .btn.btn-raised:not(.btn-link):hover.btn-success, .input-group-btn .btn.btn-action:not(.btn-link):hover.btn-success,
+      .input-group-btn .btn.btn-raised:not(.btn-link):focus.btn-success, .input-group-btn .btn.btn-action:not(.btn-link):focus.btn-success,
+      .input-group-btn .btn.btn-raised:not(.btn-link).active.btn-success, .input-group-btn .btn.btn-action:not(.btn-link).active.btn-success,
+      .input-group-btn .btn.btn-raised:not(.btn-link):active.btn-success, .input-group-btn .btn.btn-action:not(.btn-link):active.btn-success,
       .btn-group-raised
       .input-group-btn .btn:not(.btn-link):hover.btn-success,
       .btn-group-raised
@@ -308,15 +308,15 @@ a, a:hover, a:focus {
       .btn-group-raised
       .input-group-btn .btn:not(.btn-link):active.btn-success {
         background-color: #6ad16f; }
-      .btn.btn-raised:not(.btn-link):hover.btn-info, .btn.btn-raised:not(.btn-link):focus.btn-info, .btn.btn-raised:not(.btn-link).active.btn-info, .btn.btn-raised:not(.btn-link):active.btn-info,
+      .btn.btn-raised:not(.btn-link):hover.btn-info, .btn.btn-action:not(.btn-link):hover.btn-info, .btn.btn-raised:not(.btn-link):focus.btn-info, .btn.btn-action:not(.btn-link):focus.btn-info, .btn.btn-raised:not(.btn-link).active.btn-info, .btn.btn-action:not(.btn-link).active.btn-info, .btn.btn-raised:not(.btn-link):active.btn-info, .btn.btn-action:not(.btn-link):active.btn-info,
       .btn-group-raised .btn:not(.btn-link):hover.btn-info,
       .btn-group-raised .btn:not(.btn-link):focus.btn-info,
       .btn-group-raised .btn:not(.btn-link).active.btn-info,
       .btn-group-raised .btn:not(.btn-link):active.btn-info,
-      .input-group-btn .btn.btn-raised:not(.btn-link):hover.btn-info,
-      .input-group-btn .btn.btn-raised:not(.btn-link):focus.btn-info,
-      .input-group-btn .btn.btn-raised:not(.btn-link).active.btn-info,
-      .input-group-btn .btn.btn-raised:not(.btn-link):active.btn-info,
+      .input-group-btn .btn.btn-raised:not(.btn-link):hover.btn-info, .input-group-btn .btn.btn-action:not(.btn-link):hover.btn-info,
+      .input-group-btn .btn.btn-raised:not(.btn-link):focus.btn-info, .input-group-btn .btn.btn-action:not(.btn-link):focus.btn-info,
+      .input-group-btn .btn.btn-raised:not(.btn-link).active.btn-info, .input-group-btn .btn.btn-action:not(.btn-link).active.btn-info,
+      .input-group-btn .btn.btn-raised:not(.btn-link):active.btn-info, .input-group-btn .btn.btn-action:not(.btn-link):active.btn-info,
       .btn-group-raised
       .input-group-btn .btn:not(.btn-link):hover.btn-info,
       .btn-group-raised
@@ -326,15 +326,15 @@ a, a:hover, a:focus {
       .btn-group-raised
       .input-group-btn .btn:not(.btn-link):active.btn-info {
         background-color: #039be0; }
-      .btn.btn-raised:not(.btn-link):hover.btn-warning, .btn.btn-raised:not(.btn-link):focus.btn-warning, .btn.btn-raised:not(.btn-link).active.btn-warning, .btn.btn-raised:not(.btn-link):active.btn-warning,
+      .btn.btn-raised:not(.btn-link):hover.btn-warning, .btn.btn-action:not(.btn-link):hover.btn-warning, .btn.btn-raised:not(.btn-link):focus.btn-warning, .btn.btn-action:not(.btn-link):focus.btn-warning, .btn.btn-raised:not(.btn-link).active.btn-warning, .btn.btn-action:not(.btn-link).active.btn-warning, .btn.btn-raised:not(.btn-link):active.btn-warning, .btn.btn-action:not(.btn-link):active.btn-warning,
       .btn-group-raised .btn:not(.btn-link):hover.btn-warning,
       .btn-group-raised .btn:not(.btn-link):focus.btn-warning,
       .btn-group-raised .btn:not(.btn-link).active.btn-warning,
       .btn-group-raised .btn:not(.btn-link):active.btn-warning,
-      .input-group-btn .btn.btn-raised:not(.btn-link):hover.btn-warning,
-      .input-group-btn .btn.btn-raised:not(.btn-link):focus.btn-warning,
-      .input-group-btn .btn.btn-raised:not(.btn-link).active.btn-warning,
-      .input-group-btn .btn.btn-raised:not(.btn-link):active.btn-warning,
+      .input-group-btn .btn.btn-raised:not(.btn-link):hover.btn-warning, .input-group-btn .btn.btn-action:not(.btn-link):hover.btn-warning,
+      .input-group-btn .btn.btn-raised:not(.btn-link):focus.btn-warning, .input-group-btn .btn.btn-action:not(.btn-link):focus.btn-warning,
+      .input-group-btn .btn.btn-raised:not(.btn-link).active.btn-warning, .input-group-btn .btn.btn-action:not(.btn-link).active.btn-warning,
+      .input-group-btn .btn.btn-raised:not(.btn-link):active.btn-warning, .input-group-btn .btn.btn-action:not(.btn-link):active.btn-warning,
       .btn-group-raised
       .input-group-btn .btn:not(.btn-link):hover.btn-warning,
       .btn-group-raised
@@ -344,17 +344,26 @@ a, a:hover, a:focus {
       .btn-group-raised
       .input-group-btn .btn:not(.btn-link):active.btn-warning {
         background-color: #fffbd8; }
-      .btn.btn-raised:not(.btn-link):hover.btn-danger, .btn.btn-raised:not(.btn-link):focus.btn-danger, .btn.btn-raised:not(.btn-link).active.btn-danger, .btn.btn-raised:not(.btn-link):active.btn-danger,
+      .btn.btn-raised:not(.btn-link):hover.btn-danger, .btn.btn-action:not(.btn-link):hover, .btn.btn-action:not(.btn-link):focus, .btn.btn-action:not(.btn-link):active, .btn.btn-raised:not(.btn-link):focus.btn-danger, .btn.btn-action:not(.btn-link):focus.btn-danger, .btn.btn-raised:not(.btn-link).active.btn-danger, .btn.btn-action:not(.btn-link).active.btn-danger, .btn.btn-raised:not(.btn-link):active.btn-danger, .btn.btn-action:not(.btn-link):active.btn-danger,
       .btn-group-raised .btn:not(.btn-link):hover.btn-danger,
+      .btn-group-raised .btn.btn-action:not(.btn-link):hover,
+      .btn-group-raised .btn.btn-action:not(.btn-link):focus,
+      .btn-group-raised .btn.btn-action:not(.btn-link):active,
       .btn-group-raised .btn:not(.btn-link):focus.btn-danger,
       .btn-group-raised .btn:not(.btn-link).active.btn-danger,
       .btn-group-raised .btn:not(.btn-link):active.btn-danger,
       .input-group-btn .btn.btn-raised:not(.btn-link):hover.btn-danger,
-      .input-group-btn .btn.btn-raised:not(.btn-link):focus.btn-danger,
-      .input-group-btn .btn.btn-raised:not(.btn-link).active.btn-danger,
-      .input-group-btn .btn.btn-raised:not(.btn-link):active.btn-danger,
+      .input-group-btn .btn.btn-action:not(.btn-link):hover,
+      .input-group-btn .btn.btn-action:not(.btn-link):focus,
+      .input-group-btn .btn.btn-action:not(.btn-link):active,
+      .input-group-btn .btn.btn-raised:not(.btn-link):focus.btn-danger, .input-group-btn .btn.btn-action:not(.btn-link):focus.btn-danger,
+      .input-group-btn .btn.btn-raised:not(.btn-link).active.btn-danger, .input-group-btn .btn.btn-action:not(.btn-link).active.btn-danger,
+      .input-group-btn .btn.btn-raised:not(.btn-link):active.btn-danger, .input-group-btn .btn.btn-action:not(.btn-link):active.btn-danger,
       .btn-group-raised
       .input-group-btn .btn:not(.btn-link):hover.btn-danger,
+      .btn-group-raised .input-group-btn .btn.btn-action:not(.btn-link):hover,
+      .btn-group-raised .input-group-btn .btn.btn-action:not(.btn-link):focus,
+      .btn-group-raised .input-group-btn .btn.btn-action:not(.btn-link):active,
       .btn-group-raised
       .input-group-btn .btn:not(.btn-link):focus.btn-danger,
       .btn-group-raised
@@ -362,15 +371,15 @@ a, a:hover, a:focus {
       .btn-group-raised
       .input-group-btn .btn:not(.btn-link):active.btn-danger {
         background-color: #f85753; }
-    .btn.btn-raised:not(.btn-link).active, .btn.btn-raised:not(.btn-link).active:hover, .btn.btn-raised:not(.btn-link):active, .btn.btn-raised:not(.btn-link):active:hover,
+    .btn.btn-raised:not(.btn-link).active, .btn.btn-action:not(.btn-link).active, .btn.btn-raised:not(.btn-link).active:hover, .btn.btn-action:not(.btn-link).active:hover, .btn.btn-raised:not(.btn-link):active, .btn.btn-action:not(.btn-link):active, .btn.btn-raised:not(.btn-link):active:hover, .btn.btn-action:not(.btn-link):active:hover,
     .btn-group-raised .btn:not(.btn-link).active,
     .btn-group-raised .btn:not(.btn-link).active:hover,
     .btn-group-raised .btn:not(.btn-link):active,
     .btn-group-raised .btn:not(.btn-link):active:hover,
-    .input-group-btn .btn.btn-raised:not(.btn-link).active,
-    .input-group-btn .btn.btn-raised:not(.btn-link).active:hover,
-    .input-group-btn .btn.btn-raised:not(.btn-link):active,
-    .input-group-btn .btn.btn-raised:not(.btn-link):active:hover,
+    .input-group-btn .btn.btn-raised:not(.btn-link).active, .input-group-btn .btn.btn-action:not(.btn-link).active,
+    .input-group-btn .btn.btn-raised:not(.btn-link).active:hover, .input-group-btn .btn.btn-action:not(.btn-link).active:hover,
+    .input-group-btn .btn.btn-raised:not(.btn-link):active, .input-group-btn .btn.btn-action:not(.btn-link):active,
+    .input-group-btn .btn.btn-raised:not(.btn-link):active:hover, .input-group-btn .btn.btn-action:not(.btn-link):active:hover,
     .btn-group-raised
     .input-group-btn .btn:not(.btn-link).active,
     .btn-group-raised
@@ -380,19 +389,19 @@ a, a:hover, a:focus {
     .btn-group-raised
     .input-group-btn .btn:not(.btn-link):active:hover {
       box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2); }
-    .btn.btn-raised:not(.btn-link):focus, .btn.btn-raised:not(.btn-link):focus:hover, .btn.btn-raised:not(.btn-link):focus.active, .btn.btn-raised:not(.btn-link):focus.active:hover, .btn.btn-raised:not(.btn-link):focus:active, .btn.btn-raised:not(.btn-link):focus:active:hover,
+    .btn.btn-raised:not(.btn-link):focus, .btn.btn-action:not(.btn-link):focus, .btn.btn-raised:not(.btn-link):focus:hover, .btn.btn-action:not(.btn-link):focus:hover, .btn.btn-raised:not(.btn-link):focus.active, .btn.btn-action:not(.btn-link):focus.active, .btn.btn-raised:not(.btn-link):focus.active:hover, .btn.btn-action:not(.btn-link):focus.active:hover, .btn.btn-raised:not(.btn-link):focus:active, .btn.btn-action:not(.btn-link):focus:active, .btn.btn-raised:not(.btn-link):focus:active:hover, .btn.btn-action:not(.btn-link):focus:active:hover,
     .btn-group-raised .btn:not(.btn-link):focus,
     .btn-group-raised .btn:not(.btn-link):focus:hover,
     .btn-group-raised .btn:not(.btn-link):focus.active,
     .btn-group-raised .btn:not(.btn-link):focus.active:hover,
     .btn-group-raised .btn:not(.btn-link):focus:active,
     .btn-group-raised .btn:not(.btn-link):focus:active:hover,
-    .input-group-btn .btn.btn-raised:not(.btn-link):focus,
-    .input-group-btn .btn.btn-raised:not(.btn-link):focus:hover,
-    .input-group-btn .btn.btn-raised:not(.btn-link):focus.active,
-    .input-group-btn .btn.btn-raised:not(.btn-link):focus.active:hover,
-    .input-group-btn .btn.btn-raised:not(.btn-link):focus:active,
-    .input-group-btn .btn.btn-raised:not(.btn-link):focus:active:hover,
+    .input-group-btn .btn.btn-raised:not(.btn-link):focus, .input-group-btn .btn.btn-action:not(.btn-link):focus,
+    .input-group-btn .btn.btn-raised:not(.btn-link):focus:hover, .input-group-btn .btn.btn-action:not(.btn-link):focus:hover,
+    .input-group-btn .btn.btn-raised:not(.btn-link):focus.active, .input-group-btn .btn.btn-action:not(.btn-link):focus.active,
+    .input-group-btn .btn.btn-raised:not(.btn-link):focus.active:hover, .input-group-btn .btn.btn-action:not(.btn-link):focus.active:hover,
+    .input-group-btn .btn.btn-raised:not(.btn-link):focus:active, .input-group-btn .btn.btn-action:not(.btn-link):focus:active,
+    .input-group-btn .btn.btn-raised:not(.btn-link):focus:active:hover, .input-group-btn .btn.btn-action:not(.btn-link):focus:active:hover,
     .btn-group-raised
     .input-group-btn .btn:not(.btn-link):focus,
     .btn-group-raised
@@ -498,99 +507,139 @@ fieldset[disabled][disabled] .btn, .btn.disabled, .btn:disabled, .btn[disabled][
   .btn-group-vertical:disabled, .theme-dark
   .btn-group-vertical[disabled][disabled] {
     color: rgba(255, 255, 255, 0.3); }
-  fieldset[disabled][disabled] .btn.btn-raised, fieldset[disabled][disabled] .btn.btn-raised.active, fieldset[disabled][disabled] .btn.btn-raised:active, fieldset[disabled][disabled] .btn.btn-raised:focus:not(:active), fieldset[disabled][disabled] .btn.btn-group-raised, fieldset[disabled][disabled] .btn.btn-group-raised.active, fieldset[disabled][disabled] .btn.btn-group-raised:active, fieldset[disabled][disabled] .btn.btn-group-raised:focus:not(:active), .btn.disabled.btn-raised, .btn.disabled.btn-raised.active, .btn.disabled.btn-raised:active, .btn.disabled.btn-raised:focus:not(:active), .btn.disabled.btn-group-raised, .btn.disabled.btn-group-raised.active, .btn.disabled.btn-group-raised:active, .btn.disabled.btn-group-raised:focus:not(:active), .btn:disabled.btn-raised, .btn:disabled.btn-raised.active, .btn:disabled.btn-raised:active, .btn:disabled.btn-raised:focus:not(:active), .btn:disabled.btn-group-raised, .btn:disabled.btn-group-raised.active, .btn:disabled.btn-group-raised:active, .btn:disabled.btn-group-raised:focus:not(:active), .btn[disabled][disabled].btn-raised, .btn[disabled][disabled].btn-raised.active, .btn[disabled][disabled].btn-raised:active, .btn[disabled][disabled].btn-raised:focus:not(:active), .btn[disabled][disabled].btn-group-raised, .btn[disabled][disabled].btn-group-raised.active, .btn[disabled][disabled].btn-group-raised:active, .btn[disabled][disabled].btn-group-raised:focus:not(:active), fieldset[disabled][disabled]
-  .input-group-btn .btn.btn-raised, fieldset[disabled][disabled]
-  .input-group-btn .btn.btn-raised.active, fieldset[disabled][disabled]
-  .input-group-btn .btn.btn-raised:active, fieldset[disabled][disabled]
-  .input-group-btn .btn.btn-raised:focus:not(:active), fieldset[disabled][disabled]
+  fieldset[disabled][disabled] .btn.btn-raised, fieldset[disabled][disabled] .btn.btn-action, fieldset[disabled][disabled] .btn.btn-raised.active, fieldset[disabled][disabled] .btn.active.btn-action, fieldset[disabled][disabled] .btn.btn-raised:active, fieldset[disabled][disabled] .btn.btn-action:active, fieldset[disabled][disabled] .btn.btn-raised:focus:not(:active), fieldset[disabled][disabled] .btn.btn-action:focus:not(:active), fieldset[disabled][disabled] .btn.btn-group-raised, fieldset[disabled][disabled] .btn.btn-group-raised.active, fieldset[disabled][disabled] .btn.btn-group-raised:active, fieldset[disabled][disabled] .btn.btn-group-raised:focus:not(:active), .btn.disabled.btn-raised, .btn.disabled.btn-action, .btn.disabled.btn-raised.active, .btn.disabled.active.btn-action, .btn.disabled.btn-raised:active, .btn.disabled.btn-action:active, .btn.disabled.btn-raised:focus:not(:active), .btn.disabled.btn-action:focus:not(:active), .btn.disabled.btn-group-raised, .btn.disabled.btn-group-raised.active, .btn.disabled.btn-group-raised:active, .btn.disabled.btn-group-raised:focus:not(:active), .btn:disabled.btn-raised, .btn.btn-action:disabled, .btn:disabled.btn-raised.active, .btn.btn-action:disabled.active, .btn:disabled.btn-raised:active, .btn.btn-action:disabled:active, .btn:disabled.btn-raised:focus:not(:active), .btn.btn-action:disabled:focus:not(:active), .btn:disabled.btn-group-raised, .btn:disabled.btn-group-raised.active, .btn:disabled.btn-group-raised:active, .btn:disabled.btn-group-raised:focus:not(:active), .btn[disabled][disabled].btn-raised, .btn[disabled][disabled].btn-action, .btn[disabled][disabled].btn-raised.active, .btn[disabled][disabled].active.btn-action, .btn[disabled][disabled].btn-raised:active, .btn[disabled][disabled].btn-action:active, .btn[disabled][disabled].btn-raised:focus:not(:active), .btn[disabled][disabled].btn-action:focus:not(:active), .btn[disabled][disabled].btn-group-raised, .btn[disabled][disabled].btn-group-raised.active, .btn[disabled][disabled].btn-group-raised:active, .btn[disabled][disabled].btn-group-raised:focus:not(:active), fieldset[disabled][disabled]
+  .input-group-btn .btn.btn-raised, fieldset[disabled][disabled] .input-group-btn .btn.btn-action, fieldset[disabled][disabled]
+  .input-group-btn .btn.btn-raised.active, fieldset[disabled][disabled] .input-group-btn .btn.active.btn-action, fieldset[disabled][disabled]
+  .input-group-btn .btn.btn-raised:active, fieldset[disabled][disabled] .input-group-btn .btn.btn-action:active, fieldset[disabled][disabled]
+  .input-group-btn .btn.btn-raised:focus:not(:active), fieldset[disabled][disabled] .input-group-btn .btn.btn-action:focus:not(:active), fieldset[disabled][disabled]
   .input-group-btn .btn.btn-group-raised, fieldset[disabled][disabled]
   .input-group-btn .btn.btn-group-raised.active, fieldset[disabled][disabled]
   .input-group-btn .btn.btn-group-raised:active, fieldset[disabled][disabled]
   .input-group-btn .btn.btn-group-raised:focus:not(:active),
-  .input-group-btn .btn.disabled.btn-raised,
-  .input-group-btn .btn.disabled.btn-raised.active,
-  .input-group-btn .btn.disabled.btn-raised:active,
-  .input-group-btn .btn.disabled.btn-raised:focus:not(:active),
+  .input-group-btn .btn.disabled.btn-raised, .input-group-btn .btn.disabled.btn-action,
+  .input-group-btn .btn.disabled.btn-raised.active, .input-group-btn .btn.disabled.active.btn-action,
+  .input-group-btn .btn.disabled.btn-raised:active, .input-group-btn .btn.disabled.btn-action:active,
+  .input-group-btn .btn.disabled.btn-raised:focus:not(:active), .input-group-btn .btn.disabled.btn-action:focus:not(:active),
   .input-group-btn .btn.disabled.btn-group-raised,
   .input-group-btn .btn.disabled.btn-group-raised.active,
   .input-group-btn .btn.disabled.btn-group-raised:active,
   .input-group-btn .btn.disabled.btn-group-raised:focus:not(:active),
-  .input-group-btn .btn:disabled.btn-raised,
-  .input-group-btn .btn:disabled.btn-raised.active,
-  .input-group-btn .btn:disabled.btn-raised:active,
-  .input-group-btn .btn:disabled.btn-raised:focus:not(:active),
+  .input-group-btn .btn:disabled.btn-raised, .input-group-btn .btn.btn-action:disabled,
+  .input-group-btn .btn:disabled.btn-raised.active, .input-group-btn .btn.btn-action:disabled.active,
+  .input-group-btn .btn:disabled.btn-raised:active, .input-group-btn .btn.btn-action:disabled:active,
+  .input-group-btn .btn:disabled.btn-raised:focus:not(:active), .input-group-btn .btn.btn-action:disabled:focus:not(:active),
   .input-group-btn .btn:disabled.btn-group-raised,
   .input-group-btn .btn:disabled.btn-group-raised.active,
   .input-group-btn .btn:disabled.btn-group-raised:active,
   .input-group-btn .btn:disabled.btn-group-raised:focus:not(:active),
-  .input-group-btn .btn[disabled][disabled].btn-raised,
-  .input-group-btn .btn[disabled][disabled].btn-raised.active,
-  .input-group-btn .btn[disabled][disabled].btn-raised:active,
-  .input-group-btn .btn[disabled][disabled].btn-raised:focus:not(:active),
+  .input-group-btn .btn[disabled][disabled].btn-raised, .input-group-btn .btn[disabled][disabled].btn-action,
+  .input-group-btn .btn[disabled][disabled].btn-raised.active, .input-group-btn .btn[disabled][disabled].active.btn-action,
+  .input-group-btn .btn[disabled][disabled].btn-raised:active, .input-group-btn .btn[disabled][disabled].btn-action:active,
+  .input-group-btn .btn[disabled][disabled].btn-raised:focus:not(:active), .input-group-btn .btn[disabled][disabled].btn-action:focus:not(:active),
   .input-group-btn .btn[disabled][disabled].btn-group-raised,
   .input-group-btn .btn[disabled][disabled].btn-group-raised.active,
   .input-group-btn .btn[disabled][disabled].btn-group-raised:active,
-  .input-group-btn .btn[disabled][disabled].btn-group-raised:focus:not(:active), fieldset[disabled][disabled]
-  .btn-group.btn-raised, fieldset[disabled][disabled]
-  .btn-group.btn-raised.active, fieldset[disabled][disabled]
-  .btn-group.btn-raised:active, fieldset[disabled][disabled]
-  .btn-group.btn-raised:focus:not(:active), fieldset[disabled][disabled]
+  .input-group-btn .btn[disabled][disabled].btn-group-raised:focus:not(:active),
+  fieldset[disabled][disabled]
+  .btn-group.btn-raised,
+  fieldset[disabled][disabled] .btn-group.btn.btn-action,
+  fieldset[disabled][disabled]
+  .btn-group.btn-raised.active,
+  fieldset[disabled][disabled] .btn-group.active.btn.btn-action,
+  fieldset[disabled][disabled]
+  .btn-group.btn-raised:active,
+  fieldset[disabled][disabled] .btn-group.btn.btn-action:active,
+  fieldset[disabled][disabled]
+  .btn-group.btn-raised:focus:not(:active),
+  fieldset[disabled][disabled] .btn-group.btn.btn-action:focus:not(:active), fieldset[disabled][disabled]
   .btn-group.btn-group-raised, fieldset[disabled][disabled]
   .btn-group.btn-group-raised.active, fieldset[disabled][disabled]
   .btn-group.btn-group-raised:active, fieldset[disabled][disabled]
   .btn-group.btn-group-raised:focus:not(:active),
   .btn-group.disabled.btn-raised,
+  .btn-group.disabled.btn.btn-action,
   .btn-group.disabled.btn-raised.active,
+  .btn-group.disabled.active.btn.btn-action,
   .btn-group.disabled.btn-raised:active,
+  .btn-group.disabled.btn.btn-action:active,
   .btn-group.disabled.btn-raised:focus:not(:active),
+  .btn-group.disabled.btn.btn-action:focus:not(:active),
   .btn-group.disabled.btn-group-raised,
   .btn-group.disabled.btn-group-raised.active,
   .btn-group.disabled.btn-group-raised:active,
   .btn-group.disabled.btn-group-raised:focus:not(:active),
   .btn-group:disabled.btn-raised,
+  .btn-group.btn.btn-action:disabled,
   .btn-group:disabled.btn-raised.active,
+  .btn-group.btn.btn-action:disabled.active,
   .btn-group:disabled.btn-raised:active,
+  .btn-group.btn.btn-action:disabled:active,
   .btn-group:disabled.btn-raised:focus:not(:active),
+  .btn-group.btn.btn-action:disabled:focus:not(:active),
   .btn-group:disabled.btn-group-raised,
   .btn-group:disabled.btn-group-raised.active,
   .btn-group:disabled.btn-group-raised:active,
   .btn-group:disabled.btn-group-raised:focus:not(:active),
   .btn-group[disabled][disabled].btn-raised,
+  .btn-group[disabled][disabled].btn.btn-action,
   .btn-group[disabled][disabled].btn-raised.active,
+  .btn-group[disabled][disabled].active.btn.btn-action,
   .btn-group[disabled][disabled].btn-raised:active,
+  .btn-group[disabled][disabled].btn.btn-action:active,
   .btn-group[disabled][disabled].btn-raised:focus:not(:active),
+  .btn-group[disabled][disabled].btn.btn-action:focus:not(:active),
   .btn-group[disabled][disabled].btn-group-raised,
   .btn-group[disabled][disabled].btn-group-raised.active,
   .btn-group[disabled][disabled].btn-group-raised:active,
-  .btn-group[disabled][disabled].btn-group-raised:focus:not(:active), fieldset[disabled][disabled]
-  .btn-group-vertical.btn-raised, fieldset[disabled][disabled]
-  .btn-group-vertical.btn-raised.active, fieldset[disabled][disabled]
-  .btn-group-vertical.btn-raised:active, fieldset[disabled][disabled]
-  .btn-group-vertical.btn-raised:focus:not(:active), fieldset[disabled][disabled]
+  .btn-group[disabled][disabled].btn-group-raised:focus:not(:active),
+  fieldset[disabled][disabled]
+  .btn-group-vertical.btn-raised,
+  fieldset[disabled][disabled] .btn-group-vertical.btn.btn-action,
+  fieldset[disabled][disabled]
+  .btn-group-vertical.btn-raised.active,
+  fieldset[disabled][disabled] .btn-group-vertical.active.btn.btn-action,
+  fieldset[disabled][disabled]
+  .btn-group-vertical.btn-raised:active,
+  fieldset[disabled][disabled] .btn-group-vertical.btn.btn-action:active,
+  fieldset[disabled][disabled]
+  .btn-group-vertical.btn-raised:focus:not(:active),
+  fieldset[disabled][disabled] .btn-group-vertical.btn.btn-action:focus:not(:active), fieldset[disabled][disabled]
   .btn-group-vertical.btn-group-raised, fieldset[disabled][disabled]
   .btn-group-vertical.btn-group-raised.active, fieldset[disabled][disabled]
   .btn-group-vertical.btn-group-raised:active, fieldset[disabled][disabled]
   .btn-group-vertical.btn-group-raised:focus:not(:active),
   .btn-group-vertical.disabled.btn-raised,
+  .btn-group-vertical.disabled.btn.btn-action,
   .btn-group-vertical.disabled.btn-raised.active,
+  .btn-group-vertical.disabled.active.btn.btn-action,
   .btn-group-vertical.disabled.btn-raised:active,
+  .btn-group-vertical.disabled.btn.btn-action:active,
   .btn-group-vertical.disabled.btn-raised:focus:not(:active),
+  .btn-group-vertical.disabled.btn.btn-action:focus:not(:active),
   .btn-group-vertical.disabled.btn-group-raised,
   .btn-group-vertical.disabled.btn-group-raised.active,
   .btn-group-vertical.disabled.btn-group-raised:active,
   .btn-group-vertical.disabled.btn-group-raised:focus:not(:active),
   .btn-group-vertical:disabled.btn-raised,
+  .btn-group-vertical.btn.btn-action:disabled,
   .btn-group-vertical:disabled.btn-raised.active,
+  .btn-group-vertical.btn.btn-action:disabled.active,
   .btn-group-vertical:disabled.btn-raised:active,
+  .btn-group-vertical.btn.btn-action:disabled:active,
   .btn-group-vertical:disabled.btn-raised:focus:not(:active),
+  .btn-group-vertical.btn.btn-action:disabled:focus:not(:active),
   .btn-group-vertical:disabled.btn-group-raised,
   .btn-group-vertical:disabled.btn-group-raised.active,
   .btn-group-vertical:disabled.btn-group-raised:active,
   .btn-group-vertical:disabled.btn-group-raised:focus:not(:active),
   .btn-group-vertical[disabled][disabled].btn-raised,
+  .btn-group-vertical[disabled][disabled].btn.btn-action,
   .btn-group-vertical[disabled][disabled].btn-raised.active,
+  .btn-group-vertical[disabled][disabled].active.btn.btn-action,
   .btn-group-vertical[disabled][disabled].btn-raised:active,
+  .btn-group-vertical[disabled][disabled].btn.btn-action:active,
   .btn-group-vertical[disabled][disabled].btn-raised:focus:not(:active),
+  .btn-group-vertical[disabled][disabled].btn.btn-action:focus:not(:active),
   .btn-group-vertical[disabled][disabled].btn-group-raised,
   .btn-group-vertical[disabled][disabled].btn-group-raised.active,
   .btn-group-vertical[disabled][disabled].btn-group-raised:active,
@@ -1386,6 +1435,293 @@ select.form-control {
 legend {
   border-bottom: 0; }
 
+.navbar {
+  background-color: #2880ac;
+  border: 0;
+  border-radius: 0; }
+  .navbar .navbar-brand {
+    position: relative;
+    height: 60px;
+    line-height: 30px;
+    color: inherit; }
+    .navbar .navbar-brand:hover, .navbar .navbar-brand:focus {
+      color: inherit;
+      background-color: transparent; }
+  .navbar .navbar-text {
+    color: inherit;
+    margin-top: 20px;
+    margin-bottom: 20px; }
+  .navbar .navbar-nav > li > a {
+    color: inherit;
+    padding-top: 20px;
+    padding-bottom: 20px; }
+    .navbar .navbar-nav > li > a:hover, .navbar .navbar-nav > li > a:focus {
+      color: inherit;
+      background-color: transparent; }
+  .navbar .navbar-nav > .active > a, .navbar .navbar-nav > .active > a:hover, .navbar .navbar-nav > .active > a:focus {
+    color: inherit;
+    background-color: rgba(255, 255, 255, 0.1); }
+  .navbar .navbar-nav > .disabled > a, .navbar .navbar-nav > .disabled > a:hover, .navbar .navbar-nav > .disabled > a:focus {
+    color: inherit;
+    background-color: transparent;
+    opacity: 0.9; }
+  .navbar .navbar-toggle {
+    border: 0; }
+    .navbar .navbar-toggle:hover, .navbar .navbar-toggle:focus {
+      background-color: transparent; }
+    .navbar .navbar-toggle .icon-bar {
+      background-color: inherit;
+      border: 1px solid; }
+  .navbar .navbar-default .navbar-toggle,
+  .navbar .navbar-inverse .navbar-toggle {
+    border-color: transparent; }
+  .navbar .navbar-collapse,
+  .navbar .navbar-form {
+    border-color: rgba(0, 0, 0, 0.1); }
+  .navbar .navbar-nav > .open > a, .navbar .navbar-nav > .open > a:hover, .navbar .navbar-nav > .open > a:focus {
+    background-color: transparent;
+    color: inherit; }
+  @media (max-width: 767px) {
+    .navbar .navbar-nav .navbar-text {
+      color: inherit;
+      margin-top: 15px;
+      margin-bottom: 15px; }
+    .navbar .navbar-nav .open .dropdown-menu > .dropdown-header {
+      border: 0;
+      color: inherit; }
+    .navbar .navbar-nav .open .dropdown-menu .divider {
+      border-bottom: 1px solid;
+      opacity: 0.08; }
+    .navbar .navbar-nav .open .dropdown-menu > li > a {
+      color: inherit; }
+      .navbar .navbar-nav .open .dropdown-menu > li > a:hover, .navbar .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: inherit;
+        background-color: transparent; }
+    .navbar .navbar-nav .open .dropdown-menu > .active > a, .navbar .navbar-nav .open .dropdown-menu > .active > a:hover, .navbar .navbar-nav .open .dropdown-menu > .active > a:focus {
+      color: inherit;
+      background-color: transparent; }
+    .navbar .navbar-nav .open .dropdown-menu > .disabled > a, .navbar .navbar-nav .open .dropdown-menu > .disabled > a:hover, .navbar .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+      color: inherit;
+      background-color: transparent; } }
+  .navbar .navbar-link {
+    color: inherit; }
+    .navbar .navbar-link:hover {
+      color: inherit; }
+  .navbar .btn-link {
+    color: inherit; }
+    .navbar .btn-link:hover, .navbar .btn-link:focus {
+      color: inherit; }
+    .navbar .btn-link[disabled]:hover, .navbar .btn-link[disabled]:focus,
+    fieldset[disabled] .navbar .btn-link:hover,
+    fieldset[disabled] .navbar .btn-link:focus {
+      color: inherit; }
+  .navbar .navbar-form {
+    margin-top: 16px; }
+    .navbar .navbar-form .form-group {
+      margin: 0;
+      padding: 0; }
+      .navbar .navbar-form .form-group .material-input:before,
+      .navbar .navbar-form .form-group.is-focused .material-input:after {
+        background-color: inherit; }
+    .navbar .navbar-form .form-group .form-control,
+    .navbar .navbar-form .form-control {
+      border-color: inherit;
+      color: inherit;
+      padding: 0;
+      margin: 0;
+      height: 28px;
+      font-size: 14px;
+      line-height: 1.42857; }
+  .navbar, .navbar.navbar-default {
+    background-color: #2880ac;
+    color: rgb(255,255,255); }
+    .navbar .navbar-form .form-group input.form-control::-moz-placeholder,
+    .navbar .navbar-form input.form-control::-moz-placeholder, .navbar.navbar-default .navbar-form .form-group input.form-control::-moz-placeholder,
+    .navbar.navbar-default .navbar-form input.form-control::-moz-placeholder {
+      color: rgb(255,255,255); }
+    .navbar .navbar-form .form-group input.form-control:-ms-input-placeholder,
+    .navbar .navbar-form input.form-control:-ms-input-placeholder, .navbar.navbar-default .navbar-form .form-group input.form-control:-ms-input-placeholder,
+    .navbar.navbar-default .navbar-form input.form-control:-ms-input-placeholder {
+      color: rgb(255,255,255); }
+    .navbar .navbar-form .form-group input.form-control::-webkit-input-placeholder,
+    .navbar .navbar-form input.form-control::-webkit-input-placeholder, .navbar.navbar-default .navbar-form .form-group input.form-control::-webkit-input-placeholder,
+    .navbar.navbar-default .navbar-form input.form-control::-webkit-input-placeholder {
+      color: rgb(255,255,255); }
+    .navbar .dropdown-menu, .navbar.navbar-default .dropdown-menu {
+      border-radius: 2px; }
+      .navbar .dropdown-menu li > a, .navbar.navbar-default .dropdown-menu li > a {
+        font-size: 16px;
+        padding: 13px 16px; }
+        .navbar .dropdown-menu li > a:hover, .navbar .dropdown-menu li > a:focus, .navbar.navbar-default .dropdown-menu li > a:hover, .navbar.navbar-default .dropdown-menu li > a:focus {
+          color: #2880ac;
+          background-color: #eeeeee; }
+      .navbar .dropdown-menu .active > a, .navbar.navbar-default .dropdown-menu .active > a {
+        background-color: #2880ac;
+        color: rgb(255,255,255); }
+        .navbar .dropdown-menu .active > a:hover, .navbar .dropdown-menu .active > a:focus, .navbar.navbar-default .dropdown-menu .active > a:hover, .navbar.navbar-default .dropdown-menu .active > a:focus {
+          color: rgb(255,255,255); }
+  .navbar.navbar-inverse {
+    background-color: #009688;
+    color: #ffffff; }
+    .navbar.navbar-inverse .navbar-form .form-group input.form-control::-moz-placeholder,
+    .navbar.navbar-inverse .navbar-form input.form-control::-moz-placeholder {
+      color: #ffffff; }
+    .navbar.navbar-inverse .navbar-form .form-group input.form-control:-ms-input-placeholder,
+    .navbar.navbar-inverse .navbar-form input.form-control:-ms-input-placeholder {
+      color: #ffffff; }
+    .navbar.navbar-inverse .navbar-form .form-group input.form-control::-webkit-input-placeholder,
+    .navbar.navbar-inverse .navbar-form input.form-control::-webkit-input-placeholder {
+      color: #ffffff; }
+    .navbar.navbar-inverse .dropdown-menu {
+      border-radius: 2px; }
+      .navbar.navbar-inverse .dropdown-menu li > a {
+        font-size: 16px;
+        padding: 13px 16px; }
+        .navbar.navbar-inverse .dropdown-menu li > a:hover, .navbar.navbar-inverse .dropdown-menu li > a:focus {
+          color: #009688;
+          background-color: #eeeeee; }
+      .navbar.navbar-inverse .dropdown-menu .active > a {
+        background-color: #009688;
+        color: #ffffff; }
+        .navbar.navbar-inverse .dropdown-menu .active > a:hover, .navbar.navbar-inverse .dropdown-menu .active > a:focus {
+          color: #ffffff; }
+  .navbar.navbar-primary {
+    background-color: #2880ac;
+    color: rgb(255,255,255); }
+    .navbar.navbar-primary .navbar-form .form-group input.form-control::-moz-placeholder,
+    .navbar.navbar-primary .navbar-form input.form-control::-moz-placeholder {
+      color: rgb(255,255,255); }
+    .navbar.navbar-primary .navbar-form .form-group input.form-control:-ms-input-placeholder,
+    .navbar.navbar-primary .navbar-form input.form-control:-ms-input-placeholder {
+      color: rgb(255,255,255); }
+    .navbar.navbar-primary .navbar-form .form-group input.form-control::-webkit-input-placeholder,
+    .navbar.navbar-primary .navbar-form input.form-control::-webkit-input-placeholder {
+      color: rgb(255,255,255); }
+    .navbar.navbar-primary .dropdown-menu {
+      border-radius: 2px; }
+      .navbar.navbar-primary .dropdown-menu li > a {
+        font-size: 16px;
+        padding: 13px 16px; }
+        .navbar.navbar-primary .dropdown-menu li > a:hover, .navbar.navbar-primary .dropdown-menu li > a:focus {
+          color: #2880ac;
+          background-color: #eeeeee; }
+      .navbar.navbar-primary .dropdown-menu .active > a {
+        background-color: #2880ac;
+        color: rgb(255,255,255); }
+        .navbar.navbar-primary .dropdown-menu .active > a:hover, .navbar.navbar-primary .dropdown-menu .active > a:focus {
+          color: rgb(255,255,255); }
+  .navbar.navbar-success {
+    background-color: #7AD67E;
+    color: rgb(255,255,255); }
+    .navbar.navbar-success .navbar-form .form-group input.form-control::-moz-placeholder,
+    .navbar.navbar-success .navbar-form input.form-control::-moz-placeholder {
+      color: rgb(255,255,255); }
+    .navbar.navbar-success .navbar-form .form-group input.form-control:-ms-input-placeholder,
+    .navbar.navbar-success .navbar-form input.form-control:-ms-input-placeholder {
+      color: rgb(255,255,255); }
+    .navbar.navbar-success .navbar-form .form-group input.form-control::-webkit-input-placeholder,
+    .navbar.navbar-success .navbar-form input.form-control::-webkit-input-placeholder {
+      color: rgb(255,255,255); }
+    .navbar.navbar-success .dropdown-menu {
+      border-radius: 2px; }
+      .navbar.navbar-success .dropdown-menu li > a {
+        font-size: 16px;
+        padding: 13px 16px; }
+        .navbar.navbar-success .dropdown-menu li > a:hover, .navbar.navbar-success .dropdown-menu li > a:focus {
+          color: #7AD67E;
+          background-color: #eeeeee; }
+      .navbar.navbar-success .dropdown-menu .active > a {
+        background-color: #7AD67E;
+        color: rgb(255,255,255); }
+        .navbar.navbar-success .dropdown-menu .active > a:hover, .navbar.navbar-success .dropdown-menu .active > a:focus {
+          color: rgb(255,255,255); }
+  .navbar.navbar-info {
+    background-color: #03a9f4;
+    color: rgb(255,255,255); }
+    .navbar.navbar-info .navbar-form .form-group input.form-control::-moz-placeholder,
+    .navbar.navbar-info .navbar-form input.form-control::-moz-placeholder {
+      color: rgb(255,255,255); }
+    .navbar.navbar-info .navbar-form .form-group input.form-control:-ms-input-placeholder,
+    .navbar.navbar-info .navbar-form input.form-control:-ms-input-placeholder {
+      color: rgb(255,255,255); }
+    .navbar.navbar-info .navbar-form .form-group input.form-control::-webkit-input-placeholder,
+    .navbar.navbar-info .navbar-form input.form-control::-webkit-input-placeholder {
+      color: rgb(255,255,255); }
+    .navbar.navbar-info .dropdown-menu {
+      border-radius: 2px; }
+      .navbar.navbar-info .dropdown-menu li > a {
+        font-size: 16px;
+        padding: 13px 16px; }
+        .navbar.navbar-info .dropdown-menu li > a:hover, .navbar.navbar-info .dropdown-menu li > a:focus {
+          color: #03a9f4;
+          background-color: #eeeeee; }
+      .navbar.navbar-info .dropdown-menu .active > a {
+        background-color: #03a9f4;
+        color: rgb(255,255,255); }
+        .navbar.navbar-info .dropdown-menu .active > a:hover, .navbar.navbar-info .dropdown-menu .active > a:focus {
+          color: rgb(255,255,255); }
+  .navbar.navbar-warning {
+    background-color: #fff9c4;
+    color: rgb(255,255,255); }
+    .navbar.navbar-warning .navbar-form .form-group input.form-control::-moz-placeholder,
+    .navbar.navbar-warning .navbar-form input.form-control::-moz-placeholder {
+      color: rgb(255,255,255); }
+    .navbar.navbar-warning .navbar-form .form-group input.form-control:-ms-input-placeholder,
+    .navbar.navbar-warning .navbar-form input.form-control:-ms-input-placeholder {
+      color: rgb(255,255,255); }
+    .navbar.navbar-warning .navbar-form .form-group input.form-control::-webkit-input-placeholder,
+    .navbar.navbar-warning .navbar-form input.form-control::-webkit-input-placeholder {
+      color: rgb(255,255,255); }
+    .navbar.navbar-warning .dropdown-menu {
+      border-radius: 2px; }
+      .navbar.navbar-warning .dropdown-menu li > a {
+        font-size: 16px;
+        padding: 13px 16px; }
+        .navbar.navbar-warning .dropdown-menu li > a:hover, .navbar.navbar-warning .dropdown-menu li > a:focus {
+          color: #fff9c4;
+          background-color: #eeeeee; }
+      .navbar.navbar-warning .dropdown-menu .active > a {
+        background-color: #fff9c4;
+        color: rgb(255,255,255); }
+        .navbar.navbar-warning .dropdown-menu .active > a:hover, .navbar.navbar-warning .dropdown-menu .active > a:focus {
+          color: rgb(255,255,255); }
+  .navbar.navbar-danger {
+    background-color: #F96A67;
+    color: rgb(255,255,255); }
+    .navbar.navbar-danger .navbar-form .form-group input.form-control::-moz-placeholder,
+    .navbar.navbar-danger .navbar-form input.form-control::-moz-placeholder {
+      color: rgb(255,255,255); }
+    .navbar.navbar-danger .navbar-form .form-group input.form-control:-ms-input-placeholder,
+    .navbar.navbar-danger .navbar-form input.form-control:-ms-input-placeholder {
+      color: rgb(255,255,255); }
+    .navbar.navbar-danger .navbar-form .form-group input.form-control::-webkit-input-placeholder,
+    .navbar.navbar-danger .navbar-form input.form-control::-webkit-input-placeholder {
+      color: rgb(255,255,255); }
+    .navbar.navbar-danger .dropdown-menu {
+      border-radius: 2px; }
+      .navbar.navbar-danger .dropdown-menu li > a {
+        font-size: 16px;
+        padding: 13px 16px; }
+        .navbar.navbar-danger .dropdown-menu li > a:hover, .navbar.navbar-danger .dropdown-menu li > a:focus {
+          color: #F96A67;
+          background-color: #eeeeee; }
+      .navbar.navbar-danger .dropdown-menu .active > a {
+        background-color: #F96A67;
+        color: rgb(255,255,255); }
+        .navbar.navbar-danger .dropdown-menu .active > a:hover, .navbar.navbar-danger .dropdown-menu .active > a:focus {
+          color: rgb(255,255,255); }
+  .navbar-inverse {
+    background-color: #3f51b5; }
+  @media (max-width: 1399px) {
+    .navbar .navbar-brand {
+      height: 50px;
+      padding: 10px 15px; }
+    .navbar .navbar-form {
+      margin-top: 10px; }
+    .navbar .navbar-nav > li > a {
+      padding-top: 15px;
+      padding-bottom: 15px; } }
+
 .dropdown-menu {
   border: 0;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); }
@@ -1683,7 +2019,7 @@ body {
   color: #757575; }
 
 .container {
-  max-width: 1280px;
+  max-width: 1100px;
   padding-left: 20px;
   padding-right: 20px; }
   @media (min-width: 768px) {
@@ -1699,6 +2035,51 @@ body {
 .layout {
   min-height: 100%;
   padding-bottom: 90px; }
+
+.layout--vcenter {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  box-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -o-align-items: center;
+  align-items: center;
+  -ms-flex-align: center;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  box-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+  -ms-flex-pack: center;
+  padding-top: 65px; }
+  .layout--vcenter .content {
+    padding-top: 0; }
+
+.lte-ie9 .layout--vcenter {
+  display: table;
+  width: 100%;
+  height: 100%; }
+  .lte-ie9 .layout--vcenter .content {
+    display: table-cell;
+    vertical-align: middle; }
+
+.ie.v10 .layout--vcenter, .ie.v11 .layout--vcenter {
+  height: 100%;
+  min-height: 500px; }
+  @media (min-device-width: 650px) {
+    .ie.v10 .layout--vcenter, .ie.v11 .layout--vcenter {
+      min-height: 600px; } }
 
 .overlay {
   position: fixed;
@@ -1721,8 +2102,14 @@ body {
 a:focus, a:active, a:hover, a:focus:active {
   outline: 0; }
 
+a:hover .material-icons {
+  color: #2880ac; }
+
 .list-inline {
   margin-bottom: 0; }
+
+.vcenter {
+  vertical-align: middle; }
 
 .fake-link {
   border-bottom: 1px dashed transparent;
@@ -1749,6 +2136,26 @@ a:focus, a:active, a:hover, a:focus:active {
 @media (max-width: 1400px) {
   .hide-on-lg {
     display: none !important; } }
+
+/* Columns */
+@media (min-width: 768px) {
+  .three-columns {
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    columns: 2; } }
+
+@media (min-width: 992px) {
+  .three-columns {
+    -webkit-columns: 3;
+    -moz-columns: 3;
+    columns: 3; } }
+
+.three-columns ul, .three-columns ol {
+  margin-top: 0; }
+  .three-columns ul li, .three-columns ol li {
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid; }
 
 /* Typography */
 h1, h2, h3, h4 {
@@ -1780,6 +2187,9 @@ h2, .h2 {
       margin-top: 40px;
       font-size: 26px; } }
 
+small, .small {
+  font-size: 13px; }
+
 .num-title {
   counter-increment: num-title; }
   .num-title:before {
@@ -1789,6 +2199,35 @@ h2, .h2 {
 
 p:last-child {
   margin-bottom: 0; }
+
+.strong-link {
+  font-weight: bold;
+  letter-spacing: .4px; }
+
+.spacer {
+  margin: 0 10px;
+  color: #9e9e9e; }
+
+.info-text {
+  position: relative;
+  padding-left: 20px;
+  margin-left: -20px;
+  margin-top: 33px; }
+  .info-text:after {
+    content: "!";
+    position: absolute;
+    font-size: 30px;
+    color: #2880ac;
+    top: 1px;
+    left: 6px;
+    line-height: 1; }
+  @media (min-width: 768px) {
+    .info-text {
+      padding-left: 30px;
+      margin-left: -30px; }
+      .info-text:after {
+        font-size: 36px;
+        left: 10px; } }
 
 /* Icons */
 [class^="icon-"]:before, [class*=" icon-"]:before {
@@ -1816,6 +2255,12 @@ p:last-child {
 
 .material-icons.icon-menu:before {
   content: "\E5D2"; }
+
+.material-icons.edit:before {
+  content: "\E3C9"; }
+
+.material-icons.icon-caret:before {
+  content: "\E5C5"; }
 
 .circle-icon {
   display: inline-block;
@@ -1850,9 +2295,11 @@ p:last-child {
   .alert .close {
     position: absolute;
     width: 40px;
+    height: 40px;
     right: 0;
     top: 0;
-    bottom: 0; }
+    font-size: 30px;
+    font-weight: normal; }
   @media (min-width: 768px) {
     .alert {
       margin-top: 20px; } }
@@ -1860,6 +2307,32 @@ p:last-child {
     color: rgba(0, 0, 0, 0.6); }
     .alert.alert-warning a {
       color: #2880ac; }
+
+.alert__inner {
+  position: relative;
+  padding-right: 40px; }
+  .alert__inner .close {
+    top: -10px; }
+
+.alert__icon {
+  display: none;
+  width: 100px;
+  height: 100px;
+  float: left;
+  margin-right: 20px; }
+  @media (min-width: 768px) {
+    .alert__icon {
+      display: block; } }
+
+.alert__title {
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: .2px;
+  margin-bottom: 6px; }
+
+@media (min-width: 768px) {
+  .alert__text {
+    float: left; } }
 
 .messages {
   position: fixed;
@@ -1876,7 +2349,7 @@ p:last-child {
 
 /* Modals */
 .modal-backdrop {
-  background-color: rgba(0, 0, 0, 0.5); }
+  background-color: rgba(245, 245, 245, 0.85); }
   .modal-backdrop.in {
     opacity: 1;
     filter: alpha(opacity=100); }
@@ -1891,7 +2364,9 @@ p:last-child {
   margin: 0; }
 
 .modal .modal-body {
-  padding: 20px; }
+  padding: 20px;
+  margin: auto;
+  max-width: 600px; }
 
 .modal .modal-header {
   padding: 20px 20px 0; }
@@ -1900,45 +2375,140 @@ p:last-child {
   padding-top: 10px; }
 
 .modal .modal-body + .modal-footer {
-  margin-top: -10px; }
+  padding-top: 15px; }
+
+.modal .modal-footer {
+  padding: 15px;
+  border-top: 1px solid #e5e5e5;
+  color: #9e9e9e; }
+
+.modal-dialog {
+  margin: 10px; }
+  @media (min-width: 768px) {
+    .modal-dialog {
+      margin: 80px auto; } }
+
+.modal-content {
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2); }
+
+.modal-content--center {
+  text-align: center; }
+  .modal-content--center .modal-header,
+  .modal-content--center .modal-footer {
+    text-align: center; }
+
+.modal-content--big .modal-body {
+  font-size: 16px;
+  padding: 20px; }
+  @media (min-width: 768px) {
+    .modal-content--big .modal-body {
+      padding: 30px; } }
+
+.modal-content--big .modal-title {
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px; }
+
+.modal-content--big .modal-footer {
+  padding: 15px 20px 18px; }
+  .modal-content--big .modal-footer a {
+    display: inline-block;
+    color: inherit;
+    text-decoration: underline;
+    white-space: nowrap;
+    margin: 0 5px 2px; }
+    .modal-content--big .modal-footer a:hover {
+      color: #2880ac; }
+    @media (min-width: 768px) {
+      .modal-content--big .modal-footer a {
+        margin: 0; } }
+  @media (min-width: 768px) {
+    .modal-content--big .modal-footer {
+      padding: 20px 30px 22px; } }
+  .modal-content--big .modal-footer .spacer {
+    display: none; }
+    @media (min-width: 768px) {
+      .modal-content--big .modal-footer .spacer {
+        display: inline; } }
+
+@media (min-width: 768px) {
+  .modal-content--big .modal-body + .modal-footer {
+    padding-top: 20px; } }
+
+.middle-icon {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 10px; }
 
 /* Buttons */
 .btn, .input-group-btn .btn {
   margin: 0;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 11px 20px;
   text-transform: uppercase;
   letter-spacing: .5px; }
   .btn:focus, .btn:active, .btn:hover, .btn:focus:active, .input-group-btn .btn:focus, .input-group-btn .btn:active, .input-group-btn .btn:hover, .input-group-btn .btn:focus:active {
     outline: 0; }
-  .btn.btn-raised:not(.btn-link):focus, .btn.btn-raised:not(.btn-link):focus:hover, .btn.btn-raised:not(.btn-link):focus.active, .btn.btn-raised:not(.btn-link):focus.active:hover, .btn.btn-raised:not(.btn-link):focus:active, .btn.btn-raised:not(.btn-link):focus:active:hover,
-  .btn-group-raised .btn:not(.btn-link):focus,
-  .btn-group-raised .btn:not(.btn-link):focus:hover,
-  .btn-group-raised .btn:not(.btn-link):focus.active,
-  .btn-group-raised .btn:not(.btn-link):focus.active:hover,
-  .btn-group-raised .btn:not(.btn-link):focus:active,
-  .btn-group-raised .btn:not(.btn-link):focus:active:hover, .input-group-btn .btn.btn-raised:not(.btn-link):focus, .input-group-btn .btn.btn-raised:not(.btn-link):focus:hover, .input-group-btn .btn.btn-raised:not(.btn-link):focus.active, .input-group-btn .btn.btn-raised:not(.btn-link):focus.active:hover, .input-group-btn .btn.btn-raised:not(.btn-link):focus:active, .input-group-btn .btn.btn-raised:not(.btn-link):focus:active:hover,
-  .btn-group-raised .input-group-btn .btn:not(.btn-link):focus,
-  .btn-group-raised .input-group-btn .btn:not(.btn-link):focus:hover,
-  .btn-group-raised .input-group-btn .btn:not(.btn-link):focus.active,
-  .btn-group-raised .input-group-btn .btn:not(.btn-link):focus.active:hover,
-  .btn-group-raised .input-group-btn .btn:not(.btn-link):focus:active,
-  .btn-group-raised .input-group-btn .btn:not(.btn-link):focus:active:hover {
-    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2); }
+  .btn.btn-raised, .btn.btn-action, .input-group-btn .btn.btn-action,
+  .btn-group-raised .btn, .input-group-btn .btn.btn-raised, .input-group-btn .btn.btn-action,
+  .btn-group-raised .input-group-btn .btn {
+    padding-left: 30px;
+    padding-right: 30px; }
+    .btn.btn-raised:not(.btn-link), .btn.btn-action:not(.btn-link),
+    .btn-group-raised .btn:not(.btn-link), .input-group-btn .btn.btn-raised:not(.btn-link), .input-group-btn .btn.btn-action:not(.btn-link),
+    .btn-group-raised .input-group-btn .btn:not(.btn-link) {
+      text-transform: uppercase;
+      letter-spacing: .5px;
+      font-weight: bold;
+      letter-spacing: 1px; }
+      .btn.btn-raised:not(.btn-link):focus, .btn.btn-action:not(.btn-link):focus, .btn.btn-raised:not(.btn-link):focus:hover, .btn.btn-action:not(.btn-link):focus:hover, .btn.btn-raised:not(.btn-link):focus.active, .btn.btn-action:not(.btn-link):focus.active, .btn.btn-raised:not(.btn-link):focus.active:hover, .btn.btn-action:not(.btn-link):focus.active:hover, .btn.btn-raised:not(.btn-link):focus:active, .btn.btn-action:not(.btn-link):focus:active, .btn.btn-raised:not(.btn-link):focus:active:hover, .btn.btn-action:not(.btn-link):focus:active:hover,
+      .btn-group-raised .btn:not(.btn-link):focus,
+      .btn-group-raised .btn:not(.btn-link):focus:hover,
+      .btn-group-raised .btn:not(.btn-link):focus.active,
+      .btn-group-raised .btn:not(.btn-link):focus.active:hover,
+      .btn-group-raised .btn:not(.btn-link):focus:active,
+      .btn-group-raised .btn:not(.btn-link):focus:active:hover, .input-group-btn .btn.btn-raised:not(.btn-link):focus, .input-group-btn .btn.btn-action:not(.btn-link):focus, .input-group-btn .btn.btn-raised:not(.btn-link):focus:hover, .input-group-btn .btn.btn-action:not(.btn-link):focus:hover, .input-group-btn .btn.btn-raised:not(.btn-link):focus.active, .input-group-btn .btn.btn-action:not(.btn-link):focus.active, .input-group-btn .btn.btn-raised:not(.btn-link):focus.active:hover, .input-group-btn .btn.btn-action:not(.btn-link):focus.active:hover, .input-group-btn .btn.btn-raised:not(.btn-link):focus:active, .input-group-btn .btn.btn-action:not(.btn-link):focus:active, .input-group-btn .btn.btn-raised:not(.btn-link):focus:active:hover, .input-group-btn .btn.btn-action:not(.btn-link):focus:active:hover,
+      .btn-group-raised .input-group-btn .btn:not(.btn-link):focus,
+      .btn-group-raised .input-group-btn .btn:not(.btn-link):focus:hover,
+      .btn-group-raised .input-group-btn .btn:not(.btn-link):focus.active,
+      .btn-group-raised .input-group-btn .btn:not(.btn-link):focus.active:hover,
+      .btn-group-raised .input-group-btn .btn:not(.btn-link):focus:active,
+      .btn-group-raised .input-group-btn .btn:not(.btn-link):focus:active:hover {
+        box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2); }
+  .btn.btn-action, .input-group-btn .btn.btn-action {
+    background-color: #f44336;
+    color: #fff; }
 
 .btn-large {
   padding-left: 30px;
   padding-right: 30px; }
 
-.btn.btn-fab .icon,
-.input-group-btn .btn.btn-fab .icon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -12px;
-  margin-top: -12px;
-  line-height: 24px;
-  width: 24px; }
+.btn-huge {
+  font-weight: bold;
+  color: #fff !important;
+  padding: 1.111rem 2.222rem;
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-top: 20px;
+  border: 0; }
+  @media (min-width: 768px) {
+    .btn-huge {
+      font-size: 14px; } }
+  @media (min-width: 1400px) {
+    .btn-huge {
+      font-size: 16px; } }
+
+.btn.btn-fab,
+.input-group-btn .btn.btn-fab {
+  padding: 0; }
+  .btn.btn-fab .icon,
+  .input-group-btn .btn.btn-fab .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -12px;
+    margin-top: -12px;
+    line-height: 24px;
+    width: 24px; }
 
 .btn-group-sm .btn-fab .icon,
 .btn-fab-mini .icon {
@@ -1985,6 +2555,16 @@ p:last-child {
   margin-right: 10px;
   margin-bottom: 10px; }
 
+.text-for-btn {
+  display: block;
+  vertical-align: middle;
+  margin-bottom: 8px; }
+  @media (min-width: 768px) {
+    .text-for-btn {
+      display: inline-block;
+      margin-bottom: 0;
+      margin-right: 20px; } }
+
 /* Forms */
 .form-group {
   padding-bottom: 23px; }
@@ -1992,8 +2572,12 @@ p:last-child {
 .lte-ie9 .form-control {
   border-bottom: 1px solid #D2D2D2; }
 
-form .btn {
-  margin-top: 3px; }
+form {
+  margin-top: 24px; }
+  form:first-child {
+    margin-top: 0; }
+  form .btn {
+    margin-top: 16px; }
 
 .form-unstyled .btn {
   margin-top: 0; }
@@ -2014,10 +2598,16 @@ form .btn {
     color: #9e9e9e; }
   .form-group.has-error .form-control {
     background-image: linear-gradient(#F96A67, #F96A67), linear-gradient(#F96A67, #F96A67); }
+  .form-group.has-error .input-group-addon {
+    color: inherit; }
 
 .lte-ie9 .form-group.has-error .form-control {
   border-bottom: 1px solid #F96A67; }
 
+.input-group-addon {
+  font-size: 16px; }
+
+/* Select */
 .select select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -2040,6 +2630,23 @@ form .btn {
 
 .dropdownjs > input.select.focus {
   font-size: 0; }
+
+/* Dropdown */
+.dropdown-toggle:hover, .dropdown-toggle:focus {
+  text-decoration: none; }
+
+.dropdown-toggle:focus {
+  color: #757575; }
+
+.dropdown-toggle:hover {
+  color: #2880ac; }
+  .dropdown-toggle:hover .caret,
+  .dropdown-toggle:hover .icon-caret {
+    color: #2880ac; }
+
+.dropdown-menu .divider {
+  background-color: rgba(0, 0, 0, 0.06);
+  margin: 5px 0; }
 
 .input-group .form-group {
   margin: 0;
@@ -2094,6 +2701,9 @@ form .btn {
   right: 20px;
   margin-right: -14px;
   top: -1px; }
+
+.auth-nav {
+  margin-right: 5px; }
 
 .auth-link {
   padding-left: 14px;
@@ -2217,7 +2827,10 @@ form .btn {
 
 .nav__service-menu__text {
   font-size: 16px;
-  padding: 15px 20px; }
+  padding: 15px 20px;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto; }
   .nav__service-menu__text a {
     text-transform: none;
     letter-spacing: 0;
@@ -2481,25 +3094,25 @@ form .btn {
       position: fixed;
       right: 12px;
       bottom: 12px; } }
-  .social .social__item--inline, .admin .social .social__item {
+  .social .social__item--inline {
     display: inline-block;
     padding-left: 5px;
     padding-right: 5px; }
-    .social .social__item--inline .social__link, .admin .social .social__item .social__link {
+    .social .social__item--inline .social__link {
       width: 1em;
       text-align: center;
       margin-top: 0; }
-      .social .social__item--inline .social__link.icon-facebook, .admin .social .social__item .social__link.icon-facebook {
+      .social .social__item--inline .social__link.icon-facebook {
         position: relative;
         top: -1px; }
-      .social .social__item--inline .social__link.icon-google, .admin .social .social__item .social__link.icon-google {
+      .social .social__item--inline .social__link.icon-google {
         position: relative;
         top: 1px;
         left: 0; }
   .social .social__link {
     display: inline-block;
     font-size: 14px;
-    color: #bdbdbd;
+    color: #9e9e9e;
     text-decoration: none;
     border: 0;
     width: 1em; }
@@ -2582,20 +3195,6 @@ form .btn {
       top: 70px; } }
   .admin .logo {
     position: static; }
-  .admin h2, .admin .h2 {
-    font-size: 16px;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-    font-weight: bold;
-    margin-top: 60px;
-    margin-bottom: 20px; }
-  .admin .footer-menu {
-    display: none; }
-  .admin .social {
-    position: static;
-    float: right;
-    right: auto;
-    bottom: auto; }
 
 .admin__sidebar {
   display: none;
@@ -2629,26 +3228,36 @@ form .btn {
   z-index: 40;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.07), 0 3px 1px -2px rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.06);
   white-space: nowrap;
-  padding-right: 5px; }
+  backface-visibility: hidden; }
   @media (min-width: 768px) {
     .admin__panel__header {
       height: 50px;
-      line-height: 50px;
-      padding-right: 15px; } }
+      line-height: 50px; } }
   .admin__panel__header h1, .admin__panel__header .h1 {
     display: inline-block;
     font-size: 20px;
     line-height: 50px;
-    margin: 0;
-    color: #757575; }
+    margin: 0; }
   .admin__panel__header .btn {
+    padding-left: 14px;
+    padding-right: 14px; }
+    .admin__panel__header .btn:not(.btn-raised):not(.btn-link):not(.btn-action):hover, .admin__panel__header .btn:not(.btn-raised):not(.btn-link):not(.btn-action):focus, .admin__panel__header .btn:not(.btn-raised):not(.btn-link):not(.btn-action):active {
+      background-color: #e3f2fd; }
+    .admin__panel__header .btn.btn-action {
+      padding-top: 0;
+      padding-bottom: 0;
+      box-shadow: none;
+      line-height: inherit;
+      border-radius: 0;
+      border: 0; }
+      .admin__panel__header .btn.btn-action:not(.btn-raised):not(.btn-link):hover, .admin__panel__header .btn.btn-action:not(.btn-raised):not(.btn-link):focus, .admin__panel__header .btn.btn-action:not(.btn-raised):not(.btn-link):active {
+        box-shadow: none; }
+  .admin__panel__header .circle-btn {
     width: 30px;
     height: 30px;
     border-radius: 50%;
     line-height: 30px;
     padding: 0; }
-    .admin__panel__header .btn:not(.btn-raised):not(.btn-link):hover, .admin__panel__header .btn:not(.btn-raised):not(.btn-link):focus, .admin__panel__header .btn:not(.btn-raised):not(.btn-link):active {
-      background-color: #e3f2fd; }
   .admin__panel__header .material-icons {
     vertical-align: middle;
     font-size: 20px;
@@ -2658,29 +3267,68 @@ form .btn {
   display: inline-block;
   border-right: 1px solid #efefef;
   vertical-align: top;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
   margin-right: 20px; }
+  @media (min-width: 768px) {
+    .ap__header__logo {
+      padding-left: 20px;
+      padding-right: 20px; } }
 
 .ap__header__user {
-  float: right; }
+  display: inline-block;
+  margin-right: 12px; }
+  .ap__header__user .dropdown-menu {
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    margin-top: -5px; }
+    .ap__header__user .dropdown-menu li > a {
+      font-size: inherit;
+      padding-top: 6px;
+      padding-bottom: 6px; }
 
 .ap__header__user__name {
-  position: relative;
-  top: 1px; }
-  .ap__header__user__name .user-photo {
-    margin-right: 4px; }
+  display: inline-block;
+  color: #757575; }
+  @media (min-width: 768px) {
+    .ap__header__user__name .user-photo {
+      margin-right: 4px; } }
 
 .ap__header__user__logout {
   margin-left: 15px; }
 
+.ap__header__instance {
+  border-left: 1px solid #efefef;
+  text-transform: none;
+  letter-spacing: 0;
+  line-height: inherit;
+  padding: 0 15px 0 20px;
+  border-radius: 0; }
+  .ap__header__instance:hover, .ap__header__instance:focus, .ap__header__instance:active, .ap__header__instance:active:focus {
+    border-color: #efefef; }
+
 .admin__panel__content {
+  font-size: 16px;
   padding-top: 40px; }
   @media (min-width: 768px) {
     .admin__panel__content {
       padding-top: 50px; } }
   .admin__panel__content .btn:not(.btn-raised):not(.btn-link) {
     background-color: rgba(153, 153, 153, 0.13); }
+  .admin__panel__content h2, .admin__panel__content .h2 {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    font-weight: bold;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    letter-spacing: .8px;
+    word-spacing: 1px; }
+    .admin__panel__content h2:first-child, .admin__panel__content .h2:first-child {
+      margin-top: 0; }
+
+.admin__panel__content--vcenter {
+  padding-top: 30px;
+  padding-bottom: 30px; }
 
 .admin__panel__content__title {
   background-color: #2880ac;
@@ -2695,13 +3343,16 @@ form .btn {
     .admin__panel__content__title {
       display: none; } }
 
-.admin__panel__content__messages .alert {
-  box-shadow: none;
-  padding-left: 0;
-  padding-right: 0;
-  -webkit-animation: none;
-  animation: none;
-  margin-top: 0; }
+.admin__panel__content__messages {
+  font-size: 13px; }
+  .admin__panel__content__messages .alert {
+    box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
+    -webkit-animation: none;
+    animation: none;
+    margin-top: 0;
+    margin-bottom: 12px; }
 
 .admin__panel__content__inner {
   padding-top: 40px; }
@@ -2733,6 +3384,9 @@ form .btn {
       padding-left: 25px; } }
 
 /* Profile social */
+.profile-social {
+  margin-top: 60px; }
+
 .profile-social__list__item {
   margin-bottom: 13px;
   max-width: 500px; }
@@ -2773,6 +3427,7 @@ form .btn {
     border-radius: 50%; }
 
 .user-photo__icon {
+  display: inline-block;
   background-color: rgba(153, 153, 153, 0.13);
   width: 100%;
   height: 100%;
@@ -2785,19 +3440,174 @@ form .btn {
 a:hover .user-photo__icon {
   color: #2880ac; }
 
+/* Profile form */
+@media (min-width: 768px) {
+  .profile__personal {
+    padding-left: 170px;
+    margin-bottom: 17px; } }
+
+.pic-upload.pic-upload--dropzone .dropzone {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.4);
+  font-size: 13px;
+  color: #fff;
+  padding: 10px;
+  padding-top: 30px; }
+
+.pic-upload__inner {
+  position: relative; }
+  .pic-upload__inner:hover .pic-upload__delete {
+    opacity: 1; }
+
+.pic-upload__edit {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  line-height: 30px;
+  font-size: 20px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: opacity .4s;
+  opacity: 1;
+  z-index: 2; }
+  .pic-upload__edit:hover {
+    text-decoration: none;
+    color: #fff;
+    opacity: .75; }
+  .pic-upload__edit:active, .pic-upload__edit:focus {
+    color: #fff;
+    text-decoration: none; }
+
+.pic-upload__delete {
+  right: -5px;
+  position: absolute;
+  top: -5px;
+  background: #2880ac;
+  font-size: 16px;
+  color: #fff;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .4s, transform .4s;
+  border-radius: 50%;
+  z-index: 3;
+  backface-visibility: hidden; }
+  .pic-upload__delete:hover {
+    transform: scale(1.1);
+    background-color: #24749b; }
+  .pic-upload__delete:hover, .pic-upload__delete:active, .pic-upload__delete:focus {
+    text-decoration: none;
+    color: #fff; }
+
+.dropzone {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  border: 1px dashed #bdbdbd;
+  opacity: 0;
+  transition: opacity .4s;
+  text-align: center; }
+  .dropzone:after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    border: 1px dashed #fff;
+    opacity: .5; }
+
+.profile__personal__photo {
+  margin-bottom: 20px; }
+  @media (min-width: 768px) {
+    .profile__personal__photo {
+      float: left;
+      margin-left: -170px; } }
+
+.profile__photo__inner {
+  width: 129px;
+  height: 129px; }
+
+.profile__photo__pic {
+  width: 100%; }
+
+.profile__personal__data {
+  overflow: hidden; }
+
 /* Breadcrumbs */
 .breadcrumb {
   background-color: transparent;
   text-transform: uppercase;
   letter-spacing: .5px;
-  color: #bdbdbd;
+  color: #9e9e9e;
   padding: 8px 0;
   margin-bottom: 0; }
   .breadcrumb a {
-    color: #bdbdbd; }
+    color: #9e9e9e; }
     .breadcrumb a:hover, .breadcrumb a:active, .breadcrumb a:focus, .breadcrumb a:active:focus {
       color: #2880ac;
       text-decoration: none; }
+
+/* error-block */
+.error-block {
+  font-size: 16px;
+  text-align: center; }
+  @media (min-width: 1400px) {
+    .error-block {
+      font-size: 18px; } }
+  .error-block .error-block__title {
+    line-height: 1.42857;
+    margin: 15px -10px 10px;
+    font-size: 20px;
+    text-transform: none;
+    font-weight: normal;
+    letter-spacing: normal; }
+    @media (min-width: 768px) {
+      .error-block .error-block__title {
+        font-size: 22px;
+        margin: 0 0 5px; } }
+    @media (min-width: 992px) {
+      .error-block .error-block__title {
+        font-size: 26px; } }
+
+.error-block__number {
+  font-size: 100px;
+  font-weight: bold;
+  color: #176FC1;
+  line-height: 1;
+  margin-top: -24px;
+  letter-spacing: 2px; }
+  @media (min-width: 768px) {
+    .error-block__number {
+      font-size: 150px; } }
+  @media (min-width: 992px) {
+    .error-block__number {
+      font-size: 175px; } }
+
+.error-block__descr {
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto; }
+
+.error-block__btn {
+  margin-top: 50px; }
+
+/* Instancce form */
+.instance-form .instance-form__address {
+  width: 285px; }
+
+.admin__panel__content .docs-list {
+  padding-left: 0; }
+
+.webgis-newpassword {
+  margin-bottom: 44px; }
 
 /* Animations */
 @-webkit-keyframes slideInDown {

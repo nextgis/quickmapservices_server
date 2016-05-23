@@ -14,14 +14,28 @@
                 <a class="social__link icon icon-twitter" href="https://twitter.com/nextgis" target="_blank"></a>
             </li>
         </ul>
+        {% get_current_language as LANGUAGE_CODE %}
         <ul class="footer-menu list-unstyled hide-on-sm">
+            {% if LANGUAGE_CODE == 'ru' %}
             <li class="footer-menu__item">
-                <a href="{% external_url 'terms_of_service' %}">{% trans 'Terms of Service' %}</a>
+                <a href="{% external_url 'terms_ru' %}" target="_blank">{% trans 'Terms of Service' %}</a>
             </li>
             <li class="footer-menu__item">
-                <a href="{% external_url 'privacy_policy' %}">{% trans 'Privacy policy' %}</a>
+                <a href="{% external_url 'privacy_ru' %}" target="_blank">{% trans 'Privacy Policy' %}</a>
             </li>
+            {% else %}
+            <li class="footer-menu__item">
+                <a href="{% external_url 'terms_en' %}" target="_blank">{% trans 'Terms of Service' %}</a>
+            </li>
+            <li class="footer-menu__item">
+                <a href="{% external_url 'privacy_en' %}" target="_blank">{% trans 'Privacy Policy' %}</a>
+            </li>
+            {% endif %}
         </ul>
-        2016 — NextGIS<span class="hide-on-xs">. {% trans 'Open geospatial technologies' %}</span>
+        {% if LANGUAGE_CODE == 'ru' %}
+        © 2016 <a href="{% external_url 'nextgis_com_ru' %}" target="_blank">NextGIS</a>
+        {% else %}
+        © 2016 <a href="{% external_url 'nextgis_com' %}" target="_blank">NextGIS</a>
+        {% endif %}
     </div>
 </footer>

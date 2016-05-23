@@ -3,9 +3,15 @@ register = template.Library()
 
 external_links = {
     'nextgis_online': 'http://online.nextgis.com',
-    'terms_of_service': 'https://id.nextgis.com/info/terms_of_service',
-    'privacy_policy': 'https://id.nextgis.com/info/privacy_policy',
+    'nextgis_com': 'http://nextgis.ru/en',
+    'nextgis_com_ru': 'http://nextgis.ru',
+    'my_nextgis': 'https://my.nextgis.com',
 
+    'terms_ru': 'http://nextgis.ru/terms/',
+    'terms_en': 'http://nextgis.ru/en/terms/',
+
+    'privacy_ru': ' http://nextgis.ru/privacy',
+    'privacy_en': ' http://nextgis.ru/en/privacy',
 }
 
 

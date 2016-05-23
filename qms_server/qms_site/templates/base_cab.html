@@ -7,17 +7,8 @@
     <section class="layout admin__panel">
         <!-- Cabinet header -->
         <header class="admin__panel__header">
-            <div class="ap__header__user">
-                <span class="ap__header__user__name hide-on-sm">
-                    {% include "common_snippets/user_photo_small.html" %}
-                    {{ request.user.username }}
-                </span>
-                <a class="ap__header__user__logout btn" href="#" data-toggle="modal" data-target="#logout-modal">
-                    <i class="material-icons exit_to_app"></i>
-                </a>
-            </div>
             <div class="ap__header__logo">
-                <a href="{% external_url 'nextgis_online' %}"><img class="logo logo--big" src="{% static 'qms_site/img/logo-big.svg' %}" alt="NextGIS"></a>
+                <a href="{% external_url 'nextgis_com' %}"><img class="logo logo--big" src="{% static 'qms_site/img/logo-big.svg' %}" alt="NextGIS"></a>
             </div>
             <h1 class="hide-on-sm">{% block content_title %}{% endblock %}</h1>
         </header>
