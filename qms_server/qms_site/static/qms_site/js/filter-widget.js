@@ -41,7 +41,7 @@ render_services = function(data) {
 };
 
 // Create search control
-t = new SearchEngine({
+searcher = new SearchEngine({
   url: "/api/v1/geoservices/",
   param: "search",
   delay: 250,
@@ -49,7 +49,12 @@ t = new SearchEngine({
   result_f: render_services
 });
 
-t.addTextBox($("#txt_search").first());
+searcher.addTextBox($("#txt_search").first());
+searcher.addFilterButton($("#flt_all").first(), "type", "");
+searcher.addFilterButton($("#flt_tms").first(), "type", "tms");
+searcher.addFilterButton($("#flt_wms").first(), "type", "wms");
+searcher.addFilterButton($("#flt_wfs").first(), "type", "wfs");
+searcher.addFilterButton($("#flt_geojson").first(), "type", "geojson");
 
 // update data
 $("#txt_search").keyup();

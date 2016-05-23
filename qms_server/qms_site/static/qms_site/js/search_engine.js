@@ -1,6 +1,8 @@
 function SearchEngine(config) {
     this._settings = $.extend(true, this.default_config, config || {});
-
+    this._editBox = null;
+    this._filterButtons = [];
+    this._activeFilters = {};
 }
 
 SearchEngine.prototype.default_config = {
@@ -31,23 +33,19 @@ SearchEngine.prototype.stop = function () {
 };
 
 SearchEngine.prototype.resetTimer = function (timer) {
-    if (timer) clearTimeout(timer)
+    if (timer) clearTimeout(timer);
 };
 
-SearchEngine.prototype.process = function (terms) {
-    var path = this._settings.url.split('?');
-    var query = [this._settings.param, '=', terms].join('');
-    var base = path[0], params = path[1], query_string = query;
-
-    if (params) query_string = [params.replace('&amp;', '&'), query].join('&');
-
-    $.get([base, '?', query_string].join(''), $.proxy(function (data) {
-        this._settings.result_f(data);
+SearchEngine.prototype.process = function () {
+    var req_params = $.extend({}, this._activeFilters);
+    req_params[this._settings.param] = this._editBox.val();
+    $.get(this._settings.url, req_params, $.proxy(function (data) {
+         this._settings.result_f(data);
     }, this));
 };
 
-
 SearchEngine.prototype.addTextBox = function (control) {
+    this._editBox = control;
     control
         .focus()
         .ajaxStart(this.start)
@@ -57,10 +55,33 @@ SearchEngine.prototype.addTextBox = function (control) {
                 this.resetTimer(this._timer);
 
                 this._timer = setTimeout($.proxy(function () {
-                    this.process(control.val())
+                    this.process();
                 }, this), this._settings.delay);
 
                 this._previousValue = control.val();
             }
+        }, this));
+};
+
+SearchEngine.prototype.addFilterButton = function (control, filter_name, filter_val) {
+    this._filterButtons.push(control);
+    control
+        .ajaxStart(this.start)
+        .ajaxStop(this.stop)
+        .click( $.proxy(function (e) {
+            e.preventDefault();
+
+            this._activeFilters[filter_name] = filter_val; // set value
+
+            $.each(this._filterButtons, function(index, el) {
+                el.removeClass('active');
+            });
+            control.addClass('active'); //change css
+
+            // update
+            this.resetTimer(this._timer);
+            this._timer = setTimeout($.proxy(function () {
+                    this.process();
+            }, this), this._settings.delay);
         }, this));
 };
