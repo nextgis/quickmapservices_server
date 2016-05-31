@@ -1,8 +1,8 @@
 .. sectionauthor:: Dmitry Baryshnikov <dmitry.baryshnikov@nextgis.ru>
 
 
-Документация NextGIS QMS Service API
-=====================================
+NextGIS QMS Service API documentation
+======================================
 
 Api Root
 ----------
