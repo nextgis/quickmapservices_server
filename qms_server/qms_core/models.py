@@ -10,6 +10,7 @@ from django.core.mail import send_mail
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext as _
+from django.utils.encoding import python_2_unicode_compatible
 
 # Create your models here.
 from size_restricted_image_field import SizeRestrictedImageField
@@ -141,6 +142,7 @@ class ServiceIcon(models.Model):
         return self.name
 
 # SERVICES
+@python_2_unicode_compatible
 class GeoService(models.Model):
     service_type = 'generic'
 
