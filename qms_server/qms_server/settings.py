@@ -148,6 +148,19 @@ CORS_ALLOW_METHODS = (
     'GET',
     'OPTIONS',
 )
+CORS_ALLOW_HEADERS = (
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'range',
+    'x-range',
+)
 
 # try to load local machine settings
 try:
