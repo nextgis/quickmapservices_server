@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
+from corsheaders.defaults import default_headers
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -151,6 +153,14 @@ CORS_URLS_REGEX = r'^/api/.*$'
 CORS_ALLOW_METHODS = (
     'GET',
     'OPTIONS',
+)
+CORS_ALLOW_HEADERS = default_headers + (
+    'range',
+    'x-range',
+)
+CORS_EXPOSE_HEADERS = (
+    'content-range',
+    'x-content-range',
 )
 
 # try to load local machine settings
