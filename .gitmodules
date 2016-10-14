@@ -1,0 +1,3 @@
+[submodule "qms_server/nextgis_common"]
+	path = qms_server/nextgis_common
+	url = https://github.com/nextgis/webservices_commons

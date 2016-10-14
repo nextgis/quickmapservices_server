@@ -39,11 +39,14 @@ INSTALLED_APPS = [
 
     'qms_core',
     'qms_site',
-
-    'django_gravatar',
+    'qms_stats',
 
     'rest_framework',
     'corsheaders',
+
+    'widget_tweaks',
+    'django_gravatar',
+    'nextgis_common',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -56,6 +59,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'qms_stats.middleware.LoggingMiddleware',
 ]
 
 TEMPLATES = [
