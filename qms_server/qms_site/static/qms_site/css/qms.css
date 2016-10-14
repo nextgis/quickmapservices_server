@@ -20,7 +20,8 @@
     padding-left: 3px;
     padding-right: 3px; }
 
-.filter-link {
+.filter-link, .admin__panel__content .filter-link {
+  border-bottom: 0;
   text-decoration: none;
   padding: 3px 8px 4px;
   border-radius: 2px; }

@@ -1,4 +1,4 @@
-{% extends "base_cab.html" %}
+{% extends "base_qms.html" %}
 {% load staticfiles %}
 {% load i18n %}
 
@@ -40,7 +40,7 @@
     <div id="results"></div>
 {% endblock %}
 
-{% block extra_scripts %}
+{% block extra_body %}
     <script type="text/javascript">
         element_template_url = "{% static 'qms_site/templates/service_element.html' %}";
         no_results_templ_url = "{% static 'qms_site/templates/no_results.html' %}";

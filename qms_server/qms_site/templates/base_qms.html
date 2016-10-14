@@ -2,13 +2,19 @@
 
 {% load staticfiles %}
 {% load external_url %}
+{% load i18n %}
+
+{% block extra_head %}
+    <link href="{% static 'qms_site/css/qms.css' %}" type="text/css" rel="stylesheet"/>
+{% endblock %}
 
 {% block body %}
     <section class="layout admin__panel">
         <!-- Cabinet header -->
         <header class="admin__panel__header">
             <div class="ap__header__logo">
-                <a href="{% external_url 'nextgis_com' %}"><img class="logo logo--big" src="{% static 'qms_site/img/logo-big.svg' %}" alt="NextGIS"></a>
+               {% get_current_language as LANGUAGE_CODE %}
+                <a href="{% external_url 'nextgis_com' LANGUAGE_CODE %}"><img class="logo logo--big" src="{% static 'qms_site/img/logo-big.svg' %}" alt="NextGIS"></a>
             </div>
             <h1 class="hide-on-sm">{% block content_title %}{% endblock %}</h1>
         </header>
@@ -26,3 +32,4 @@
         </div>
     </section> <!--/.admin__panel .layout-->
 {% endblock %}
+

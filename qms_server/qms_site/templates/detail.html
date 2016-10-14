@@ -1,4 +1,4 @@
-{% extends "base_cab.html" %}
+{% extends "base_qms.html" %}
 
 {% load i18n %}
 {% load staticfiles %}
@@ -34,13 +34,11 @@
     <link rel="stylesheet" href="{% static 'qms_site/css/leaflet.css' %}" />
 {% endblock %}
 
-{% block extra_scripts %}
+{% block extra_body %}
     <script src="{% static 'qms_site/js/vendor/leaflet.js' %}"></script>
     <script src="{% static 'qms_site/js/vendor/proj4-compressed.js' %}"></script>
     <script src="{% static 'qms_site/js/vendor/proj4leaflet.js' %}"></script>
     <script src="{% static 'qms_site/js/vendor/Leaflet-WFST.min.js' %}"></script>
-{% endblock %}
 
-{% block extra_body %}
     {% include 'services_snippets/preview_map_js.html' %}
 {% endblock %}
