@@ -1,10 +1,12 @@
 {% load i18n %}
+{% load link_or_val %}
+{% load default_if_not %}
 
 <div class="panel panel-default">
   <div class="panel-body">
       <h4>{% trans 'WFS info' %}</h4>
-      URL: {{ service.wfsservice.url|default_if_none:'None' }} <br>
-      Layer: {{ service.wfsservice.layer|default_if_none:'None' }} <br>
-
+      {% trans 'None' as n %}
+      URL: {{ service.wfsservice.url|link_or_val:n }} <br>
+      Layer: {{ service.wfsservice.layer|default_if_not:n }} <br>
   </div>
 </div>

@@ -1,12 +1,15 @@
 {% load i18n %}
+{% load default_if_not %}
+{% load link_or_val %}
 
 <div class="panel panel-default">
   <div class="panel-body">
       <h4>{% trans 'License & Copyright info' %}</h4>
-      {% trans "License name:" %} {{ service.license_name|default_if_none:'None' }} <br>
-      {% trans "License URL:" %} {{ service.license_url|default_if_none:'None' }} <br>
-      {% trans "Copyright text:" %} {{ service.copyright_text|default_if_none:'None' }} <br>
-      {% trans "Copyright URL:" %} {{ service.copyright_url|default_if_none:'None' }} <br>
-      {% trans "Terms of use URL:" %} {{ service.terms_of_use_url|default_if_none:'None' }} <br>
+      {% trans 'None' as n %}
+      {% trans "License name:" %} {{ service.license_name|default_if_not:n }} <br>
+      {% trans "License URL:" %}  {{ service.license_url|link_or_val:n }} <br>
+      {% trans "Copyright text:" %} {{ service.copyright_text|default_if_not:n }} <br>
+      {% trans "Copyright URL:" %} {{ service.copyright_url|link_or_val:n }} <br>
+      {% trans "Terms of use URL:" %} {{ service.terms_of_use_url|link_or_val:n }} <br>
   </div>
 </div>

@@ -1,12 +1,15 @@
 {% load i18n %}
+{% load link_or_val %}
+{% load default_if_not %}
 
 <div class="panel panel-default">
   <div class="panel-body">
       <h4>{% trans 'WMS info' %}</h4>
-      URL: {{ service.wmsservice.url|default_if_none:'None' }} <br>
-      Parameters: {{ service.wmsservice.params|default_if_none:'None' }} <br>
-      Layers: {{ service.wmsservice.layers|default_if_none:'None' }} <br>
-      Turn over: {{ service.wmsservice.turn_over|default_if_none:'None' }} <br>
-      Format: {{ service.wmsservice.format|default_if_none:'None' }} <br>
+      {% trans 'None' as n %}
+      URL: {{ service.wmsservice.url|link_or_val:n }} <br>
+      Parameters: {{ service.wmsservice.params|default_if_not:n }} <br>
+      Layers: {{ service.wmsservice.layers|default_if_not:n }} <br>
+      Turn over: {{ service.wmsservice.turn_over|default_if_not:n }} <br>
+      Format: {{ service.wmsservice.format|default_if_not:n }} <br>
   </div>
 </div>
