@@ -1,0 +1,95 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-10-14 15:21+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: qms_site/templates/detail.html:6 qms_site/templates/detail.html.py:7
+#: qms_site/templates/detail.html:8
+msgid "Detail of service"
+msgstr "Информация о сервисе"
+
+#: qms_site/templates/list.html:6 qms_site/templates/list.html.py:7
+#: qms_site/templates/list.html:8
+msgid "List of services"
+msgstr "Сервисы"
+
+#: qms_site/templates/list.html:16
+msgid "Search map service..."
+msgstr "Поиск сервиса..."
+
+#: qms_site/templates/services_snippets/general_info.html:5
+msgid "General info"
+msgstr "Основное"
+
+#: qms_site/templates/services_snippets/general_info.html:6
+msgid "Description:"
+msgstr "Описание:"
+
+#: qms_site/templates/services_snippets/general_info.html:7
+msgid "Type:"
+msgstr "Тип:"
+
+#: qms_site/templates/services_snippets/general_info.html:8
+msgid "CRS:"
+msgstr "СК:"
+
+#: qms_site/templates/services_snippets/geojson_info.html:5
+msgid "GeoJSON info"
+msgstr "Параметры GeoJSON"
+
+#: qms_site/templates/services_snippets/license_info.html:5
+msgid "License & Copyright info"
+msgstr "Лицензия & Авторские права"
+
+#: qms_site/templates/services_snippets/license_info.html:6
+msgid "License name:"
+msgstr "Название лицензии:"
+
+#: qms_site/templates/services_snippets/license_info.html:7
+msgid "License URL:"
+msgstr "Ссылка на лицензию:"
+
+#: qms_site/templates/services_snippets/license_info.html:8
+msgid "Copyright text:"
+msgstr "Копирайт:"
+
+#: qms_site/templates/services_snippets/license_info.html:9
+msgid "Copyright URL:"
+msgstr "Ссылка на копирайт:"
+
+#: qms_site/templates/services_snippets/license_info.html:10
+msgid "Terms of use URL:"
+msgstr "Ссылка на пользовательское соглашение:"
+
+#: qms_site/templates/services_snippets/preview_map.html:5
+msgid "Preview"
+msgstr "Предпросмотр"
+
+#: qms_site/templates/services_snippets/tms_info.html:5
+msgid "TMS info"
+msgstr "Параметры TMS"
+
+#: qms_site/templates/services_snippets/wfs_info.html:5
+msgid "WFS info"
+msgstr "Параметры WFS"
+
+#: qms_site/templates/services_snippets/wms_info.html:5
+msgid "WMS info"
+msgstr "Параметры WMS"
