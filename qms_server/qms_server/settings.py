@@ -41,7 +41,6 @@ INSTALLED_APPS = [
 
     'qms_core',
     'qms_site',
-    'qms_stats',
 
     'rest_framework',
     'corsheaders',
