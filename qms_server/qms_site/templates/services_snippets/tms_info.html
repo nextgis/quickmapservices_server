@@ -7,8 +7,8 @@
       <h4>{% trans 'TMS info' %}</h4>
       {% trans 'None' as n %}
       URL: {{ service.tmsservice.url|link_or_val:n }} <br>
-      Z Min: {{ service.tmsservice.z_min|default_if_not:n }} <br>
-      Z max: {{ service.tmsservice.z_max|default_if_not:n }} <br>
-      Y Origin Top: {{ service.tmsservice.y_origin_top|default_if_not:n }} <br>
+      Z Min: {{ service.tmsservice.z_min|default_if_none:n }} <br>
+      Z max: {{ service.tmsservice.z_max|default_if_none:n }} <br>
+      Y Origin Top: {{ service.tmsservice.y_origin_top|default_if_none:n }} <br>
   </div>
 </div>

@@ -7,6 +7,6 @@
       {% trans 'None' as n %}
       {% trans "Description:" %} {{ service.desc|default_if_not:n }} <br>
       {% trans "Type:" %} {{ service.type|upper|default_if_not:n }} <br>
-      {% trans "CRS:" %} {{ service.epsg|default_if_not:n }} <br>
+      {% trans "CRS:" %} {{ service.epsg|default_if_none:n }} <br>
   </div>
 </div>
