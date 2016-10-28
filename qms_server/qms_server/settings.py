@@ -25,9 +25,24 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '*p1di8)2ac9=+eb^j=y_6(8a#z%6a(usjo9$83+rb1pn)tl644'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ['qms.nextgis.com']
 SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'nextgis_common.ngid_auth.auth_backend.NgidBackend',
+)
+
+AUTH_USER_MODEL = 'qms_core.NextgisUser'
+
+SESSION_COOKIE_NAME = 'qms_sessionid'
+SESSION_COOKIE_AGE = 60 * 10
+CSRF_COOKIE_NAME = 'qms_csrftoken'
+
+LOGOUT_URL = '/logout_url'
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 
@@ -143,9 +158,6 @@ MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.path.pardir, os.path.pard
 
 # URLs
 ROOT_URLCONF = 'qms_server.urls'
-
-# Custom User Model
-AUTH_USER_MODEL = 'qms_core.NextgisUser'
 
 # CORS
 CORS_ORIGIN_ALLOW_ALL = True

@@ -92,7 +92,7 @@ class NextgisUser(AbstractBaseUser, PermissionsMixin):
     )
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
     #  custom fields
-    nextgis_guid = models.UUIDField(_('nextgis guid'), default=uuid.uuid4, editable=False)
+    nextgis_guid = models.UUIDField(_('nextgis guid'), default=uuid.uuid4, editable=False, unique=True)
     locale = models.CharField(_('user locale'),
                               max_length=30, null=True, blank=False,
                               choices=SupportedLanguages.dict_text.items(),
