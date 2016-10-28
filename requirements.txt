@@ -12,4 +12,4 @@ django-gravatar2>=1.4.0
 django-widget-tweaks>=1.4.1
 
 requests>=2.11.1,<=2.12
-requests_oauthlib=0.7.0
+requests_oauthlib==0.7.0
