@@ -1,58 +1,19 @@
-{% extends "base.html" %}
+{% extends "service_base.html" %}
 
 {% load staticfiles %}
 {% load external_url %}
 {% load i18n %}
 
+
 {% block extra_head %}
     <link href="{% static 'qms_site/css/qms.css' %}" type="text/css" rel="stylesheet"/>
 {% endblock %}
 
-{% block body %}
-    <section class="layout admin__panel" style="background-color: #f9f9f9">
-        <!-- Cabinet header -->
-        <header class="admin__panel__header">
-            <div class="ap__header__logo">
-               {% get_current_language as LANGUAGE_CODE %}
-                <a href="{% external_url 'nextgis_com' LANGUAGE_CODE %}"><img class="logo logo--big" src="{% static 'qms_site/img/logo-big.svg' %}" alt="NextGIS"></a>
-            </div>
-            <h1 class="hide-on-sm">{% block content_title %}{% endblock %}</h1>
 
-            <div class="pull-right">
-            {% if request.user.is_authenticated %}
-                <a href="#" class="ap__header__user__name withoutripple dropdown-toggle"  id="user-menu" data-toggle="dropdown">
-                    {% include "common_snippets/user_photo_small.html" %}
-                    <span class="hide-on-sm">{{ request.user.username }}</span>
-                    <i class="material-icons icon-caret hidden-xs"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="user-menu">
-{#                    <li><a href="{% url 'profile' %}">{% trans 'Profile' %}</a></li>#}
-{#                    <li><a href="{% url 'ngw_instance_edit' %}">{% trans 'Web GIS Settings' %}</a></li>#}
-{#                    <li role="separator" class="divider"></li>#}
-                    <li>
-                        <a href="{% url 'ngid_logout' %}">
-                            <span class="vcenter">{% trans 'Sign Out' %}</span>&nbsp;&nbsp;<i class="material-icons exit_to_app"></i>
-                        </a>
-                    </li>
-                </ul>
-            {% else %}
-                <a class="btn btn-action btn-primary" href="{% url 'ngid_login' %}">{% trans 'Sign in' context 'menu_item' %}</a>
-            {% endif %}
-            </div>
+{% block head_title %}{% trans 'Quick Map Service' %}{% endblock %}
+{% block content_title %}{% trans 'QMS' %}{% endblock %}
+{% block body_class %}body--wide-header body--grey{% endblock %}
 
-        </header>
-        <!-- Cabinet content -->
-        <div class="admin__panel__content">
-            <div class="admin__panel__content__title">
-                <div class="container">
-                    <h1>{% block content_title_mobile %}{% endblock %}</h1>
-                </div>
-            </div>            
-
-            <div class="admin__panel__content__inner container">
-                {% block body_content %}{% endblock %}
-            </div>
-        </div>
-    </section> <!--/.admin__panel .layout-->
-{% endblock %}
-
+{% block logo_link %}{% url 'site_geoservice_list' %}{% endblock %}
+{% block login_link %}{% url 'ngid_login' %}{% endblock %}
+{% block logout_link %}{% url 'ngid_logout' %}{% endblock %}
