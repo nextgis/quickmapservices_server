@@ -1,0 +1,21 @@
+{% extends 'edit_snippets/base_service.html' %}
+{% load i18n %}
+
+{% block form_header %}{% trans 'Append WFS service' %}{% endblock %}
+
+{% block required_part %}
+    <div class="form-group label-floating clearfix {% if form.url.errors %}has-error{% endif %}">
+        <label class="control-label" for="{{form.url.id_for_label}}">{% trans 'URL' %}</label>
+        {{ form.url }}
+        {% if form.url.errors %}
+        <span id="{{ form.url.auto_id }}-error" class="has-error">{{ form.url.errors }}</span>
+        {% endif %}
+    </div>
+    <div class="form-group label-floating clearfix {% if form.layer.errors %}has-error{% endif %}">
+        <label class="control-label" for="{{form.layer.id_for_label}}">{% trans 'Layer' %}</label>
+        {{ form.layer }}
+        {% if form.layer.errors %}
+        <span id="{{ form.layer.auto_id }}-error" class="has-error">{{ form.layer.errors }}</span>
+        {% endif %}
+    </div>
+{% endblock %}

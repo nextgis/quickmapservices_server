@@ -1,0 +1,12 @@
+{% extends "base_qms.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block body_content %}
+
+    {% for form_obj_name, form_obj in forms.iteritems %}
+        {% include form_obj.associated_template with form=form_obj form_name=form_obj_name %}
+        <hr>
+    {% endfor %}
+
+{% endblock %}

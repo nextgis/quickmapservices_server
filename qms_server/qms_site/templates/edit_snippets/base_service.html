@@ -1,0 +1,83 @@
+{% load i18n %}
+
+{% block form_header %}{% endblock %}
+<form id="{{ form_name }}">
+    {% csrf_token %}
+    <div >  {#layout#}
+        <div> {# left part #}
+            <div> {# required part #}
+                <div class="form-group label-floating clearfix {% if form.name.errors %}has-error{% endif %}">
+                    <label class="control-label" for="{{form.name.id_for_label}}">{% trans 'Service name' %}</label>
+                    {{ form.name }}
+                    {% if form.name.errors %}
+                    <span id="{{ form.name.auto_id }}-error" class="has-error">{{ form.name.errors }}</span>
+                    {% endif %}
+                </div>
+                {% block required_part %}{% endblock %}
+            </div>
+            <br><br>
+            <div> {# extra part #}
+                Показать дополнительные настройки
+                <div class="form-group label-floating clearfix {% if form.desc.errors %}has-error{% endif %}">
+                    <label class="control-label" for="{{form.desc.id_for_label}}">{% trans 'Description' %}</label>
+                    {{ form.desc }}
+                    {% if form.desc.errors %}
+                    <span id="{{ form.desc.auto_id }}-error" class="has-error">{{ form.desc.errors }}</span>
+                    {% endif %}
+                </div>
+                <div class="form-group label-floating clearfix {% if form.epsg.errors %}has-error{% endif %}">
+                    <label class="control-label" for="{{form.epsg.id_for_label}}">{% trans 'CRS' %}</label>
+                    {{ form.epsg }}
+                    {% if form.epsg.errors %}
+                    <span id="{{ form.epsg.auto_id }}-error" class="has-error">{{ form.epsg.errors }}</span>
+                    {% endif %}
+                </div>
+                {% block extra_part %}{% endblock %}
+            </div>
+            <br><br>
+            <div> {# license part #}
+                После добавления подложка становится общедоступной.
+                Желательно указать лицензионную информацию
+                <div class="form-group label-floating clearfix {% if form.license_name.errors %}has-error{% endif %}">
+                    <label class="control-label" for="{{form.license_name.id_for_label}}">{% trans 'License name' %}</label>
+                    {{ form.license_name }}
+                    {% if form.license_name.errors %}
+                    <span id="{{ form.license_name.auto_id }}-error" class="has-error">{{ form.license_name.errors }}</span>
+                    {% endif %}
+                </div>
+                <div class="form-group label-floating clearfix {% if form.license_url.errors %}has-error{% endif %}">
+                    <label class="control-label" for="{{form.license_url.id_for_label}}">{% trans 'License URL' %}</label>
+                   {{ form.license_url }}
+                    {% if form.license_url.errors %}
+                    <span id="{{ form.license_url.auto_id }}-error" class="has-error">{{ form.license_url.errors }}</span>
+                    {% endif %}
+                </div>
+                <div class="form-group label-floating clearfix {% if form.copyright_text.errors %}has-error{% endif %}">
+                    <label class="control-label" for="{{form.copyright_text.id_for_label}}">{% trans 'Copyright text' %}</label>
+                    {{ form.copyright_text }}
+                    {% if form.copyright_text.errors %}
+                    <span id="{{ form.copyright_text.auto_id }}-error" class="has-error">{{ form.copyright_text.errors }}</span>
+                    {% endif %}
+                </div>
+                <div class="form-group label-floating clearfix {% if form.copyright_url.errors %}has-error{% endif %}">
+                    <label class="control-label" for="{{form.copyright_url.id_for_label}}">{% trans 'Copyright URL' %}</label>
+                    {{ form.copyright_url }}
+                    {% if form.copyright_url.errors %}
+                    <span id="{{ form.copyright_url.auto_id }}-error" class="has-error">{{ form.copyright_url.errors }}</span>
+                    {% endif %}
+                </div>
+                <div class="form-group label-floating clearfix {% if form.terms_of_use_url.errors %}has-error{% endif %}">
+                    <label class="control-label" for="{{form.terms_of_use_url.id_for_label}}">{% trans 'Terms of use URL' %}</label>
+                    {{ form.terms_of_use_url }}
+                    {% if form.terms_of_use_url.errors %}
+                    <span id="{{ form.terms_of_use_url.auto_id }}-error" class="has-error">{{ form.terms_of_use_url.errors }}</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div> {# right(icon) part #}
+            {{ form.icon }}
+        </div>
+    </div>
+    <button>Create</button>
+</form>

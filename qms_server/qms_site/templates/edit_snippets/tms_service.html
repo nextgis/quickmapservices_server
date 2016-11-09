@@ -1,0 +1,38 @@
+{% extends 'edit_snippets/base_service.html' %}
+{% load i18n %}
+
+{% block form_header %}{% trans 'Append TMS service' %}{% endblock %}
+
+{% block required_part %}
+    <div class="form-group label-floating clearfix {% if form.url.errors %}has-error{% endif %}">
+        <label class="control-label" for="{{form.url.id_for_label}}">{% trans 'URL' %}</label>
+        {{ form.url }}
+        {% if form.url.errors %}
+        <span id="{{ form.url.auto_id }}-error" class="has-error">{{ form.url.errors }}</span>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block extra_part %}
+    <div class="form-group label-floating clearfix {% if form.z_min.errors %}has-error{% endif %}">
+        <label class="control-label" for="{{form.z_min.id_for_label}}">{% trans 'Z Min' %}</label>
+        {{ form.z_min }}
+        {% if form.z_min.errors %}
+        <span id="{{ form.z_min.auto_id }}-error" class="has-error">{{ form.z_min.errors }}</span>
+        {% endif %}
+    </div>
+    <div class="form-group label-floating clearfix {% if form.z_max.errors %}has-error{% endif %}">
+        <label class="control-label" for="{{form.z_max.id_for_label}}">{% trans 'Z max' %}</label>
+        {{ form.z_max }}
+        {% if form.z_max.errors %}
+        <span id="{{ form.z_max.auto_id }}-error" class="has-error">{{ form.z_max.errors }}</span>
+        {% endif %}
+    </div>
+    <div class="form-group label-floating clearfix {% if form.y_origin_top.errors %}has-error{% endif %}">
+        <label class="control-label" for="{{form.y_origin_top.id_for_label}}">{% trans 'Y Origin Top' %}</label>
+        {{ form.y_origin_top }}
+        {% if form.y_origin_top.errors %}
+        <span id="{{ form.y_origin_top.auto_id }}-error" class="has-error">{{ form.y_origin_top.errors }}</span>
+        {% endif %}
+    </div>
+{% endblock %}

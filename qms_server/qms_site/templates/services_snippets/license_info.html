@@ -6,10 +6,10 @@
   <div class="panel-body">
       <h4>{% trans 'License & Copyright info' %}</h4>
       {% trans 'None' as n %}
-      {% trans "License name:" %} {{ service.license_name|default_if_not:n }} <br>
-      {% trans "License URL:" %}  {{ service.license_url|link_or_val:n }} <br>
-      {% trans "Copyright text:" %} {{ service.copyright_text|default_if_not:n }} <br>
-      {% trans "Copyright URL:" %} {{ service.copyright_url|link_or_val:n }} <br>
-      {% trans "Terms of use URL:" %} {{ service.terms_of_use_url|link_or_val:n }} <br>
+      {% trans "License name" %}: {{ service.license_name|default_if_not:n }} <br>
+      {% trans "License URL" %}:  {{ service.license_url|link_or_val:n }} <br>
+      {% trans "Copyright text" %}: {{ service.copyright_text|default_if_not:n }} <br>
+      {% trans "Copyright URL" %}: {{ service.copyright_url|link_or_val:n }} <br>
+      {% trans "Terms of use URL" %}: {{ service.terms_of_use_url|link_or_val:n }} <br>
   </div>
 </div>
