@@ -1,8 +1,9 @@
 {% load i18n %}
 
 {% block form_header %}{% endblock %}
-<form id="{{ form_name }}">
+<form id="{{ form_name }}" method="POST">
     {% csrf_token %}
+    <input type="hidden" id="id_service_type" name="service_type" value="{{ form_name }}" >
     <div >  {#layout#}
         <div> {# left part #}
             <div> {# required part #}
@@ -79,5 +80,5 @@
             {{ form.icon }}
         </div>
     </div>
-    <button>Create</button>
+    <button type="submit">Create</button>
 </form>
