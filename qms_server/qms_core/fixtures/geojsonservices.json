@@ -1,0 +1,1 @@
+[{"model": "qms_core.geojsonservice", "pk": 731, "fields": {"url": "http://data.nextgis.com/resource/4/geojson/"}}, {"model": "qms_core.geojsonservice", "pk": 732, "fields": {"url": "http://api.data.mos.ru/v1/datasets/517/features"}}]
