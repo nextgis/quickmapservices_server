@@ -97,6 +97,7 @@ class NextgisUser(AbstractBaseUser, PermissionsMixin):
                               max_length=30, null=True, blank=False,
                               choices=SupportedLanguages.dict_text.items(),
                               default=SupportedLanguages.DEFAULT)
+    email_confirmed = models.BooleanField(_('mail confirmed'), default=False)
 
     @property
     def nextgis_id(self):
