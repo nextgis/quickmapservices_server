@@ -1,7 +1,9 @@
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.http import JsonResponse
 from django.views.defaults import bad_request
 from django.views.generic import TemplateView
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from qms_core.models import GeoService
 from qms_site.forms import TmsForm, WmsForm, WfsForm, GeoJsonForm
 from django.utils.translation import gettext_lazy as _
@@ -32,6 +34,7 @@ class GeoserviceDetailView(TemplateView):
 
 class CreateServiceView(TemplateView):
     template_name = 'create.html'
+    acceptable_forms = (TmsForm.__name__, WmsForm.__name__, WfsForm.__name__, GeoJsonForm.__name__)
 
     def get_context_data(self, **kwargs):
         context = super(CreateServiceView, self).get_context_data(**kwargs)
@@ -42,9 +45,12 @@ class CreateServiceView(TemplateView):
             GeoJsonForm.__name__: GeoJsonForm()
         }
 
-        context['forms'] = forms
+        if 'form' in kwargs and kwargs['form'].__class__.__name__ in self.acceptable_forms:
+            forms[kwargs['form'].__class__.__name__] = kwargs['form']
 
+        context['forms'] = forms
         return context
+
 
     def post(self, request, *args, **kwargs):
 
@@ -53,7 +59,7 @@ class CreateServiceView(TemplateView):
         if not form_class_name:
             return bad_request(request, _('Invalid form param: service_type'))
 
-        if form_class_name not in (TmsForm.__name__, WmsForm.__name__, WfsForm.__name__, GeoJsonForm.__name__):
+        if form_class_name not in self.acceptable_forms:
             return bad_request(request, _('Invalid form param: service_type'))
 
         form_class = globals()[form_class_name]
@@ -75,7 +81,11 @@ class CreateServiceView(TemplateView):
         return kwargs
 
     def form_valid(self, form):
-        return JsonResponse({'status': 'valid'})
+        self.object = form.save(commit=False)
+        self.object.submitter = self.request.user
+        self.object.save()
+        return HttpResponseRedirect(reverse('site_geoservice_list'))
 
     def form_invalid(self, form):
-        return JsonResponse({'status': 'invalid', 'errors': form.errors})
+        return self.render_to_response(self.get_context_data(form=form))
+

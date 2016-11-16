@@ -2,13 +2,14 @@ from django.forms import ModelForm
 
 from qms_core.models import TmsService, WmsService, WfsService, GeoJsonService
 
+EXCLUDE_FIELDS = ['guid', 'submitter', 'created_at', 'updated_at',]
 
 class TmsForm(ModelForm):
     associated_template = 'edit_snippets/tms_service.html'
 
     class Meta:
         model = TmsService
-        fields = '__all__'
+        exclude = EXCLUDE_FIELDS
 
 
 class WmsForm(ModelForm):
@@ -16,7 +17,7 @@ class WmsForm(ModelForm):
 
     class Meta:
         model = WmsService
-        fields = '__all__'
+        exclude = EXCLUDE_FIELDS
 
 
 class WfsForm(ModelForm):
@@ -24,7 +25,7 @@ class WfsForm(ModelForm):
 
     class Meta:
         model = WfsService
-        fields = '__all__'
+        exclude = EXCLUDE_FIELDS
 
 
 class GeoJsonForm(ModelForm):
@@ -32,4 +33,4 @@ class GeoJsonForm(ModelForm):
 
     class Meta:
         model = GeoJsonService
-        fields = '__all__'
+        exclude = EXCLUDE_FIELDS
