@@ -97,6 +97,7 @@ class NextgisUser(AbstractBaseUser, PermissionsMixin):
                               max_length=30, null=True, blank=False,
                               choices=SupportedLanguages.dict_text.items(),
                               default=SupportedLanguages.DEFAULT)
+    email_confirmed = models.BooleanField(_('mail confirmed'), default=False)
 
     @property
     def nextgis_id(self):
@@ -156,14 +157,22 @@ class GeoService(models.Model):
     type = models.CharField(_('service type'), max_length=20, editable=False, null=False)
     epsg = models.IntegerField(_('EPSG Code'), null=True, blank=True)
     icon = models.ForeignKey(ServiceIcon, models.SET_NULL, blank=True, null=True)
-    #license
+    # license
     license_name = models.CharField(_('license name'), max_length=256, blank=True, null=True)
     license_url = models.URLField(_('license url'), blank=True, null=True)
     copyright_text = models.CharField(_('copyright text'), max_length=2048, blank=True, null=True)
     copyright_url = models.URLField(_('copyright url'), blank=True, null=True)
     terms_of_use_url = models.URLField(_('terms of use url'), blank=True, null=True)
+    # creation & update info
+    submitter = models.ForeignKey(NextgisUser, on_delete=models.SET_NULL, to_field='nextgis_guid', null=True)
+    created_at = models.DateTimeField(_('created at'), auto_now_add=True)
+    updated_at = models.DateTimeField(_('updated at'), auto_now=True)
+    # source info
+    source = models.CharField(_('source'), max_length=2048, blank=True, null=True)
+    source_url = models.URLField(_('source url'), blank=True, null=True)
 
-    #tags
+    # tags
+
 
     def __str__(self):
         return self.name
