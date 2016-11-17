@@ -11,8 +11,7 @@ class GeoserviceListView(TemplateView):
 
     def get_context_data(self, **kwargs):
         return {
-            'services': GeoService.objects.all().order_by('name'),
-            'body_class': 'admin'
+            'services': GeoService.objects.all().order_by('name')
         }
 
 

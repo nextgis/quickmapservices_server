@@ -17,3 +17,8 @@
 {% block logo_link %}{% url 'site_geoservice_list' %}{% endblock %}
 {% block login_link %}{% url 'ngid_login' %}{% endblock %}
 {% block logout_link %}{% url 'ngid_logout' %}{% endblock %}
+
+
+{% block header_action %}    
+    <a class="btn btn-action btn-success hide-on-sm" href="{% url 'create_service_view' %}">{% trans 'Добавить подложку' %}</a>
+{% endblock %}

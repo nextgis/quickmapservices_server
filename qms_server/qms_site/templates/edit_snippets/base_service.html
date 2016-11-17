@@ -1,84 +1,93 @@
 {% load i18n %}
+{% load widget_tweaks %}
+{% load attr_with_id %}
 
-{% block form_header %}{% endblock %}
-<form id="{{ form_name }}" method="POST">
+<form id="{{ form_name }}" class="form-validate qms-add-service" method="POST">
+    <h1>{% block form_header %}{% endblock %}</h1>
     {% csrf_token %}
-    <input type="hidden" id="id_service_type" name="service_type" value="{{ form_name }}" >
-    <div >  {#layout#}
-        <div> {# left part #}
-            <div> {# required part #}
-                <div class="form-group label-floating clearfix {% if form.name.errors %}has-error{% endif %}">
-                    <label class="control-label" for="{{form.name.id_for_label}}">{% trans 'Service name' %}</label>
-                    {{ form.name }}
-                    {% if form.name.errors %}
-                    <span id="{{ form.name.auto_id }}-error" class="has-error">{{ form.name.errors }}</span>
-                    {% endif %}
+        <section class="qms-add-service__required"> {# required part #}
+            <div class="row">
+                <div class="col-xs-12 col-sm-10">
+                    <div class="form-group label-floating clearfix {% if form.name.errors %}has-error{% endif %}">
+                        <label class="control-label" for="{{form.name.id_for_label}}">{% trans 'Service name' %}</label>
+                        {{ form.name | add_class:'form-control required'|attr_with_id:'aria-describedby:$id-error' }}
+                        {% if form.name.errors %}
+                        <span id="{{ form.name.auto_id }}-error" class="has-error">{{ form.name.errors }}</span>
+                        {% endif %}
+                    </div>
+                    {% block required_part %}{% endblock %}
                 </div>
-                {% block required_part %}{% endblock %}
+                <div class="col-xs-12 col-sm-2"> {# right(icon) part #}
+                    {{ form.icon | add_class:'select form-control required'|attr_with_id:'aria-describedby:$id-error'  }}
+                </div>
             </div>
-            <br><br>
-            <div> {# extra part #}
-                Показать дополнительные настройки
+        </section><!--/.qms-add-service__required-->
+        <section class="qms-add-service__extra"> {# extra part #}
+            <a href="#{{ form_name }}-extra" class="fake-link fake-link--icon collapsed" data-toggle="collapse">Дополнительные настройки</a>
+            <div id="{{ form_name }}-extra" class="qms-add-service__extra-form collapse">
                 <div class="form-group label-floating clearfix {% if form.desc.errors %}has-error{% endif %}">
                     <label class="control-label" for="{{form.desc.id_for_label}}">{% trans 'Description' %}</label>
-                    {{ form.desc }}
+                    {{ form.desc | add_class:'form-control'| attr:"rows:2" | attr_with_id:'aria-describedby:$id-error' }}
                     {% if form.desc.errors %}
                     <span id="{{ form.desc.auto_id }}-error" class="has-error">{{ form.desc.errors }}</span>
                     {% endif %}
                 </div>
                 <div class="form-group label-floating clearfix {% if form.epsg.errors %}has-error{% endif %}">
                     <label class="control-label" for="{{form.epsg.id_for_label}}">{% trans 'CRS' %}</label>
-                    {{ form.epsg }}
+                    {{ form.epsg | add_class:'form-control' | attr_with_id:'aria-describedby:$id-error' }}
                     {% if form.epsg.errors %}
                     <span id="{{ form.epsg.auto_id }}-error" class="has-error">{{ form.epsg.errors }}</span>
                     {% endif %}
                 </div>
                 {% block extra_part %}{% endblock %}
             </div>
-            <br><br>
-            <div> {# license part #}
-                После добавления подложка становится общедоступной.
-                Желательно указать лицензионную информацию
-                <div class="form-group label-floating clearfix {% if form.license_name.errors %}has-error{% endif %}">
-                    <label class="control-label" for="{{form.license_name.id_for_label}}">{% trans 'License name' %}</label>
-                    {{ form.license_name }}
-                    {% if form.license_name.errors %}
-                    <span id="{{ form.license_name.auto_id }}-error" class="has-error">{{ form.license_name.errors }}</span>
-                    {% endif %}
-                </div>
-                <div class="form-group label-floating clearfix {% if form.license_url.errors %}has-error{% endif %}">
-                    <label class="control-label" for="{{form.license_url.id_for_label}}">{% trans 'License URL' %}</label>
-                   {{ form.license_url }}
-                    {% if form.license_url.errors %}
-                    <span id="{{ form.license_url.auto_id }}-error" class="has-error">{{ form.license_url.errors }}</span>
-                    {% endif %}
-                </div>
-                <div class="form-group label-floating clearfix {% if form.copyright_text.errors %}has-error{% endif %}">
-                    <label class="control-label" for="{{form.copyright_text.id_for_label}}">{% trans 'Copyright text' %}</label>
-                    {{ form.copyright_text }}
-                    {% if form.copyright_text.errors %}
-                    <span id="{{ form.copyright_text.auto_id }}-error" class="has-error">{{ form.copyright_text.errors }}</span>
-                    {% endif %}
-                </div>
-                <div class="form-group label-floating clearfix {% if form.copyright_url.errors %}has-error{% endif %}">
-                    <label class="control-label" for="{{form.copyright_url.id_for_label}}">{% trans 'Copyright URL' %}</label>
-                    {{ form.copyright_url }}
-                    {% if form.copyright_url.errors %}
-                    <span id="{{ form.copyright_url.auto_id }}-error" class="has-error">{{ form.copyright_url.errors }}</span>
-                    {% endif %}
-                </div>
-                <div class="form-group label-floating clearfix {% if form.terms_of_use_url.errors %}has-error{% endif %}">
-                    <label class="control-label" for="{{form.terms_of_use_url.id_for_label}}">{% trans 'Terms of use URL' %}</label>
-                    {{ form.terms_of_use_url }}
-                    {% if form.terms_of_use_url.errors %}
-                    <span id="{{ form.terms_of_use_url.auto_id }}-error" class="has-error">{{ form.terms_of_use_url.errors }}</span>
-                    {% endif %}
+        </section><!--/.qms-add-service__extra-->
+        <section class="qms-add-service__license"> {# license part #}
+            <div class="panel panel--warm panel--bordered">
+                <div class="panel-body">
+                    <div class="small">
+                        После добавления подложка становится общедоступной.<br>
+                        Желательно <a href="#{{ form_name }}-license" class="fake-link fake-link--icon collapsed" data-toggle="collapse">указать лицензионную информацию</a>.
+                    </div>
+                    <div id="{{ form_name }}-license" class="qms-add-service__license-form collapse">
+                        <div class="form-group label-floating clearfix {% if form.license_name.errors %}has-error{% endif %}">
+                            <label class="control-label" for="{{form.license_name.id_for_label}}">{% trans 'License name' %}</label>
+                            {{ form.license_name | add_class:'form-control'|attr_with_id:'aria-describedby:$id-error'}}
+                            {% if form.license_name.errors %}
+                            <span id="{{ form.license_name.auto_id }}-error" class="has-error">{{ form.license_name.errors }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group label-floating clearfix {% if form.license_url.errors %}has-error{% endif %}">
+                            <label class="control-label" for="{{form.license_url.id_for_label}}">{% trans 'License URL' %}</label>
+                           {{ form.license_url | add_class:'form-control'|attr_with_id:'aria-describedby:$id-error'}}
+                            {% if form.license_url.errors %}
+                            <span id="{{ form.license_url.auto_id }}-error" class="has-error">{{ form.license_url.errors }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group label-floating clearfix {% if form.copyright_text.errors %}has-error{% endif %}">
+                            <label class="control-label" for="{{form.copyright_text.id_for_label}}">{% trans 'Copyright text' %}</label>
+                            {{ form.copyright_text | add_class:'form-control'|attr_with_id:'aria-describedby:$id-error'}}
+                            {% if form.copyright_text.errors %}
+                            <span id="{{ form.copyright_text.auto_id }}-error" class="has-error">{{ form.copyright_text.errors }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group label-floating clearfix {% if form.copyright_url.errors %}has-error{% endif %}">
+                            <label class="control-label" for="{{form.copyright_url.id_for_label}}">{% trans 'Copyright URL' %}</label>
+                            {{ form.copyright_url | add_class:'form-control'|attr_with_id:'aria-describedby:$id-error'}}
+                            {% if form.copyright_url.errors %}
+                            <span id="{{ form.copyright_url.auto_id }}-error" class="has-error">{{ form.copyright_url.errors }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="form-group label-floating clearfix {% if form.terms_of_use_url.errors %}has-error{% endif %}">
+                            <label class="control-label" for="{{form.terms_of_use_url.id_for_label}}">{% trans 'Terms of use URL' %}</label>
+                            {{ form.terms_of_use_url | add_class:'form-control'|attr_with_id:'aria-describedby:$id-error'}}
+                            {% if form.terms_of_use_url.errors %}
+                            <span id="{{ form.terms_of_use_url.auto_id }}-error" class="has-error">{{ form.terms_of_use_url.errors }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div> {# right(icon) part #}
-            {{ form.icon }}
-        </div>
-    </div>
-    <button type="submit">Create</button>
+        </section><!--/.qms-add-service__license-->
+    <button class="btn btn-raised btn-primary" type="Submit">Добавить</button>
 </form>

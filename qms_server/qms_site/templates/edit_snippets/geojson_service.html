@@ -1,12 +1,14 @@
 {% extends 'edit_snippets/base_service.html' %}
 {% load i18n %}
+{% load widget_tweaks %}
+{% load attr_with_id %}
 
 {% block form_header %}{% trans 'Append GeoJSON service' %}{% endblock %}
 
 {% block required_part %}
     <div class="form-group label-floating clearfix {% if form.url.errors %}has-error{% endif %}">
         <label class="control-label" for="{{form.url.id_for_label}}">{% trans 'URL' %}</label>
-        {{ form.url }}
+        {{ form.url | add_class:'form-control required'|attr_with_id:'aria-describedby:$id-error' }}
         {% if form.url.errors %}
         <span id="{{ form.url.auto_id }}-error" class="has-error">{{ form.url.errors }}</span>
         {% endif %}

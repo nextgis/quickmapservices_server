@@ -1,3 +1,58 @@
+/* Square list */
+.square-list {
+  position: relative;
+  left: 4px;
+  margin-left: -15px;
+  margin-right: -15px; }
+
+.square-list__panel {
+  width: 150px;
+  height: 150px;
+  line-height: 150px;
+  white-space: nowrap;
+  font-size: 18px;
+  font-family: "Lato";
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  text-align: center; }
+
+.square-list__item {
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: -4px;
+  text-align: center;
+  margin-bottom: 30px; }
+  .square-list__item:nth-child(1) .square-list__panel {
+    color: #00b77e; }
+  .square-list__item:nth-child(2) .square-list__panel {
+    color: #0070c5; }
+  .square-list__item:nth-child(3) .square-list__panel {
+    color: #f0ad4e; }
+  .square-list__item:nth-child(4) .square-list__panel {
+    color: #000; }
+
+/* QMS Type */
+.qms-type {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center; }
+
+.qms-type__title {
+  margin-bottom: 36px; }
+
+/* qms add service */
+.qms-add-service__license {
+  margin-top: 24px; }
+
+.qms-add-service__extra-form,
+.qms-add-service__license-form {
+  margin-top: 10px; }
+
 /* Input group */
 .input-group .form-group {
   margin: 0;
@@ -20,18 +75,17 @@
     padding-left: 3px;
     padding-right: 3px; }
 
-.filter-link, .admin__panel__content .filter-link {
-  border-bottom: 0;
+.filter-link {
   text-decoration: none;
   padding: 3px 8px 4px;
-  border-radius: 2px; }
+  border-radius: 2px;
+  border-bottom: 0; }
   .filter-link:hover, .filter-link:focus, .filter-link:active {
     text-decoration: none; }
     .filter-link:hover .filter-link__inner, .filter-link:focus .filter-link__inner, .filter-link:active .filter-link__inner {
-      color: #212121;
       border-bottom-color: inherit; }
   .filter-link.active {
-    background-color: #2880ac;
+    background-color: #00b77e;
     color: #fff; }
     .filter-link.active .filter-link__inner {
       color: #fff;

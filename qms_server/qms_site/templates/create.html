@@ -1,12 +1,39 @@
-{% extends "base_qms.html" %}
+{% extends "overlay_base.html" %}
 {% load staticfiles %}
 {% load i18n %}
 
-{% block body_content %}
-
-    {% for form_obj_name, form_obj in forms.iteritems %}
-        {% include form_obj.associated_template with form=form_obj form_name=form_obj_name %}
-        <hr>
-    {% endfor %}
-
+{% block extra_head %}
+    <link href="{% static 'qms_site/css/qms.css' %}" type="text/css" rel="stylesheet"/>
 {% endblock %}
+
+{% block overlay_content %}
+    <div class="modal--stretch__inner">
+        <!-- Nav tabs -->
+        <nav class="qms-type" data-nav-active="hidden" role="tablist">
+            <h1 class="qms-type__title">Выберите тип подложки</h1>
+            <div class="square-list">
+                {% for form_obj_name, form_obj in forms.iteritems %}
+                    <div class="square-list__item">
+                        <a href="#{{form_obj_name}}" aria-controls="{{form_obj_name}}" role="tab" data-toggle="tab">
+                            <div class="square-list__panel panel">
+                                {{form_obj.obj_type}}
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </nav>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            {% for form_obj_name, form_obj in forms.iteritems %}
+                <div role="tabpanel" class="panel panel--big tab-pane" id="{{form_obj_name}}">
+                    <div class="panel-body">
+                        {% include form_obj.associated_template with form=form_obj form_name=form_obj_name %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div><!--/.modal--stretch__inner-->
+{% endblock %}
+
+{% block close_link %}{% url 'site_geoservice_list' %}{% endblock %}
