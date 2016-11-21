@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^icons/(?P<pk>[0-9]+)/$', ServiceIconDetailedView.as_view(), name='service_icon_detail'),
     url(r'^icons/(?P<pk>[0-9]+)/content$', IconRetrieveView.as_view(), name='service_icon_retrieve'),
     url(r'^icons/default$', DefaultIconRetrieveView.as_view(), name='service_icon_default'),
+    url(r'^icons/default/content$', DefaultIconRetrieveView.as_view(), name='service_icon_default_alias'),
 
     # popular
 ]
