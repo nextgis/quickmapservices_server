@@ -4,17 +4,23 @@ from qms_core.models import TmsService, WmsService, WfsService, GeoJsonService
 
 EXCLUDE_FIELDS = ['guid', 'submitter', 'created_at', 'updated_at',]
 
-class TmsForm(ModelForm):
+
+class BaseServiceForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(BaseServiceForm, self).__init__(auto_id=self.obj_type + '_id_%s', *args, **kwargs)
+
+
+class TmsForm(BaseServiceForm):
     associated_template = 'edit_snippets/tms_service.html'
     obj_type = "TMS"
-
 
     class Meta:
         model = TmsService
         exclude = EXCLUDE_FIELDS
 
 
-class WmsForm(ModelForm):
+class WmsForm(BaseServiceForm):
     associated_template = 'edit_snippets/wms_service.html'
     obj_type = "WMS"
 
@@ -23,7 +29,7 @@ class WmsForm(ModelForm):
         exclude = EXCLUDE_FIELDS
 
 
-class WfsForm(ModelForm):
+class WfsForm(BaseServiceForm):
     associated_template = 'edit_snippets/wfs_service.html'
     obj_type = "WFS"
 
@@ -32,7 +38,7 @@ class WfsForm(ModelForm):
         exclude = EXCLUDE_FIELDS
 
 
-class GeoJsonForm(ModelForm):
+class GeoJsonForm(BaseServiceForm):
     associated_template = 'edit_snippets/geojson_service.html'
     obj_type = "GeoJSON"
 
