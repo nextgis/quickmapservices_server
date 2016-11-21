@@ -46,6 +46,8 @@ class CreateServiceView(TemplateView):
 
         if 'form' in kwargs and kwargs['form'].__class__.__name__ in self.acceptable_forms:
             forms[kwargs['form'].__class__.__name__] = kwargs['form']
+            if 'error_form_type' in  kwargs and kwargs['error_form_type'] in self.acceptable_forms:
+                context['error_form_type'] = kwargs['error_form_type']
 
         context['forms'] = forms
         return context
@@ -86,5 +88,5 @@ class CreateServiceView(TemplateView):
         return HttpResponseRedirect(reverse('site_geoservice_list'))
 
     def form_invalid(self, form):
-        return self.render_to_response(self.get_context_data(form=form))
+        return self.render_to_response(self.get_context_data(form=form, error_form_type=form.__class__.__name__))
 

@@ -17,6 +17,7 @@
             <div class="square-list">
                 {% for form_obj_name, form_obj in forms.iteritems %}
                     <div class="square-list__item">
+                        {% if error_form_type %} Oops... {{ error_form_type }} {% endif %}
                         <a href="#{{form_obj_name}}" aria-controls="{{form_obj_name}}" role="tab" data-toggle="tab">
                             <div class="square-list__panel panel">
                                 {{form_obj.obj_type}}
