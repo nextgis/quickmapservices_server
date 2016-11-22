@@ -1,0 +1,22 @@
+{% extends "overlay_base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block extra_head %}
+    <link href="{% static 'qms_site/css/qms.css' %}" type="text/css" rel="stylesheet"/>
+{% endblock %}
+{% block extra_body %}
+    <script src="{% static 'qms_site/js/qms.js' %}"></script>
+{% endblock %}
+
+{% block overlay_content %}
+    <div class="modal--stretch__inner">
+        <div class="tab-content">
+            <div class="panel-body">
+                {% include form.associated_template with form=form form_name=form_obj_name %}
+            </div>
+        </div>
+    </div><!--/.modal--stretch__inner-->
+{% endblock %}
+
+{% block close_link %}{% url 'site_geoservice_list' %}{% endblock %}
