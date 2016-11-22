@@ -40,8 +40,8 @@ SESSION_COOKIE_NAME = 'qms_sessionid'
 SESSION_COOKIE_AGE = 60 * 10
 CSRF_COOKIE_NAME = 'qms_csrftoken'
 
-LOGOUT_URL = '/logout_url'
-LOGIN_URL = '/login'
+LOGOUT_URL = '/logout/'
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 
 # Application definition
