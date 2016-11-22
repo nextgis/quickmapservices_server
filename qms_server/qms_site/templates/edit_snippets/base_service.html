@@ -19,7 +19,7 @@
                     {% block required_part %}{% endblock %}
                 </div>
                 <div class="col-xs-12 col-sm-2"> {# right(icon) part #}
-                    {{ form.icon | add_class:'select form-control required'|attr_with_id:'aria-describedby:$id-error'  }}
+                    {{ form.icon | add_class:'image-select image-select--warm form-control'|attr_with_id:'aria-describedby:$id-error'|set_data:"image-select-src:/api/v1/icons/$val/content" }}
                 </div>
             </div>
         </section><!--/.qms-add-service__required-->
