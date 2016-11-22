@@ -89,7 +89,7 @@ class CreateServiceView(LoginRequiredMixin, TemplateView):
         self.object = form.save(commit=False)
         self.object.submitter = self.request.user
         self.object.save()
-        return HttpResponseRedirect(reverse('site_geoservice_list'))
+        return HttpResponseRedirect(reverse('site_geoservice_detail', kwargs={'pk': self.object.id},))
 
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data(form=form, error_form_type=form.__class__.__name__))
@@ -99,13 +99,30 @@ class CreateServiceView(LoginRequiredMixin, TemplateView):
 class EditServiceView(LoginRequiredMixin, UpdateView):
     template_name = 'edit.html'
 
-    success_url = reverse_lazy('site_geoservice_list')
-    pk_url_kwarg = 'pk'
+    queryset = GeoService.objects\
+        .select_related('tmsservice')\
+        .select_related('wmsservice')\
+        .select_related('wfsservice')\
+        .select_related('geojsonservice')
 
-    acceptable_forms = (TmsForm.__name__, WmsForm.__name__, WfsForm.__name__, GeoJsonForm.__name__)
+
+    def get_object(self, queryset=None):
+        model_map = {
+            TmsService.service_type: lambda x: x.tmsservice,
+            WmsService.service_type: lambda x: x.wmsservice,
+            WfsService.service_type: lambda x: x.wfsservice,
+            GeoJsonService.service_type: lambda x: x.geojsonservice
+        }
+        obj = super(EditServiceView, self).get_object(queryset=queryset)
+
+        if obj:
+            return model_map[obj.type](obj)
+        return obj
+
 
     def get_context_data(self, **kwargs):
         context = super(EditServiceView, self).get_context_data(**kwargs)
+        context['form_name'] = context['form'].__class__.__name__
         return context
 
 
@@ -119,26 +136,8 @@ class EditServiceView(LoginRequiredMixin, UpdateView):
         obj = self.get_object()
         return form_map[obj.type]
 
-
-    queryset = GeoService.objects\
-        .select_related('tmsservice')\
-        .select_related('wmsservice')\
-        .select_related('wfsservice')\
-        .select_related('geojsonservice')
-
-
-    def get_object(self):
-        model_map = {
-            TmsService.service_type: lambda x: x.tmsservice,
-            WmsService.service_type: lambda x: x.wmsservice,
-            WfsService.service_type: lambda x: x.wfsservice,
-            GeoJsonService.service_type: lambda x: x.geojsonservice
-        }
-        obj = super(EditServiceView, self).get_object()
-
-        if obj:
-            return model_map[obj.type](obj)
-        return obj
+    def get_success_url(self):
+        return reverse('site_geoservice_detail', kwargs={'pk': self.object.id},)
 
 
     def get(self, request, *args, **kwargs):
@@ -147,11 +146,11 @@ class EditServiceView(LoginRequiredMixin, UpdateView):
         return super(EditServiceView, self).get(self, request, *args, **kwargs)
 
 
-    def check_submitter(self, request):
-        try:
-            pk = int(self.kwargs.get(self.pk_url_kwarg))
-            obj = GeoService.objects.get(pk=pk)
-        except GeoService.DoesNotExist:
-            raise Http404(_("Object not found"))
+    def post(self, request, *args, **kwargs):
+        if not self.check_submitter(request):
+            return HttpResponseForbidden()
+        return super(EditServiceView, self).post(self, request, *args, **kwargs)
 
+    def check_submitter(self, request):
+        obj = self.get_object()
         return obj.submitter == request.user
