@@ -11,9 +11,9 @@
 
 {% block overlay_content %}
     <div class="modal--stretch__inner">
-        <div class="tab-content">
+        <div class="panel panel--big" id="{{form_obj_name}}">
             <div class="panel-body">
-                {% include form.associated_template with form=form form_name=form_name %}
+                {% include form.associated_template with form=form form_name=form_name mode="edit" %}
             </div>
         </div>
     </div><!--/.modal--stretch__inner-->
