@@ -89,7 +89,7 @@ class CreateServiceView(LoginRequiredMixin, TemplateView):
         self.object = form.save(commit=False)
         self.object.submitter = self.request.user
         self.object.save()
-        return HttpResponseRedirect(reverse('site_geoservice_list'))
+        return HttpResponseRedirect(reverse('site_geoservice_detail', kwargs={'pk': self.object.id},))
 
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data(form=form, error_form_type=form.__class__.__name__))
@@ -98,7 +98,6 @@ class CreateServiceView(LoginRequiredMixin, TemplateView):
 
 class EditServiceView(LoginRequiredMixin, UpdateView):
     template_name = 'edit.html'
-    success_url = reverse_lazy('site_geoservice_list')
 
     queryset = GeoService.objects\
         .select_related('tmsservice')\
@@ -136,6 +135,9 @@ class EditServiceView(LoginRequiredMixin, UpdateView):
         }
         obj = self.get_object()
         return form_map[obj.type]
+
+    def get_success_url(self):
+        return reverse('site_geoservice_detail', kwargs={'pk': self.object.id},)
 
 
     def get(self, request, *args, **kwargs):
