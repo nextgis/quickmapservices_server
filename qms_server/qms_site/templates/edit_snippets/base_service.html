@@ -3,7 +3,14 @@
 {% load attr_with_id %}
 
 <form id="{{ form_name }}" class="form-validate qms-add-service" method="POST">
-    <h1>{% block form_header %}{% endblock %}</h1>
+    <h1>
+        {% if mode = "create" %}
+            {% trans "Add " %}
+        {% else %}
+            {% trans "Edit " %}
+        {% endif %}
+        {% block form_header %}{% endblock %}
+    </h1>
     {% csrf_token %}
     <input type="hidden" id="id_service_type" name="service_type" value="{{ form_name }}" >
         <section class="qms-add-service__required"> {# required part #}
@@ -104,5 +111,11 @@
                 </div>
             </div>
         </section><!--/.qms-add-service__license-->
-    <button class="btn btn-raised btn-primary" type="Submit">Добавить</button>
+    <button class="btn btn-raised btn-primary" type="Submit">
+        {% if mode = "create" %}
+            {% trans "Add basemap" %}
+        {% else %}
+            {% trans "Save changes" %}
+        {% endif %}
+    </button>
 </form>
