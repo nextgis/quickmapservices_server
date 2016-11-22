@@ -20,5 +20,5 @@
 
 
 {% block header_action %}    
-    <a class="btn btn-action btn-success hide-on-sm" href="{% if request.user.is_authenticated %} {% url 'create_service_view' %} {% else %} {% url 'ngid_login' %}?next=/create/ {% endif %}">{% trans 'Добавить подложку' %}</a>
+    <a class="btn btn-action btn-success hide-on-sm" href="{% url 'create_service_view' %}">{% trans 'Добавить подложку' %}</a>
 {% endblock %}
