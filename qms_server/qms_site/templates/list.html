@@ -43,6 +43,9 @@
         default_icon_url = "{% url 'service_icon_default' %}";
         icon_url = "/api/v1/icons/%id/content";  //REPLACE IT!
         service_url = "/geoservices/%id"; //REPLACE IT!
+        edit_url = "/edit/%id"; //REPLACE IT!
+
+        user_guid = "{{ request.user.nextgis_guid}}";
     </script>
 
     <script src="{% static 'qms_site/js/vendor/handlebars.min.js' %}"></script>

@@ -7,5 +7,8 @@
         Description: {{ service_desc }} <br>
         Type: {{ service.type }} <br>
         CRS: {{ service_epsg }} <br>
+        {{#if my_service}}
+        <a href="{{ edit_url }}">Edit</a>
+        {{/if}}
     </div>
 </div>
