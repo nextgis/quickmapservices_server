@@ -13,7 +13,7 @@
     <div class="modal--stretch__inner">
         <!-- Nav tabs -->
         <nav class="qms-type {% if error_form_type %} hidden {% endif %}" data-nav-active="hidden" role="tablist">
-            <h1 class="qms-type__title">Выберите тип подложки</h1>
+            <h1 class="qms-type__title">{% trans 'Select service type' %}</h1>
             <div class="square-list">
                 {% for form_obj_name, form_obj in forms.iteritems %}
                     <div class="square-list__item">

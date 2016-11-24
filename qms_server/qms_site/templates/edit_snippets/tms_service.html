@@ -7,7 +7,7 @@
 
 {% block required_part %}
     <div class="form-group label-floating clearfix {% if form.url.errors %}has-error{% endif %}">
-        <label class="control-label" for="{{form.url.id_for_label}}">{% trans 'URL' %}</label>
+        <label class="control-label" for="{{form.url.id_for_label}}">{% trans 'Service URL' %}</label>
         {{ form.url | add_class:'form-control required'|attr_with_id:'aria-describedby:$id-error' }}
         {% if form.url.errors %}
         <span id="{{ form.url.auto_id }}-error" class="has-error">{{ form.url.errors }}</span>
@@ -17,7 +17,7 @@
 
 {% block extra_part %}
     <div class="form-group label-floating clearfix {% if form.z_min.errors %}has-error{% endif %}">
-        <label class="control-label" for="{{form.z_min.id_for_label}}">{% trans 'Z Min' %}</label>
+        <label class="control-label" for="{{form.z_min.id_for_label}}">{% trans 'Z min' %}</label>
         {{ form.z_min | add_class:'form-control'|attr_with_id:'aria-describedby:$id-error' }}
         {% if form.z_min.errors %}
         <span id="{{ form.z_min.auto_id }}-error" class="has-error">{{ form.z_min.errors }}</span>
@@ -34,7 +34,7 @@
         <div class="checkbox">
             <label for="{{form.y_origin_top.id_for_label}}">
                 {{ form.y_origin_top | attr_with_id:'aria-describedby:$id-error' }}
-                {% trans 'Y Origin Top' %}
+                {% trans 'Y origin Top' %}
             </label>
         </div>
         {% if form.y_origin_top.errors %}

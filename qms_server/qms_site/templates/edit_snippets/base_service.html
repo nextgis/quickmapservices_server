@@ -31,7 +31,7 @@
             </div>
         </section><!--/.qms-add-service__required-->
         <section class="qms-add-service__extra"> {# extra part #}
-            <a href="#{{ form_name }}-extra" class="fake-link fake-link--icon collapsed" data-toggle="collapse">Дополнительные настройки</a>
+            <a href="#{{ form_name }}-extra" class="fake-link fake-link--icon collapsed" data-toggle="collapse">{% trans 'Additional settings' %}</a>
             <div id="{{ form_name }}-extra" class="qms-add-service__extra-form collapse">
                 <div class="form-group label-floating clearfix {% if form.desc.errors %}has-error{% endif %}">
                     <label class="control-label" for="{{form.desc.id_for_label}}">{% trans 'Description' %}</label>
@@ -41,7 +41,7 @@
                     {% endif %}
                 </div>
                 <div class="form-group label-floating clearfix {% if form.epsg.errors %}has-error{% endif %}">
-                    <label class="control-label" for="{{form.epsg.id_for_label}}">{% trans 'CRS' %}</label>
+                    <label class="control-label" for="{{form.epsg.id_for_label}}">{% trans 'CRS ID' %}</label>
                     {{ form.epsg | add_class:'form-control' | attr_with_id:'aria-describedby:$id-error' }}
                     {% if form.epsg.errors %}
                     <span id="{{ form.epsg.auto_id }}-error" class="has-error">{{ form.epsg.errors }}</span>
@@ -58,16 +58,16 @@
                         filled
                     {% endif %}">
                         <div class="qms-add-service__license-empty">
-                            После добавления подложка становится общедоступной.<br>
-                            Желательно <a href="#" class="fake-link" data-show="#{{ form_name }}-license">указать лицензионную информацию</a>.
+                            {% blocktrans %}After adding the service becomes public.<br>
+                            It is desirable <a href="#" class="fake-link" data-show="#{{ form_name }}-license">to specify the licensing information</a>.{% endblocktrans %}
                         </div>
                         <div class="qms-add-service__license-filled">
-                            Лицензия:
+                            {% trans 'License' %}:
                             <a id="{{ form_name }}-related" href="#" class="fake-link" data-show="#{{ form_name }}-license"></a>
                         </div>
                     </div>
                     <div id="{{ form_name }}-license" class="qms-add-service__license-form inner-form success-block {% if lic_error %}show{% endif %}" data-inner-form-related ="#{{ form_name }}-related">
-                        <div class="h2">Лицензия</div>
+                        <div class="h2">{% trans 'License' %}</div>
                         <div class="row">
                             <div class="col-xs-12 col-sm-6">
                                 <div class="form-group form-group--light label-floating clearfix {% if form.license_name.errors %}has-error{% endif %}">
@@ -110,14 +110,14 @@
                                 {% endif %}
                             </div>
                         <a href="#" class="inner-form__save-btn btn btn-raised btn-primary">OK</a>
-                        <a href="#" class="inner-form__cancel-btn btn btn-raised btn-default">Отмена</a>
+                        <a href="#" class="inner-form__cancel-btn btn btn-raised btn-default">{% trans 'Cancel' %}</a>
                     </div>
                 </div>
             </div>
         </section><!--/.qms-add-service__license-->
     <button class="btn btn-raised btn-primary" type="Submit">
         {% if mode = "create" %}
-            {% trans "Add basemap" %}
+            {% trans "Add service" %}
         {% else %}
             {% trans "Save changes" %}
         {% endif %}

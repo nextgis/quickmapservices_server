@@ -7,14 +7,14 @@
 
 {% block required_part %}
     <div class="form-group label-floating clearfix {% if form.url.errors %}has-error{% endif %}">
-        <label class="control-label" for="{{form.url.id_for_label}}">{% trans 'URL' %}</label>
+        <label class="control-label" for="{{form.url.id_for_label}}">{% trans 'Service URL' %}</label>
         {{ form.url | add_class:'form-control required'|attr_with_id:'aria-describedby:$id-error' }}
         {% if form.url.errors %}
         <span id="{{ form.url.auto_id }}-error" class="has-error">{{ form.url.errors }}</span>
         {% endif %}
     </div>
     <div class="form-group label-floating clearfix {% if form.layers.errors %}has-error{% endif %}">
-        <label class="control-label" for="{{form.layers.id_for_label}}">{% trans 'Layers' %}</label>
+        <label class="control-label" for="{{form.layers.id_for_label}}">{% trans 'Layers (separate by comma)' %}</label>
         {{ form.layers | add_class:'form-control required'|attr_with_id:'aria-describedby:$id-error' }}
         {% if form.layers.errors %}
         <span id="{{ form.layers.auto_id }}-error" class="has-error">{{ form.layers.errors }}</span>
@@ -24,7 +24,7 @@
 
 {% block extra_part %}
     <div class="form-group label-floating clearfix {% if form.params.errors %}has-error{% endif %}">
-        <label class="control-label" for="{{form.params.id_for_label}}">{% trans 'Parameters' %}</label>
+        <label class="control-label" for="{{form.params.id_for_label}}">{% trans 'Additional GET parameters' %}</label>
         {{ form.params | add_class:'form-control'|attr_with_id:'aria-describedby:$id-error'  }}
         {% if form.params.errors %}
         <span id="{{ form.params.auto_id }}-error" class="has-error">{{ form.params.errors }}</span>
@@ -34,7 +34,7 @@
         <div class="checkbox">
             <label for="{{form.turn_over.id_for_label}}">
                 {{ form.turn_over | attr_with_id:'aria-describedby:$id-error' }}
-                {% trans 'Turn over' %}
+                {% trans 'Turn over layers order' %}
             </label>
         </div>
         {% if form.y_origin_top.errors %}
@@ -42,7 +42,7 @@
         {% endif %}
     </div>
     <div class="form-group label-floating clearfix {% if form.format.errors %}has-error{% endif %}">
-        <label class="control-label" for="{{form.format.id_for_label}}">{% trans 'Format' %}</label>
+        <label class="control-label" for="{{form.format.id_for_label}}">{% trans 'Image format' %}</label>
         {{ form.format | add_class:'select form-control'|attr_with_id:'aria-describedby:$id-error' }}
         {% if form.format.errors %}
         <span id="{{ form.format.auto_id }}-error" class="has-error">{{ form.format.errors }}</span>
