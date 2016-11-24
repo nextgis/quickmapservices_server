@@ -31,6 +31,8 @@
         {% include 'services_snippets/geojson_info.html' %}
     {% endif %}
     {% include 'services_snippets/preview_map.html' %}
+    <br>
+    <a href="{% url 'site_geoservice_list' %}">{% trans 'Back to service list' %}</a>
 {% endblock %}
 
 {% block extra_head %}
