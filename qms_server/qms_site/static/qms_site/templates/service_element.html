@@ -1,14 +1,17 @@
-<div class="panel panel-default" >
+<div class="qms-list__item panel panel-default" >
     <div class="panel-body">
-        <h3>
+        <div class="qms-list__item-toolbar btn-group toolbar pull-right" role="group">
+            <a href="mailto:info@nextgis.com?subject=Проблема с сервисом {{ service.name }} в QMS" class="btn btn-tool btn-tool--icon material-icons textsms" title="Сообщить об ошибке"></a>
+            {{#if my_service}}
+                <a href="{{ edit_url }}" class="btn btn-tool btn-tool--icon material-icons edit" title="Изменить"></a>
+            {{/if}}
+        </div>
+        <h2>
             <img src="{{ icon_url }}" />
             <a href="{{ service_url }}">{{ service.name }}</a>
-        </h3>
+        </h2>
         Description: {{ service_desc }} <br>
         Type: {{ service.type }} <br>
-        CRS: {{ service_epsg }} <br>
-        {{#if my_service}}
-        <a href="{{ edit_url }}">Edit</a>
-        {{/if}}
+        CRS: {{ service_epsg }}
     </div>
 </div>
