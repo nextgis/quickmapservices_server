@@ -70,7 +70,8 @@ SearchEngine.prototype.addFilterButton = function (control, filter_name, filter_
         .click( $.proxy(function (e) {
             e.preventDefault();
 
-            this._activeFilters[filter_name] = filter_val; // set value
+            this._activeFilters = {}; //TODO: single filter!
+            this._activeFilters [filter_name] = filter_val; // set value
 
             $.each(this._filterButtons, function(index, el) {
                 el.removeClass('active');

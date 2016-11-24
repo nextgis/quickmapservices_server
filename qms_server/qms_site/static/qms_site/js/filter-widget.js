@@ -56,6 +56,9 @@ searcher.addFilterButton($("#flt_tms").first(), "type", "tms");
 searcher.addFilterButton($("#flt_wms").first(), "type", "wms");
 searcher.addFilterButton($("#flt_wfs").first(), "type", "wfs");
 searcher.addFilterButton($("#flt_geojson").first(), "type", "geojson");
+if(user_guid) {
+    searcher.addFilterButton($("#flt_my").first(), "submitter", user_guid);
+}
 
 // update data
 $("#txt_search").keyup();
