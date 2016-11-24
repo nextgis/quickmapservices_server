@@ -48,7 +48,7 @@ class CreateServiceView(LicenseErrorsMixin, LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(CreateServiceView, self).get_context_data(**kwargs)
         forms = {
-            TmsForm.__name__: TmsForm(),
+            TmsForm.__name__: TmsForm(initial={'z_min': 0, 'z_max': 19, 'epsg': 3857, 'y_origin_top': True}),
             WmsForm.__name__: WmsForm(),
             WfsForm.__name__: WfsForm(),
             GeoJsonForm.__name__: GeoJsonForm()
