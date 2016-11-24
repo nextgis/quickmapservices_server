@@ -53,22 +53,26 @@
         <section class="qms-add-service__license"> {# license part #}
             <div class="panel panel--warm panel--bordered">
                 <div class="panel-body">
-                    <div class="qms-add-service__license-info small">
+                    <div class="qms-add-service__license-info small
+                    {% if form.license_name.value or form.license_url.value or form.copyright_text.value or form.copyright_url.value or form.terms_of_use_url.value%}
+                        filled
+                    {% endif %}">
                         <div class="qms-add-service__license-empty">
                             После добавления подложка становится общедоступной.<br>
                             Желательно <a href="#" class="fake-link" data-show="#{{ form_name }}-license">указать лицензионную информацию</a>.
                         </div>
                         <div class="qms-add-service__license-filled">
-                            Лицензия: <a id="{{ form.license_name.auto_id }}-related" href="#" class="fake-link" data-show="#{{ form_name }}-license"></a>
+                            Лицензия:
+                            <a id="{{ form_name }}-related" href="#" class="fake-link" data-show="#{{ form_name }}-license"></a>
                         </div>
                     </div>
-                    <div id="{{ form_name }}-license" class="qms-add-service__license-form inner-form success-block">
+                    <div id="{{ form_name }}-license" class="qms-add-service__license-form inner-form success-block" data-inner-form-related ="#{{ form_name }}-related">
                         <div class="h2">Лицензия</div>
                         <div class="row">
                             <div class="col-xs-12 col-sm-6">
                                 <div class="form-group form-group--light label-floating clearfix {% if form.license_name.errors %}has-error{% endif %}">
                                     <label class="control-label" for="{{form.license_name.id_for_label}}">{% trans 'License name' %}</label>
-                                    {{ form.license_name | add_class:'qms-add-service__license-name form-control'|attr_with_id:'aria-describedby:$id-error'|attr_with_id:'data-inner-form-related:#$id-related' }}
+                                    {{ form.license_name | add_class:'qms-add-service__license-name form-control'|attr_with_id:'aria-describedby:$id-error' }}
                                     {% if form.license_name.errors %}
                                     <span id="{{ form.license_name.auto_id }}-error" class="has-error">{{ form.license_name.errors }}</span>
                                     {% endif %}
