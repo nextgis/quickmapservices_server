@@ -7,9 +7,6 @@
       {% trans 'None' as n %}
       {% trans "Description" %}: {{ service.desc|default_if_not:n }} <br>
       {% trans "Type" %}: {{ service.type|upper|default_if_not:n }} <br>
-      {% trans "CRS" %}: {{ service.epsg|default_if_none:n }} <br>
-      {% if service.submitter_id == request.user.nextgis_guid %}
-          {% trans "It's my" %}: True   <a href="{% url 'edit_service_view' pk=service.id %}">Edit this</a>
-      {% endif %}
+      {% trans "CRS" %}: {{ service.epsg|default_if_none:n }}
   </div>
 </div>

@@ -4,14 +4,21 @@
 {% load staticfiles %}
 
 {% block body_content %}
-    <h3>
+    <div class="btn-group toolbar pull-right" role="group">
+        <a href="mailto:info@nextgis.com?subject=Проблема с сервисом {{ service.name }} в QMS" class="btn btn-tool">Сообщить об ошибке</a>
+        {% if service.submitter_id == request.user.nextgis_guid %}
+            <a href="{% url 'edit_service_view' pk=service.id %}" class="btn btn-tool">Изменить</a>
+        {% endif %}
+
+    </div>
+    <h1>
         {% if service.icon %}
         <img src="{% url 'service_icon_retrieve' pk=service.icon.id %}" />
         {% else %}
         <img src="{% url 'service_icon_default' %}" />
         {% endif %}
         {{ service.name }}
-    </h3>
+    </h1>
     {% include 'services_snippets/general_info.html' %}
     {% include 'services_snippets/license_info.html' %}
     {% if service.type == 'tms' %}
