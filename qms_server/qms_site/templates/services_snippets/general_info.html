@@ -11,7 +11,7 @@
       {% trans "CRS" %}: {{ service.epsg|default_if_none:n }}
       {% if service.submitter %}
       <br>
-      {% trans "Submitter" %}: <a href="{% external_url 'ngid_public_profile' ''%}/{{ service.submitter.nextgis_guid }}">{{ service.submitter.username }}</a>
+      {% trans "Submitter" %}: <a target="_blank" href="{% external_url 'ngid_public_profile' ''%}/{{ service.submitter.nextgis_guid }}">{{ service.submitter.username }}</a>
       {% endif %}
   </div>
 </div>
