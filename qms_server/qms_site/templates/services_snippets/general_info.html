@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load default_if_not %}
+{% load external_url %}
 
 <div class="panel panel-default">
   <div class="panel-body">
@@ -8,5 +9,9 @@
       {% trans "Description" %}: {{ service.desc|default_if_not:n }} <br>
       {% trans "Type" %}: {{ service.type|upper|default_if_not:n }} <br>
       {% trans "CRS" %}: {{ service.epsg|default_if_none:n }}
+      {% if service.submitter %}
+      <br>
+      {% trans "Submitter" %}: <a href="{% external_url 'ngid_public_profile' ''%}/{{ service.submitter.nextgis_guid }}">{{ service.submitter.username }}</a>
+      {% endif %}
   </div>
 </div>
