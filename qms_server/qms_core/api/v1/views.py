@@ -57,7 +57,7 @@ class GeoServiceListView(ListAPIView):
     serializer_class = GeoServiceSerializer
     pagination_class = LimitOffsetPagination
     filter_backends = (OrderingFilter, SearchFilter, DjangoFilterBackend)
-    filter_fields = ('type', 'epsg')
+    filter_fields = ('type', 'epsg', 'submitter')
     search_fields = ('name', 'desc')
     ordering_fields = ('id', 'name', )
     ordering = ('name',)
