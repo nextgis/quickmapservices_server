@@ -35,7 +35,13 @@ class GeoserviceDetailView(TemplateView):
         }
 
 
-class CreateServiceView(LoginRequiredMixin, TemplateView):
+class LicenseErrorsMixin:
+    def has_license_error(self, form):
+        lic_fields = ('license_name', 'license_url', 'copyright_text', 'copyright_url', 'terms_of_use_url',)
+        return any([error for error in form.errors.keys() if error in lic_fields])
+
+
+class CreateServiceView(LicenseErrorsMixin, LoginRequiredMixin, TemplateView):
     template_name = 'create.html'
     acceptable_forms = (TmsForm.__name__, WmsForm.__name__, WfsForm.__name__, GeoJsonForm.__name__)
 
@@ -85,6 +91,7 @@ class CreateServiceView(LoginRequiredMixin, TemplateView):
             })
         return kwargs
 
+
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.submitter = self.request.user
@@ -92,11 +99,11 @@ class CreateServiceView(LoginRequiredMixin, TemplateView):
         return HttpResponseRedirect(reverse('site_geoservice_detail', kwargs={'pk': self.object.id},))
 
     def form_invalid(self, form):
-        return self.render_to_response(self.get_context_data(form=form, error_form_type=form.__class__.__name__))
+        return self.render_to_response(self.get_context_data(form=form, error_form_type=form.__class__.__name__, lic_error=self.has_license_error(form)))
 
 
 
-class EditServiceView(LoginRequiredMixin, UpdateView):
+class EditServiceView(LicenseErrorsMixin, LoginRequiredMixin, UpdateView):
     template_name = 'edit.html'
 
     queryset = GeoService.objects\
@@ -154,3 +161,8 @@ class EditServiceView(LoginRequiredMixin, UpdateView):
     def check_submitter(self, request):
         obj = self.get_object()
         return obj.submitter == request.user
+
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form, lic_error=self.has_license_error(form)))
+
+
