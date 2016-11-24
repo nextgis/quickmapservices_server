@@ -17,7 +17,7 @@ from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIco
 class GeoServiceSerializer(ModelSerializer):
     class Meta:
         model = GeoService
-        fields = ('id', 'guid', 'name', 'desc', 'type', 'epsg', 'icon')
+        fields = ('id', 'guid', 'name', 'desc', 'type', 'epsg', 'icon', 'submitter')
 
 
 class TmsServiceSerializer(ModelSerializer):

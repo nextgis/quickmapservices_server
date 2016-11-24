@@ -30,7 +30,9 @@ render_services = function(data) {
                 service_desc: service.desc ? service.desc : "None",
                 service_epsg: service.epsg ? service.epsg : "None",
                 service_url: service_url.replace('%id', service.id),
-                icon_url: service.icon ? icon_url.replace('%id', service.icon) : default_icon_url
+                icon_url: service.icon ? icon_url.replace('%id', service.icon) : default_icon_url,
+                my_service: user_guid && user_guid===service.submitter,
+                edit_url: edit_url.replace('%id', service.id)
             };
             var elem    = element_template(context);
             $(elem).hide().appendTo('#results').fadeIn(200);
