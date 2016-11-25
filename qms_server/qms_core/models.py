@@ -168,7 +168,7 @@ class GeoService(models.Model):
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
     updated_at = models.DateTimeField(_('updated at'), auto_now=True)
     # source info
-    source = models.CharField(_('source'), max_length=2048, blank=True, null=True)
+    source = models.TextField(_('source'), blank=True, null=True)
     source_url = models.URLField(_('source url'), blank=True, null=True)
 
     # tags
