@@ -37,7 +37,7 @@ AUTHENTICATION_BACKENDS = (
 AUTH_USER_MODEL = 'qms_core.NextgisUser'
 
 SESSION_COOKIE_NAME = 'qms_sessionid'
-SESSION_COOKIE_AGE = 60 * 10
+SESSION_COOKIE_AGE = 60 * 60 * 6
 CSRF_COOKIE_NAME = 'qms_csrftoken'
 
 LOGOUT_URL = '/logout/'

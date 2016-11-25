@@ -24,6 +24,13 @@
                         {% endif %}
                     </div>
                     {% block required_part %}{% endblock %}
+                    <div class="form-group label-floating clearfix {% if form.source.errors %}has-error{% endif %}">
+                        <label class="control-label" for="{{form.source.id_for_label}}">{% trans 'Source' %}</label>
+                        {{ form.source | add_class:'form-control'| attr:"rows:2" | attr_with_id:'aria-describedby:$id-error' }}
+                        {% if form.source.errors %}
+                        <span id="{{ form.source.auto_id }}-error" class="has-error">{{ form.source.errors }}</span>
+                        {% endif %}
+                    </div>
                 </div>
                 <div class="col-xs-12 col-sm-2"> {# right(icon) part #}
                     {{ form.icon | add_class:'image-select image-select--warm form-control'|attr_with_id:'aria-describedby:$id-error'|set_data:"image-select-src:/api/v1/icons/$val/content" }}
