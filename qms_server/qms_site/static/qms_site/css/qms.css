@@ -108,7 +108,7 @@
     .filter-link:hover .filter-link__inner, .filter-link:focus .filter-link__inner, .filter-link:active .filter-link__inner {
       border-bottom-color: inherit; }
   .filter-link.active {
-    background-color: #00b77e;
+    background-color: #0070c5;
     color: #fff; }
     .filter-link.active .filter-link__inner {
       color: #fff;
