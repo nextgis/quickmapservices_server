@@ -14,8 +14,8 @@
 .square-list {
   position: relative;
   left: 4px;
-  margin-left: -15px;
-  margin-right: -15px; }
+  margin-left: 0;
+  margin-right: 0; }
 
 .square-list__panel {
   width: 150px;
