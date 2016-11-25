@@ -3,7 +3,7 @@
 {% load widget_tweaks %}
 {% load attr_with_id %}
 
-{% block form_header %}{% trans 'WMS service' %}{% endblock %}
+{% block form_header %} WMS {% endblock %}
 
 {% block required_part %}
     <div class="form-group label-floating clearfix {% if form.url.errors %}has-error{% endif %}">
@@ -14,7 +14,7 @@
         {% endif %}
     </div>
     <div class="form-group label-floating clearfix {% if form.layers.errors %}has-error{% endif %}">
-        <label class="control-label" for="{{form.layers.id_for_label}}">{% trans 'Layers (separate by comma)' %}</label>
+        <label class="control-label" for="{{form.layers.id_for_label}}">{% trans 'Layers comma separated' %}</label>
         {{ form.layers | add_class:'form-control required'|attr_with_id:'aria-describedby:$id-error' }}
         {% if form.layers.errors %}
         <span id="{{ form.layers.auto_id }}-error" class="has-error">{{ form.layers.errors }}</span>

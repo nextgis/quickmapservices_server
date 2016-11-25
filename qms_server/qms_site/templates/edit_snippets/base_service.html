@@ -5,9 +5,9 @@
 <form id="{{ form_name }}" class="form-validate qms-add-service" method="POST">
     <h1>
         {% if mode = "create" %}
-            {% trans "Add " %}
+            {% trans "Add service" %}
         {% else %}
-            {% trans "Edit " %}
+            {% trans "Edit service" %}
         {% endif %}
         {% block form_header %}{% endblock %}
     </h1>
@@ -58,8 +58,8 @@
                         filled
                     {% endif %}">
                         <div class="qms-add-service__license-empty">
-                            {% blocktrans %}After adding the service becomes public.<br>
-                            It is desirable <a href="#" class="fake-link" data-show="#{{ form_name }}-license">to specify the licensing information</a>.{% endblocktrans %}
+                            {% blocktrans %}This information will become public on submission.<br>
+                            Please <a href="#" class="fake-link" data-show="#{{ form_name }}-license">specify licensing details.</a>.{% endblocktrans %}
                         </div>
                         <div class="qms-add-service__license-filled">
                             {% trans 'License' %}:

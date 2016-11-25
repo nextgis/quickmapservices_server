@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-24 16:02+0000\n"
+"POT-Creation-Date: 2016-11-25 08:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,8 @@ msgstr ""
 msgid "QMS"
 msgstr ""
 
-#: templates/base_qms.html:23 templates/edit_snippets/base_service.html:120
+#: templates/base_qms.html:23 templates/edit_snippets/base_service.html:8
+#: templates/edit_snippets/base_service.html:120
 msgid "Add service"
 msgstr "Добавить сервис"
 
@@ -45,24 +46,20 @@ msgid "in"
 msgstr "в"
 
 #: templates/detail.html:8
-msgid "Blame"
-msgstr "Сообщить об ошибке"
+msgid "Report a problem"
+msgstr "Сообщить о проблеме"
 
 #: templates/detail.html:10
 msgid "Edit"
 msgstr "Изменить"
 
 #: templates/detail.html:35
-msgid "Back to service list"
+msgid "Back to services list"
 msgstr "Вернуться к списку сервисов"
 
-#: templates/edit_snippets/base_service.html:8
-msgid "Add "
-msgstr "Добавить"
-
 #: templates/edit_snippets/base_service.html:10
-msgid "Edit "
-msgstr "Изменить"
+msgid "Edit service"
+msgstr "Изменить сервис"
 
 #: templates/edit_snippets/base_service.html:20
 msgid "Service name"
@@ -84,20 +81,21 @@ msgstr "ID системы координат"
 #: templates/edit_snippets/base_service.html:61
 #, python-format
 msgid ""
-"After adding the service becomes public.<br>\n"
-"                            It is desirable <a href=\"#\" class=\"fake-link"
-"\" data-show=\"#%(form_name)s-license\">to specify the licensing "
-"information</a>."
-msgstr "После добавления сервис становится общедоступным.<br>\n"
-"                            Желательно <a href=\"#\" class=\"fake-link"
-"\" data-show=\"#%(form_name)s-license\">указать лицензионную "
-"информацию</a>."
+"This information will become public on submission.<br>\n"
+"                            Please <a href=\"#\" class=\"fake-link\" data-"
+"show=\"#%(form_name)s-license\">specify licensing details.</a>."
+msgstr ""
+"После добавления сервис станет общедоступным.<br>\n"
+"                            Пожалуйста, <a href=\"#\" class=\"fake-link\" "
+"data-show=\"#%(form_name)s-license\">укажите лицензионную информацию</a>."
 
 #: templates/edit_snippets/base_service.html:65
+#: templates/edit_snippets/base_service.html:70
 msgid "License"
 msgstr "Лицензия"
 
 #: templates/edit_snippets/base_service.html:74
+#: templates/services_snippets/license_info.html:9
 msgid "License name"
 msgstr "Название лицензии"
 
@@ -119,7 +117,7 @@ msgstr "Ссылка на копирайт"
 #: templates/edit_snippets/base_service.html:106
 #: templates/services_snippets/license_info.html:13
 msgid "Terms of use URL"
-msgstr "Ссылка на пользовательское соглашение"
+msgstr "Ссылка на правила использования"
 
 #: templates/edit_snippets/base_service.html:113
 msgid "Cancel"
@@ -129,17 +127,12 @@ msgstr "Отмена"
 msgid "Save changes"
 msgstr "Сохранить изменения"
 
-#: templates/edit_snippets/geojson_service.html:6
-msgid "GeoJSON service"
-msgstr "GeoJSON сервис"
-
 #: templates/edit_snippets/geojson_service.html:10
+#: templates/edit_snippets/tms_service.html:10
+#: templates/edit_snippets/wfs_service.html:10
+#: templates/edit_snippets/wms_service.html:10
 msgid "Service URL"
 msgstr "URL сервиса"
-
-#: templates/edit_snippets/tms_service.html:6
-msgid "TMS service"
-msgstr "TMS сервис"
 
 #: templates/edit_snippets/tms_service.html:20
 msgid "Z min"
@@ -150,34 +143,29 @@ msgid "Z max"
 msgstr "Z max"
 
 #: templates/edit_snippets/tms_service.html:37
-msgid "Y origin Top"
+msgid "Y origin top"
 msgstr "Начало отсчета сверху"
 
-#: templates/edit_snippets/wfs_service.html:6
-msgid "WFS service"
-msgstr "WFS сервис"
-
 #: templates/edit_snippets/wfs_service.html:17
+#: templates/services_snippets/wfs_info.html:10
 msgid "Layer"
-msgstr "Слой для отображения"
-
-#: templates/edit_snippets/wms_service.html:6
-msgid "WMS service"
-msgstr "WMS сервис"
+msgstr "Слой"
 
 #: templates/edit_snippets/wms_service.html:17
-msgid "Layers (separate by comma)"
-msgstr "Слои для отображения (через запятую)"
+msgid "Layers comma separated"
+msgstr "Слои через запятую"
 
 #: templates/edit_snippets/wms_service.html:27
 msgid "Additional GET parameters"
-msgstr "Дополнительные GET параметры для запроса"
+msgstr "Дополнительные GET параметры"
 
 #: templates/edit_snippets/wms_service.html:37
+#: templates/services_snippets/wms_info.html:12
 msgid "Turn over layers order"
 msgstr "Обратный порядок слоев"
 
 #: templates/edit_snippets/wms_service.html:45
+#: templates/services_snippets/wms_info.html:13
 msgid "Image format"
 msgstr "Формат изображения"
 
@@ -187,7 +175,7 @@ msgstr "Поиск сервиса..."
 
 #: templates/list.html:19
 msgid "All services"
-msgstr "Сервисы"
+msgstr "Все сервисы"
 
 #: templates/list.html:35
 msgid "My services"
@@ -234,6 +222,12 @@ msgstr "Предпросмотр"
 msgid "TMS info"
 msgstr "Параметры TMS"
 
+#: templates/services_snippets/tms_info.html:12
+#, fuzzy
+#| msgid "Y origin top"
+msgid "Y Origin top"
+msgstr "Начало отсчета сверху"
+
 #: templates/services_snippets/wfs_info.html:7
 msgid "WFS info"
 msgstr "Параметры WFS"
@@ -242,9 +236,38 @@ msgstr "Параметры WFS"
 msgid "WMS info"
 msgstr "Параметры WMS"
 
+#: templates/services_snippets/wms_info.html:10
+msgid "GET parameters"
+msgstr "GET параметры"
+
+#: templates/services_snippets/wms_info.html:11
+msgid "Layers"
+msgstr "Слои"
+
 #: views.py:71 views.py:74
 msgid "Invalid form param: service_type"
 msgstr ""
+
+#~ msgid "Blame"
+#~ msgstr "Сообщить об ошибке"
+
+#~ msgid "Add "
+#~ msgstr "Добавить"
+
+#~ msgid "Edit "
+#~ msgstr "Изменить"
+
+#~ msgid "GeoJSON service"
+#~ msgstr "GeoJSON сервис"
+
+#~ msgid "TMS service"
+#~ msgstr "TMS сервис"
+
+#~ msgid "WFS service"
+#~ msgstr "WFS сервис"
+
+#~ msgid "WMS service"
+#~ msgstr "WMS сервис"
 
 #~ msgid "Detail of service"
 #~ msgstr "Информация о сервисе"

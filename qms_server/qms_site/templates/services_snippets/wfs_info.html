@@ -7,6 +7,6 @@
       <h4>{% trans 'WFS info' %}</h4>
       {% trans 'None' as n %}
       URL: {{ service.wfsservice.url|link_or_val:n }} <br>
-      Layer: {{ service.wfsservice.layer|default_if_not:n }} <br>
+      {% trans "Layer" %}: {{ service.wfsservice.layer|default_if_not:n }} <br>
   </div>
 </div>

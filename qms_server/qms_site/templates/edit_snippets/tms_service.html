@@ -3,7 +3,7 @@
 {% load widget_tweaks %}
 {% load attr_with_id %}
 
-{% block form_header %}{% trans 'TMS service' %}{% endblock %}
+{% block form_header %} TMS {% endblock %}
 
 {% block required_part %}
     <div class="form-group label-floating clearfix {% if form.url.errors %}has-error{% endif %}">
@@ -34,7 +34,7 @@
         <div class="checkbox">
             <label for="{{form.y_origin_top.id_for_label}}">
                 {{ form.y_origin_top | attr_with_id:'aria-describedby:$id-error' }}
-                {% trans 'Y origin Top' %}
+                {% trans 'Y origin top' %}
             </label>
         </div>
         {% if form.y_origin_top.errors %}

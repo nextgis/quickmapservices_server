@@ -7,9 +7,9 @@
       <h4>{% trans 'WMS info' %}</h4>
       {% trans 'None' as n %}
       URL: {{ service.wmsservice.url|link_or_val:n }} <br>
-      Parameters: {{ service.wmsservice.params|default_if_not:n }} <br>
-      Layers: {{ service.wmsservice.layers|default_if_not:n }} <br>
-      Turn over: {{ service.wmsservice.turn_over|default_if_none:n }} <br>
-      Format: {{ service.wmsservice.format|default_if_not:n }} <br>
+      {% trans "GET parameters" %}: {{ service.wmsservice.params|default_if_not:n }} <br>
+      {% trans "Layers" %}: {{ service.wmsservice.layers|default_if_not:n }} <br>
+      {% trans "Turn over layers order" %}: {{ service.wmsservice.turn_over|default_if_none:n }} <br>
+      {% trans "Image format" %} {{ service.wmsservice.format|default_if_not:n }} <br>
   </div>
 </div>
