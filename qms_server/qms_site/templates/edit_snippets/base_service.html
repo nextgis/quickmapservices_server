@@ -62,8 +62,7 @@
                             Please <a href="#" class="fake-link" data-show="#{{ form_name }}-license">specify licensing details.</a>.{% endblocktrans %}
                         </div>
                         <div class="qms-add-service__license-filled">
-                            {% trans 'License' %}:
-                            <a id="{{ form_name }}-related" href="#" class="fake-link" data-show="#{{ form_name }}-license"></a>
+                            {% trans 'License' %}: <span id="{{ form_name }}-related"></span>. <a  href="#" class="fake-link" data-show="#{{ form_name }}-license">{% trans "Edit" %}</a>
                         </div>
                     </div>
                     <div id="{{ form_name }}-license" class="qms-add-service__license-form inner-form success-block {% if lic_error %}show{% endif %}" data-inner-form-related ="#{{ form_name }}-related">
