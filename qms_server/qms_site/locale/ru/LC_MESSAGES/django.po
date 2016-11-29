@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-25 13:38+0000\n"
+"POT-Creation-Date: 2016-11-29 09:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,72 +20,74 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: qms_site/templates/base_qms.html:13
+#: templates/base_qms.html:13
 msgid "Quick Map Service"
 msgstr ""
 
-#: qms_site/templates/base_qms.html:14
+#: templates/base_qms.html:14
 msgid "QMS"
 msgstr ""
 
-#: qms_site/templates/base_qms.html:23
-#: qms_site/templates/edit_snippets/base_service.html:8
-#: qms_site/templates/edit_snippets/base_service.html:126
+#: templates/base_qms.html:23 templates/edit_snippets/base_service.html:8
+#: templates/edit_snippets/base_service.html:120
 msgid "Add service"
 msgstr "Добавить сервис"
 
-#: qms_site/templates/create.html:16
+#: templates/create.html:16
 msgid "Select service type"
 msgstr "Выберите тип сервиса"
 
-#: qms_site/templates/detail.html:8
+#: templates/detail.html:8
 msgid "Problem with service"
 msgstr "Проблема с сервисом"
 
-#: qms_site/templates/detail.html:8
+#: templates/detail.html:8
 msgid "in"
 msgstr "в"
 
-#: qms_site/templates/detail.html:8
+#: templates/detail.html:8
 msgid "Report a problem"
 msgstr "Сообщить о проблеме"
 
-#: qms_site/templates/detail.html:10
-#: qms_site/templates/edit_snippets/base_service.html:72
+#: templates/detail.html:10 templates/edit_snippets/base_service.html:72
 msgid "Edit"
 msgstr "Изменить"
 
-#: qms_site/templates/detail.html:35
+#: templates/detail.html:35
 msgid "Back to services list"
 msgstr "Вернуться к списку сервисов"
 
-#: qms_site/templates/edit_snippets/base_service.html:10
+#: templates/edit_snippets/base_service.html:10
 msgid "Edit service"
 msgstr "Изменить сервис"
 
-#: qms_site/templates/edit_snippets/base_service.html:20
+#: templates/edit_snippets/base_service.html:20
 msgid "Service name"
 msgstr "Название сервиса"
 
-#: qms_site/templates/edit_snippets/base_service.html:28
-#: qms_site/templates/services_snippets/general_info.html:12
-msgid "Source"
-msgstr "Источник"
+#: templates/edit_snippets/base_service.html:28
+msgid "Where did you find this service?"
+msgstr "Где вы нашли этот сервис?"
 
-#: qms_site/templates/edit_snippets/base_service.html:41
+#: templates/edit_snippets/base_service.html:29
+msgid ""
+"E.g. &quot;https://opentopomap.org/about&quot; or &quot;my service&quot;"
+msgstr "например, &quot;https://opentopomap.org/about&quot; или &quot;это мой сервис&quot;"
+
+#: templates/edit_snippets/base_service.html:41
 msgid "Additional settings"
 msgstr "Дополнительные настройки"
 
-#: qms_site/templates/edit_snippets/base_service.html:44
-#: qms_site/templates/services_snippets/general_info.html:9
+#: templates/edit_snippets/base_service.html:44
+#: templates/services_snippets/general_info.html:9
 msgid "Description"
 msgstr "Описание"
 
-#: qms_site/templates/edit_snippets/base_service.html:51
+#: templates/edit_snippets/base_service.html:51
 msgid "CRS ID"
 msgstr "ID системы координат"
 
-#: qms_site/templates/edit_snippets/base_service.html:68
+#: templates/edit_snippets/base_service.html:68
 #, python-format
 msgid ""
 "This information will become public on submission.<br>\n"
@@ -96,157 +98,187 @@ msgstr ""
 "                            Пожалуйста, <a href=\"#\" class=\"fake-link\" "
 "data-show=\"#%(form_name)s-license\">укажите лицензионную информацию</a>."
 
-#: qms_site/templates/edit_snippets/base_service.html:72
-#: qms_site/templates/edit_snippets/base_service.html:76
+#: templates/edit_snippets/base_service.html:72
+#: templates/edit_snippets/base_service.html:76
 msgid "License"
 msgstr "Лицензия"
 
-#: qms_site/templates/edit_snippets/base_service.html:80
-#: qms_site/templates/services_snippets/license_info.html:9
+#: templates/edit_snippets/base_service.html:78
+#: templates/services_snippets/license_info.html:9
 msgid "License name"
 msgstr "Название лицензии"
 
-#: qms_site/templates/edit_snippets/base_service.html:87
-#: qms_site/templates/services_snippets/license_info.html:10
+#: templates/edit_snippets/base_service.html:79
+msgid "e.g. CC BY 3.0, ODbL"
+msgstr "например, CC BY 3.0, ODbL"
+
+#: templates/edit_snippets/base_service.html:85
+#: templates/services_snippets/license_info.html:10
 msgid "License URL"
 msgstr "Ссылка на лицензию"
 
-#: qms_site/templates/edit_snippets/base_service.html:96
-#: qms_site/templates/services_snippets/license_info.html:11
-msgid "Copyright text"
-msgstr "Текст для копирайта"
+#: templates/edit_snippets/base_service.html:86
+msgid "e.g. https://creativecommons.org/licenses/by/3.0/"
+msgstr "например, https://creativecommons.org/licenses/by/3.0/"
 
-#: qms_site/templates/edit_snippets/base_service.html:103
-#: qms_site/templates/services_snippets/license_info.html:12
-msgid "Copyright URL"
-msgstr "Ссылка на копирайт"
+#: templates/edit_snippets/base_service.html:92
+msgid "Attribution(s)"
+msgstr "Текст подписи (атрибуция)"
 
-#: qms_site/templates/edit_snippets/base_service.html:112
-#: qms_site/templates/services_snippets/license_info.html:13
+#: templates/edit_snippets/base_service.html:93
+msgid "e.g. Map tiles by CARTO, under CC BY 3.0"
+msgstr "например, Map tiles by CARTO, under CC BY 3.0"
+
+#: templates/edit_snippets/base_service.html:99
+msgid "Attribution(s) URL"
+msgstr "URL подписи (атрибуция)"
+
+#: templates/edit_snippets/base_service.html:100
+msgid "e.g. https://carto.com/attributions"
+msgstr "например, https://carto.com/attributions"
+
+#: templates/edit_snippets/base_service.html:106
+#: templates/services_snippets/license_info.html:13
 msgid "Terms of use URL"
 msgstr "Ссылка на правила использования"
 
-#: qms_site/templates/edit_snippets/base_service.html:119
+#: templates/edit_snippets/base_service.html:107
+msgid "e.g. http://carto.com/legal"
+msgstr "например, http://carto.com/legal"
+
+#: templates/edit_snippets/base_service.html:113
 msgid "Cancel"
 msgstr "Отмена"
 
-#: qms_site/templates/edit_snippets/base_service.html:128
+#: templates/edit_snippets/base_service.html:122
 msgid "Save changes"
 msgstr "Сохранить изменения"
 
-#: qms_site/templates/edit_snippets/geojson_service.html:10
-#: qms_site/templates/edit_snippets/tms_service.html:10
-#: qms_site/templates/edit_snippets/wfs_service.html:10
-#: qms_site/templates/edit_snippets/wms_service.html:10
+#: templates/edit_snippets/geojson_service.html:10
+#: templates/edit_snippets/tms_service.html:10
+#: templates/edit_snippets/wfs_service.html:10
+#: templates/edit_snippets/wms_service.html:10
 msgid "Service URL"
 msgstr "URL сервиса"
 
-#: qms_site/templates/edit_snippets/tms_service.html:20
+#: templates/edit_snippets/tms_service.html:20
 msgid "Z min"
 msgstr "Z min"
 
-#: qms_site/templates/edit_snippets/tms_service.html:27
+#: templates/edit_snippets/tms_service.html:27
 msgid "Z max"
 msgstr "Z max"
 
-#: qms_site/templates/edit_snippets/tms_service.html:37
-#: qms_site/templates/services_snippets/tms_info.html:12
+#: templates/edit_snippets/tms_service.html:37
+#: templates/services_snippets/tms_info.html:12
 msgid "Y origin top"
 msgstr "Начало отсчета сверху"
 
-#: qms_site/templates/edit_snippets/wfs_service.html:17
-#: qms_site/templates/services_snippets/wfs_info.html:10
+#: templates/edit_snippets/wfs_service.html:17
+#: templates/services_snippets/wfs_info.html:10
 msgid "Layer"
 msgstr "Слой"
 
-#: qms_site/templates/edit_snippets/wms_service.html:17
+#: templates/edit_snippets/wms_service.html:17
 msgid "Layers comma separated"
 msgstr "Слои через запятую"
 
-#: qms_site/templates/edit_snippets/wms_service.html:27
+#: templates/edit_snippets/wms_service.html:27
 msgid "Additional GET parameters"
 msgstr "Дополнительные GET параметры"
 
-#: qms_site/templates/edit_snippets/wms_service.html:37
-#: qms_site/templates/services_snippets/wms_info.html:12
+#: templates/edit_snippets/wms_service.html:37
+#: templates/services_snippets/wms_info.html:12
 msgid "Turn over layers order"
 msgstr "Обратный порядок слоев"
 
-#: qms_site/templates/edit_snippets/wms_service.html:45
-#: qms_site/templates/services_snippets/wms_info.html:13
+#: templates/edit_snippets/wms_service.html:45
+#: templates/services_snippets/wms_info.html:13
 msgid "Image format"
 msgstr "Формат изображения"
 
-#: qms_site/templates/list.html:12
+#: templates/list.html:12
 msgid "Search map service..."
 msgstr "Поиск сервиса..."
 
-#: qms_site/templates/list.html:19
+#: templates/list.html:19
 msgid "All services"
 msgstr "Все сервисы"
 
-#: qms_site/templates/list.html:35
+#: templates/list.html:35
 msgid "My services"
 msgstr "Мои сервисы"
 
-#: qms_site/templates/services_snippets/general_info.html:7
+#: templates/services_snippets/general_info.html:7
 msgid "General info"
 msgstr "Основное"
 
-#: qms_site/templates/services_snippets/general_info.html:8
-#: qms_site/templates/services_snippets/geojson_info.html:7
-#: qms_site/templates/services_snippets/license_info.html:8
-#: qms_site/templates/services_snippets/tms_info.html:8
-#: qms_site/templates/services_snippets/wfs_info.html:8
-#: qms_site/templates/services_snippets/wms_info.html:8
+#: templates/services_snippets/general_info.html:8
+#: templates/services_snippets/geojson_info.html:7
+#: templates/services_snippets/license_info.html:8
+#: templates/services_snippets/tms_info.html:8
+#: templates/services_snippets/wfs_info.html:8
+#: templates/services_snippets/wms_info.html:8
 msgid "None"
 msgstr "Нет"
 
-#: qms_site/templates/services_snippets/general_info.html:10
+#: templates/services_snippets/general_info.html:10
 msgid "Type"
 msgstr "Тип"
 
-#: qms_site/templates/services_snippets/general_info.html:11
+#: templates/services_snippets/general_info.html:11
 msgid "CRS"
 msgstr "Система координат"
 
-#: qms_site/templates/services_snippets/general_info.html:15
+#: templates/services_snippets/general_info.html:12
+msgid "Source"
+msgstr "Источник"
+
+#: templates/services_snippets/general_info.html:15
 msgid "Submitter"
 msgstr "Добавил"
 
-#: qms_site/templates/services_snippets/geojson_info.html:6
+#: templates/services_snippets/geojson_info.html:6
 msgid "GeoJSON info"
 msgstr "Параметры GeoJSON"
 
-#: qms_site/templates/services_snippets/license_info.html:7
+#: templates/services_snippets/license_info.html:7
 msgid "License & Copyright info"
 msgstr "Лицензия & Авторские права"
 
-#: qms_site/templates/services_snippets/preview_map.html:5
+#: templates/services_snippets/license_info.html:11
+msgid "Copyright text"
+msgstr "Текст для копирайта"
+
+#: templates/services_snippets/license_info.html:12
+msgid "Copyright URL"
+msgstr "Ссылка на копирайт"
+
+#: templates/services_snippets/preview_map.html:5
 msgid "Preview"
 msgstr "Предпросмотр"
 
-#: qms_site/templates/services_snippets/tms_info.html:7
+#: templates/services_snippets/tms_info.html:7
 msgid "TMS info"
 msgstr "Параметры TMS"
 
-#: qms_site/templates/services_snippets/wfs_info.html:7
+#: templates/services_snippets/wfs_info.html:7
 msgid "WFS info"
 msgstr "Параметры WFS"
 
-#: qms_site/templates/services_snippets/wms_info.html:7
+#: templates/services_snippets/wms_info.html:7
 msgid "WMS info"
 msgstr "Параметры WMS"
 
-#: qms_site/templates/services_snippets/wms_info.html:10
+#: templates/services_snippets/wms_info.html:10
 msgid "GET parameters"
 msgstr "GET параметры"
 
-#: qms_site/templates/services_snippets/wms_info.html:11
+#: templates/services_snippets/wms_info.html:11
 msgid "Layers"
 msgstr "Слои"
 
-#: qms_site/views.py:71 qms_site/views.py:74
+#: views.py:71 views.py:74
 msgid "Invalid form param: service_type"
 msgstr ""
 
