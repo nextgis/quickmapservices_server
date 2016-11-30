@@ -17,13 +17,20 @@
             <div class="row">
                 <div class="col-xs-12 col-sm-10">
                     <div class="form-group label-floating clearfix {% if form.name.errors %}has-error{% endif %}">
-                        <label class="control-label" for="{{form.name.id_for_label}}">{% trans 'Service name' %}</label>
+                        <label class="control-label  control-label--required" for="{{form.name.id_for_label}}">{% trans 'Service name' %}</label>
                         {{ form.name | add_class:'form-control required'|attr_with_id:'aria-describedby:$id-error' }}
                         {% if form.name.errors %}
                         <span id="{{ form.name.auto_id }}-error" class="has-error">{{ form.name.errors }}</span>
                         {% endif %}
                     </div>
                     {% block required_part %}{% endblock %}
+                    <div class="form-group label-floating clearfix {% if form.desc.errors %}has-error{% endif %}">
+                        <label class="control-label" for="{{form.desc.id_for_label}}">{% trans 'Description' %}</label>
+                        {{ form.desc | add_class:'form-control'| attr:"rows:2" | attr_with_id:'aria-describedby:$id-error' }}
+                        {% if form.desc.errors %}
+                        <span id="{{ form.desc.auto_id }}-error" class="has-error">{{ form.desc.errors }}</span>
+                        {% endif %}
+                    </div>
                     <div class="form-group clearfix {% if form.source.errors %}has-error{% endif %}">
                         <label class="control-label" for="{{form.source.id_for_label}}">{% trans 'Where did you find this service?' %}</label>
                         <textarea class="form-control" id="{{form.source.auto_id}}" name="{{form.source.name}}" aria-describedby="{{ form.source.auto_id }}-error"  placeholder ="{% trans 'E.g. &quot;https://opentopomap.org/about&quot; or &quot;my service&quot;' %}" rows="2">{{form.source.value|default:""}}</textarea>
@@ -38,15 +45,8 @@
             </div>
         </section><!--/.qms-add-service__required-->
         <section class="qms-add-service__extra"> {# extra part #}
-            <a href="#{{ form_name }}-extra" class="fake-link fake-link--icon collapsed" data-toggle="collapse">{% trans 'Additional settings' %}</a>
-            <div id="{{ form_name }}-extra" class="qms-add-service__extra-form collapse">
-                <div class="form-group label-floating clearfix {% if form.desc.errors %}has-error{% endif %}">
-                    <label class="control-label" for="{{form.desc.id_for_label}}">{% trans 'Description' %}</label>
-                    {{ form.desc | add_class:'form-control'| attr:"rows:2" | attr_with_id:'aria-describedby:$id-error' }}
-                    {% if form.desc.errors %}
-                    <span id="{{ form.desc.auto_id }}-error" class="has-error">{{ form.desc.errors }}</span>
-                    {% endif %}
-                </div>
+            <h2>{% trans 'Additional settings' %}</a></h2>
+            <div id="{{ form_name }}-extra" class="qms-add-service__extra-form">
                 <div class="form-group label-floating clearfix {% if form.epsg.errors %}has-error{% endif %}">
                     <label class="control-label" for="{{form.epsg.id_for_label}}">{% trans 'CRS ID' %}</label>
                     {{ form.epsg | add_class:'form-control' | attr_with_id:'aria-describedby:$id-error' }}
@@ -72,7 +72,7 @@
                             {% trans 'License' %}: <span id="{{ form_name }}-related"></span>. <a  href="#" class="fake-link" data-show="#{{ form_name }}-license">{% trans "Edit" %}</a>
                         </div>
                     </div>
-                    <div style="background: #f9f9f9" id="{{ form_name }}-license" class="qms-add-service__license-form inner-form {% if lic_error %}show{% endif %}" data-inner-form-related ="#{{ form_name }}-related">
+                    <div id="{{ form_name }}-license" class="qms-add-service__license-form inner-form {% if lic_error %}show{% endif %}" data-inner-form-related ="#{{ form_name }}-related">
                         <div class="h2">{% trans 'License' %}</div>
                         <div class="form-group clearfix {% if form.license_name.errors %}has-error{% endif %}">
                             <label class="control-label" for="{{form.license_name.id_for_label}}">{% trans 'License name' %}</label>
