@@ -16,20 +16,35 @@
 {% endblock %}
 
 {% block extra_part %}
-    <div class="form-group label-floating clearfix {% if form.z_min.errors %}has-error{% endif %}">
-        <label class="control-label" for="{{form.z_min.id_for_label}}">{% trans 'Z min' %}</label>
-        {{ form.z_min | add_class:'form-control'|attr_with_id:'aria-describedby:$id-error' }}
-        {% if form.z_min.errors %}
-        <span id="{{ form.z_min.auto_id }}-error" class="has-error">{{ form.z_min.errors }}</span>
-        {% endif %}
-    </div>
-    <div class="form-group label-floating clearfix {% if form.z_max.errors %}has-error{% endif %}">
-        <label class="control-label" for="{{form.z_max.id_for_label}}">{% trans 'Z max' %}</label>
-        {{ form.z_max | add_class:'form-control'|attr_with_id:'aria-describedby:$id-error' }}
-        {% if form.z_max.errors %}
-        <span id="{{ form.z_max.auto_id }}-error" class="has-error">{{ form.z_max.errors }}</span>
-        {% endif %}
-    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-4">
+            <div class="form-group label-floating clearfix {% if form.epsg.errors %}has-error{% endif %}">
+                <label class="control-label" for="{{form.epsg.id_for_label}}">{% trans 'CRS ID' %}</label>
+                {{ form.epsg | add_class:'form-control' | attr_with_id:'aria-describedby:$id-error' }}
+                {% if form.epsg.errors %}
+                <span id="{{ form.epsg.auto_id }}-error" class="has-error">{{ form.epsg.errors }}</span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4">
+            <div class="form-group label-floating clearfix {% if form.z_min.errors %}has-error{% endif %}">
+                <label class="control-label" for="{{form.z_min.id_for_label}}">{% trans 'Z min' %}</label>
+                {{ form.z_min | add_class:'form-control'|attr_with_id:'aria-describedby:$id-error' }}
+                {% if form.z_min.errors %}
+                <span id="{{ form.z_min.auto_id }}-error" class="has-error">{{ form.z_min.errors }}</span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-4">
+            <div class="form-group label-floating clearfix {% if form.z_max.errors %}has-error{% endif %}">
+                <label class="control-label" for="{{form.z_max.id_for_label}}">{% trans 'Z max' %}</label>
+                {{ form.z_max | add_class:'form-control'|attr_with_id:'aria-describedby:$id-error' }}
+                {% if form.z_max.errors %}
+                <span id="{{ form.z_max.auto_id }}-error" class="has-error">{{ form.z_max.errors }}</span>
+                {% endif %}
+            </div>
+        </div>
+    </div> <!--/.row-->
     <div class="form-group clearfix {% if form.y_origin_top.errors %}has-error{% endif %}">
         <div class="checkbox">
             <label for="{{form.y_origin_top.id_for_label}}">

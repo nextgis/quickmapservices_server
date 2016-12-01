@@ -21,3 +21,13 @@
         {% endif %}
     </div>
 {% endblock %}
+
+{% block extra_part %}
+    <div class="form-group label-floating clearfix {% if form.epsg.errors %}has-error{% endif %}">
+        <label class="control-label" for="{{form.epsg.id_for_label}}">{% trans 'CRS ID' %}</label>
+        {{ form.epsg | add_class:'form-control' | attr_with_id:'aria-describedby:$id-error' }}
+        {% if form.epsg.errors %}
+        <span id="{{ form.epsg.auto_id }}-error" class="has-error">{{ form.epsg.errors }}</span>
+        {% endif %}
+    </div>
+{% endblock %}
