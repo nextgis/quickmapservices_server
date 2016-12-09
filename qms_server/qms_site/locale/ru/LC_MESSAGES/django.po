@@ -21,7 +21,7 @@ msgstr ""
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: templates/base_qms.html:13
-msgid "Quick Map Service"
+msgid "QuickMapServices: discover, share and use geospatial data services"
 msgstr ""
 
 #: templates/base_qms.html:14
