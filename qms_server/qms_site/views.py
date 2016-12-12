@@ -15,10 +15,9 @@ from django.utils.translation import gettext_lazy as _
 class GeoserviceListView(TemplateView):
     template_name = 'list.html'
 
-    def get_context_data(self, **kwargs):
-        return {
-            'services': GeoService.objects.all().order_by('name')
-        }
+
+class AboutView(TemplateView):
+    template_name = 'about.html'
 
 
 class GeoserviceDetailView(TemplateView):
