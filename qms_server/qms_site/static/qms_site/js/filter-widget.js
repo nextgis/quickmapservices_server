@@ -47,7 +47,8 @@ searcher = new SearchEngine({
   url: "/api/v1/geoservices/",
   param: "search",
   delay: 500,
-  on_success: render_services
+  on_success: render_services,
+  default_order: '-id'
 });
 
 searcher.addTextBox($("#txt_search").first());

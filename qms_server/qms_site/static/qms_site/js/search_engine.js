@@ -10,7 +10,9 @@ SearchEngine.prototype.default_config = {
     param: 'query',
     on_success: null,
     delay: 500,
-    loading_css: '#loading'
+    loading_css: '#loading',
+    default_order: 'name',
+    search_order: 'name'
 };
 
 SearchEngine.prototype.loading = function () {
@@ -38,6 +40,10 @@ SearchEngine.prototype.resetTimer = function (timer) {
 SearchEngine.prototype.process = function () {
     var req_params = $.extend({}, this._activeFilters);
     req_params[this._settings.param] = this._editBox.val();
+    if(!this._editBox.val())
+        req_params['ordering'] = this._settings.default_order;
+    else
+        req_params['ordering'] = this._settings.search_order;
     $.get(this._settings.url, req_params, $.proxy(function (data) {
          this._settings.on_success(data);
     }, this));
