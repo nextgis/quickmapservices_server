@@ -1,10 +1,12 @@
 {% extends "base_qms.html" %}
 {% load i18n %}
 
+{% block content_title %}
+    <a class="withoutripple" href="{% url 'site_geoservice_list' %}">{% trans 'QMS' %}</a>
+    <a class="withoutripple filter-link active" href="{% url 'site_about' %}">{% trans 'About' %}</a>
+{% endblock %}
 
 {% block body_content %}
     <div>ABOUT</div>
 {% endblock %}
 
-{% block extra_body %}
-{% endblock %}
