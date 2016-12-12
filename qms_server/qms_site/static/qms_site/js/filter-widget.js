@@ -31,6 +31,7 @@ render_services = function(data) {
                 service_epsg: service.epsg ? service.epsg : "None",
                 service_url: service_url.replace('%id', service.id),
                 icon_url: service.icon ? icon_url.replace('%id', service.icon) : default_icon_url,
+                updated_at: service.updated_at!=null ? (new Date(service.updated_at)).toISOString().slice(0, 10) : "None",
                 my_service: user_guid && user_guid===service.submitter,
                 edit_url: edit_url.replace('%id', service.id)
             };
