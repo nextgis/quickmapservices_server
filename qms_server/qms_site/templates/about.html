@@ -3,7 +3,13 @@
 
 {% block content_title %}
     <a class="withoutripple" href="{% url 'site_geoservice_list' %}">{% trans 'QMS' %}</a>
-    <a class="withoutripple filter-link active" href="{% url 'site_about' %}">{% trans 'About' %}</a>
+{% endblock %}
+
+{% block header_menu %}
+    <nav class="header-menu">
+        <a href="{% url 'site_geoservice_list' %}" class="header-menu__item withoutripple">{% trans 'Services' %}</a>
+        <a href="{% url 'site_about' %}" class="header-menu__item active withoutripple">{% trans 'How to use' %}</a>
+    </nav>
 {% endblock %}
 
 {% block body_content %}

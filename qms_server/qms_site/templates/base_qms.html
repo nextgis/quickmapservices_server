@@ -12,9 +12,16 @@
 
 {% block head_title %}{% trans 'QuickMapServices: discover, share and use geospatial data services' %}{% endblock %}
 {% block content_title %}
-    <a class="withoutripple filter-link active" href="{% url 'site_geoservice_list' %}">{% trans 'QMS' %}</a>
-    <a class="withoutripple" href="{% url 'site_about' %}">{% trans 'About' %}</a>
+    <a class="withoutripple" href="{% url 'site_geoservice_list' %}">{% trans 'QMS' %}</a>
 {% endblock %}
+
+{% block header_menu %}
+    <nav class="header-menu">
+        <a href="{% url 'site_geoservice_list' %}" class="header-menu__item active withoutripple">{% trans 'Services' %}</a>
+        <a href="{% url 'site_about' %}" class="header-menu__item withoutripple">{% trans 'How to use' %}</a>
+    </nav>
+{% endblock %}
+
 {% block body_class %}body--wide-header body--grey{% endblock %}
 
 {% block logo_link %}{% url 'site_geoservice_list' %}{% endblock %}
