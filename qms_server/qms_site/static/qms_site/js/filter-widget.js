@@ -11,11 +11,34 @@ $.get(no_results_templ_url, function(source) {
         no_result_template = Handlebars.compile(source);
 });
 
+
+var total=0, wms=0, wfs=0, geojson=0, tms=0, my=0;
+
+function reset_counters() {
+    total=0, wms=0, wfs=0, geojson=0, tms=0, my=0;
+    $('#flt_all_count')[0].innerText = "";
+    $('#flt_wms_count')[0].innerText = "";
+    $('#flt_wfs_count')[0].innerText = "";
+    $('#flt_tms_count')[0].innerText = "";
+    $('#flt_geojson_count')[0].innerText = "";
+    //$('#flt_my_count')[0].innerText = "";
+}
+
+function update_counters() {
+    $('#flt_all_count')[0].innerText = total != 0 ? "[" + total + "]" : "" ;
+    $('#flt_wms_count')[0].innerText = wms != 0 ? "[" + wms + "]" : "" ;
+    $('#flt_wfs_count')[0].innerText = wfs != 0 ? "[" + wfs + "]" : "" ;
+    $('#flt_tms_count')[0].innerText = tms != 0 ? "[" + tms + "]" : "" ;
+    $('#flt_geojson_count')[0].innerText = geojson != 0 ? "[" + geojson + "]" : "" ;
+    //$('#flt_my_count')[0].innerText = my != 0 ? "[" + my + "]" : "" ;
+}
+
 // renderer handler
 render_services = function(data) {
     // clear
     $("#results").fadeOut(200, function () {
         $("#results").empty().show();
+    reset_counters();
 
     // render
     if(data.length < 1) {
@@ -37,6 +60,12 @@ render_services = function(data) {
             };
             var elem    = element_template(context);
             $(elem).hide().appendTo('#results').fadeIn(200);
+
+            if (service.type == 'wms') {
+                wms += 1;
+            }
+            total += 1;
+            update_counters();
         });
     }
 
