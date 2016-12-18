@@ -12,7 +12,43 @@
     </nav>
 {% endblock %}
 
+{% block body_class %}body--wide{% endblock %}
+
 {% block body_content %}
-    <div>ABOUT</div>
+    <section class="promo section section--blue text-center">
+        <div class="container">
+            <h1 class="promo__title">Quick Map Services</h1>
+            <div class="promo__text">
+                {% blocktrans %}public catalog and a&nbsp;service that allows you to&nbsp;add a&nbsp;geodata service (TMS, WMS, GeoJSON file and others) and have it&nbsp;available in&nbsp;your favorite GIS software in&nbsp;just few clicks{% endblocktrans %}
+            </div>
+        </div>
+    </section>
+    <section class="section section--primary section--narrow text-center dash-decor">
+        <span class="dash-decor__inner">
+        {% trans 'No more explaining how to add TMS/WMS etc. in your GIS, just enter a name' %}
+        </span>
+    </section>
+    <section class="section text-content">
+        <div class="container">
+            <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <h2>{% trans 'You can use QMS catalog in:' %}</h2>
+                <ul>
+                    <li>{% blocktrans %}QGIS with <a href="http://nextgis.com/blog/quickmapservices/" target="_blank">QuickMapServices plugin</a>{% endblocktrans %}</li>
+                    <li><a href="http://nextgis.com/blog/ngm-2-4/" target="_blank">{% blocktrans %}NextGIS Mobile{% endblocktrans %}</a></li>
+                    <li>{% blocktrans %}NextGIS Web (coming soon!){% endblocktrans %}</li>
+                </ul>
+                <h2>{% trans 'Contact us' %}</h2>
+                <ul>
+                    <li>{% blocktrans %}Report general QMS bugs and request features at <a href="https://github.com/nextgis/quickmapservices_server/" target="_blank">Github</a>{% endblocktrans %}</li>
+                    <li>{% blocktrans %}Form for <a href="http://nextgis.com/contact" target="_blank">general questions{% endblocktrans %}</a></li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <iframe width="100%" height="320" src="https://www.youtube.com/embed/TzLkF030Jrs" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+        </div>
+    </section>
 {% endblock %}
 

@@ -1,3 +1,6 @@
+/* Mixins */
+/* Social colors */
+/* Forms */
 /* QMS list */
 .qms-list__item {
   -webkit-transition: box-shadow .3s;
@@ -110,6 +113,76 @@
     max-width: 200px; }
   .header-menu__item.active:hover {
     background-color: transparent; }
+
+/* Text content */
+.text-content h2, .text-content .h2 {
+  font-size: 24px; }
+
+.text-content ul, .text-content ol {
+  padding-left: 20px;
+  margin-top: 15px; }
+  .text-content ul li, .text-content ol li {
+    margin-bottom: 8px; }
+
+.text-content p {
+  margin-bottom: 12px; }
+
+/* Section */
+.section {
+  margin-left: -40px;
+  margin-right: -40px;
+  padding-top: 90px;
+  padding-bottom: 90px; }
+  @media (max-width: 768px) {
+    .section {
+      margin-left: -20px;
+      margin-right: -20px; } }
+
+.section--blue {
+  background-color: #e5eef7; }
+
+.section--primary {
+  background-color: #0070c5;
+  color: #fff; }
+
+.section--narrow {
+  padding-top: 22px;
+  padding-bottom: 22px; }
+
+.admin__panel__content__inner > .section:first-child {
+  margin-top: -40px; }
+
+/* Promo */
+.promo {
+  padding-top: 90px;
+  padding-bottom: 100px; }
+
+.promo__title {
+  font-size: 48px;
+  font-weight: bold;
+  letter-spacing: -.2px;
+  color: #0070c5; }
+
+.promo__text {
+  font-size: 21px; }
+
+/* Decoration */
+.dash-decor {
+  position: relative; }
+  .dash-decor::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 0;
+    border-top: 1px dashed rgba(255, 255, 255, 0.66); }
+
+.dash-decor__inner {
+  position: relative;
+  background-color: #0070c5;
+  padding-left: 24px;
+  padding-right: 24px; }
 
 /* Input group */
 .input-group .form-group {
