@@ -38,6 +38,9 @@
             </ul>
         </div>
     </div>
+    <div class="qms-service-count">
+        {% trans 'Service found' %}: <span class="qms-service-count__value" id="service-count">478</span>
+    </div>
     <div id="results"></div>
     <a class="btn-mobile-action btn btn-fab btn-primary" href="{% url 'create_service_view' %}"><i class="material-icons add"></i></a>
 {% endblock %}

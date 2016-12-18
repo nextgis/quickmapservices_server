@@ -251,3 +251,12 @@
     .qms__filter__list {
       margin-top: 9px;
       margin-bottom: 0; } }
+
+/* QMS service counter */
+.qms-service-count {
+  color: #888;
+  font-size: 14px;
+  margin-bottom: 12px; }
+
+.qms-service-count__value {
+  color: #212121; }
