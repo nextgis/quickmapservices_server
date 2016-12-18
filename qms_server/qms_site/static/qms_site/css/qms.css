@@ -127,6 +127,20 @@
 .text-content p {
   margin-bottom: 12px; }
 
+/* Lists */
+.icon-list,
+.text-content .icon-list {
+  padding-left: 0; }
+
+.icon-list__item {
+  margin-bottom: 8px; }
+
+.icon-list__icon {
+  position: relative;
+  color: #aec1d4;
+  top: 6px;
+  margin-right: 12px; }
+
 /* Section */
 .section {
   margin-left: -40px;
