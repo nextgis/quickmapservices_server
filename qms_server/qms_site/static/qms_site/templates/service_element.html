@@ -6,13 +6,19 @@
                 <a href="{{ edit_url }}" class="btn btn-tool btn-tool--icon material-icons edit" title="Edit"></a>
             {{/if}}
         </div>
-        <h2>
-            <img src="{{ icon_url }}" />
-            <a href="{{ service_url }}">{{ service.name }}</a>
-        </h2>
-        Description: {{ service_desc }} <br>
-        Type: {{ service.type }} <br>
-        CRS: {{ service_epsg }} <br>
-        Last update: {{ updated_at }}
+        <div class="qms-list__title">
+            <img class="qms-list__icon" src="{{ icon_url }}?width=24&height=24" />
+            {{ service.name }}
+        </div>
+        {{#if service.desc}}
+            <div class="qms-list__descr">
+                {{ service_desc }}
+            </div>
+        {{/if}}
+        <div class="qms-list__meta">
+            <span class="qms-list__meta-item qms-list__type">{{ service.type }}</span>
+            <span class="qms-list__meta-item qms-list__date">last update: {{ updated_at }}</span>
+        </div>
     </div>
+    <a class="qms-list__link" href="{{ service_url }}"></a>
 </div>
