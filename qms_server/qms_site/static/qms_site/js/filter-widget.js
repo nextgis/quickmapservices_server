@@ -11,17 +11,23 @@ $.get(no_results_templ_url, function(source) {
         no_result_template = Handlebars.compile(source);
 });
 
+var foundService = 0;
+
 // renderer handler
 render_services = function(data) {
     // clear
     $("#results").fadeOut(200, function () {
         $("#results").empty().show();
 
+    foundService = 0;
+
     // render
     if(data.length < 1) {
         var context = {};
         var elem    = no_result_template(context);
         $(elem).hide().appendTo('#results').fadeIn(200);
+
+        $('#service-count')[0].innerText = foundService;
     }
     else {
         $.each(data, function (index, service) {
@@ -37,6 +43,9 @@ render_services = function(data) {
             };
             var elem    = element_template(context);
             $(elem).hide().appendTo('#results').fadeIn(200);
+
+            foundService += 1;
+            $('#service-count')[0].innerText = foundService;
         });
     }
 
