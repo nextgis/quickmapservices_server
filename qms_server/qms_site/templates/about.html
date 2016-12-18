@@ -36,7 +36,12 @@
                 <ul class="icon-list list-unstyled">
                     <li class="icon-list__item">
                         <i class="icon-list__icon material-icons">desktop_windows</i>
-                        {% blocktrans %}QGIS with <a href="http://nextgis.com/blog/quickmapservices/" target="_blank">QuickMapServices plugin</a>{% endblocktrans %}
+                        <div class="icon-list__subitem">
+                            {% blocktrans %}QGIS with <a href="http://nextgis.com/blog/quickmapservices/" target="_blank">QuickMapServices plugin</a>{% endblocktrans %}
+                        </div>
+                        <div class="icon-list__subitem">
+                            {% blocktrans %}ArcGIS with <a href="http://nextgis.com/blog/quickmapservices/" target="_blank">ArcQMS plugin</a>{% endblocktrans %}
+                        </div>
                     </li>
                     <li class="icon-list__item">
                         <i class="icon-list__icon material-icons">phone_android</i>
@@ -47,14 +52,18 @@
                         {% blocktrans %}NextGIS Web (coming soon!){% endblocktrans %}
                     </li>
                 </ul>
+                <p>Read how you can <a href="http://docs.nextgis.com/qms_srv_dev/doc/api.html" target="_blank">add your software to the list</a>.</p>
                 <h2>{% trans 'Contact us' %}</h2>
                 <ul>
                     <li>{% blocktrans %}Report general QMS bugs and request features at <a href="https://github.com/nextgis/quickmapservices_server/" target="_blank">Github</a>{% endblocktrans %}</li>
-                    <li>{% blocktrans %}Form for <a href="http://nextgis.com/contact" target="_blank">general questions{% endblocktrans %}</a></li>
+                    <li><a href="http://nextgis.com/contact" target="_blank">{% blocktrans %}Detailed contact information{% endblocktrans %}</a></li>
                 </ul>
             </div>
             <div class="col-xs-12 col-md-6">
-                <iframe width="100%" height="320" src="https://www.youtube.com/embed/TzLkF030Jrs" frameborder="0" allowfullscreen></iframe>
+                <div class="video">
+                    <iframe width="100%" height="320" src="https://www.youtube.com/embed/TzLkF030Jrs" frameborder="0" allowfullscreen></iframe>
+                    <div class="video__caption">{% trans 'Add and use a service in QGIS' %}</div>
+                </div>
             </div>
         </div>
         </div>
