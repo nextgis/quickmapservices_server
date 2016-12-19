@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-19 09:29+0000\n"
+"POT-Creation-Date: 2016-12-19 10:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,7 +41,7 @@ msgstr ""
 "публичный каталог и&nbsp;сервис, который позволяет быстро добавлять <br "
 "class='visible-lg-inline-block visible-md-inline-block'><a href=\"/"
 "\">источники геоданных</a> (TMS, WMS, WFS, GeoJSON) и&nbsp;легко "
-"использовать их&nbsp;в&nbsp;любой ГИС."
+"использовать их&nbsp;в&nbsp;любой ГИС"
 
 #: templates/about.html:30
 msgid ""
@@ -79,12 +79,12 @@ msgid "NextGIS Web (coming soon!)"
 msgstr "в NextGIS Web (скоро!)"
 
 #: templates/about.html:57
-msgid "Read how you can"
-msgstr "Прочитайте, как "
+msgid "Add your software"
+msgstr "Добавьте поддержку QMS"
 
 #: templates/about.html:57
-msgid "add your software to the list"
-msgstr "добавить поддержку QMS в&nbsp;другое программное обеспечение "
+msgid "to the list"
+msgstr "в свою программу"
 
 #: templates/about.html:58
 msgid "Feedback"
@@ -377,6 +377,9 @@ msgstr "Слои"
 #: views.py:70 views.py:73
 msgid "Invalid form param: service_type"
 msgstr ""
+
+#~ msgid "Read how you can"
+#~ msgstr "Прочитайте, как "
 
 #~ msgid "General questions"
 #~ msgstr "Общие вопросы"
