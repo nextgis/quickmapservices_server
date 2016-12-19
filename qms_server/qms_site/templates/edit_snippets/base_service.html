@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-2"> {# right(icon) part #}
-                    {{ form.icon | add_class:'image-select image-select--warm form-control'|attr_with_id:'aria-describedby:$id-error'|set_data:"image-select-src:/api/v1/icons/$val/content" }}
+                    {{ form.icon | add_class:'image-select image-select--warm form-control'|attr_with_id:'aria-describedby:$id-error'|attr:'tabindex:-1' | set_data:'image-select-src:/api/v1/icons/$val/content' }}
                 </div>
             </div>
         </section><!--/.qms-add-service__required-->
