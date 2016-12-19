@@ -204,8 +204,8 @@
 .section {
   margin-left: -40px;
   margin-right: -40px;
-  padding-top: 90px;
-  padding-bottom: 90px; }
+  padding-top: 60px;
+  padding-bottom: 60px; }
   @media (max-width: 768px) {
     .section {
       margin-left: -20px;
@@ -227,8 +227,8 @@
 
 /* Promo */
 .promo {
-  padding-top: 90px;
-  padding-bottom: 100px; }
+  padding-top: 70px;
+  padding-bottom: 75px; }
 
 .promo__title {
   font-size: 48px;
