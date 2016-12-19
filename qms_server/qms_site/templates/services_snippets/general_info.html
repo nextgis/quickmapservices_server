@@ -13,6 +13,7 @@
       {% trans "Submitter" %}: <a target="_blank" href="{% external_url 'ngid_public_profile' ''%}/{{ service.submitter.nextgis_guid }}">{{ service.submitter.username }}</a><br>
       {% endif %}
       {% trans "Source" %}: {{ service.source|default_if_not:n }}<br>
+      {% trans "Date added" %}: {{ service.created_at }}<br>
       {% trans "Last update" %}: {{ service.updated_at }}
   </div>
 </div>
