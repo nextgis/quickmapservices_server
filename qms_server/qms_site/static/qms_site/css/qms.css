@@ -255,7 +255,8 @@
   position: relative;
   background-color: #0070c5;
   padding-left: 24px;
-  padding-right: 24px; }
+  padding-right: 24px;
+  display: inline-block; }
 
 /* Video */
 .video {
