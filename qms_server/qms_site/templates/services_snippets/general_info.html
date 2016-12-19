@@ -9,10 +9,10 @@
       {% trans "Description" %}: {{ service.desc|default_if_not:n }} <br>
       {% trans "Type" %}: {{ service.type|upper|default_if_not:n }} <br>
       {% trans "CRS" %}: {{ service.epsg|default_if_none:n }} <br>
-      {% trans "Source" %}: {{ service.source|default_if_not:n }}
       {% if service.submitter %}
-      <br>
-      {% trans "Submitter" %}: <a target="_blank" href="{% external_url 'ngid_public_profile' ''%}/{{ service.submitter.nextgis_guid }}">{{ service.submitter.username }}</a>
+      {% trans "Submitter" %}: <a target="_blank" href="{% external_url 'ngid_public_profile' ''%}/{{ service.submitter.nextgis_guid }}">{{ service.submitter.username }}</a><br>
       {% endif %}
+      {% trans "Source" %}: {{ service.source|default_if_not:n }}<br>
+      {% trans "Last update" %}: {{ service.updated_at }}
   </div>
 </div>

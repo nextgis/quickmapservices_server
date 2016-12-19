@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-19 08:33+0000\n"
+"POT-Creation-Date: 2016-12-19 09:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -322,13 +322,17 @@ msgstr "Тип"
 msgid "CRS"
 msgstr "Система координат"
 
-#: templates/services_snippets/general_info.html:12
+#: templates/services_snippets/general_info.html:13
+msgid "Submitter"
+msgstr "Добавил"
+
+#: templates/services_snippets/general_info.html:15
 msgid "Source"
 msgstr "Источник"
 
-#: templates/services_snippets/general_info.html:15
-msgid "Submitter"
-msgstr "Добавил"
+#: templates/services_snippets/general_info.html:16
+msgid "Last update"
+msgstr "Последнее изменение"
 
 #: templates/services_snippets/geojson_info.html:6
 msgid "GeoJSON info"
