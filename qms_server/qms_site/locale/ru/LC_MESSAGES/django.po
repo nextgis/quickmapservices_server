@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-19 10:26+0000\n"
+"POT-Creation-Date: 2016-12-19 10:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,7 @@ msgstr "Как использовать"
 #: templates/about.html:24
 msgid ""
 "public catalog and a&nbsp;service that allows you to&nbsp;add <a href=\"/"
-"\">a&nbsp;geodata service</a> (TMS, WMS, WFS, GeoJSON file) and have it&nbsp;"
+"\">a&nbsp;geodata service</a> (TMS, WMS, WFS, GeoJSON) and have it&nbsp;"
 "available in&nbsp;your favorite GIS software in&nbsp;just few clicks"
 msgstr ""
 "публичный каталог и&nbsp;сервис, который позволяет быстро добавлять <br "
@@ -56,7 +56,7 @@ msgstr "QMS уже можно использовать:"
 
 #: templates/about.html:42
 msgid "QGIS with"
-msgstr "в QGIS с помощью модуля"
+msgstr "QGIS — с помощью модуля"
 
 #: templates/about.html:42
 msgid "QuickMapServices plugin"
@@ -64,7 +64,7 @@ msgstr "QuickMapServices"
 
 #: templates/about.html:45
 msgid "ArcGIS with"
-msgstr "в QGIS с помощью модуля"
+msgstr "ArcGIS — с помощью модуля"
 
 #: templates/about.html:45
 msgid "ArcQMS plugin"
@@ -72,11 +72,11 @@ msgstr "ArcQMS"
 
 #: templates/about.html:50
 msgid "NextGIS Mobile"
-msgstr "в NextGIS Mobile"
+msgstr "NextGIS Mobile"
 
 #: templates/about.html:54
 msgid "NextGIS Web (coming soon!)"
-msgstr "в NextGIS Web (скоро!)"
+msgstr "NextGIS Web — (скоро!)"
 
 #: templates/about.html:57
 msgid "Add your software"
@@ -92,11 +92,11 @@ msgstr "Обратная связь"
 
 #: templates/about.html:60
 msgid ""
-"Report general QMS bugs and request features at <a href=\"https://github.com/"
-"nextgis/quickmapservices_server/\" target=\"_blank\">Github</a>"
+"Report qms.nextgis.com bugs and request features at <a href=\"https://github."
+"com/nextgis/quickmapservices_server/issues\" target=\"_blank\">Github</a>"
 msgstr ""
-"Оставить сообщения об&nbsp;ошибках QMS и&nbsp;предложения можно на&nbsp;<a "
-"href=\"https://github.com/nextgis/quickmapservices_server/\" target=\"_blank"
+"Оставить сообщения об&nbsp;ошибках qms.nextgis.com и&nbsp;предложения можно на&nbsp;<a "
+"href=\"https://github.com/nextgis/quickmapservices_server/issues\" target=\"_blank"
 "\">Github</a>"
 
 #: templates/about.html:61
