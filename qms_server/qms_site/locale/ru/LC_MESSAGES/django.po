@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-19 10:02+0000\n"
+"POT-Creation-Date: 2016-12-19 10:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,7 +60,7 @@ msgstr "в QGIS с помощью модуля"
 
 #: templates/about.html:42
 msgid "QuickMapServices plugin"
-msgstr ""
+msgstr "QuickMapServices"
 
 #: templates/about.html:45
 msgid "ArcGIS with"
@@ -68,7 +68,7 @@ msgstr "в QGIS с помощью модуля"
 
 #: templates/about.html:45
 msgid "ArcQMS plugin"
-msgstr ""
+msgstr "ArcQMS"
 
 #: templates/about.html:50
 msgid "NextGIS Mobile"
@@ -104,8 +104,8 @@ msgid "Contacts"
 msgstr "Контакты"
 
 #: templates/about.html:67
-msgid "Use QMS in QGIS"
-msgstr "Использование QMS в QGIS"
+msgid "Use QMS in QGIS and NextGIS Mobile"
+msgstr "Использование QMS в QGIS и NextGIS Mobile"
 
 #: templates/base_qms.html:13
 msgid "QuickMapServices: discover, share and use geospatial data services"
