@@ -64,7 +64,7 @@ msgstr ""
 
 #: templates/about.html:39
 msgid "log in"
-msgstr "войдите под существующим аккаунтом"
+msgstr "войдите"
 
 #: templates/about.html:40
 msgid "Click"
