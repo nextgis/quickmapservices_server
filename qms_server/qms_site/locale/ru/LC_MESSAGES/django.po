@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-19 06:53+0000\n"
+"POT-Creation-Date: 2016-12-19 08:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,75 +20,77 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: templates/about.html:5 templates/base_qms.html:15
+#: templates/about.html:6 templates/base_qms.html:15
 msgid "QMS"
 msgstr ""
 
-#: templates/about.html:10 templates/base_qms.html:20
+#: templates/about.html:11 templates/base_qms.html:20
 msgid "Services"
 msgstr "Сервисы"
 
-#: templates/about.html:11 templates/base_qms.html:21
+#: templates/about.html:12 templates/base_qms.html:21
 msgid "How to use"
 msgstr "Как использовать"
 
-#: templates/about.html:22
+#: templates/about.html:24
 msgid ""
-"public catalog and a&nbsp;service that allows you to&nbsp;add a&nbsp;geodata "
-"service (TMS, WMS, GeoJSON file and others) and have it&nbsp;available "
-"in&nbsp;your favorite GIS software in&nbsp;just few clicks"
+"public catalog and a&nbsp;service that allows you to&nbsp;add <a href=\"/"
+"\">a&nbsp;geodata service</a> (TMS, WMS, WFS, GeoJSON file) and have it&nbsp;"
+"available in&nbsp;your favorite GIS software in&nbsp;just few clicks"
 msgstr ""
-"публичный каталог и&nbsp;сервис, который позволяет быстро добавлять <br class='visible-lg-inline-block visible-md-inline-block'>"
-"источники геоданных (TMS, WMS, GeoJSON) и&nbsp;легко использовать их&nbsp;"
-"в&nbsp;любой ГИС."
+"публичный каталог и&nbsp;сервис, который позволяет быстро добавлять <br "
+"class='visible-lg-inline-block visible-md-inline-block'><a href=\"/"
+"\">источники геоданных</a> (TMS, WMS, WFS, GeoJSON) и&nbsp;легко "
+"использовать их&nbsp;в&nbsp;любой ГИС."
 
-#: templates/about.html:28
+#: templates/about.html:30
 msgid ""
 "No more explaining how to add TMS/WMS etc. in your GIS, just enter a name"
 msgstr ""
 "Больше не&nbsp;нужно долго объяснять, как&nbsp;подключить ваш&nbsp;TMS/"
 "WMS&nbsp;сервис в&nbsp;ГИС. Просто сообщите имя&nbsp;сервиса"
 
-#: templates/about.html:35
+#: templates/about.html:37
 msgid "You can use QMS catalog in:"
 msgstr "QMS уже можно использовать:"
 
-#: templates/about.html:40
-msgid ""
-"QGIS with <a href=\"http://nextgis.com/blog/quickmapservices/\" target="
-"\"_blank\">QuickMapServices plugin</a>"
-msgstr ""
-"в QGIS с&nbsp;помощью модуля <a href=\"http://nextgis.com/blog/"
-"quickmapservices/\" target=\"_blank\">QuickMapServices</a>"
+#: templates/about.html:42
+msgid "QGIS with"
+msgstr "в QGIS с помощью модуля"
 
-#: templates/about.html:43
-msgid ""
-"ArcGIS with <a href=\"http://nextgis.com/blog/quickmapservices/\" target="
-"\"_blank\">ArcQMS plugin</a>"
+#: templates/about.html:42
+msgid "QuickMapServices plugin"
 msgstr ""
-"в ArcGIS с&nbsp;помощью модуля <a href=\"http://nextgis.com/blog/"
-"quickmapservices/\" target=\"_blank\">ArcQMS</a>"
 
-#: templates/about.html:48
+#: templates/about.html:45
+msgid "ArcGIS with"
+msgstr "в QGIS с помощью модуля"
+
+#: templates/about.html:45
+msgid "ArcQMS plugin"
+msgstr ""
+
+#: templates/about.html:50
 msgid "NextGIS Mobile"
-msgstr ""
+msgstr "в NextGIS Mobile"
 
-#: templates/about.html:52
+#: templates/about.html:54
 msgid "NextGIS Web (coming soon!)"
 msgstr "в NextGIS Web (скоро!)"
 
-#: templates/about.html:55
-msgid ""
-"Read how you can <a href=\"http://docs.nextgis.com/qms_srv_dev/doc/api.html"
-"\" target=\"_blank\">add your software to the list</a>."
-msgstr "Прочитайте, как <a href=\"http://docs.nextgis.com/qms_srv_dev/doc/api.html"
-"\" target=\"_blank\">добавить поддержку QMS в&nbsp;другое программное обеспечение</a>."
+#: templates/about.html:57
+msgid "Read how you can"
+msgstr "Прочитайте, как "
 
-#: templates/about.html:56
-msgid "Contact us"
-msgstr "Контакты"
+#: templates/about.html:57
+msgid "add your software to the list"
+msgstr "добавить поддержку QMS в&nbsp;другое программное обеспечение "
 
 #: templates/about.html:58
+msgid "Feedback"
+msgstr "Обратная связь"
+
+#: templates/about.html:60
 msgid ""
 "Report general QMS bugs and request features at <a href=\"https://github.com/"
 "nextgis/quickmapservices_server/\" target=\"_blank\">Github</a>"
@@ -97,13 +99,13 @@ msgstr ""
 "href=\"https://github.com/nextgis/quickmapservices_server/\" target=\"_blank"
 "\">Github</a>"
 
-#: templates/about.html:59
-msgid "Detailed contact information"
-msgstr "Подробная контактная информация"
+#: templates/about.html:61
+msgid "Contacts"
+msgstr "Контакты"
 
-#: templates/about.html:65
-msgid "Add and use a service in QGIS"
-msgstr "Как добавить и&nbsp;использовать сервис в&nbsp;QGIS"
+#: templates/about.html:67
+msgid "Use QMS in QGIS"
+msgstr "Использование QMS в QGIS"
 
 #: templates/base_qms.html:13
 msgid "QuickMapServices: discover, share and use geospatial data services"
@@ -371,6 +373,37 @@ msgstr "Слои"
 #: views.py:70 views.py:73
 msgid "Invalid form param: service_type"
 msgstr ""
+
+#~ msgid "General questions"
+#~ msgstr "Общие вопросы"
+
+#~ msgid "Add and use a service in QGIS"
+#~ msgstr "Как добавить и&nbsp;использовать сервис в&nbsp;QGIS"
+
+#~ msgid "Detailed contact information"
+#~ msgstr "Подробная контактная информация"
+
+#~ msgid ""
+#~ "QGIS with <a href=\"http://nextgis.com/blog/quickmapservices/\" target="
+#~ "\"_blank\">QuickMapServices plugin</a>"
+#~ msgstr ""
+#~ "в QGIS с&nbsp;помощью модуля <a href=\"http://nextgis.com/blog/"
+#~ "quickmapservices/\" target=\"_blank\">QuickMapServices</a>"
+
+#~ msgid ""
+#~ "ArcGIS with <a href=\"http://nextgis.com/blog/quickmapservices/\" target="
+#~ "\"_blank\">ArcQMS plugin</a>"
+#~ msgstr ""
+#~ "в ArcGIS с&nbsp;помощью модуля <a href=\"http://nextgis.com/blog/"
+#~ "quickmapservices/\" target=\"_blank\">ArcQMS</a>"
+
+#~ msgid ""
+#~ "Read how you can <a href=\"http://docs.nextgis.com/qms_srv_dev/doc/api."
+#~ "html\" target=\"_blank\">add your software to the list</a>."
+#~ msgstr ""
+#~ "Прочитайте, как <a href=\"http://docs.nextgis.com/qms_srv_dev/doc/api.html"
+#~ "\" target=\"_blank\">добавить поддержку QMS в&nbsp;другое программное "
+#~ "обеспечение</a>."
 
 #, fuzzy
 #~| msgid "Y origin top"
