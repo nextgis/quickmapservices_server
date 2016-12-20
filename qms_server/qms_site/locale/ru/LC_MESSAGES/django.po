@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-19 15:51+0000\n"
+"POT-Creation-Date: 2016-12-20 10:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr ""
 msgid "Services"
 msgstr "Сервисы"
 
-#: templates/about.html:12 templates/base_qms.html:21
+#: templates/about.html:12 templates/about.html:37 templates/base_qms.html:21
 msgid "How to use"
 msgstr "Как использовать"
 
@@ -50,87 +50,109 @@ msgstr ""
 "Больше не&nbsp;нужно долго объяснять, как&nbsp;подключить ваш&nbsp;TMS/"
 "WMS&nbsp;сервис в&nbsp;ГИС. Просто сообщите имя&nbsp;сервиса"
 
-#: templates/about.html:37
-msgid "How does it work"
-msgstr "Как это работает"
+#: templates/about.html:40
+msgid "Search for geodata services"
+msgstr "Поиск источников геоданных"
 
-#: templates/about.html:39
+#: templates/about.html:41
+msgid ""
+"Find a geodata service you need in <a href=\"/\">QMS catalog</a> and add it "
+"to your project in a second."
+msgstr ""
+"Найдите источник нужных вам геоданных (сервис) в&nbsp;<a href=\"/\">каталоге "
+"QMS</a> и&nbsp;без&nbsp;труда подключите его в&nbsp;свой&nbsp;проект."
+
+#: templates/about.html:44
+msgid "Adding services"
+msgstr "Добавление сервисов"
+
+#: templates/about.html:46
 msgid "Register"
 msgstr "Зарегистрируйтесь"
 
-#: templates/about.html:39
+#: templates/about.html:46
 msgid "or"
 msgstr ""
 
-#: templates/about.html:39
+#: templates/about.html:46
 msgid "log in"
 msgstr "войдите"
 
-#: templates/about.html:40
+#: templates/about.html:47
 msgid "Click"
 msgstr "Нажмите"
 
-#: templates/about.html:40 templates/base_qms.html:33
+#: templates/about.html:47 templates/base_qms.html:33
 #: templates/edit_snippets/base_service.html:8
 #: templates/edit_snippets/base_service.html:113
 msgid "Add service"
 msgstr "Добавить сервис"
 
-#: templates/about.html:40
-msgid "and fill a&nbsp;short form"
-msgstr "и&nbsp;заполните короткую форму"
+#: templates/about.html:47
+msgid "and fill a&nbsp;short form to add TMS, WMS, WFS or GeoJSON"
+msgstr ", чтобы создать источник в&nbsp;формате TMS, WMS, WFS или&nbsp;GeoJSON"
 
-#: templates/about.html:41
-msgid ""
-"Use your service together with hundreds of others wherever QMS&nbsp;is&nbsp;"
-"supported"
-msgstr "Используйте добавленный сервис, как и&nbsp;любой другой из&nbsp;каталога, везде, где&nbsp;поддерживается QMS"
+#: templates/about.html:48
+msgid "Start using it right away"
+msgstr "Используйте его моментально во&nbsp;всех поддерживаемых приложениях"
 
-#: templates/about.html:45
+#: templates/about.html:52
+msgid "Open API for developers"
+msgstr "Открытый API для разработчиков приложений"
+
+#: templates/about.html:53
+msgid "Plug-in support"
+msgstr "Подключите поддержку"
+
+#: templates/about.html:53
+msgid "for hundreds of geodata services to your applications"
+msgstr "сотен сервисов в&nbsp;разрабатываемые приложения с&nbsp;помощью открытого&nbsp;API"
+
+#: templates/about.html:58
 msgid "You can use QMS catalog in"
-msgstr "QMS уже можно использовать"
+msgstr "QMS уже поддерживают"
 
-#: templates/about.html:50
+#: templates/about.html:63
 msgid "QGIS with"
 msgstr "QGIS — с помощью модуля"
 
-#: templates/about.html:50
+#: templates/about.html:63
 msgid "QuickMapServices plugin"
 msgstr "QuickMapServices"
 
-#: templates/about.html:53
+#: templates/about.html:66
 msgid "ArcGIS with"
 msgstr "ArcGIS — с помощью модуля"
 
-#: templates/about.html:53
+#: templates/about.html:66
 msgid "ArcQMS plugin"
 msgstr "ArcQMS"
 
-#: templates/about.html:58
+#: templates/about.html:71
 msgid "NextGIS Mobile"
 msgstr "NextGIS Mobile"
 
-#: templates/about.html:62
+#: templates/about.html:75
 msgid "NextGIS Web (coming soon!)"
 msgstr "NextGIS Web — (скоро!)"
 
-#: templates/about.html:65
+#: templates/about.html:78
 msgid "Add your software"
 msgstr "Добавьте поддержку QMS"
 
-#: templates/about.html:65
+#: templates/about.html:78
 msgid "to the list"
 msgstr "в свою программу"
 
-#: templates/about.html:74
+#: templates/about.html:87
 msgid "Use QMS in QGIS and NextGIS Mobile"
 msgstr "Использование QMS в QGIS и NextGIS Mobile"
 
-#: templates/about.html:80
+#: templates/about.html:93
 msgid "Feedback"
 msgstr "Обратная связь"
 
-#: templates/about.html:82
+#: templates/about.html:95
 msgid ""
 "Report qms.nextgis.com bugs and request features at <a href=\"https://github."
 "com/nextgis/quickmapservices_server/issues\" target=\"_blank\">Github</a>"
@@ -139,7 +161,7 @@ msgstr ""
 "на&nbsp;<a href=\"https://github.com/nextgis/quickmapservices_server/issues"
 "\" target=\"_blank\">Github</a>"
 
-#: templates/about.html:83
+#: templates/about.html:96
 msgid "Contacts"
 msgstr "Контакты"
 
@@ -412,6 +434,16 @@ msgstr "Слои"
 #: views.py:70 views.py:73
 msgid "Invalid form param: service_type"
 msgstr ""
+
+#~ msgid ""
+#~ "Use your service together with hundreds of others wherever QMS&nbsp;"
+#~ "is&nbsp;supported"
+#~ msgstr ""
+#~ "Используйте добавленный сервис, как и&nbsp;любой другой из&nbsp;каталога, "
+#~ "везде, где&nbsp;поддерживается QMS"
+
+#~ msgid "How does it work"
+#~ msgstr "Как это работает"
 
 #~ msgid "Read how you can"
 #~ msgstr "Прочитайте, как "

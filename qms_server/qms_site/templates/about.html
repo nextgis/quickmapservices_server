@@ -33,14 +33,27 @@
     <section class="section section--nopadding text-content">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-md-6">
-                    <h2>{% trans 'How does it work' %}</h2>
+                <div1 class="col-xs-12 col-md-6">
+                    <h2>{% trans 'How to use' %} QMS</h2>
                     <ul class="number-list list-unstyled">
-                        <li class="number-list__item"><a href="https://my.nextgis.com/signup" target="_blank">{% trans 'Register' %} </a> {% trans 'or' %}  <a href="{% url 'ngid_login' %}" target="_blank">{% trans 'log in' %} </a></li>
-                        <li class="number-list__item">{% trans 'Click' %}  &laquo;<a href="{% url 'create_service_view' %}" target="_blank">{% trans 'Add service' %} </a>&raquo; {% trans 'and fill a&nbsp;short form' %} </li>
-                        <li class="number-list__item">{% trans 'Use your service together with hundreds of others wherever QMS&nbsp;is&nbsp;supported' %}</li>
+                        <li class="number-list__item">
+                            <strong>{% trans 'Search for geodata services' %}</strong><br>
+                            <span class="small">{% blocktrans %}Find a geodata service you need in <a href="/">QMS catalog</a> and add it to your project in a second.{% endblocktrans %}</span>
+                        </li>
+                        <li class="number-list__item">
+                            <strong>{% trans 'Adding services' %}</strong><br>
+                            <ul class="small-list small">
+                                <li class="small-list__item"><a href="https://my.nextgis.com/signup" target="_blank">{% trans 'Register' %} </a> {% trans 'or' %}  <a href="{% url 'ngid_login' %}" target="_blank">{% trans 'log in' %} </a></li>
+                                <li class="small-list__item">{% trans 'Click' %}  &laquo;<a href="{% url 'create_service_view' %}" target="_blank">{% trans 'Add service' %}</a>&raquo; {% trans 'and fill a&nbsp;short form to add TMS, WMS, WFS or GeoJSON' %} </li>
+                                <li class="small-list__item">{% trans 'Start using it right away' %}!</li>
+                            </ul>
+                        </li>
+                        <li class="number-list__item">
+                            <strong>{% trans 'Open API for developers' %}</strong><br>
+                            <span class="small"><a href="http://docs.nextgis.com/qms_srv_dev/doc/api.html" target="_blank">{% trans 'Plug-in support' %}</a> {% trans 'for hundreds of geodata services to your applications' %}.</span>
+                        </li>
                     </ul>
-                </div>
+                </div1>
                 <div class="col-xs-12 col-md-6">
                     <h2>{% trans 'You can use QMS catalog in' %}</h2>
                     <ul class="icon-list list-unstyled">

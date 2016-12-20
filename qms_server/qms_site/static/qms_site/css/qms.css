@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Shadows (from mdl http://www.getmdl.io/) */
 /* Mixins */
 /* Social colors */
@@ -238,6 +239,22 @@
       background-color: #e5eef7;
       color: #0070c5;
       border-radius: 50%; }
+
+.small-list,
+.text-content .small-list {
+  margin-top: 8px;
+  list-style-type: none;
+  padding-left: 0; }
+
+.small-list__item {
+  position: relative;
+  padding-left: 20px; }
+
+.small-list__item::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  top: 0; }
 
 /* Section */
 .section {
