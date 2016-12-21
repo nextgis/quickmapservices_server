@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-20 10:22+0000\n"
+"POT-Creation-Date: 2016-12-21 14:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,7 +106,9 @@ msgstr "Подключите поддержку"
 
 #: templates/about.html:53
 msgid "for hundreds of geodata services to your applications"
-msgstr "сотен сервисов в&nbsp;разрабатываемые приложения с&nbsp;помощью открытого&nbsp;API"
+msgstr ""
+"сотен сервисов в&nbsp;разрабатываемые приложения с&nbsp;помощью "
+"открытого&nbsp;API"
 
 #: templates/about.html:58
 msgid "You can use QMS catalog in"
@@ -133,8 +135,8 @@ msgid "NextGIS Mobile"
 msgstr "NextGIS Mobile"
 
 #: templates/about.html:75
-msgid "NextGIS Web (coming soon!)"
-msgstr "NextGIS Web — (скоро!)"
+msgid "NextGIS Web — coming soon!"
+msgstr "NextGIS Web — скоро!"
 
 #: templates/about.html:78
 msgid "Add your software"
