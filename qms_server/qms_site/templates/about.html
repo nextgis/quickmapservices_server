@@ -6,8 +6,8 @@
     <a class="withoutripple" href="{% url 'site_geoservice_list' %}">{% trans 'QMS' %}</a>
 {% endblock %}
 
-{% block header_menu %}dsf {{ LANGUAGE_CODE }}
-    <nav class="header-menu">
+{% block header_menu %}
+    <nav class="header-menu hidden-xs">
         <a href="{% url 'site_geoservice_list' %}" class="header-menu__item withoutripple">{% trans 'Services' %}</a>
         <a href="{% url 'site_about' %}" class="header-menu__item active withoutripple">{% trans 'How to use' %}</a>
     </nav>
@@ -21,7 +21,7 @@
         <div class="container">
             <h1 class="promo__title">Quick Map Services</h1>
             <div class="promo__text">
-                {% blocktrans %}public catalog and a&nbsp;service that allows you to&nbsp;add <a href="/">a&nbsp;geodata service</a> (TMS, WMS, WFS, GeoJSON file) and have it&nbsp;available in&nbsp;your favorite GIS software in&nbsp;just few clicks{% endblocktrans %}
+                {% blocktrans %} open <a href="/">catalog of geodata sources</a> and a&nbsp;way to&nbsp;add&nbsp;them to&nbsp;your&nbsp;GIS in&nbsp;one&nbsp;click{% endblocktrans %}
             </div>
         </div>
     </section>
@@ -30,45 +30,72 @@
         {% trans 'No more explaining how to add TMS/WMS etc. in your GIS, just enter a name' %}
         </span>
     </section>
-    <section class="section text-content">
+    <section class="section section--nopadding text-content">
         <div class="container">
             <div class="row">
-            <div class="col-xs-12 col-md-6">
-                <h2>{% trans 'You can use QMS catalog in:' %}</h2>
-                <ul class="icon-list list-unstyled">
-                    <li class="icon-list__item">
-                        <i class="icon-list__icon material-icons">desktop_windows</i>
-                        <div class="icon-list__subitem">
-                            {% trans 'QGIS with' %} <a href="{% external_url 'nextgis_com' LANGUAGE_CODE %}/blog/quickmapservices/" target="_blank">{% trans 'QuickMapServices plugin' %}</a>
-                        </div>
-                        <div class="icon-list__subitem">
-                            {% trans 'ArcGIS with' %} <a href="{% external_url 'nextgis_com' LANGUAGE_CODE %}/blog/quickmapservices/" target="_blank">{% trans 'ArcQMS plugin' %}</a>
-                        </div>
-                    </li>
-                    <li class="icon-list__item">
-                        <i class="icon-list__icon material-icons">phone_android</i>
-                        <a href="{% external_url 'nextgis_com' LANGUAGE_CODE %}/blog/ngm-2-4/" target="_blank">{% blocktrans %}NextGIS Mobile{% endblocktrans %}</a>
-                    </li>
-                    <li class="icon-list__item">
-                        <i class="icon-list__icon material-icons">language</i>
-                        {% blocktrans %}NextGIS Web (coming soon!){% endblocktrans %}
-                    </li>
-                </ul>
-                <p>{% trans 'Read how you can' %} <a href="http://docs.nextgis.com/qms_srv_dev/doc/api.html" target="_blank">{% trans 'add your software to the list' %}</a>.</p>
-                <h2>{% trans 'Feedback' %}</h2>
-                <ul>
-                    <li>{% blocktrans %}Report general QMS bugs and request features at <a href="https://github.com/nextgis/quickmapservices_server/" target="_blank">Github</a>{% endblocktrans %}</li>
-                    <li><a href="{% external_url 'nextgis_com' LANGUAGE_CODE %}/contact" target="_blank">{% blocktrans %}Contacts{% endblocktrans %}</a></li>
-                </ul>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="video">
-                    <iframe width="100%" height="320" src="https://www.youtube.com/embed/TzLkF030Jrs" frameborder="0" allowfullscreen></iframe>
-                    <div class="video__caption">{% trans 'Use QMS in QGIS' %}</div>
+                <div1 class="col-xs-12 col-md-6">
+                    <h2>{% trans 'How to use' %} QMS</h2>
+                    <ul class="number-list list-unstyled">
+                        <li class="number-list__item">
+                            <strong>{% trans 'Search for geodata services' %}</strong><br>
+                            <span class="small">{% blocktrans %}Find a geodata service you need in <a href="/">QMS catalog</a> and add it to your project in a second.{% endblocktrans %}</span>
+                        </li>
+                        <li class="number-list__item">
+                            <strong>{% trans 'Adding services' %}</strong><br>
+                            <ul class="small-list small">
+                                <li class="small-list__item"><a href="https://my.nextgis.com/signup" target="_blank">{% trans 'Register' %} </a> {% trans 'or' %}  <a href="{% url 'ngid_login' %}" target="_blank">{% trans 'log in' %} </a></li>
+                                <li class="small-list__item">{% trans 'Click' %}  &laquo;<a href="{% url 'create_service_view' %}" target="_blank">{% trans 'Add service' %}</a>&raquo; {% trans 'and fill a&nbsp;short form to add TMS, WMS, WFS or GeoJSON' %} </li>
+                                <li class="small-list__item">{% trans 'Start using it right away' %}!</li>
+                            </ul>
+                        </li>
+                        <li class="number-list__item">
+                            <strong>{% trans 'Open API for developers' %}</strong><br>
+                            <span class="small"><a href="http://docs.nextgis.com/qms_srv_dev/doc/api.html" target="_blank">{% trans 'Plug-in support' %}</a> {% trans 'for hundreds of geodata services to your applications' %}.</span>
+                        </li>
+                    </ul>
+                </div1>
+                <div class="col-xs-12 col-md-6">
+                    <h2>{% trans 'You can use QMS catalog in' %}</h2>
+                    <ul class="icon-list list-unstyled">
+                        <li class="icon-list__item">
+                            <i class="icon-list__icon material-icons">desktop_windows</i>
+                            <div class="icon-list__subitem">
+                                {% trans 'QGIS with' %} <a href="{% external_url 'nextgis_com' LANGUAGE_CODE %}/blog/quickmapservices/" target="_blank">{% trans 'QuickMapServices plugin' %}</a>
+                            </div>
+                            <div class="icon-list__subitem">
+                                {% trans 'ArcGIS with' %} <a href="https://my.nextgis.com/downloads/software/arcqms/ArcQMSInstaller.msi" target="_blank">{% trans 'ArcQMS plugin' %}</a>
+                            </div>
+                        </li>
+                        <li class="icon-list__item">
+                            <i class="icon-list__icon material-icons">phone_android</i>
+                            <a href="{% external_url 'nextgis_com' LANGUAGE_CODE %}/blog/ngm-2-4/" target="_blank">{% blocktrans %}NextGIS Mobile{% endblocktrans %}</a>
+                        </li>
+                        <li class="icon-list__item">
+                            <i class="icon-list__icon material-icons">language</i>
+                            {% blocktrans %}NextGIS Web — coming soon!{% endblocktrans %}
+                        </li>
+                    </ul>
+                    <p><a href="http://docs.nextgis.com/qms_srv_dev/doc/api.html" target="_blank">{% trans 'Add your software' %}</a> {% trans 'to the list' %}.</p>
                 </div>
             </div>
-        </div>
-        </div>
+        </div><!--/.container -->
+    </section>
+    <section class="section section--nopadding">
+        <div class="container">
+            <div class="video">
+                <iframe width="100%" height="460" src="https://www.youtube.com/embed/9Y0_uUH7zns" frameborder="0" allowfullscreen></iframe>
+                <div class="video__caption">{% trans 'Use QMS in QGIS and NextGIS Mobile' %}</div>
+            </div>
+        </div><!--/.container -->
+    </section>
+    <section class="section section--nopadding text-content">
+        <div class="container">
+            <h2>{% trans 'Feedback' %}</h2>
+            <ul>
+                <li>{% blocktrans %}Report qms.nextgis.com bugs and request features at <a href="https://github.com/nextgis/quickmapservices_server/issues" target="_blank">Github</a>{% endblocktrans %}</li>
+                <li><a href="{% external_url 'nextgis_com' LANGUAGE_CODE %}/contact" target="_blank">{% blocktrans %}Contacts{% endblocktrans %}</a></li>
+            </ul>
+        </div><!--/.container -->
     </section>
 {% endblock %}
 

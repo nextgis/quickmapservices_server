@@ -20,7 +20,7 @@
         <div class="col-xs-12 col-sm-4">
             <div class="form-group label-floating clearfix {% if form.epsg.errors %}has-error{% endif %}">
                 <label class="control-label" for="{{form.epsg.id_for_label}}">{% trans 'CRS ID' %}</label>
-                {{ form.epsg | add_class:'form-control' | attr_with_id:'aria-describedby:$id-error' }}
+                {{ form.epsg | add_class:'form-control' | attr_with_id:'aria-describedby:$id-error' | attr:'type:text' }}
                 {% if form.epsg.errors %}
                 <span id="{{ form.epsg.auto_id }}-error" class="has-error">{{ form.epsg.errors }}</span>
                 {% endif %}
