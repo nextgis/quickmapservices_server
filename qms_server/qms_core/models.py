@@ -159,17 +159,17 @@ class GeoService(models.Model):
     icon = models.ForeignKey(ServiceIcon, models.SET_NULL, blank=True, null=True)
     # license
     license_name = models.CharField(_('license name'), max_length=256, blank=True, null=True)
-    license_url = models.URLField(_('license url'), blank=True, null=True)
+    license_url = models.URLField(_('license url'), max_length=512, blank=True, null=True)
     copyright_text = models.CharField(_('copyright text'), max_length=2048, blank=True, null=True)
-    copyright_url = models.URLField(_('copyright url'), blank=True, null=True)
-    terms_of_use_url = models.URLField(_('terms of use url'), blank=True, null=True)
+    copyright_url = models.URLField(_('copyright url'), max_length=512, blank=True, null=True)
+    terms_of_use_url = models.URLField(_('terms of use url'), max_length=512, blank=True, null=True)
     # creation & update info
     submitter = models.ForeignKey(NextgisUser, on_delete=models.SET_NULL, to_field='nextgis_guid', null=True)
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
     updated_at = models.DateTimeField(_('updated at'), auto_now=True)
     # source info
     source = models.TextField(_('source'), blank=True, null=True)
-    source_url = models.URLField(_('source url'), blank=True, null=True)
+    source_url = models.URLField(_('source url'), max_length=512, blank=True, null=True)
 
     # tags
 
@@ -181,7 +181,7 @@ class GeoService(models.Model):
 class TmsService(GeoService):
     service_type = 'tms'
 
-    url = models.URLField(blank=False, null=False)
+    url = models.URLField(max_length=512, blank=False, null=False)
     z_min = models.IntegerField(blank=True, null=True)
     z_max = models.IntegerField(blank=True, null=True)
     y_origin_top = models.BooleanField(default=False, blank=True)
@@ -205,7 +205,7 @@ class WmsService(GeoService):
 
     service_type = 'wms'
 
-    url = models.URLField(blank=False, null=False)
+    url = models.URLField(max_length=512, blank=False, null=False)
     params = models.CharField(max_length=1024, blank=True, null=True)
     layers = models.CharField(max_length=1024, blank=True, null=True)
     turn_over = models.BooleanField(default=False, blank=True)
@@ -215,11 +215,11 @@ class WmsService(GeoService):
 class WfsService(GeoService):
     service_type = 'wfs'
 
-    url = models.URLField(blank=False, null=False)
+    url = models.URLField(max_length=512, blank=False, null=False)
     layer = models.CharField(_('Layer name ([namespace:]featuretype)'), max_length=1024, blank=False, null=False)
 
 
 class GeoJsonService(GeoService):
     service_type = 'geojson'
 
-    url = models.URLField(blank=False, null=False)
+    url = models.URLField(max_length=512, blank=False, null=False)
