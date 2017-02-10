@@ -59,7 +59,7 @@ class GeoServiceListView(ListAPIView):
     filter_backends = (OrderingFilter, SearchFilter, DjangoFilterBackend)
     filter_fields = ('type', 'epsg', 'submitter')
     search_fields = ('name', 'desc')
-    ordering_fields = ('id', 'name', )
+    ordering_fields = ('id', 'name', 'created_at', 'updated_at')
     ordering = ('name',)
 
 
@@ -142,7 +142,7 @@ class ApiRootView(APIView):
             ('geoservices_type_filter_url', simple_url('geoservice_list') + '?type={tms|wms|wfs|geojson}'),
             ('geoservices_epsg_filter_url', simple_url('geoservice_list') + '?epsg={any_epsg_code}'),
             ('geoservices_search_url', simple_url('geoservice_list') + '?search={q}'),
-            ('geoservices_ordering_url', simple_url('geoservice_list') + '?ordering={name|-name|id|-id}'),
+            ('geoservices_ordering_url', simple_url('geoservice_list') + '?ordering={name|-name|id|-id|created_at|-created_at|updated_at|-updated_at'),
             ('geoservices_pagination_url', simple_url('geoservice_list') + '?limit={int}&offset={int}'),
             ('geoservice_detail_url', repl_id_ulr('geoservice_detail')),
             ('icons_url', simple_url('service_icon_list')),

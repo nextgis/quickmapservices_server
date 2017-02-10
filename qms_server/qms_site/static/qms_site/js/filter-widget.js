@@ -58,7 +58,7 @@ searcher = new SearchEngine({
   param: "search",
   delay: 500,
   on_success: render_services,
-  default_order: '-id'
+  default_order: '-updated_at'
 });
 
 searcher.addTextBox($("#txt_search").first());
