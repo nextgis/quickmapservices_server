@@ -38,14 +38,17 @@ SearchEngine.prototype.resetTimer = function (timer) {
 };
 
 SearchEngine.prototype.process = function () {
-    var req_params = $.extend({}, this._activeFilters);
+    var req_params = $.extend({}, this._activeFilters),
+        that = this;
     req_params[this._settings.param] = this._editBox.val();
     if(!this._editBox.val())
         req_params['ordering'] = this._settings.default_order;
     else
         req_params['ordering'] = this._settings.search_order;
     $.get(this._settings.url, req_params, $.proxy(function (data) {
-         this._settings.on_success(data);
+         this._settings.on_success(data).then(function(){
+            that.stop();
+         });
     }, this));
 };
 
@@ -53,13 +56,12 @@ SearchEngine.prototype.addTextBox = function (control) {
     this._editBox = control;
     control
         .focus()
-        .ajaxStart(this.start)
-        .ajaxStop(this.stop)
         .keyup($.proxy(function () {
             if (control.val() != this._previousValue) {
                 this.resetTimer(this._timer);
 
                 this._timer = setTimeout($.proxy(function () {
+                    this.start();
                     this.process();
                 }, this), this._settings.delay);
 
@@ -71,8 +73,6 @@ SearchEngine.prototype.addTextBox = function (control) {
 SearchEngine.prototype.addFilterButton = function (control, filter_name, filter_val) {
     this._filterButtons.push(control);
     control
-        .ajaxStart(this.start)
-        .ajaxStop(this.stop)
         .click( $.proxy(function (e) {
             e.preventDefault();
 
@@ -87,6 +87,7 @@ SearchEngine.prototype.addFilterButton = function (control, filter_name, filter_
             // update
             this.resetTimer(this._timer);
             this._timer = setTimeout($.proxy(function () {
+                    this.start();
                     this.process();
             }, this), this._settings.delay);
         }, this));

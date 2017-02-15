@@ -26,7 +26,8 @@
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 2; }
+  z-index: 2;
+  border-bottom: 0; }
 
 .qms-list__meta {
   color: #888;
@@ -336,6 +337,58 @@
   text-align: right;
   margin-top: 6px;
   margin-bottom: -4px; }
+
+/* Loader */
+.loader {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.8);
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  z-index: 39; }
+  .loader__pic {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto; }
+
+.spinner {
+  width: 64px;
+  height: 64px; }
+
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #0070c5;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+  animation: sk-bounce 2.0s infinite ease-in-out; }
+
+.double-bounce2 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s; }
+
+@-webkit-keyframes sk-bounce {
+  0%, 100% {
+    -webkit-transform: scale(0); }
+  50% {
+    -webkit-transform: scale(1); } }
+
+@keyframes sk-bounce {
+  0%, 100% {
+    transform: scale(0);
+    -webkit-transform: scale(0); }
+  50% {
+    transform: scale(1);
+    -webkit-transform: scale(1); } }
 
 /* Input group */
 .input-group .form-group {

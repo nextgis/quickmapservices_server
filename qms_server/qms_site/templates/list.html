@@ -46,6 +46,7 @@
 {% endblock %}
 
 {% block extra_body %}
+    {% include "snippets/loader.html" %}
     <script type="text/javascript">
         element_template_url = "{% static 'qms_site/templates/service_element.html' %}";
         no_results_templ_url = "{% static 'qms_site/templates/no_results.html' %}";
@@ -58,6 +59,7 @@
     </script>
 
     <script src="{% static 'qms_site/js/vendor/handlebars.min.js' %}"></script>
+    <script src="{% static 'qms_site/js/promise.min.js' %}"></script>
     <script src="{% static 'qms_site/js/search_engine.js' %}"></script>
     <script src="{% static 'qms_site/js/filter-widget.js' %}"></script>
 {% endblock %}

@@ -15,40 +15,42 @@ var foundService = 0;
 
 // renderer handler
 render_services = function(data) {
-    // clear
-    $("#results").fadeOut(200, function () {
-        $("#results").empty().show();
+    return new Promise(function(resolve, reject) {
+        // clear
+        $("#results").fadeOut(200, function () {
+            $("#results").empty().show();
 
-    foundService = 0;
+            foundService = 0;
 
-    // render
-    if(data.length < 1) {
-        var context = {};
-        var elem    = no_result_template(context);
-        $(elem).hide().appendTo('#results').fadeIn(200);
+            // render
+            if (data.length < 1) {
+                var context = {};
+                var elem = no_result_template(context);
+                $(elem).hide().appendTo('#results').fadeIn(200);
 
-        $('#service-count')[0].innerText = foundService;
-    }
-    else {
-        $.each(data, function (index, service) {
-            var context = {
-                service: service,
-                service_desc: service.desc ? service.desc : "None",
-                service_epsg: service.epsg ? service.epsg : "None",
-                service_url: service_url.replace('%id', service.id),
-                icon_url: service.icon ? icon_url.replace('%id', service.icon) : default_icon_url,
-                updated_at: service.updated_at!=null ? (new Date(service.updated_at)).toISOString().slice(0, 10) : "None",
-                my_service: user_guid && user_guid===service.submitter,
-                edit_url: edit_url.replace('%id', service.id)
-            };
-            var elem    = element_template(context);
-            $(elem).hide().appendTo('#results').fadeIn(200);
+                $('#service-count')[0].innerText = foundService;
+            }
+            else {
+                $.each(data, function (index, service) {
+                    var context = {
+                        service: service,
+                        service_desc: service.desc ? service.desc : "None",
+                        service_epsg: service.epsg ? service.epsg : "None",
+                        service_url: service_url.replace('%id', service.id),
+                        icon_url: service.icon ? icon_url.replace('%id', service.icon) : default_icon_url,
+                        updated_at: service.updated_at != null ? (new Date(service.updated_at)).toISOString().slice(0, 10) : "None",
+                        my_service: user_guid && user_guid === service.submitter,
+                        edit_url: edit_url.replace('%id', service.id)
+                    };
+                    var elem = element_template(context);
+                    $(elem).hide().appendTo('#results').show();
 
-            foundService += 1;
-            $('#service-count')[0].innerText = foundService;
+                    foundService += 1;
+                    $('#service-count')[0].innerText = foundService;
+                });
+            }
+            resolve();
         });
-    }
-
     });
 };
 
@@ -56,7 +58,7 @@ render_services = function(data) {
 searcher = new SearchEngine({
   url: "/api/v1/geoservices/",
   param: "search",
-  delay: 500,
+  delay: 50,
   on_success: render_services,
   default_order: '-updated_at'
 });
