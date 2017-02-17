@@ -46,6 +46,7 @@
 {% endblock %}
 
 {% block extra_body %}
+    {{block.super}}
     {% include "snippets/loader.html" %}
     <script type="text/javascript">
         element_template_url = "{% static 'qms_site/templates/service_element.html' %}";
@@ -57,7 +58,6 @@
 
         user_guid = "{{ request.user.nextgis_guid}}";
     </script>
-
     <script src="{% static 'qms_site/js/vendor/handlebars.min.js' %}"></script>
     <script src="{% static 'qms_site/js/promise.min.js' %}"></script>
     <script src="{% static 'qms_site/js/search_engine.js' %}"></script>

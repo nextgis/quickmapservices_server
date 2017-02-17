@@ -5,7 +5,12 @@
 
 {% block body_content %}
     <div class="btn-group toolbar pull-right" role="group">
-        <a href="mailto:info@nextgis.com?subject={% trans 'Problem with service' %} {{ service.name }} {% trans 'in' %} QMS" class="btn btn-tool">{% trans 'Report a problem' %}</a>
+        <a href="#" class="btn btn-tool"
+            data-toggle="modal"
+            data-target=".report-problem-popup"
+            data-service-title="{{ service.name }}"
+            data-service-id="{{ service.id }}"
+            data-service-url="{{ service.url }}">{% trans 'Report a problem' %}</a>
         {% if request.user.nextgis_guid != None and  service.submitter_id == request.user.nextgis_guid  %}
             <a href="{% url 'edit_service_view' pk=service.id %}" class="btn btn-tool">{% trans 'Edit' %}</a>
         {% endif %}
@@ -41,6 +46,7 @@
 {% endblock %}
 
 {% block extra_body %}
+    {{block.super}}
     <script src="{% static 'qms_site/js/vendor/leaflet.js' %}"></script>
     <script src="{% static 'qms_site/js/vendor/proj4-compressed.js' %}"></script>
     <script src="{% static 'qms_site/js/vendor/proj4leaflet.js' %}"></script>

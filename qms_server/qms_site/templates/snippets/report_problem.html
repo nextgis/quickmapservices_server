@@ -1,0 +1,38 @@
+{% load i18n %}
+
+<div class="report-problem-popup modal fade tabindex="-1" role="dialog" {% if restore_problem_service %} data-show="true" {% else %} data-show="false" {% endif %}>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-title">{% trans 'Report a problem' %}</div>
+                <div class="modal-subtitle"><a href="#"></a></div>
+                <form action="#" class="form--margin_big form-validate">
+                    <input type="hidden" value="{{restore_problem_service|default_if_none:''}}" id="report_service_id" name="report_service_id">
+                    <div class="form-group label-floating clearfix ">
+                        <label class="control-label" for="report_email">{% trans 'Your e-mail (optional)' %}</label>
+                        <input aria-describedby="report_email-error" class="form-control form-control--notignore" id="report_email" name="report_email" type="email" value="{{ request.user.email }}" />
+                        <div class="help-block">We will send this address to the service's author</div>
+                    </div>
+                    <div class="form-group label-floating clearfix is-empty ">
+                        <label class="control-label" for="report_type">{% trans "Type of problem" %}</label>
+                        <div class="select-wrapper">
+                            <select aria-describedby="report_type-error" class="form-control required" id="report_type" name="report_type">
+                                <option class="hidden" selected></option>
+                                <option value="ru" >Service not working</option>
+                                <option value="en">License violation</option>
+                                <option value="en2">Other problem</option>
+                            </select>
+                            <i class="select__icon material-icons">keyboard_arrow_down</i>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix ">
+                        <label class="control-label" for="report_message">Your message</label>
+                        <textarea aria-describedby="report_message-error" class="form-control required" id="report_message" name="report_message" rows="5" placeholder="Describe the problem. You can also specify how it can be fixed."/></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-raised btn-primary">{% trans 'Send message' %}</button>
+                </form>
+            </div>
+            <a href="#" data-dismiss="modal" class="material-icons icon-close close"></a>
+        </div>
+    </div>
+</div>

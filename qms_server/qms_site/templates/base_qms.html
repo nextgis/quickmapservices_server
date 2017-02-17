@@ -33,6 +33,10 @@
     <a class="btn btn-action btn-primary hide-on-sm" href="{% url 'create_service_view' %}">{% trans 'Add service' %}</a>
 {% endblock %}
 
+{% block popups %}
+    {% include "snippets/report_problem.html" %}
+{% endblock %}
+
 {% block counters %}
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -63,4 +67,8 @@
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/41676549" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
+{% endblock %}
+
+{% block extra_body %}
+    <script src="{% static 'qms_site/js/report-problem.js' %}"></script>
 {% endblock %}
