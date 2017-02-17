@@ -20,6 +20,10 @@
         prevServiceId = currentServiceId;
     });
 
+    if (getURLParameter("show-report-problem")){
+        $('[data-target=".report-problem-popup"]').click();
+    }
+
     function clearReport(){
         reportForm.find("input,select,textarea").each(function(){
             this.value = "";
