@@ -1,12 +1,7 @@
 <div class="qms-list__item panel panel-default" >
     <div class="panel-body">
         <div class="qms-list__item-toolbar btn-group toolbar pull-right" role="group">
-            <a href="#" class="btn btn-tool btn-tool--icon material-icons feedback" title="Report a problem"
-               data-toggle="modal"
-               data-target=".report-problem-popup"
-               data-service-title="{{ service.name }}"
-               data-service-id="{{ service.id }}"
-               data-service-url="{{ service_url }}"></a>
+            <a href="{{ service_url }}?show-report-problem=1" class="btn btn-tool btn-tool--icon material-icons feedback" title="Report a problem" target="_blank"></a>
             {{#if my_service}}
                 <a href="{{ edit_url }}" class="btn btn-tool btn-tool--icon material-icons edit" title="Edit"></a>
             {{/if}}
