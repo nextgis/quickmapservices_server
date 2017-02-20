@@ -40,10 +40,12 @@
                     <div class="captcha-panel row">
                         <div class="col-xs-12 col-xs-mb col-sm-7 captcha-panel__captcha">
                         {% if report_form.captcha %}
-                            {{ report_form.captcha }}
-                            {% if report_form.captcha.errors %}
-                            <span id="{{ report_form.captcha.auto_id }}-error" class="has-error">{{ report_form.captcha.errors }}</span>
-                            {% endif %}
+                            <div class="form-group">
+                                {{ report_form.captcha }}
+                                {% if report_form.captcha.errors %}
+                                <span id="{{ report_form.captcha.auto_id }}-error" class="has-error">{{ report_form.captcha.errors }}</span>
+                                {% endif %}
+                            </div>
                         {% endif %}
                         </div>
                         <div class="col-xs-12 col-xs-mb col-sm-5 captcha-panel__btn">
