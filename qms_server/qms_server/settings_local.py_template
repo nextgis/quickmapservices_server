@@ -29,3 +29,20 @@ CSRF_COOKIE_SECURE = True
 # NGID Auth
 NGID_CLIENT_ID = # SET THIS!
 NGID_CLIENT_SECRET = # SET THIS!
+
+
+# reCaptcha settings
+RECAPTCHA_PUBLIC_KEY = # SET THIS!
+RECAPTCHA_PRIVATE_KEY = # SET THIS!
+NOCAPTCHA = True
+
+
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = ''                     # SET THIS!
+EMAIL_PORT = 587                    # SET THIS!
+EMAIL_HOST_USER = ''                # SET THIS!
+EMAIL_HOST_PASSWORD = ''            # SET THIS!
+EMAIL_USE_TLS = True                # SET THIS!
+EMAIL_USE_SSL = False               # SET THIS!
+DEFAULT_FROM_EMAIL = ''             # SET THIS!

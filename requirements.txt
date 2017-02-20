@@ -13,3 +13,5 @@ django-widget-tweaks>=1.4.1
 
 requests>=2.11.1,<=2.12
 requests_oauthlib==0.7.0
+
+django-recaptcha>=1.2.1

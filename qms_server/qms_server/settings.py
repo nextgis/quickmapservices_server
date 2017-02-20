@@ -59,6 +59,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'corsheaders',
+    'captcha',
 
     'widget_tweaks',
     'django_gravatar',
@@ -96,6 +97,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'qms_server.wsgi.application'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'qms@nextgis.com'
+EMAIL_SUBJECT_PREFIX = '[NextGIS QMS feedback] '
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
