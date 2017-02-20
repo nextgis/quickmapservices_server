@@ -19,7 +19,7 @@
                         {% endif %}
                         <div class="help-block">We will send this address to the service's author</div>
                     </div>
-                    <div class="form-group label-floating clearfix is-empty ">
+                    <div class="form-group label-floating clearfix">
                         <label class="control-label" for="{{report_form.report_type.id_for_label}}">{% trans 'Type of problem' %}</label>
                         <div class="select-wrapper">
                             {{ report_form.report_type|add_class:'form-control required'|attr_with_id:'aria-describedby:$id-error' }}
@@ -37,15 +37,21 @@
                         <span id="{{ report_form.report_message.auto_id }}-error" class="has-error">{{ report_form.report_message.errors }}</span>
                         {% endif %}
                     </div>
-                    {% if report_form.captcha %}
-                    <div class="form-group clearfix ">
-                        {{ report_form.captcha }}
-                        {% if report_form.captcha.errors %}
-                        <span id="{{ report_form.captcha.auto_id }}-error" class="has-error">{{ report_form.captcha.errors }}</span>
+                    <div class="captcha-panel row">
+                        <div class="col-xs-12 col-xs-mb col-sm-7 captcha-panel__captcha">
+                        {% if report_form.captcha %}
+                            <div class="form-group">
+                                {{ report_form.captcha }}
+                                {% if report_form.captcha.errors %}
+                                <span id="{{ report_form.captcha.auto_id }}-error" class="has-error">{{ report_form.captcha.errors }}</span>
+                                {% endif %}
+                            </div>
                         {% endif %}
+                        </div>
+                        <div class="col-xs-12 col-xs-mb col-sm-5 captcha-panel__btn">
+                            <button type="submit" class="btn btn-xlg btn-raised btn-primary">{% trans 'Send message' %}</button>
+                        </div>
                     </div>
-                    {% endif %}
-                    <button type="submit" class="btn btn-raised btn-primary">{% trans 'Send message' %}</button>
                 </form>
             </div>
             <a href="#" data-dismiss="modal" class="material-icons icon-close close"></a>
