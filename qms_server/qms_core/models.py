@@ -142,6 +142,7 @@ class ServiceIcon(models.Model):
     def __str__(self):
         return self.name
 
+
 # SERVICES
 @python_2_unicode_compatible
 class GeoService(models.Model):
