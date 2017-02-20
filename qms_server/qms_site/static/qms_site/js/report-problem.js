@@ -14,6 +14,7 @@
         serviceNameElem.text($(e.relatedTarget).data("service-title"));
         serviceNameElem.attr("href", $(e.relatedTarget).data("service-url"));
         serviceIdInput.val(currentServiceId);
+        reportForm.find("select").change();
     });
 
     reportPopup.on('hidden.bs.modal', function (e) {

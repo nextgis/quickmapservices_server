@@ -19,7 +19,7 @@
                         {% endif %}
                         <div class="help-block">We will send this address to the service's author</div>
                     </div>
-                    <div class="form-group label-floating clearfix is-empty ">
+                    <div class="form-group label-floating clearfix">
                         <label class="control-label" for="{{report_form.report_type.id_for_label}}">{% trans 'Type of problem' %}</label>
                         <div class="select-wrapper">
                             {{ report_form.report_type|add_class:'form-control required'|attr_with_id:'aria-describedby:$id-error' }}
