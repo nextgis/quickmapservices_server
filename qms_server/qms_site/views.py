@@ -41,6 +41,8 @@ class ReportFormMixin(FormMixin, ProcessFormView):
     def get_context_data(self, **kwargs):
         if 'report_form' not in kwargs:
             kwargs['report_form'] = self.get_form()
+        if 'restore_problem_service' not in kwargs:
+            kwargs['restore_problem_service'] = None
         return super(ReportFormMixin, self).get_context_data(**kwargs)
 
     def get_initial(self):

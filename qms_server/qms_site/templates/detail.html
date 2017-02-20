@@ -10,8 +10,8 @@
             data-target=".report-problem-popup"
             data-service-title="{{ service.name }}"
             data-service-id="{{ service.id }}"
-            data-service-url="{{ service.url }}">{% trans 'Report a problem' %}</a>
-        {% if request.user.nextgis_guid != None and  service.submitter_id == request.user.nextgis_guid  %}
+            data-service-url="">{% trans 'Report a problem' %}</a>
+        {% if request.user.is_authenticated and  service.submitter_id == request.user.nextgis_guid  %}
             <a href="{% url 'edit_service_view' pk=service.id %}" class="btn btn-tool">{% trans 'Edit' %}</a>
         {% endif %}
     </div>

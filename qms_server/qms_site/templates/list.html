@@ -30,7 +30,7 @@
                 <li class="filter-links__item">
                     <a class="filter-link" id="flt_geojson" href="#"><span class="filter-link__inner">GeoJSON</span></a>
                 </li>
-                {% if request.user.nextgis_guid %}
+                {% if request.user.is_authenticated %}
                 <li class="filter-links__item">
                     <a class="filter-link" id="flt_my" href="#"><span class="filter-link__inner">{% trans 'My services' %}</span></a>
                 </li>
@@ -55,8 +55,11 @@
         icon_url = "/api/v1/icons/%id/content";  //REPLACE IT!
         service_url = "/geoservices/%id"; //REPLACE IT!
         edit_url = "/edit/%id"; //REPLACE IT!
-
-        user_guid = "{{ request.user.nextgis_guid}}";
+        {% if request.user.is_authenticated %}
+        user_guid = "{{ request.user.nextgis_guid }}";
+        {% else %}
+        user_guid = "";
+        {% endif %}
     </script>
     <script src="{% static 'qms_site/js/vendor/handlebars.min.js' %}"></script>
     <script src="{% static 'qms_site/js/promise.min.js' %}"></script>
