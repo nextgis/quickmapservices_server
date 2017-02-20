@@ -390,6 +390,13 @@
     transform: scale(1);
     -webkit-transform: scale(1); } }
 
+/* Captcha panel */
+@media (min-width: 768px) {
+  .captcha-panel__btn {
+    text-align: right; }
+    .captcha-panel__btn .btn {
+      margin-top: 14px; } }
+
 /* Input group */
 .input-group .form-group {
   margin: 0;
