@@ -14,7 +14,6 @@
         {% if request.user.nextgis_guid != None and  service.submitter_id == request.user.nextgis_guid  %}
             <a href="{% url 'edit_service_view' pk=service.id %}" class="btn btn-tool">{% trans 'Edit' %}</a>
         {% endif %}
-
     </div>
     <h1>
         {% if service.icon %}
@@ -38,6 +37,10 @@
     {% include 'services_snippets/preview_map.html' %}
     <br>
     <a href="{% url 'site_geoservice_list' %}">{% trans 'Back to services list' %}</a>
+{% endblock %}
+
+{% block popups %}
+    {% include "snippets/report_problem.html" %}
 {% endblock %}
 
 {% block extra_head %}

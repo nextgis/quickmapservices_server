@@ -1,0 +1,19 @@
+{% load i18n %}{% trans 'Hi,' %}
+{% if reported_user %}
+{% blocktrans %}Feedback from user {{ reported_user }} for service {{ service_url }}.{% endblocktrans %}
+{% else %}
+{% blocktrans %}Feedback from anonymous user for service {{ service_url }}.{% endblocktrans %}
+{% endif %}
+{% trans 'Message:' %}
+{{ report_message }}
+
+{% if reported_email %}
+
+{% blocktrans %}Submitter's email: {{ reported_email }}{% endblocktrans %}
+{% else %}
+{% blocktrans %}Submitter chose not to disclose his email.{% endblocktrans %}
+{% endif %}
+
+{% blocktrans %}NextGIS QMS Team{% endblocktrans %}
+https://qms.nextgis.com
+https://t.me/nextgis_support

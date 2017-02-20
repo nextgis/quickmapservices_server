@@ -1,6 +1,8 @@
+from captcha.fields import ReCaptchaField
 from django.forms import ModelForm
 
 from qms_core.models import TmsService, WmsService, WfsService, GeoJsonService
+from qms_site.models import UserReport
 
 EXCLUDE_FIELDS = ['guid', 'submitter', 'created_at', 'updated_at',]
 
@@ -45,3 +47,19 @@ class GeoJsonForm(BaseServiceForm):
     class Meta:
         model = GeoJsonService
         exclude = EXCLUDE_FIELDS
+
+
+class AuthReportForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(AuthReportForm, self).__init__(*args, **kwargs)
+        # fix select control
+        self.fields['report_type'].choices[0] = ('', '')
+        self.fields['report_type'].widget.choices = self.fields['report_type'].choices
+
+    class Meta:
+        model = UserReport
+        exclude = ['reported', 'geo_service']
+
+
+class NonAuthReportForm(AuthReportForm):
+    captcha = ReCaptchaField(required=True)

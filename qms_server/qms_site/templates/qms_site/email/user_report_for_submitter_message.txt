@@ -1,0 +1,19 @@
+{% load i18n %}{% trans 'Hi,' %}
+{% if reported_user %}
+{% blocktrans %}You've just sent feedback from user {{ reported_user }} for service {{ service_url }}. This email is for your reference.{% endblocktrans %}
+{% else %}
+{% blocktrans %}You've just sent feedback from anonymous user for your service {{ service_url }}.{% endblocktrans %}
+{% endif %}
+{% trans 'Your message:' %}
+{{ report_message }}
+
+{% if reported_email %}
+{% blocktrans %}You disclose your email and service's author can answer you directly at: {{ reported_email }} {% endblocktrans %}
+{% else %}
+{% blocktrans %}You chose not to disclose your email.{% endblocktrans %}
+{% endif %}
+{% blocktrans %}Thanks for making QMS better!{% endblocktrans %}
+
+{% blocktrans %}NextGIS QMS Team{% endblocktrans %}
+https://qms.nextgis.com
+https://t.me/nextgis_support
