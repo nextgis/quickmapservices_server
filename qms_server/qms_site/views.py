@@ -58,7 +58,7 @@ class ReportFormMixin(FormMixin, ProcessFormView):
             return NonAuthReportForm
 
     def form_valid(self, form):
-        report_form = self.get_form()
+        report_form = form
 
         # get service
         service = get_object_or_404(GeoService, id=self.get_service_id())

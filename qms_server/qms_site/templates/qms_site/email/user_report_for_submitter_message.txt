@@ -5,7 +5,7 @@
 {% blocktrans %}You've just sent feedback from anonymous user for your service {{ service_url }}.{% endblocktrans %}
 {% endif %}
 {% trans 'Your message:' %}
-{{ report_message }}
+{{ report_message|safe }}
 
 {% if reported_email %}
 {% blocktrans %}You disclose your email and service's author can answer you directly at: {{ reported_email }} {% endblocktrans %}
