@@ -22,8 +22,8 @@
                     <div class="form-group label-floating clearfix">
                         <label class="control-label" for="{{report_form.report_type.id_for_label}}">{% trans 'Type of problem' %}</label>
                         <div class="select-wrapper">
-                            {{ report_form.report_type|add_class:'select--no-empty-option form-control required'|attr_with_id:'aria-describedby:$id-error' }}
                             <i class="select__icon material-icons">keyboard_arrow_down</i>
+                            {{ report_form.report_type|add_class:'select--no-empty-option form-control required'|attr_with_id:'aria-describedby:$id-error' }}
                         </div>
                         {% if report_form.report_type.errors %}
                         <span id="{{ report_form.report_type.auto_id }}-error" class="has-error">{{ report_form.report_type.errors }}</span>
