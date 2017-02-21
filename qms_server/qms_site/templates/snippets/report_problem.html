@@ -7,10 +7,10 @@
         <div class="modal-content">
             <div class="modal-body">
                 <div class="modal-title">{% trans 'Report a problem' %}</div>
-                <div class="modal-subtitle"><a href="#"></a></div>
+                <div class="modal-subtitle"><a href="#" data-dismiss="modal" >{{ service.name }}</a></div>
                 <form action="." method="POST" class="form--margin_big form-validate">
                     {% csrf_token %}
-                    <input type="hidden" value="{{restore_problem_service|default_if_none:''}}" id="report_service_id" name="report_service_id">
+                    <input type="hidden" value="{{ service.id }}"" id="report_service_id" name="report_service_id">
                     <div class="form-group label-floating clearfix ">
                         <label class="control-label" for="{{report_form.reported_email.id_for_label}}">{% trans 'Your e-mail (optional)' %}</label>
                         {{ report_form.reported_email|add_class:'form-control form-control--notignore'|attr_with_id:'aria-describedby:$id-error' }}
@@ -22,8 +22,8 @@
                     <div class="form-group label-floating clearfix">
                         <label class="control-label" for="{{report_form.report_type.id_for_label}}">{% trans 'Type of problem' %}</label>
                         <div class="select-wrapper">
-                            {{ report_form.report_type|add_class:'form-control required'|attr_with_id:'aria-describedby:$id-error' }}
                             <i class="select__icon material-icons">keyboard_arrow_down</i>
+                            {{ report_form.report_type|add_class:'select--no-empty-option form-control required'|attr_with_id:'aria-describedby:$id-error' }}
                         </div>
                         {% if report_form.report_type.errors %}
                         <span id="{{ report_form.report_type.auto_id }}-error" class="has-error">{{ report_form.report_type.errors }}</span>
@@ -32,7 +32,7 @@
                     <div class="form-group clearfix ">
                         <label class="control-label" for="{{report_form.report_message.id_for_label}}">{% trans 'Your message' %}</label>
                         {# {{ report_form.report_message|add_class:'form-control required'|attr_with_id:'aria-describedby:$id-error' }} #}
-                        <textarea aria-describedby="{{ report_form.report_message.auto_id }}-error" class="form-control required" id="{{ report_form.report_message.auto_id }}" name="{{ report_form.report_message.name }}" rows="5" placeholder="{% trans 'Describe the problem. You can also specify how it can be fixed.' %}"/></textarea>
+                        <textarea aria-describedby="{{ report_form.report_message.auto_id }}-error" class="form-control required" id="{{ report_form.report_message.auto_id }}" name="{{ report_form.report_message.name }}" rows="5" placeholder="{% trans 'Describe the problem. You can also specify how it can be fixed.' %}"/>{{ report_form.report_message.value|default_if_none:"" }}</textarea>
                         {% if report_form.report_message.errors %}
                         <span id="{{ report_form.report_message.auto_id }}-error" class="has-error">{{ report_form.report_message.errors }}</span>
                         {% endif %}
