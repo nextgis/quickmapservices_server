@@ -5,10 +5,9 @@
 {% blocktrans %}Feedback from anonymous user for service {{ service_url }}.{% endblocktrans %}
 {% endif %}
 {% trans 'Message:' %}
-{{ report_message }}
+{{ report_message|safe }}
 
 {% if reported_email %}
-
 {% blocktrans %}Submitter's email: {{ reported_email }}{% endblocktrans %}
 {% else %}
 {% blocktrans %}Submitter chose not to disclose his email.{% endblocktrans %}
