@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-12-22 16:25+0000\n"
+"POT-Creation-Date: 2017-02-21 15:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,18 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: models.py:18
+msgid "Service not working"
+msgstr "Сервис не работает"
+
+#: models.py:19
+msgid "License violation"
+msgstr "Нарушение лицензии"
+
+#: models.py:20
+msgid "Other problem"
+msgstr "Другая проблема"
 
 #: templates/about.html:6 templates/base_qms.html:15
 msgid "QMS"
@@ -36,7 +48,9 @@ msgstr "Как использовать"
 msgid ""
 " open <a href=\"/\">catalog of geodata sources</a> and a&nbsp;way to&nbsp;"
 "add&nbsp;them to&nbsp;your&nbsp;GIS in&nbsp;one&nbsp;click"
-msgstr "открытый <a href=\"/\">каталог источников геоданных</a> и способ использовать их в любой ГИС в один клик"
+msgstr ""
+"открытый <a href=\"/\">каталог источников геоданных</a> и способ "
+"использовать их в любой ГИС в один клик"
 
 #: templates/about.html:30
 msgid ""
@@ -170,23 +184,15 @@ msgstr ""
 msgid "Select service type"
 msgstr "Выберите тип сервиса"
 
-#: templates/detail.html:8
-msgid "Problem with service"
-msgstr "Проблема с сервисом"
-
-#: templates/detail.html:8
-msgid "in"
-msgstr "в"
-
-#: templates/detail.html:8
+#: templates/detail.html:13 templates/snippets/report_problem.html:9
 msgid "Report a problem"
 msgstr "Сообщить о проблеме"
 
-#: templates/detail.html:10 templates/edit_snippets/base_service.html:65
+#: templates/detail.html:15 templates/edit_snippets/base_service.html:65
 msgid "Edit"
 msgstr "Изменить"
 
-#: templates/detail.html:35
+#: templates/detail.html:39
 msgid "Back to services list"
 msgstr "Вернуться к списку сервисов"
 
@@ -351,6 +357,116 @@ msgstr "Мои сервисы"
 msgid "Services found"
 msgstr "Найдено сервисов"
 
+#: templates/qms_site/email/user_report_for_admin_message.txt:1
+#: templates/qms_site/email/user_report_for_author_message.txt:1
+#: templates/qms_site/email/user_report_for_submitter_message.txt:1
+msgid "Hi,"
+msgstr ""
+
+#: templates/qms_site/email/user_report_for_admin_message.txt:3
+#, python-format
+msgid "Feedback from user %(reported_user)s for service %(service_url)s."
+msgstr ""
+
+#: templates/qms_site/email/user_report_for_admin_message.txt:5
+#, python-format
+msgid "Feedback from anonymous user for service %(service_url)s."
+msgstr ""
+
+#: templates/qms_site/email/user_report_for_admin_message.txt:7
+msgid "Message:"
+msgstr ""
+
+#: templates/qms_site/email/user_report_for_admin_message.txt:12
+#, python-format
+msgid "Submitter's email: %(reported_email)s"
+msgstr ""
+
+#: templates/qms_site/email/user_report_for_admin_message.txt:14
+msgid "Submitter chose not to disclose his email."
+msgstr ""
+
+#: templates/qms_site/email/user_report_for_admin_message.txt:17
+#: templates/qms_site/email/user_report_for_author_message.txt:17
+#: templates/qms_site/email/user_report_for_submitter_message.txt:17
+#, fuzzy
+#| msgid "NextGIS Mobile"
+msgid "NextGIS QMS Team"
+msgstr "NextGIS Mobile"
+
+#: templates/qms_site/email/user_report_for_admin_subject.txt:3
+#: templates/qms_site/email/user_report_for_author_subject.txt:3
+#: templates/qms_site/email/user_report_for_submitter_subject.txt:3
+#, python-format
+msgid "%(report_type)s"
+msgstr ""
+
+#: templates/qms_site/email/user_report_for_author_message.txt:3
+#, python-format
+msgid "You've got feedback from user %(reported_user)s for your service "
+"%(service_url)s."
+msgstr "Для вас есть сообщение от пользователя %(reported_user)s о вашем сервисе"
+"%(service_url)s."
+
+#: templates/qms_site/email/user_report_for_author_message.txt:5
+#, python-format
+msgid "You've got feedback from anonymous user for your service %(service_url)s."
+msgstr "Для вас есть сообщение от анонимного пользователя о вашем сервисе %(service_url)s."
+
+#: templates/qms_site/email/user_report_for_author_message.txt:7
+msgid "Message says:"
+msgstr "Сообщение:"
+
+#: templates/qms_site/email/user_report_for_author_message.txt:11
+#, python-format
+msgid "You can answer directly to the user at: %(reported_email)s"
+msgstr "Вы можете ответить автору сообщения напрямую: %(reported_email)s"
+
+#: templates/qms_site/email/user_report_for_author_message.txt:13
+msgid "User chose not to disclose his email."
+msgstr "Автор сообщения не оставил свой email."
+
+#: templates/qms_site/email/user_report_for_author_message.txt:15
+msgid "Hope it will help you make your services defitinions at QMS better!"
+msgstr "Надеемся, это сообщение поможет улучшить ваш сервис на QMS!"
+
+#: templates/qms_site/email/user_report_for_submitter_message.txt:3
+#, python-format
+msgid "You've just sent feedback from user %(reported_user)s for service "
+"%(service_url)s. This email is for your reference."
+msgstr "Вы только что отправили сообщение от пользователя %(reported_user)s о сервисе "
+"%(service_url)s. Это письмо для справки."
+
+#: templates/qms_site/email/user_report_for_submitter_message.txt:5
+#, python-format
+msgid ""
+"You've just anonymously sent feedback for service "
+"%(service_url)s."
+msgstr ""
+"Вы только что анонимно отправили сообщение о сервисе"
+"%(service_url)s."
+
+#: templates/qms_site/email/user_report_for_submitter_message.txt:7
+msgid "Your message:"
+msgstr "Сообщение:"
+
+#: templates/qms_site/email/user_report_for_submitter_message.txt:11
+#, python-format
+msgid ""
+"You disclose your email and service's author can answer you directly at: "
+"%(reported_email)s "
+msgstr ""
+"Вы оставили свой email и автор сервиса сможет связаться с вами напрямую по адресу: "
+"%(reported_email)s "
+
+#: templates/qms_site/email/user_report_for_submitter_message.txt:13
+msgid "You chose not to disclose your email."
+msgstr "Вы не оставили email для обратной связи."
+
+#: templates/qms_site/email/user_report_for_submitter_message.txt:15
+msgid "Thanks for making QMS better!"
+msgstr "Спасибо, что делаете QMS лучше!"
+
 #: templates/services_snippets/general_info.html:7
 msgid "General info"
 msgstr "Основное"
@@ -428,9 +544,39 @@ msgstr "GET параметры"
 msgid "Layers"
 msgstr "Слои"
 
-#: views.py:70 views.py:73
+#: templates/snippets/report_problem.html:15
+msgid "Your e-mail (optional)"
+msgstr "Ваш e-mail (необязательно)"
+
+#: templates/snippets/report_problem.html:23
+msgid "Type of problem"
+msgstr "Тип проблемы"
+
+#: templates/snippets/report_problem.html:33
+msgid "Your message"
+msgstr "Ваше сообщение"
+
+#: templates/snippets/report_problem.html:35
+msgid "Describe the problem. You can also specify how it can be fixed."
+msgstr "Опишите проблему. Здесь также можно указать, как её исправить."
+
+#: templates/snippets/report_problem.html:52
+msgid "Send message"
+msgstr "Отправить"
+
+#: views.py:98
+msgid "Your message was sent to service author and QMS admins"
+msgstr "Ваше сообщение было отправлено автору сервиса и администраторам QMS"
+
+#: views.py:162 views.py:165
 msgid "Invalid form param: service_type"
 msgstr ""
+
+#~ msgid "Problem with service"
+#~ msgstr "Проблема с сервисом"
+
+#~ msgid "in"
+#~ msgstr "в"
 
 #~ msgid ""
 #~ "public catalog and a&nbsp;service that allows you to&nbsp;add <a href=\"/"
