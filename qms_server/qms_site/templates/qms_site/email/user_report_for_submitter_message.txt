@@ -1,8 +1,8 @@
 {% load i18n %}{% trans 'Hi,' %}
 {% if reported_user %}
-{% blocktrans %}You've just sent feedback from user {{ reported_user }} for service {{ service_url }}. This email is for your reference.{% endblocktrans %}
+{% blocktrans %}You've just sent feedback to submitter of service {{ service_url }}. This email is for your reference.{% endblocktrans %}
 {% else %}
-{% blocktrans %}You've just sent feedback from anonymous user for your service {{ service_url }}.{% endblocktrans %}
+{% blocktrans %}You've just anonymously sent feedback for service {{ service_url }}. This email is for your reference.{% endblocktrans %}
 {% endif %}
 {% trans 'Your message:' %}
 {{ report_message|safe }}
