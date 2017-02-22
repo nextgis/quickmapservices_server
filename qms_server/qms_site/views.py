@@ -4,6 +4,7 @@ from django.contrib.messages import add_message, INFO
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseForbidden
 from django.http import HttpResponseRedirect
+from django.utils import translation
 from django.views.defaults import bad_request
 from django.views.generic import TemplateView
 from django.shortcuts import get_object_or_404, redirect
@@ -11,6 +12,7 @@ from django.views.generic import UpdateView
 from django.views.generic.edit import FormMixin, ProcessFormView
 
 from nextgis_common.email_utils import send_templated_mail
+from nextgis_common.supported_languages import SupportedLanguages
 from qms_core.models import GeoService, TmsService, WmsService, WfsService, GeoJsonService
 from qms_site.forms import TmsForm, WmsForm, WfsForm, GeoJsonForm, AuthReportForm, NonAuthReportForm
 from django.utils.translation import gettext_lazy as _
@@ -82,17 +84,20 @@ class ReportFormMixin(FormMixin, ProcessFormView):
 
         # send email to service author
         if service.submitter and service.submitter.email:
-            send_templated_mail('qms_site/email/user_report_for_author', service.submitter.email, context)
+            with translation.override(service.submitter.locale):
+                send_templated_mail('qms_site/email/user_report_for_author', service.submitter.email, context)
 
         # send copy to message submitter
         if report.reported_email:
             send_templated_mail('qms_site/email/user_report_for_submitter', report.reported_email, context)
         elif self.request.user.is_authenticated() and self.request.user.email:
-            send_templated_mail('qms_site/email/user_report_for_submitter', self.request.user.email, context)
+            with translation.override(self.request.user.locale):
+                send_templated_mail('qms_site/email/user_report_for_submitter', self.request.user.email, context)
 
         # send copy to admin TODO: TEMPORARY ADDRESS. MAKE ANY OPTIONS
         if settings.DEFAULT_FROM_EMAIL:
-            send_templated_mail('qms_site/email/user_report_for_admin', settings.DEFAULT_FROM_EMAIL, context)
+            with translation.override(SupportedLanguages.EN):
+                send_templated_mail('qms_site/email/user_report_for_admin', settings.DEFAULT_FROM_EMAIL, context)
 
         # add message for user
         add_message(self.request, INFO, _('Your message was sent to service author and QMS admins'))
