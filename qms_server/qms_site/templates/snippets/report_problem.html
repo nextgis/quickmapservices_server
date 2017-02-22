@@ -37,21 +37,23 @@
                         <span id="{{ report_form.report_message.auto_id }}-error" class="has-error">{{ report_form.report_message.errors }}</span>
                         {% endif %}
                     </div>
-                    <div class="captcha-panel row">
-                        <div class="col-xs-12 col-xs-mb col-sm-7 captcha-panel__captcha">
-                        {% if report_form.captcha %}
-                            <div class="form-group">
-                                {{ report_form.captcha }}
-                                {% if report_form.captcha.errors %}
-                                <span id="{{ report_form.captcha.auto_id }}-error" class="has-error">{{ report_form.captcha.errors }}</span>
-                                {% endif %}
+                    {% if report_form.captcha %}
+                        <div class="captcha-panel row">
+                            <div class="col-xs-12 col-xs-mb col-sm-7 captcha-panel__captcha">
+                                <div class="form-group form-group--nopadding">
+                                    {{ report_form.captcha }}
+                                    {% if report_form.captcha.errors %}
+                                    <span id="{{ report_form.captcha.auto_id }}-error" class="has-error">{{ report_form.captcha.errors }}</span>
+                                    {% endif %}
+                                </div>
                             </div>
-                        {% endif %}
+                            <div class="col-xs-12 col-xs-mb col-sm-5 captcha-panel__btn">
+                                <button type="submit" class="btn btn-xlg btn-raised btn-primary">{% trans 'Send message' %}</button>
+                            </div>
                         </div>
-                        <div class="col-xs-12 col-xs-mb col-sm-5 captcha-panel__btn">
-                            <button type="submit" class="btn btn-xlg btn-raised btn-primary">{% trans 'Send message' %}</button>
-                        </div>
-                    </div>
+                    {% else %}
+                        <button type="submit" class="btn btn-xlg btn-raised btn-primary">{% trans 'Send message' %}</button>
+                    {% endif %}
                 </form>
             </div>
             <a href="#" data-dismiss="modal" class="material-icons icon-close close"></a>
