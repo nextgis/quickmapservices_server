@@ -17,7 +17,7 @@
                         {% if report_form.reported_email.errors %}
                         <span id="{{ report_form.reported_email.auto_id }}-error" class="has-error">{{ report_form.reported_email.errors }}</span>
                         {% endif %}
-                        <div class="help-block">We will send this address to the service's author</div>
+                        <div class="help-block">{% trans "We will send this address to the service's author" %}</div>
                     </div>
                     <div class="form-group label-floating clearfix">
                         <label class="control-label" for="{{report_form.report_type.id_for_label}}">{% trans 'Type of problem' %}</label>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-21 15:24+0000\n"
+"POT-Creation-Date: 2017-02-22 12:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,31 +20,32 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: models.py:18
+#: qms_site/models.py:18
 msgid "Service not working"
 msgstr "Сервис не работает"
 
-#: models.py:19
+#: qms_site/models.py:19
 msgid "License violation"
 msgstr "Нарушение лицензии"
 
-#: models.py:20
+#: qms_site/models.py:20
 msgid "Other problem"
 msgstr "Другая проблема"
 
-#: templates/about.html:6 templates/base_qms.html:15
+#: qms_site/templates/about.html:6 qms_site/templates/base_qms.html.py:15
 msgid "QMS"
-msgstr ""
+msgstr "QMS"
 
-#: templates/about.html:11 templates/base_qms.html:20
+#: qms_site/templates/about.html:11 qms_site/templates/base_qms.html.py:20
 msgid "Services"
 msgstr "Сервисы"
 
-#: templates/about.html:12 templates/about.html:37 templates/base_qms.html:21
+#: qms_site/templates/about.html:12 qms_site/templates/about.html.py:37
+#: qms_site/templates/base_qms.html:21
 msgid "How to use"
 msgstr "Как использовать"
 
-#: templates/about.html:24
+#: qms_site/templates/about.html:24
 msgid ""
 " open <a href=\"/\">catalog of geodata sources</a> and a&nbsp;way to&nbsp;"
 "add&nbsp;them to&nbsp;your&nbsp;GIS in&nbsp;one&nbsp;click"
@@ -52,18 +53,18 @@ msgstr ""
 "открытый <a href=\"/\">каталог источников геоданных</a> и способ "
 "использовать их в любой ГИС в один клик"
 
-#: templates/about.html:30
+#: qms_site/templates/about.html:30
 msgid ""
 "No more explaining how to add TMS/WMS etc. in your GIS, just enter a name"
 msgstr ""
 "Больше не&nbsp;нужно долго объяснять, как&nbsp;подключить ваш&nbsp;TMS/"
 "WMS&nbsp;сервис в&nbsp;ГИС. Просто сообщите имя&nbsp;сервиса"
 
-#: templates/about.html:40
+#: qms_site/templates/about.html:40
 msgid "Search for geodata services"
 msgstr "Поиск источников геоданных"
 
-#: templates/about.html:41
+#: qms_site/templates/about.html:41
 msgid ""
 "Find a geodata service you need in <a href=\"/\">QMS catalog</a> and add it "
 "to your project in a second."
@@ -71,99 +72,99 @@ msgstr ""
 "Найдите источник нужных вам геоданных (сервис) в&nbsp;<a href=\"/\">каталоге "
 "QMS</a> и&nbsp;без&nbsp;труда подключите его в&nbsp;свой&nbsp;проект."
 
-#: templates/about.html:44
+#: qms_site/templates/about.html:44
 msgid "Adding services"
 msgstr "Добавление сервисов"
 
-#: templates/about.html:46
+#: qms_site/templates/about.html:46
 msgid "Register"
 msgstr "Зарегистрируйтесь"
 
-#: templates/about.html:46
+#: qms_site/templates/about.html:46
 msgid "or"
 msgstr ""
 
-#: templates/about.html:46
+#: qms_site/templates/about.html:46
 msgid "log in"
 msgstr "войдите"
 
-#: templates/about.html:47
+#: qms_site/templates/about.html:47
 msgid "Click"
 msgstr "Нажмите"
 
-#: templates/about.html:47 templates/base_qms.html:33
-#: templates/edit_snippets/base_service.html:8
-#: templates/edit_snippets/base_service.html:113
+#: qms_site/templates/about.html:47 qms_site/templates/base_qms.html.py:33
+#: qms_site/templates/edit_snippets/base_service.html:8
+#: qms_site/templates/edit_snippets/base_service.html:113
 msgid "Add service"
 msgstr "Добавить сервис"
 
-#: templates/about.html:47
+#: qms_site/templates/about.html:47
 msgid "and fill a&nbsp;short form to add TMS, WMS, WFS or GeoJSON"
 msgstr ", чтобы создать источник в&nbsp;формате TMS, WMS, WFS или&nbsp;GeoJSON"
 
-#: templates/about.html:48
+#: qms_site/templates/about.html:48
 msgid "Start using it right away"
 msgstr "Используйте его моментально во&nbsp;всех поддерживаемых приложениях"
 
-#: templates/about.html:52
+#: qms_site/templates/about.html:52
 msgid "Open API for developers"
 msgstr "Открытый API для разработчиков приложений"
 
-#: templates/about.html:53
+#: qms_site/templates/about.html:53
 msgid "Plug-in support"
 msgstr "Подключите поддержку"
 
-#: templates/about.html:53
+#: qms_site/templates/about.html:53
 msgid "for hundreds of geodata services to your applications"
 msgstr ""
 "сотен сервисов в&nbsp;разрабатываемые приложения с&nbsp;помощью "
 "открытого&nbsp;API"
 
-#: templates/about.html:58
+#: qms_site/templates/about.html:58
 msgid "You can use QMS catalog in"
 msgstr "QMS уже поддерживают"
 
-#: templates/about.html:63
+#: qms_site/templates/about.html:63
 msgid "QGIS with"
 msgstr "QGIS — с помощью модуля"
 
-#: templates/about.html:63
+#: qms_site/templates/about.html:63
 msgid "QuickMapServices plugin"
 msgstr "QuickMapServices"
 
-#: templates/about.html:66
+#: qms_site/templates/about.html:66
 msgid "ArcGIS with"
 msgstr "ArcGIS — с помощью модуля"
 
-#: templates/about.html:66
+#: qms_site/templates/about.html:66
 msgid "ArcQMS plugin"
 msgstr "ArcQMS"
 
-#: templates/about.html:71
+#: qms_site/templates/about.html:71
 msgid "NextGIS Mobile"
 msgstr "NextGIS Mobile"
 
-#: templates/about.html:75
+#: qms_site/templates/about.html:75
 msgid "NextGIS Web — coming soon!"
 msgstr "NextGIS Web — скоро!"
 
-#: templates/about.html:78
+#: qms_site/templates/about.html:78
 msgid "Add your software"
 msgstr "Добавьте поддержку QMS"
 
-#: templates/about.html:78
+#: qms_site/templates/about.html:78
 msgid "to the list"
 msgstr "в свою программу"
 
-#: templates/about.html:87
+#: qms_site/templates/about.html:87
 msgid "Use QMS in QGIS and NextGIS Mobile"
 msgstr "Использование QMS в QGIS и NextGIS Mobile"
 
-#: templates/about.html:93
+#: qms_site/templates/about.html:93
 msgid "Feedback"
 msgstr "Обратная связь"
 
-#: templates/about.html:95
+#: qms_site/templates/about.html:95
 msgid ""
 "Report qms.nextgis.com bugs and request features at <a href=\"https://github."
 "com/nextgis/quickmapservices_server/issues\" target=\"_blank\">Github</a>"
@@ -172,59 +173,61 @@ msgstr ""
 "на&nbsp;<a href=\"https://github.com/nextgis/quickmapservices_server/issues"
 "\" target=\"_blank\">Github</a>"
 
-#: templates/about.html:96
+#: qms_site/templates/about.html:96
 msgid "Contacts"
 msgstr "Контакты"
 
-#: templates/base_qms.html:13
+#: qms_site/templates/base_qms.html:13
 msgid "QuickMapServices: discover, share and use geospatial data services"
 msgstr ""
 
-#: templates/create.html:16
+#: qms_site/templates/create.html:16
 msgid "Select service type"
 msgstr "Выберите тип сервиса"
 
-#: templates/detail.html:13 templates/snippets/report_problem.html:9
+#: qms_site/templates/detail.html:13
+#: qms_site/templates/snippets/report_problem.html:9
 msgid "Report a problem"
 msgstr "Сообщить о проблеме"
 
-#: templates/detail.html:15 templates/edit_snippets/base_service.html:65
+#: qms_site/templates/detail.html:15
+#: qms_site/templates/edit_snippets/base_service.html:65
 msgid "Edit"
 msgstr "Изменить"
 
-#: templates/detail.html:39
+#: qms_site/templates/detail.html:39
 msgid "Back to services list"
 msgstr "Вернуться к списку сервисов"
 
-#: templates/edit_snippets/base_service.html:10
+#: qms_site/templates/edit_snippets/base_service.html:10
 msgid "Edit service"
 msgstr "Изменить сервис"
 
-#: templates/edit_snippets/base_service.html:20
+#: qms_site/templates/edit_snippets/base_service.html:20
 msgid "Service name"
 msgstr "Название сервиса"
 
-#: templates/edit_snippets/base_service.html:28
-#: templates/services_snippets/general_info.html:9
+#: qms_site/templates/edit_snippets/base_service.html:28
+#: qms_site/templates/services_snippets/general_info.html:9
 msgid "Description"
 msgstr "Описание"
 
-#: templates/edit_snippets/base_service.html:35
+#: qms_site/templates/edit_snippets/base_service.html:35
 msgid "Where did you find this service?"
 msgstr "Где вы нашли этот сервис?"
 
-#: templates/edit_snippets/base_service.html:36
+#: qms_site/templates/edit_snippets/base_service.html:36
 msgid ""
 "E.g. &quot;https://opentopomap.org/about&quot; or &quot;my service&quot;"
 msgstr ""
 "например, &quot;https://opentopomap.org/about&quot; или &quot;это мой "
 "сервис&quot;"
 
-#: templates/edit_snippets/base_service.html:48
+#: qms_site/templates/edit_snippets/base_service.html:48
 msgid "Additional settings"
 msgstr "Дополнительные настройки"
 
-#: templates/edit_snippets/base_service.html:61
+#: qms_site/templates/edit_snippets/base_service.html:61
 #, python-format
 msgid ""
 "This information will become public on submission.<br>\n"
@@ -235,428 +238,349 @@ msgstr ""
 "                            Пожалуйста, <a href=\"#\" class=\"fake-link\" "
 "data-show=\"#%(form_name)s-license\">укажите лицензионную информацию</a>."
 
-#: templates/edit_snippets/base_service.html:65
-#: templates/edit_snippets/base_service.html:69
+#: qms_site/templates/edit_snippets/base_service.html:65
+#: qms_site/templates/edit_snippets/base_service.html:69
 msgid "License"
 msgstr "Лицензия"
 
-#: templates/edit_snippets/base_service.html:71
-#: templates/services_snippets/license_info.html:9
+#: qms_site/templates/edit_snippets/base_service.html:71
+#: qms_site/templates/services_snippets/license_info.html:9
 msgid "License name"
 msgstr "Название лицензии"
 
-#: templates/edit_snippets/base_service.html:72
+#: qms_site/templates/edit_snippets/base_service.html:72
 msgid "e.g. CC BY 3.0, ODbL"
 msgstr "например, CC BY 3.0, ODbL"
 
-#: templates/edit_snippets/base_service.html:78
-#: templates/services_snippets/license_info.html:10
+#: qms_site/templates/edit_snippets/base_service.html:78
+#: qms_site/templates/services_snippets/license_info.html:10
 msgid "License URL"
 msgstr "Ссылка на лицензию"
 
-#: templates/edit_snippets/base_service.html:79
+#: qms_site/templates/edit_snippets/base_service.html:79
 msgid "e.g. https://creativecommons.org/licenses/by/3.0/"
 msgstr "например, https://creativecommons.org/licenses/by/3.0/"
 
-#: templates/edit_snippets/base_service.html:85
+#: qms_site/templates/edit_snippets/base_service.html:85
 msgid "Attribution(s)"
 msgstr "Текст подписи (атрибуция)"
 
-#: templates/edit_snippets/base_service.html:86
+#: qms_site/templates/edit_snippets/base_service.html:86
 msgid "e.g. Map tiles by CARTO, under CC BY 3.0"
 msgstr "например, Map tiles by CARTO, under CC BY 3.0"
 
-#: templates/edit_snippets/base_service.html:92
+#: qms_site/templates/edit_snippets/base_service.html:92
 msgid "Attribution(s) URL"
 msgstr "URL подписи (атрибуция)"
 
-#: templates/edit_snippets/base_service.html:93
+#: qms_site/templates/edit_snippets/base_service.html:93
 msgid "e.g. https://carto.com/attributions"
 msgstr "например, https://carto.com/attributions"
 
-#: templates/edit_snippets/base_service.html:99
-#: templates/services_snippets/license_info.html:13
+#: qms_site/templates/edit_snippets/base_service.html:99
+#: qms_site/templates/services_snippets/license_info.html:13
 msgid "Terms of use URL"
 msgstr "Ссылка на правила использования"
 
-#: templates/edit_snippets/base_service.html:100
+#: qms_site/templates/edit_snippets/base_service.html:100
 msgid "e.g. http://carto.com/legal"
 msgstr "например, http://carto.com/legal"
 
-#: templates/edit_snippets/base_service.html:106
+#: qms_site/templates/edit_snippets/base_service.html:106
 msgid "Cancel"
 msgstr "Отмена"
 
-#: templates/edit_snippets/base_service.html:115
+#: qms_site/templates/edit_snippets/base_service.html:115
 msgid "Save changes"
 msgstr "Сохранить изменения"
 
-#: templates/edit_snippets/geojson_service.html:10
-#: templates/edit_snippets/tms_service.html:10
-#: templates/edit_snippets/wfs_service.html:10
-#: templates/edit_snippets/wms_service.html:10
+#: qms_site/templates/edit_snippets/geojson_service.html:10
+#: qms_site/templates/edit_snippets/tms_service.html:10
+#: qms_site/templates/edit_snippets/wfs_service.html:10
+#: qms_site/templates/edit_snippets/wms_service.html:10
 msgid "Service URL"
 msgstr "URL сервиса"
 
-#: templates/edit_snippets/geojson_service.html:20
-#: templates/edit_snippets/tms_service.html:22
-#: templates/edit_snippets/wfs_service.html:27
-#: templates/edit_snippets/wms_service.html:29
+#: qms_site/templates/edit_snippets/geojson_service.html:20
+#: qms_site/templates/edit_snippets/tms_service.html:22
+#: qms_site/templates/edit_snippets/wfs_service.html:27
+#: qms_site/templates/edit_snippets/wms_service.html:29
 msgid "CRS ID"
 msgstr "ID системы координат"
 
-#: templates/edit_snippets/tms_service.html:31
+#: qms_site/templates/edit_snippets/tms_service.html:31
 msgid "Z min"
 msgstr "Z min"
 
-#: templates/edit_snippets/tms_service.html:40
+#: qms_site/templates/edit_snippets/tms_service.html:40
 msgid "Z max"
 msgstr "Z max"
 
-#: templates/edit_snippets/tms_service.html:52
-#: templates/services_snippets/tms_info.html:12
+#: qms_site/templates/edit_snippets/tms_service.html:52
+#: qms_site/templates/services_snippets/tms_info.html:12
 msgid "Y origin top"
 msgstr "Начало отсчета сверху"
 
-#: templates/edit_snippets/wfs_service.html:17
-#: templates/services_snippets/wfs_info.html:10
+#: qms_site/templates/edit_snippets/wfs_service.html:17
+#: qms_site/templates/services_snippets/wfs_info.html:10
 msgid "Layer"
 msgstr "Слой"
 
-#: templates/edit_snippets/wms_service.html:17
+#: qms_site/templates/edit_snippets/wms_service.html:17
 msgid "Layers comma separated"
 msgstr "Слои через запятую"
 
-#: templates/edit_snippets/wms_service.html:38
-#: templates/services_snippets/wms_info.html:13
+#: qms_site/templates/edit_snippets/wms_service.html:38
+#: qms_site/templates/services_snippets/wms_info.html:13
 msgid "Image format"
 msgstr "Формат изображения"
 
-#: templates/edit_snippets/wms_service.html:48
+#: qms_site/templates/edit_snippets/wms_service.html:48
 msgid "Additional GET parameters"
 msgstr "Дополнительные GET параметры"
 
-#: templates/edit_snippets/wms_service.html:58
-#: templates/services_snippets/wms_info.html:12
+#: qms_site/templates/edit_snippets/wms_service.html:58
+#: qms_site/templates/services_snippets/wms_info.html:12
 msgid "Turn over layers order"
 msgstr "Обратный порядок слоев"
 
-#: templates/list.html:12
+#: qms_site/templates/list.html:12
 msgid "Search map service..."
 msgstr "Поиск сервиса..."
 
-#: templates/list.html:19
+#: qms_site/templates/list.html:19
 msgid "All services"
 msgstr "Все сервисы"
 
-#: templates/list.html:35
+#: qms_site/templates/list.html:35
 msgid "My services"
 msgstr "Мои сервисы"
 
-#: templates/list.html:42
+#: qms_site/templates/list.html:42
 msgid "Services found"
 msgstr "Найдено сервисов"
 
-#: templates/qms_site/email/user_report_for_admin_message.txt:1
-#: templates/qms_site/email/user_report_for_author_message.txt:1
-#: templates/qms_site/email/user_report_for_submitter_message.txt:1
+#: qms_site/templates/qms_site/email/user_report_for_admin_message.txt:1
+#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:1
+#: qms_site/templates/qms_site/email/user_report_for_submitter_message.txt:1
 msgid "Hi,"
-msgstr ""
+msgstr "Привет,"
 
-#: templates/qms_site/email/user_report_for_admin_message.txt:3
+#: qms_site/templates/qms_site/email/user_report_for_admin_message.txt:3
 #, python-format
 msgid "Feedback from user %(reported_user)s for service %(service_url)s."
 msgstr ""
+"Обратная связь от пользователя %(reported_user)s о сервисе %(service_url)s."
 
-#: templates/qms_site/email/user_report_for_admin_message.txt:5
+#: qms_site/templates/qms_site/email/user_report_for_admin_message.txt:5
 #, python-format
 msgid "Feedback from anonymous user for service %(service_url)s."
-msgstr ""
+msgstr "Обратная связь от анонимного пользователя о сервисе %(service_url)s."
 
-#: templates/qms_site/email/user_report_for_admin_message.txt:7
+#: qms_site/templates/qms_site/email/user_report_for_admin_message.txt:7
 msgid "Message:"
-msgstr ""
+msgstr "Сообщение:"
 
-#: templates/qms_site/email/user_report_for_admin_message.txt:12
+#: qms_site/templates/qms_site/email/user_report_for_admin_message.txt:11
 #, python-format
 msgid "Submitter's email: %(reported_email)s"
-msgstr ""
+msgstr "Электронная почта отправителя: %(reported_email)s"
 
-#: templates/qms_site/email/user_report_for_admin_message.txt:14
+#: qms_site/templates/qms_site/email/user_report_for_admin_message.txt:13
 msgid "Submitter chose not to disclose his email."
-msgstr ""
+msgstr "Отправитель не оставил электронной почты для обратной связи."
 
-#: templates/qms_site/email/user_report_for_admin_message.txt:17
-#: templates/qms_site/email/user_report_for_author_message.txt:17
-#: templates/qms_site/email/user_report_for_submitter_message.txt:17
-#, fuzzy
-#| msgid "NextGIS Mobile"
+#: qms_site/templates/qms_site/email/user_report_for_admin_message.txt:16
+#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:17
+#: qms_site/templates/qms_site/email/user_report_for_submitter_message.txt:17
 msgid "NextGIS QMS Team"
-msgstr "NextGIS Mobile"
+msgstr "Команда NextGIS QMS"
 
-#: templates/qms_site/email/user_report_for_admin_subject.txt:3
-#: templates/qms_site/email/user_report_for_author_subject.txt:3
-#: templates/qms_site/email/user_report_for_submitter_subject.txt:3
+#: qms_site/templates/qms_site/email/user_report_for_admin_subject.txt:3
+#: qms_site/templates/qms_site/email/user_report_for_author_subject.txt:3
+#: qms_site/templates/qms_site/email/user_report_for_submitter_subject.txt:3
 #, python-format
 msgid "%(report_type)s"
 msgstr ""
 
-#: templates/qms_site/email/user_report_for_author_message.txt:3
+#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:3
 #, python-format
-msgid "You've got feedback from user %(reported_user)s for your service "
+msgid ""
+"You've got feedback from user %(reported_user)s for your service "
 "%(service_url)s."
-msgstr "Для вас есть сообщение от пользователя %(reported_user)s о вашем сервисе"
+msgstr ""
+"Для вас есть сообщение от пользователя %(reported_user)s о вашем сервисе"
 "%(service_url)s."
 
-#: templates/qms_site/email/user_report_for_author_message.txt:5
+#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:5
 #, python-format
-msgid "You've got feedback from anonymous user for your service %(service_url)s."
-msgstr "Для вас есть сообщение от анонимного пользователя о вашем сервисе %(service_url)s."
+msgid ""
+"You've got feedback from anonymous user for your service %(service_url)s."
+msgstr ""
+"Для вас есть сообщение от анонимного пользователя о вашем сервисе "
+"%(service_url)s."
 
-#: templates/qms_site/email/user_report_for_author_message.txt:7
+#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:7
 msgid "Message says:"
 msgstr "Сообщение:"
 
-#: templates/qms_site/email/user_report_for_author_message.txt:11
+#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:11
 #, python-format
 msgid "You can answer directly to the user at: %(reported_email)s"
 msgstr "Вы можете ответить автору сообщения напрямую: %(reported_email)s"
 
-#: templates/qms_site/email/user_report_for_author_message.txt:13
+#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:13
 msgid "User chose not to disclose his email."
 msgstr "Автор сообщения не оставил свой email."
 
-#: templates/qms_site/email/user_report_for_author_message.txt:15
+#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:15
 msgid "Hope it will help you make your services defitinions at QMS better!"
 msgstr "Надеемся, это сообщение поможет улучшить ваш сервис на QMS!"
 
-#: templates/qms_site/email/user_report_for_submitter_message.txt:3
-#, python-format
-msgid "You've just sent feedback from user %(reported_user)s for service "
-"%(service_url)s. This email is for your reference."
-msgstr "Вы только что отправили сообщение от пользователя %(reported_user)s о сервисе "
-"%(service_url)s. Это письмо для справки."
-
-#: templates/qms_site/email/user_report_for_submitter_message.txt:5
+#: qms_site/templates/qms_site/email/user_report_for_submitter_message.txt:3
 #, python-format
 msgid ""
-"You've just anonymously sent feedback for service "
-"%(service_url)s."
+"You've just sent feedback to submitter of service %(service_url)s. This "
+"email is for your reference."
 msgstr ""
-"Вы только что анонимно отправили сообщение о сервисе"
-"%(service_url)s."
+"Вы только что отправили сообщение автору сервиса %(service_url)s. Это письмо "
+"для справки."
 
-#: templates/qms_site/email/user_report_for_submitter_message.txt:7
+#: qms_site/templates/qms_site/email/user_report_for_submitter_message.txt:5
+#, python-format
+msgid ""
+"You've just anonymously sent feedback for service %(service_url)s. This "
+"email is for your reference."
+msgstr ""
+"Вы только что анонимно отправили сообщение о сервисе %(service_url)s. Это "
+"письмо для справки."
+
+#: qms_site/templates/qms_site/email/user_report_for_submitter_message.txt:7
 msgid "Your message:"
 msgstr "Сообщение:"
 
-#: templates/qms_site/email/user_report_for_submitter_message.txt:11
+#: qms_site/templates/qms_site/email/user_report_for_submitter_message.txt:11
 #, python-format
 msgid ""
 "You disclose your email and service's author can answer you directly at: "
 "%(reported_email)s "
 msgstr ""
-"Вы оставили свой email и автор сервиса сможет связаться с вами напрямую по адресу: "
-"%(reported_email)s "
+"Вы оставили свой email и автор сервиса сможет связаться с вами напрямую по "
+"адресу: %(reported_email)s "
 
-#: templates/qms_site/email/user_report_for_submitter_message.txt:13
+#: qms_site/templates/qms_site/email/user_report_for_submitter_message.txt:13
 msgid "You chose not to disclose your email."
 msgstr "Вы не оставили email для обратной связи."
 
-#: templates/qms_site/email/user_report_for_submitter_message.txt:15
+#: qms_site/templates/qms_site/email/user_report_for_submitter_message.txt:15
 msgid "Thanks for making QMS better!"
 msgstr "Спасибо, что делаете QMS лучше!"
 
-#: templates/services_snippets/general_info.html:7
+#: qms_site/templates/services_snippets/general_info.html:7
 msgid "General info"
 msgstr "Основное"
 
-#: templates/services_snippets/general_info.html:8
-#: templates/services_snippets/geojson_info.html:7
-#: templates/services_snippets/license_info.html:8
-#: templates/services_snippets/tms_info.html:8
-#: templates/services_snippets/wfs_info.html:8
-#: templates/services_snippets/wms_info.html:8
+#: qms_site/templates/services_snippets/general_info.html:8
+#: qms_site/templates/services_snippets/geojson_info.html:7
+#: qms_site/templates/services_snippets/license_info.html:8
+#: qms_site/templates/services_snippets/tms_info.html:8
+#: qms_site/templates/services_snippets/wfs_info.html:8
+#: qms_site/templates/services_snippets/wms_info.html:8
 msgid "None"
 msgstr "Нет"
 
-#: templates/services_snippets/general_info.html:10
+#: qms_site/templates/services_snippets/general_info.html:10
 msgid "Type"
 msgstr "Тип"
 
-#: templates/services_snippets/general_info.html:11
+#: qms_site/templates/services_snippets/general_info.html:11
 msgid "CRS"
 msgstr "Система координат"
 
-#: templates/services_snippets/general_info.html:13
+#: qms_site/templates/services_snippets/general_info.html:13
 msgid "Submitter"
 msgstr "Добавил"
 
-#: templates/services_snippets/general_info.html:15
+#: qms_site/templates/services_snippets/general_info.html:15
 msgid "Source"
 msgstr "Источник"
 
-#: templates/services_snippets/general_info.html:16
+#: qms_site/templates/services_snippets/general_info.html:16
 msgid "Date added"
 msgstr "Дата создания"
 
-#: templates/services_snippets/general_info.html:17
+#: qms_site/templates/services_snippets/general_info.html:17
 msgid "Last update"
 msgstr "Последнее изменение"
 
-#: templates/services_snippets/geojson_info.html:6
+#: qms_site/templates/services_snippets/geojson_info.html:6
 msgid "GeoJSON info"
 msgstr "Параметры GeoJSON"
 
-#: templates/services_snippets/license_info.html:7
+#: qms_site/templates/services_snippets/license_info.html:7
 msgid "License & Copyright info"
 msgstr "Лицензия & Авторские права"
 
-#: templates/services_snippets/license_info.html:11
+#: qms_site/templates/services_snippets/license_info.html:11
 msgid "Copyright text"
 msgstr "Текст для копирайта"
 
-#: templates/services_snippets/license_info.html:12
+#: qms_site/templates/services_snippets/license_info.html:12
 msgid "Copyright URL"
 msgstr "Ссылка на копирайт"
 
-#: templates/services_snippets/preview_map.html:5
+#: qms_site/templates/services_snippets/preview_map.html:5
 msgid "Preview"
 msgstr "Предпросмотр"
 
-#: templates/services_snippets/tms_info.html:7
+#: qms_site/templates/services_snippets/tms_info.html:7
 msgid "TMS info"
 msgstr "Параметры TMS"
 
-#: templates/services_snippets/wfs_info.html:7
+#: qms_site/templates/services_snippets/wfs_info.html:7
 msgid "WFS info"
 msgstr "Параметры WFS"
 
-#: templates/services_snippets/wms_info.html:7
+#: qms_site/templates/services_snippets/wms_info.html:7
 msgid "WMS info"
 msgstr "Параметры WMS"
 
-#: templates/services_snippets/wms_info.html:10
+#: qms_site/templates/services_snippets/wms_info.html:10
 msgid "GET parameters"
 msgstr "GET параметры"
 
-#: templates/services_snippets/wms_info.html:11
+#: qms_site/templates/services_snippets/wms_info.html:11
 msgid "Layers"
 msgstr "Слои"
 
-#: templates/snippets/report_problem.html:15
+#: qms_site/templates/snippets/report_problem.html:15
 msgid "Your e-mail (optional)"
 msgstr "Ваш e-mail (необязательно)"
 
-#: templates/snippets/report_problem.html:23
+#: qms_site/templates/snippets/report_problem.html:20
+msgid "We will send this address to the service's author"
+msgstr "Мы сообщим ваш адрес автору сервиса."
+
+#: qms_site/templates/snippets/report_problem.html:23
 msgid "Type of problem"
 msgstr "Тип проблемы"
 
-#: templates/snippets/report_problem.html:33
+#: qms_site/templates/snippets/report_problem.html:33
 msgid "Your message"
 msgstr "Ваше сообщение"
 
-#: templates/snippets/report_problem.html:35
+#: qms_site/templates/snippets/report_problem.html:35
 msgid "Describe the problem. You can also specify how it can be fixed."
 msgstr "Опишите проблему. Здесь также можно указать, как её исправить."
 
-#: templates/snippets/report_problem.html:52
+#: qms_site/templates/snippets/report_problem.html:52
 msgid "Send message"
 msgstr "Отправить"
 
-#: views.py:98
+#: qms_site/views.py:98
 msgid "Your message was sent to service author and QMS admins"
 msgstr "Ваше сообщение было отправлено автору сервиса и администраторам QMS"
 
-#: views.py:162 views.py:165
+#: qms_site/views.py:162 qms_site/views.py:165
 msgid "Invalid form param: service_type"
-msgstr ""
-
-#~ msgid "Problem with service"
-#~ msgstr "Проблема с сервисом"
-
-#~ msgid "in"
-#~ msgstr "в"
-
-#~ msgid ""
-#~ "public catalog and a&nbsp;service that allows you to&nbsp;add <a href=\"/"
-#~ "\">a&nbsp;geodata service</a> and have it&nbsp;available in&nbsp;your "
-#~ "favorite GIS software in&nbsp;just few clicks"
-#~ msgstr ""
-#~ "публичный каталог и&nbsp;сервис, который позволяет быстро добавлять <br "
-#~ "class='visible-lg-inline-block visible-md-inline-block'><a href=\"/"
-#~ "\">источники геоданных</a> и&nbsp;легко использовать их&nbsp;в&nbsp;любой "
-#~ "ГИС"
-
-#~ msgid ""
-#~ "Use your service together with hundreds of others wherever QMS&nbsp;"
-#~ "is&nbsp;supported"
-#~ msgstr ""
-#~ "Используйте добавленный сервис, как и&nbsp;любой другой из&nbsp;каталога, "
-#~ "везде, где&nbsp;поддерживается QMS"
-
-#~ msgid "How does it work"
-#~ msgstr "Как это работает"
-
-#~ msgid "Read how you can"
-#~ msgstr "Прочитайте, как "
-
-#~ msgid "General questions"
-#~ msgstr "Общие вопросы"
-
-#~ msgid "Add and use a service in QGIS"
-#~ msgstr "Как добавить и&nbsp;использовать сервис в&nbsp;QGIS"
-
-#~ msgid "Detailed contact information"
-#~ msgstr "Подробная контактная информация"
-
-#~ msgid ""
-#~ "QGIS with <a href=\"http://nextgis.com/blog/quickmapservices/\" target="
-#~ "\"_blank\">QuickMapServices plugin</a>"
-#~ msgstr ""
-#~ "в QGIS с&nbsp;помощью модуля <a href=\"http://nextgis.com/blog/"
-#~ "quickmapservices/\" target=\"_blank\">QuickMapServices</a>"
-
-#~ msgid ""
-#~ "ArcGIS with <a href=\"http://nextgis.com/blog/quickmapservices/\" target="
-#~ "\"_blank\">ArcQMS plugin</a>"
-#~ msgstr ""
-#~ "в ArcGIS с&nbsp;помощью модуля <a href=\"http://nextgis.com/blog/"
-#~ "quickmapservices/\" target=\"_blank\">ArcQMS</a>"
-
-#~ msgid ""
-#~ "Read how you can <a href=\"http://docs.nextgis.com/qms_srv_dev/doc/api."
-#~ "html\" target=\"_blank\">add your software to the list</a>."
-#~ msgstr ""
-#~ "Прочитайте, как <a href=\"http://docs.nextgis.com/qms_srv_dev/doc/api.html"
-#~ "\" target=\"_blank\">добавить поддержку QMS в&nbsp;другое программное "
-#~ "обеспечение</a>."
-
-#, fuzzy
-#~| msgid "Y origin top"
-#~ msgid "Y Origin top"
-#~ msgstr "Начало отсчета сверху"
-
-#~ msgid "Blame"
-#~ msgstr "Сообщить об ошибке"
-
-#~ msgid "Add "
-#~ msgstr "Добавить"
-
-#~ msgid "Edit "
-#~ msgstr "Изменить"
-
-#~ msgid "GeoJSON service"
-#~ msgstr "GeoJSON сервис"
-
-#~ msgid "TMS service"
-#~ msgstr "TMS сервис"
-
-#~ msgid "WFS service"
-#~ msgstr "WFS сервис"
-
-#~ msgid "WMS service"
-#~ msgstr "WMS сервис"
-
-#~ msgid "Detail of service"
-#~ msgstr "Информация о сервисе"
+msgstr "Ошибка параметра формы: service_type"
