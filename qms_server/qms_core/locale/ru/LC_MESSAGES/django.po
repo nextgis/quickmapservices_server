@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-10-14 15:21+0000\n"
+"POT-Creation-Date: 2017-02-22 12:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,71 +124,91 @@ msgstr ""
 msgid "user locale"
 msgstr ""
 
-#: qms_core/models.py:111
-msgid "user"
+#: qms_core/models.py:100
+msgid "mail confirmed"
 msgstr ""
 
 #: qms_core/models.py:112
+msgid "user"
+msgstr ""
+
+#: qms_core/models.py:113
 msgid "users"
 msgstr ""
 
-#: qms_core/models.py:135
+#: qms_core/models.py:136
 msgid "icon guid"
 msgstr ""
 
-#: qms_core/models.py:136
+#: qms_core/models.py:137
 msgid "icon"
 msgstr ""
 
-#: qms_core/models.py:138
+#: qms_core/models.py:139
 msgid "icon name"
 msgstr ""
 
-#: qms_core/models.py:139
+#: qms_core/models.py:140
 msgid "icon is private"
 msgstr ""
 
-#: qms_core/models.py:153
+#: qms_core/models.py:155
 msgid "service guid"
 msgstr ""
 
-#: qms_core/models.py:154
+#: qms_core/models.py:156
 msgid "service name"
 msgstr ""
 
-#: qms_core/models.py:155
+#: qms_core/models.py:157
 msgid "description"
 msgstr ""
 
-#: qms_core/models.py:156
+#: qms_core/models.py:158
 msgid "service type"
 msgstr ""
 
-#: qms_core/models.py:157
+#: qms_core/models.py:159
 msgid "EPSG Code"
 msgstr ""
 
-#: qms_core/models.py:160
+#: qms_core/models.py:162
 msgid "license name"
 msgstr ""
 
-#: qms_core/models.py:161
+#: qms_core/models.py:163
 msgid "license url"
 msgstr ""
 
-#: qms_core/models.py:162
+#: qms_core/models.py:164
 msgid "copyright text"
 msgstr ""
 
-#: qms_core/models.py:163
+#: qms_core/models.py:165
 msgid "copyright url"
 msgstr ""
 
-#: qms_core/models.py:164
+#: qms_core/models.py:166
 msgid "terms of use url"
 msgstr ""
 
-#: qms_core/models.py:210
+#: qms_core/models.py:169
+msgid "created at"
+msgstr ""
+
+#: qms_core/models.py:170
+msgid "updated at"
+msgstr ""
+
+#: qms_core/models.py:172
+msgid "source"
+msgstr ""
+
+#: qms_core/models.py:173
+msgid "source url"
+msgstr ""
+
+#: qms_core/models.py:220
 msgid "Layer name ([namespace:]featuretype)"
 msgstr ""
 
