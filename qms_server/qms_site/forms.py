@@ -1,5 +1,6 @@
 from captcha.fields import ReCaptchaField
 from django.forms import ModelForm
+from django.utils.translation import ugettext as _
 
 from qms_core.models import TmsService, WmsService, WfsService, GeoJsonService
 from qms_site.models import UserReport
@@ -52,8 +53,9 @@ class GeoJsonForm(BaseServiceForm):
 class AuthReportForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(AuthReportForm, self).__init__(*args, **kwargs)
-        # fix select control
+        # fix and translate select control
         self.fields['report_type'].choices[0] = ('', '')
+        self.fields['report_type'].choices = [(k, _(v)) for k, v in self.fields['report_type'].choices]
         self.fields['report_type'].widget.choices = self.fields['report_type'].choices
 
     class Meta:
