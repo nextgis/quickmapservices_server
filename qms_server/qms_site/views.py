@@ -27,6 +27,9 @@ class GeoserviceListView(TemplateView):
 class AboutView(TemplateView):
     template_name = 'about.html'
 
+class FAQView(TemplateView):
+    template_name = 'faq.html'
+
 
 class ReportFormMixin(FormMixin, ProcessFormView):
     """

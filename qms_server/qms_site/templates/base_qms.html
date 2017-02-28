@@ -16,9 +16,10 @@
 {% endblock %}
 
 {% block header_menu %}
-    <nav class="header-menu hidden-xs">
+    <nav class="header-menu hidden-xs hidden-sm">
         <a href="{% url 'site_geoservice_list' %}" class="header-menu__item active withoutripple">{% trans 'Services' %}</a>
         <a href="{% url 'site_about' %}" class="header-menu__item withoutripple">{% trans 'How to use' %}</a>
+        <a href="{% url 'site_faq' %}" class="header-menu__item withoutripple">{% trans 'FAQ' %}</a>
     </nav>
 {% endblock %}
 
