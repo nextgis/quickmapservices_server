@@ -355,7 +355,7 @@ msgid ""
 "If you don’t see an answer to your question below, let us know in comments "
 "or <a href=\"http://nextgis.com/contact\" target=\"_blank\">send</a> it to "
 "us directly, we’ll add it here."
-msgstr "Если вы не нашли ответ на свой вопрос ниже, дайте знать в комментариях или <a href=\"http://nextgis.com/contact\" target=\"_blank\">присылайте нам вопрос напрямую</a>, мы добавим его на эту страницу."
+msgstr "Если вы не нашли ответ на свой вопрос ниже, дайте знать в комментариях или <a href=\"http://nextgis.ru/contact\" target=\"_blank\">присылайте нам вопрос напрямую</a>, мы добавим его на эту страницу."
 
 #: templates/faq.html:26 templates/faq.html:32
 msgid "General"
