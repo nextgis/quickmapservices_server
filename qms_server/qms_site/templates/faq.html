@@ -1,0 +1,107 @@
+{% extends "base_qms.html" %}
+{% load i18n %}
+{% load external_url %}
+
+{% block content_title %}
+    <a class="withoutripple" href="{% url 'site_geoservice_list' %}">{% trans 'QMS' %}</a>
+{% endblock %}
+
+{% block header_menu %}
+    <nav class="header-menu hidden-xs hidden-sm">
+        <a href="{% url 'site_geoservice_list' %}" class="header-menu__item withoutripple">{% trans 'Services' %}</a>
+        <a href="{% url 'site_about' %}" class="header-menu__item withoutripple">{% trans 'How to use' %}</a>
+        <a href="{% url 'site_faq' %}" class="header-menu__item active withoutripple">{% trans 'FAQ' %}</a>
+    </nav>
+{% endblock %}
+
+{% block body_class %}body--wide{% endblock %}
+
+{% block body_content %}
+    {% get_current_language as LANGUAGE_CODE %}
+    <section class="section text-content">
+        <div class="container">
+            <h1>{% trans 'Frequently Asked Questions about QMS' %}</h1>
+            <p>{% trans 'If you don’t see an answer to your question below, let us know in comments or <a href="http://nextgis.com/contact" target="_blank">send</a> it to us directly, we’ll add it here.' %}</p>
+            <ul>
+            <li><a class="scrollto-link fake-link" href="#general">{% trans 'General' %}</a></li>
+            <li><a class="scrollto-link fake-link" href="#use">{% trans 'Using a service' %}</a></li>
+            <li><a class="scrollto-link fake-link" href="#add">{% trans 'Adding a service' %}</a></li>
+            <li><a class="scrollto-link fake-link" href="#fix">{% trans 'Fixing a service' %}</a></li>
+            </ul>
+            <p><a id="general"></a></p>
+            <h2>{% trans 'General' %}</h2>
+            <p><strong>Q: {% trans 'What’s QuickMapServices?' %}</strong><br>
+            A: {% trans 'QuickMapServices (QMS) is an open catalog of geodata sources and a way to add them to your GIS in one click (<a href="https://qms.nextgis.com/about">read more</a>).' %}</p>
+            <p><strong>Q: {% trans 'What is the goal of QMS?' %}</strong><br>
+            A: {% trans 'To make geospatial services more accessible.' %}</p>
+            <p><strong>Q: {% trans 'Why add services to QMS?' %}</strong><br>
+            A: {% trans 'To easily find them and plug-in to your GIS project. Literally in just few clicks.' %}</p>
+            <p><strong>Q: {% trans 'Can I add services to GIS without QMS?' %}</strong><br>
+            A: {% trans 'Sure! But you’ll have to enter cumbersome links and parameters.' %}<br>
+            <a id="use"></a></p>
+            <h2>{% trans 'Using a service' %}</h2>
+            <p><strong>Q: {% trans 'How do I use one of the services from QMS?' %}</strong><br>
+            A: {% trans 'Search and add it in your GIS. Currently there are clients for <a href="http://nextgis.com/blog/quickmapservices/">QGIS</a>, <a href="https://my.nextgis.com/downloads/software/arcqms/ArcQMSInstaller.msi">ArcGIS</a> and <a href="http://nextgis.com/blog/ngm-2-4/">NextGIS Mobile.</a>' %}</p>
+            <p><strong>Q: {% trans 'What kind of data I will get by using one of QMS services?' %}</strong><br>
+            A: {% trans 'This depends on a service. Through QMS you can get access to vector data, basemaps and rasters.' %}<br>
+            </p>
+            <a id="add"></a>
+            <h2>{% trans 'Adding a service' %}</h2>
+            <p><strong>Q: {% trans 'What kind of services I can add to QMS?' %}</strong><br>
+            A: {% trans 'You can add:' %}</p>
+            <ul>
+            <li>TMS – <a href="https://en.wikipedia.org/wiki/Tile_Map_Service">Tile Map Service</a>.</li>
+            <li>WMS – <a href="https://en.wikipedia.org/wiki/Web_Map_Service">Web Map Service</a>.</li>
+            <li>WFS – <a href="https://en.wikipedia.org/wiki/Web_Feature_Service">Web Feature Service</a>.</li>
+            <li>GeoJSON – geodata in GeoJSON format.</li>
+            </ul>
+            <p><strong>Q: {% trans 'What are minimum needs to add a service?' %}</strong><br>
+            A: {% trans 'You’ll need to provide a correct service url at the very least.' %}</p>
+            <p><strong>Q: {% trans 'All these abbreviations mean absolutely nothing to me, can I still add a service?' %}</strong><br>
+            A: {% trans 'Unfortunately, not at this point, you’ll need to learn the basics first.' %}</p>
+            <p><strong>Q: {% trans 'Ok. I’ve found a website with a map a like and copied it’s link, can I use it?' %}</strong><br>
+            A: {% trans 'Most probably not, links copied from browsers address bar are typically not service links that you can use with QMS.' %}</p>
+            <p id="correct-links"><strong>Q: {% trans 'What do correct service links look like?' %}</strong><br>
+            A: {% trans 'Here are few examples and their particular features:' %}</p>
+            <ul>
+            <li>TMS – <a href="http://tile.openstreetmap.org/{z}/{x}/{y}.png">http://tile.openstreetmap.org/{z}/{x}/{y}.png</a>
+            <ul>
+            <li>{% trans 'This service provides tiled images' %}</li>
+            <li>{% trans 'Note z, x, y – those are tile numbers, they correspond to a particular area' %}</li>
+            </ul>
+            </li>
+            <li>WMS – <a href="http://cartoweb.cma.gva.es/arcgis/services/cartografia_tematica/MapServer/WMSServer">http://cartoweb.cma.gva.es/arcgis/services/cartografia_tematica/MapServer/WMSServer</a>
+            <ul>
+            <li>{% trans 'This service provides untiled-imagery' %}</li>
+            <li>{% trans 'Note words like ‘wms’ or ‘wmsserver’ in the link' %}</li>
+            </ul>
+            </li>
+            <li>WFS – <a href="http://www.wfs.nrw.de/geobasis/wfs_nw_alkis_vereinfacht?REQUEST=GetCapabilities&amp;SERVICE=WFS">http://www.wfs.nrw.de/geobasis/wfs_nw_alkis_vereinfacht?REQUEST=GetCapabilities&amp;SERVICE=WFS</a>
+            <ul>
+            <li>{% trans 'This service provides vector data' %}</li>
+            <li>{% trans 'Note words like ‘wfs’ or WFSserver’ in the link' %}</li>
+            </ul>
+            </li>
+            <li>GeoJSON – <a href="http://opengeo.intetics.com.ua/osm/pa/data/protected_area_polygon.geojson">http://opengeo.intetics.com.ua/osm/pa/data/protected_area_polygon.geojson</a>
+            <ul>
+            <li>{% trans 'This service provides vector data and is probably the simplest, being just a file with data' %}</li>
+            <li>{% trans 'File can be hosted anywhere, as long as it’s valid GeoJSON' %}</li>
+            </ul>
+            </li>
+            </ul>
+            <p><strong>Q: {% trans 'I’ve seen services links that are different from examples above, are there other examples?' %}</strong><br>
+            A: {% trans 'Yes, there are lots of varieties and service link can look very differently. Just browse QMS clicking on service type and see what kind of links other services show.' %}</p>
+            <p>{% trans 'Start with the ones down below.' %}</p>
+            <p><strong>Q: {% trans 'How do I check that my service is OK?' %}</strong><br>
+            A: {% trans 'Find it through a client and add to see the data on a map. In QGIS you can use QuickMapServices plugin.' %}<br>
+            <a id="fix"></a></p>
+            <h2>{% trans 'Fixing a service' %}</h2>
+            <p><strong>Q: {% trans 'I’ve found service, but it doesn’t work, how do I fix it?' %}</strong><br>
+            A: {% trans 'Use ‘report a problem’ form.' %}</p>
+            <p>{% trans 'Every service has it’s author (maintainer, submitter). Use the form to let the submitter know that the service is broken. Provide information how to fix it.' %}</p>
+            <p><strong>Q: {% trans 'I’ve notified service maintainer about problem and provided solution, but maintainer is not reacting, what can I do?' %}</strong><br>
+            A: {% trans 'If maintainer doesn’t reply for a long time – create a new service (you’ll become it’s maintainer). Old incorrect service will gradually be removed.' %}</p>
+        </div><!--/.container -->
+    </section>
+{% endblock %}
+
