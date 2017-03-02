@@ -10,6 +10,6 @@
       {% trans "GET parameters" %}: {{ service.wmsservice.params|default_if_not:n }} <br>
       {% trans "Layers" %}: {{ service.wmsservice.layers|default_if_not:n }} <br>
       {% trans "Turn over layers order" %}: {{ service.wmsservice.turn_over|default_if_none:n }} <br>
-      {% trans "Image format" %} {{ service.wmsservice.format|default_if_not:n }} <br>
+      {% trans "Image format" %}: {{ service.wmsservice.format|default_if_not:n }} <br>
   </div>
 </div>
