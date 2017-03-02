@@ -4,7 +4,7 @@
 
 <form id="{{ form_name }}" class="form-validate qms-add-service" method="POST">
     <h1>
-        {% if mode = "create" %}
+        {% if mode == "create" %}
             {% trans "Add service" %}
         {% else %}
             {% trans "Edit service" %}
@@ -45,7 +45,7 @@
             </div>
         </section><!--/.qms-add-service__required-->
         <section class="qms-add-service__extra"> {# extra part #}
-            <h2>{% trans 'Additional settings' %}</a></h2>
+            <h2>{% trans 'Additional settings' %}</h2>
             <div id="{{ form_name }}-extra" class="qms-add-service__extra-form">
                 {% block extra_part %}{% endblock %}
             </div>
@@ -109,7 +109,7 @@
             </div>
         </section><!--/.qms-add-service__license-->
     <button class="btn btn-raised btn-primary" type="Submit">
-        {% if mode = "create" %}
+        {% if mode == "create" %}
             {% trans "Add service" %}
         {% else %}
             {% trans "Save changes" %}
