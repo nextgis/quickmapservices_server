@@ -13,6 +13,7 @@
     <div class="modal--stretch__inner">
         <!-- Nav tabs -->
         <nav class="qms-type {% if error_form_type %} hidden {% endif %}" data-nav-active="hidden" role="tablist">
+            <a class="qms-type__help-link" href="/faq#add" target="_blank">{% trans "Which one do I need?" %}</a>
             <h1 class="qms-type__title">{% trans 'Select service type' %}</h1>
             <div class="square-list">
                 {% for form_obj_name, form_obj in forms.iteritems %}
@@ -25,6 +26,7 @@
                     </div>
                 {% endfor %}
             </div>
+            <a class="qms-type__help-link qms-type__help-link--mobile" href="/faq#add" target="_blank">{% trans 'Which one do I need?' %}</a>
         </nav>
         <!-- Tab panes -->
         <div class="tab-content">

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-28 09:34+0000\n"
+"POT-Creation-Date: 2017-03-03 14:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,51 +124,55 @@ msgstr ""
 "сотен сервисов в&nbsp;разрабатываемые приложения с&nbsp;помощью "
 "открытого&nbsp;API"
 
-#: templates/about.html:59
+#: templates/about.html:57
+msgid "Still have questions? Try our <a href='/faq'>FAQ</a>!"
+msgstr "Остались вопросы? Вы наверняка найдете нужную информацию <a href='/faq'>в&nbsp;разделе «Вопросы и ответы»</a>!"
+
+#: templates/about.html:60
 msgid "You can use QMS catalog in"
 msgstr "QMS уже поддерживают"
 
-#: templates/about.html:64
+#: templates/about.html:65
 msgid "QGIS with"
 msgstr "QGIS — с помощью модуля"
 
-#: templates/about.html:64
+#: templates/about.html:65
 msgid "QuickMapServices plugin"
 msgstr "QuickMapServices"
 
-#: templates/about.html:67
+#: templates/about.html:68
 msgid "ArcGIS with"
 msgstr "ArcGIS — с помощью модуля"
 
-#: templates/about.html:67
+#: templates/about.html:68
 msgid "ArcQMS plugin"
 msgstr "ArcQMS"
 
-#: templates/about.html:72
+#: templates/about.html:73
 msgid "NextGIS Mobile"
 msgstr "NextGIS Mobile"
 
-#: templates/about.html:76
+#: templates/about.html:77
 msgid "NextGIS Web — coming soon!"
 msgstr "NextGIS Web — скоро!"
 
-#: templates/about.html:79
+#: templates/about.html:80
 msgid "Add your software"
 msgstr "Добавьте поддержку QMS"
 
-#: templates/about.html:79
+#: templates/about.html:80
 msgid "to the list"
 msgstr "в свою программу"
 
-#: templates/about.html:88
+#: templates/about.html:89
 msgid "Use QMS in QGIS and NextGIS Mobile"
 msgstr "Использование QMS в QGIS и NextGIS Mobile"
 
-#: templates/about.html:94
+#: templates/about.html:95
 msgid "Feedback"
 msgstr "Обратная связь"
 
-#: templates/about.html:96
+#: templates/about.html:97
 msgid ""
 "Report qms.nextgis.com bugs and request features at <a href=\"https://github."
 "com/nextgis/quickmapservices_server/issues\" target=\"_blank\">Github</a>"
@@ -177,7 +181,7 @@ msgstr ""
 "на&nbsp;<a href=\"https://github.com/nextgis/quickmapservices_server/issues"
 "\" target=\"_blank\">Github</a>"
 
-#: templates/about.html:97
+#: templates/about.html:98
 msgid "Contacts"
 msgstr "Контакты"
 
@@ -185,7 +189,11 @@ msgstr "Контакты"
 msgid "QuickMapServices: discover, share and use geospatial data services"
 msgstr ""
 
-#: templates/create.html:16
+#: templates/create.html:16 templates/create.html:29
+msgid "Which one do I need?"
+msgstr "Что выбрать?"
+
+#: templates/create.html:17
 msgid "Select service type"
 msgstr "Выберите тип сервиса"
 
@@ -355,7 +363,10 @@ msgid ""
 "If you don’t see an answer to your question below, let us know in comments "
 "or <a href=\"http://nextgis.com/contact\" target=\"_blank\">send</a> it to "
 "us directly, we’ll add it here."
-msgstr "Если вы не нашли ответ на свой вопрос ниже, дайте знать в комментариях или <a href=\"http://nextgis.ru/contact\" target=\"_blank\">присылайте нам вопрос напрямую</a>, мы добавим его на эту страницу."
+msgstr ""
+"Если вы не нашли ответ на свой вопрос ниже, дайте знать в комментариях или "
+"<a href=\"http://nextgis.ru/contact\" target=\"_blank\">присылайте нам "
+"вопрос напрямую</a>, мы добавим его на эту страницу."
 
 #: templates/faq.html:26 templates/faq.html:32
 msgid "General"
@@ -382,8 +393,10 @@ msgid ""
 "QuickMapServices (QMS) is an open catalog of geodata sources and a way to "
 "add them to your GIS in one click (<a href=\"https://qms.nextgis.com/about"
 "\">read more</a>)."
-msgstr "QuickMapServices (QMS) это открытый каталог источников геоданных (т.н. сервисов) и способ использовать их в любой ГИС в один клик (<a href=\"https://qms.nextgis.com/about"
-"\">подробнее</a>)."
+msgstr ""
+"QuickMapServices (QMS) это открытый каталог источников геоданных (т.н. "
+"сервисов) и способ использовать их в любой ГИС в один клик (<a href="
+"\"https://qms.nextgis.com/about\">подробнее</a>)."
 
 #: templates/faq.html:35
 msgid "What is the goal of QMS?"
@@ -401,7 +414,9 @@ msgstr "Зачем добавлять сервисы в QMS?"
 msgid ""
 "To easily find them and plug-in to your GIS project. Literally in just few "
 "clicks."
-msgstr "Чтобы их можно было легко находить и подключать в ГИС. Буквально в одно нажатие."
+msgstr ""
+"Чтобы их можно было легко находить и подключать в ГИС. Буквально в одно "
+"нажатие."
 
 #: templates/faq.html:39
 msgid "Can I add services to GIS without QMS?"
@@ -409,7 +424,9 @@ msgstr "Могу ли я подключать сервисы в ГИС, не и�
 
 #: templates/faq.html:40
 msgid "Sure! But you’ll have to enter cumbersome links and parameters."
-msgstr "Конечно, но вам придется каждый раз вводить сложные ссылки и параметры сервисов."
+msgstr ""
+"Конечно, но вам придется каждый раз вводить сложные ссылки и параметры "
+"сервисов."
 
 #: templates/faq.html:43
 msgid "How do I use one of the services from QMS?"
@@ -421,9 +438,12 @@ msgid ""
 "\"http://nextgis.com/blog/quickmapservices/\">QGIS</a>, <a href=\"https://my."
 "nextgis.com/downloads/software/arcqms/ArcQMSInstaller.msi\">ArcGIS</a> and "
 "<a href=\"http://nextgis.com/blog/ngm-2-4/\">NextGIS Mobile.</a>"
-msgstr "Находите и добавляйте их в свою ГИС. На данный момент есть клиенты для <a href="
-"\"http://nextgis.com/blog/quickmapservices/\">QGIS</a>, <a href=\"https://my."
-"nextgis.com/downloads/software/arcqms/ArcQMSInstaller.msi\">ArcGIS</a> и <a href=\"http://nextgis.com/blog/ngm-2-4/\">NextGIS Mobile</a>. Список расширяется."
+msgstr ""
+"Находите и добавляйте их в свою ГИС. На данный момент есть клиенты для <a "
+"href=\"http://nextgis.com/blog/quickmapservices/\">QGIS</a>, <a href="
+"\"https://my.nextgis.com/downloads/software/arcqms/ArcQMSInstaller.msi"
+"\">ArcGIS</a> и <a href=\"http://nextgis.com/blog/ngm-2-4/\">NextGIS Mobile</"
+"a>. Список расширяется."
 
 #: templates/faq.html:45
 msgid "What kind of data I will get by using one of QMS services?"
@@ -433,7 +453,9 @@ msgstr "Какие данные я получу, подключив один и�
 msgid ""
 "This depends on a service. Through QMS you can get access to vector data, "
 "basemaps and rasters."
-msgstr "Это зависит от типа сервиса. Через QMS вы можете получить векторные данные, картографические подложки или растры."
+msgstr ""
+"Это зависит от типа сервиса. Через QMS вы можете получить векторные данные, "
+"картографические подложки или растры."
 
 #: templates/faq.html:50
 msgid "What kind of services I can add to QMS?"
@@ -442,6 +464,10 @@ msgstr "Какие сервисы я могу добавить в QMS?"
 #: templates/faq.html:51
 msgid "You can add:"
 msgstr "Вы можете добавить:"
+
+#: templates/faq.html:56
+msgid "GeoJSON – geodata in GeoJSON format. Link to file or data stream."
+msgstr ""
 
 #: templates/faq.html:58
 msgid "What are minimum needs to add a service?"
@@ -460,7 +486,9 @@ msgstr "Все эти аббревиатуры для меня пустой зв
 #: templates/faq.html:61
 msgid ""
 "Unfortunately, not at this point, you’ll need to learn the basics first."
-msgstr "Скорее всего нет, сначала вам придется немного разобраться о каких сервисах идет речь."
+msgstr ""
+"Скорее всего нет, сначала вам придется немного разобраться о каких сервисах "
+"идет речь."
 
 #: templates/faq.html:62
 msgid ""
@@ -472,7 +500,11 @@ msgstr "Хорошо, я нашел сайт и скопировал его сс
 msgid ""
 "Most probably not, links copied from browsers address bar are typically not "
 "service links that you can use with QMS."
-msgstr "Скорее всего нет, ссылки из адресной строки браузеров как правило не являются сервисами которые вы сможете использовать через QMS. Добавить такую ссылку и создать сервис вы сможете, но работать он не будет и вскоре будет удален."
+msgstr ""
+"Скорее всего нет, ссылки из адресной строки браузеров как правило не "
+"являются сервисами которые вы сможете использовать через QMS. Добавить такую "
+"ссылку и создать сервис вы сможете, но работать он не будет и вскоре будет "
+"удален."
 
 #: templates/faq.html:64
 msgid "What do correct service links look like?"
@@ -489,7 +521,9 @@ msgstr "Этот сервис даёт доступ к тайлированны�
 #: templates/faq.html:70
 msgid ""
 "Note z, x, y – those are tile numbers, they correspond to a particular area"
-msgstr "Обратите внимание на z, x, y — это номера тайлов соответствующие определенной территории"
+msgstr ""
+"Обратите внимание на z, x, y — это номера тайлов соответствующие "
+"определенной территории"
 
 #: templates/faq.html:75
 msgid "This service provides untiled-imagery"
@@ -511,7 +545,9 @@ msgstr "Обратите внимание на слова ‘wfs’ или WFSse
 msgid ""
 "This service provides vector data and is probably the simplest, being just a "
 "file with data"
-msgstr "Этот сервис даёт доступ к векторным данным. Это самый простой сервис, ссылка просто указывает на файл с данными"
+msgstr ""
+"Этот сервис даёт доступ к векторным данным. Это самый простой сервис, ссылка "
+"просто указывает на файл с данными"
 
 #: templates/faq.html:88
 msgid "File can be hosted anywhere, as long as it’s valid GeoJSON"
@@ -521,14 +557,18 @@ msgstr "Файл с данными может лежать на каком уг�
 msgid ""
 "I’ve seen services links that are different from examples above, are there "
 "other examples?"
-msgstr "Я видел ссылки на сервисы отличающиеся от примеров выше, где посмотреть другие образцы?"
+msgstr ""
+"Я видел ссылки на сервисы отличающиеся от примеров выше, где посмотреть "
+"другие образцы?"
 
 #: templates/faq.html:93
 msgid ""
 "Yes, there are lots of varieties and service link can look very differently. "
 "Just browse QMS clicking on service type and see what kind of links other "
 "services show."
-msgstr "В целом ссылки на сервисы не стандартизованы и у них есть много вариантов. Просто полистайте каталог и посмотрите на другие примеры."
+msgstr ""
+"В целом ссылки на сервисы не стандартизованы и у них есть много вариантов. "
+"Просто полистайте каталог и посмотрите на другие примеры."
 
 #: templates/faq.html:94
 msgid "Start with the ones down below."
@@ -542,7 +582,9 @@ msgstr "Как убедиться в том, что мой сервис — ра
 msgid ""
 "Find it through a client and add to see the data on a map. In QGIS you can "
 "use QuickMapServices plugin."
-msgstr "Найдите и подключите его через свой клиент ГИС. Например, в QGIS можно использовать модуль QuickMapServices."
+msgstr ""
+"Найдите и подключите его через свой клиент ГИС. Например, в QGIS можно "
+"использовать модуль QuickMapServices."
 
 #: templates/faq.html:99
 msgid "I’ve found service, but it doesn’t work, how do I fix it?"
@@ -557,7 +599,10 @@ msgid ""
 "Every service has it’s author (maintainer, submitter). Use the form to let "
 "the submitter know that the service is broken. Provide information how to "
 "fix it."
-msgstr "У каждого сервиса есть автор, человек который завел его в QMS. Используйте форму, чтобы сообщить ему, что сервис поломался. Если вы понимаете почему, сообщите так же как починить сервис."
+msgstr ""
+"У каждого сервиса есть автор, человек который завел его в QMS. Используйте "
+"форму, чтобы сообщить ему, что сервис поломался. Если вы понимаете почему, "
+"сообщите так же как починить сервис."
 
 #: templates/faq.html:102
 msgid ""
@@ -569,7 +614,10 @@ msgstr "Я сообщил автору сервиса о проблеме, но 
 msgid ""
 "If maintainer doesn’t reply for a long time – create a new service (you’ll "
 "become it’s maintainer). Old incorrect service will gradually be removed."
-msgstr "Если автор не отвечает в течение длительного времени — создайте новый сервис с правильными параметрами (вы станете его автором). Старый неправильный сервис постепенно будет удален."
+msgstr ""
+"Если автор не отвечает в течение длительного времени — создайте новый сервис "
+"с правильными параметрами (вы станете его автором). Старый неправильный "
+"сервис постепенно будет удален."
 
 #: templates/list.html:12
 msgid "Search map service..."
