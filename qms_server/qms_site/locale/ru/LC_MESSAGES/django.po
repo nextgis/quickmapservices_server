@@ -467,7 +467,7 @@ msgstr "Вы можете добавить:"
 
 #: templates/faq.html:56
 msgid "GeoJSON – geodata in GeoJSON format. Link to file or data stream."
-msgstr ""
+msgstr "GeoJSON – геоданные в формате GeoJSON. Ссылка на файл или поток данных."
 
 #: templates/faq.html:58
 msgid "What are minimum needs to add a service?"
