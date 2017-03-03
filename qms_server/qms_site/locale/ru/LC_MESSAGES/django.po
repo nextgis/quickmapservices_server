@@ -578,6 +578,18 @@ msgstr "Начните с более ранних."
 msgid "How do I check that my service is OK?"
 msgstr "Как убедиться в том, что мой сервис — работает?"
 
+msgid "I’ve created a service, but type in incorrect, can I change it?"
+msgstr "Я создал сервис, но ошибся с его типом, могу я его поменять?"
+
+msgid "I’ve created a service, but type in incorrect, can I change it?"
+msgstr "Вы не можете поменять тип сервиса после его создания. Создайте новый с правильным типом."
+
+msgid "How can I delete a service?"
+msgstr "Как удалить свой сервис?"
+
+msgid "You can't delete services at the moment. Report a problem and we'll remove it soon."
+msgstr "На данный момент удалять сервисы нельзя."
+
 #: templates/faq.html:96
 msgid ""
 "Find it through a client and add to see the data on a map. In QGIS you can "
