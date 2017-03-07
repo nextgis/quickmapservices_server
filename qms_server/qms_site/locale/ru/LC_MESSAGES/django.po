@@ -193,7 +193,7 @@ msgstr "Контакты"
 
 #: qms_site/templates/base_qms.html:13
 msgid "QuickMapServices: discover, share and use geospatial data services"
-msgstr ""
+msgstr "QuickMapServices: публикуйте, находите источники геоданных и используйте их в ГИС"
 
 #: qms_site/templates/create.html:17 qms_site/templates/create.html.py:30
 msgid "Which one do I need?"
