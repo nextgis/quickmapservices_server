@@ -1,18 +1,9 @@
-{% load i18n %}{% trans 'Hi,' %}
-{% if reported_user %}
-{% blocktrans %}Feedback from user {{ reported_user }} for service {{ service_url }}.{% endblocktrans %}
-{% else %}
-{% blocktrans %}Feedback from anonymous user for service {{ service_url }}.{% endblocktrans %}
-{% endif %}
-{% trans 'Message:' %}
+{% load i18n %}
+
 {{ report_message|safe }}
 
-{% if reported_email %}
-{% blocktrans %}Submitter's email: {{ reported_email }}{% endblocktrans %}
-{% else %}
-{% blocktrans %}Submitter chose not to disclose his email.{% endblocktrans %}
-{% endif %}
+##################################################
 
-{% blocktrans %}NextGIS QMS Team{% endblocktrans %}
-https://qms.nextgis.com
-https://t.me/nextgis_support
+{% trans 'From' %}: {% if reported_user %}{{ reported_user }}{% else %}{% trans 'anonymous' %}{% endif %}
+{% trans 'E-mail' %}: {% if reported_email %}{{ reported_email }}{% else %}not disclosed{% endif %}
+{% trans 'Service' %}: {{ service_url }}

@@ -1,17 +1,14 @@
-{% load i18n %}{% trans 'Hi,' %}
-{% if reported_user %}
-{% blocktrans %}You've got feedback from user {{ reported_user }} for your service {{ service_url }}.{% endblocktrans %}
-{% else %}
-{% blocktrans %}You've got feedback from anonymous user for your service {{ service_url }}.{% endblocktrans %}
-{% endif %}
-{% trans 'Message says:' %}
+{% load i18n %}
+
 {{ report_message|safe }}
 
-{% if reported_email %}
-{% blocktrans %}You can answer directly to the user at: {{reported_email}}{% endblocktrans %}
-{% else %}
-{% blocktrans %}User chose not to disclose his email.{% endblocktrans %}
-{% endif %}
+##################################################
+
+{% trans 'From' %}: {% if reported_user %}{{ reported_user }}{% else %}{% trans 'anonymous' %}{% endif %}
+{% trans 'E-mail' %}: {% if reported_email %}{{ reported_email }}{% else %}not disclosed{% endif %}
+{% trans 'Service' %}: {{ service_url }}
+
+
 {% blocktrans %}Hope it will help you make your services defitinions at QMS better!{% endblocktrans %}
 
 {% blocktrans %}NextGIS QMS Team{% endblocktrans %}
