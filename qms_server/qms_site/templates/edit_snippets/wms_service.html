@@ -6,9 +6,9 @@
 {% block form_header %} WMS {% endblock %}
 
 {% block required_part %}
-    <div class="form-group label-floating clearfix {% if form.url.errors %}has-error{% endif %}">
+    <div class="form-group clearfix {% if form.url.errors %}has-error{% endif %}">
         <label class="control-label control-label--required" for="{{form.url.id_for_label}}">{% trans 'Service URL' %}</label>
-        {{ form.url | add_class:'form-control required'|attr_with_id:'aria-describedby:$id-error' }}
+        {{ form.url | add_class:'form-control required'|attr_with_id:'aria-describedby:$id-error'|attr:'placeholder:http://map.example.ru/geowebcache/service/wms' }}
         {% if form.url.errors %}
         <span id="{{ form.url.auto_id }}-error" class="has-error">{{ form.url.errors }}</span>
         {% endif %}
