@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-10 10:36+0000\n"
+"POT-Creation-Date: 2017-03-10 12:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -670,22 +670,22 @@ msgid "Services found"
 msgstr "Найдено сервисов"
 
 #: qms_site/templates/qms_site/email/user_report_for_admin_message.txt:7
-#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:7
+#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:8
 msgid "From"
 msgstr "От"
 
 #: qms_site/templates/qms_site/email/user_report_for_admin_message.txt:7
-#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:7
+#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:8
 msgid "anonymous"
 msgstr "анонимно"
 
 #: qms_site/templates/qms_site/email/user_report_for_admin_message.txt:8
-#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:8
+#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:9
 msgid "E-mail"
 msgstr "E-mail"
 
 #: qms_site/templates/qms_site/email/user_report_for_admin_message.txt:9
-#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:9
+#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:10
 msgid "Service"
 msgstr "Сервис"
 
@@ -696,24 +696,30 @@ msgstr "Сервис"
 msgid "%(report_type)s"
 msgstr ""
 
-#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:12
+#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:6
+msgid "This is user's feedback for your service from qms.nextgis.com"
+msgstr "Это обратная связь от пользователя вашего сервиса отправленная с qms.nextgis.com"
+
+#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:13
 msgid "Hope it will help you make your services defitinions at QMS better!"
 msgstr "Надеемся, это сообщение поможет улучшить ваш сервис на QMS!"
 
-#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:14
+#: qms_site/templates/qms_site/email/user_report_for_author_message.txt:15
 #: qms_site/templates/qms_site/email/user_report_for_submitter_message.txt:17
 msgid "NextGIS QMS Team"
 msgstr "Команда NextGIS QMS"
 
 #: qms_site/templates/qms_site/email/user_report_for_submitter_message.txt:7
+#, python-format
 msgid ""
 "This is your feedback on service %(service_url)s. This email is for your "
 "reference."
 msgstr ""
-"Вы отправили сообщение автору сервиса %(service_url)s. Это "
-"письмо для справки."
+"Вы отправили сообщение автору сервиса %(service_url)s. Это письмо для "
+"справки."
 
 #: qms_site/templates/qms_site/email/user_report_for_submitter_message.txt:9
+#, python-format
 msgid ""
 "You disclosed your email and service's author can answer you directly at: "
 "%(reported_email)s"
@@ -725,7 +731,9 @@ msgstr ""
 msgid ""
 "You chose not to disclose your email, so service author will not be able to "
 "contact you."
-msgstr "Вы не оставили email для обратной связи. Автор сервиса не сможет вам ответить."
+msgstr ""
+"Вы не оставили email для обратной связи. Автор сервиса не сможет вам "
+"ответить."
 
 #: qms_site/templates/qms_site/email/user_report_for_submitter_message.txt:13
 msgid "Thanks for making QMS better!"

@@ -3,6 +3,7 @@
 {{ report_message|safe }}
 
 ##################################################
+{% blocktrans %}This is user's feedback for your service from qms.nextgis.com{% endblocktrans %}.
 
 {% trans 'From' %}: {% if reported_user %}{{ reported_user }}{% else %}{% trans 'anonymous' %}{% endif %}
 {% trans 'E-mail' %}: {% if reported_email %}{{ reported_email }}{% else %}not disclosed{% endif %}
