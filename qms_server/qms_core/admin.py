@@ -37,6 +37,7 @@ class GeoServiceAdmin(admin.ModelAdmin):
 service_readonly_fields = ('guid', 'type',)
 common_fieldset = (_('Common'), {'fields': ('guid', 'type', 'name', 'desc', 'epsg', 'icon')})
 license_fieldset = (_('License & Copyright'), {'fields': ('license_name', 'license_url', 'copyright_text', 'copyright_url', 'terms_of_use_url')})
+source_fieldset = (_('Source info'), {'fields': ('source', 'source_url')})
 common_list_display = ('id', 'name', 'desc')
 
 
@@ -49,6 +50,7 @@ class TmsServiceAdmin(admin.ModelAdmin):
     fieldsets = (
         common_fieldset,
         license_fieldset,
+        source_fieldset,
         (_('TMS'), {'fields': ('url', 'z_min', 'z_max', 'y_origin_top')}),
     )
 
@@ -62,6 +64,7 @@ class WmsServiceAdmin(admin.ModelAdmin):
     fieldsets = (
         common_fieldset,
         license_fieldset,
+        source_fieldset,
         (_('WMS'), {'fields': ('url', 'params', 'layers', 'turn_over', 'format')}),
     )
 
@@ -75,6 +78,7 @@ class WfsServiceAdmin(admin.ModelAdmin):
     fieldsets = (
         common_fieldset,
         license_fieldset,
+        source_fieldset,
         (_('WFS'), {'fields': ('url', 'layer')}),
     )
 
@@ -88,6 +92,7 @@ class GeoJsonServiceAdmin(admin.ModelAdmin):
     fieldsets = (
         common_fieldset,
         license_fieldset,
+        source_fieldset,
         (_('GeoJSON'), {'fields': ('url', )}),
     )
 
