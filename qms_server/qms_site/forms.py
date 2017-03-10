@@ -1,5 +1,5 @@
 from captcha.fields import ReCaptchaField
-from django.forms import ModelForm
+from django.forms import ModelForm, ValidationError
 from django.utils.translation import ugettext as _
 
 from qms_core.models import TmsService, WmsService, WfsService, GeoJsonService
@@ -17,6 +17,15 @@ class BaseServiceForm(ModelForm):
 class TmsForm(BaseServiceForm):
     associated_template = 'edit_snippets/tms_service.html'
     obj_type = "TMS"
+
+    def clean_url(self):
+        data_url = self.cleaned_data['url']
+        xyz_scheme = all(map(lambda x: x in data_url, ['{x}', '{y}', '{z}']))
+        q_scheme = '{q}' in data_url
+        if not xyz_scheme and not q_scheme:
+            raise ValidationError(_("Invalid service url! Use {x} {y} {z} or {q} replacement fields!"))
+
+        return data_url
 
     class Meta:
         model = TmsService

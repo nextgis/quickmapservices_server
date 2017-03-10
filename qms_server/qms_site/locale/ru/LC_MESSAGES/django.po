@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-10 12:19+0000\n"
+"POT-Creation-Date: 2017-03-10 12:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,12 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: qms_site/forms.py:26
+msgid "Invalid service url! Use {x} {y} {z} or {q} replacement fields!"
+msgstr ""
+"Ошибочный URL для сервиса! Используйте подстановочные символы: {x} {y} {z} "
+"или {q}!"
 
 #: qms_site/models.py:18
 msgid "Service not working"
@@ -698,7 +704,9 @@ msgstr ""
 
 #: qms_site/templates/qms_site/email/user_report_for_author_message.txt:6
 msgid "This is user's feedback for your service from qms.nextgis.com"
-msgstr "Это обратная связь от пользователя вашего сервиса отправленная с qms.nextgis.com"
+msgstr ""
+"Это обратная связь от пользователя вашего сервиса отправленная с qms.nextgis."
+"com"
 
 #: qms_site/templates/qms_site/email/user_report_for_author_message.txt:13
 msgid "Hope it will help you make your services defitinions at QMS better!"
