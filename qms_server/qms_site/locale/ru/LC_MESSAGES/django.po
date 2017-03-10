@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-10 12:54+0000\n"
+"POT-Creation-Date: 2017-03-10 14:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,10 +21,11 @@ msgstr ""
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: qms_site/forms.py:26
-msgid "Invalid service url! Use {x} {y} {z} or {q} replacement fields!"
+#, python-brace-format
+msgid "Invalid service url! Link must include {x},{y},{z} or {q} variables!"
 msgstr ""
-"Ошибочный URL для сервиса! Используйте подстановочные символы: {x} {y} {z} "
-"или {q}!"
+"Неправильная ссылка на сервис! Ссылка должна включать переменные {x},{y},{z} "
+"или {q}."
 
 #: qms_site/models.py:18
 msgid "Service not working"

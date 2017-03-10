@@ -23,7 +23,7 @@ class TmsForm(BaseServiceForm):
         xyz_scheme = all(map(lambda x: x in data_url, ['{x}', '{y}', '{z}']))
         q_scheme = '{q}' in data_url
         if not xyz_scheme and not q_scheme:
-            raise ValidationError(_("Invalid service url! Use {x} {y} {z} or {q} replacement fields!"))
+            raise ValidationError(_("Invalid service url! Link must include {x},{y},{z} or {q} variables!"))
 
         return data_url
 
