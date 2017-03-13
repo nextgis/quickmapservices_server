@@ -205,7 +205,7 @@ msgstr ""
 "в ГИС"
 
 #: qms_site/templates/create.html:17 qms_site/templates/create.html.py:30
-msgid "Which one do I need?"
+msgid "Which one do I choose?"
 msgstr "Что выбрать?"
 
 #: qms_site/templates/create.html:18
