@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-14 20:01+0000\n"
+"POT-Creation-Date: 2017-03-14 20:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -201,8 +201,6 @@ msgstr ""
 "в ГИС"
 
 #: templates/create.html:17
-#, fuzzy
-#| msgid "Which one do I choose?"
 msgid "Which one do I need?"
 msgstr "Что выбрать?"
 
@@ -216,10 +214,13 @@ msgstr "Что выбрать?"
 
 #: templates/create.html:44
 msgid ""
-"You haven't provided any license information.\\nIt may result in some "
+"You haven't provided any license information. It may result in some "
 "limitations (like lower ranking).\\n\\nDo you still want to add service "
 "without licensing?"
-msgstr "Вы не указали лицензинную информацию для этого сервиса.\\nЭто может привести к ограничениями в отношении сервиса.\\n\\nХотите добавить сервис без лицензионной информации?"
+msgstr ""
+"Вы не указали лицензинную информацию для этого сервиса. Это может привести "
+"к ограничениями в отношении сервиса.\\n\\nХотите добавить сервис без "
+"лицензионной информации?"
 
 #: templates/detail.html:13 templates/snippets/report_problem.html:9
 msgid "Report a problem"
@@ -239,10 +240,13 @@ msgstr "Изменить сервис"
 
 #: templates/edit.html:22
 msgid ""
-"You haven't provided any license information.\\nIt may result in some "
+"You haven't provided any license information. It may result in some "
 "limitations (like lower ranking).\\n\\nDo you still want to save service "
 "without licensing?"
-msgstr "Вы не указали лицензинную информацию для этого сервиса.\\nЭто может привести к ограничениями в отношении сервиса.\\n\\nСохранить сервис без лицензионной информации?"
+msgstr ""
+"Вы не указали лицензинную информацию для этого сервиса. Это может привести "
+"к ограничениями в отношении сервиса.\\n\\nСохранить сервис без лицензионной "
+"информации?"
 
 #: templates/edit_snippets/base_service.html:20
 msgid "Service name"
