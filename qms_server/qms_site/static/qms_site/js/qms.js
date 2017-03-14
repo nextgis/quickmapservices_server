@@ -21,13 +21,24 @@ var QMSAddForm = (function(){
                     licenseInfo = form.find(".qms-add-service__license-info");
 
                 licenseForm.on("innerForm.save", function(){
-                    console.log("innerForm.save")
                     if (isFormFilled(licenseForm)){
                         licenseInfo.addClass("filled");
                     } else{
                         licenseInfo.removeClass("filled");
                     }
-                })
+                });
+
+                form.on("submit", function(e){
+                    if (form.valid()) {
+                        if (!isFormFilled(licenseForm)) {
+                            return confirm(noLicenseConfirmText);
+                        } else {
+                            return true;
+                        }
+                    } else {
+                        return false;
+                    }
+                });
             })
         }
     }
