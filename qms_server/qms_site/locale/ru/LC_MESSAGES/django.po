@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-15 07:36+0000\n"
+"POT-Creation-Date: 2017-03-17 13:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -177,7 +177,8 @@ msgstr "в свою программу"
 msgid "Use QMS in QGIS and NextGIS Mobile"
 msgstr "Использование QMS в QGIS и NextGIS Mobile"
 
-#: templates/about.html:95
+#: templates/about.html:95 templates/detail.html:13
+#: templates/snippets/report_problem.html:9
 msgid "Feedback"
 msgstr "Обратная связь"
 
@@ -220,10 +221,6 @@ msgstr ""
 "Вы не указали лицензинную информацию для этого сервиса. Это может привести к "
 "ограничениями в отношении сервиса.\\n\\nХотите добавить сервис без "
 "лицензионной информации?"
-
-#: templates/detail.html:13 templates/snippets/report_problem.html:9
-msgid "Report a problem"
-msgstr "Сообщить о проблеме"
 
 #: templates/detail.html:15 templates/edit_snippets/base_service.html:65
 msgid "Edit"
@@ -725,11 +722,7 @@ msgstr ""
 "com"
 
 #: templates/qms_site/email/user_report_for_author_message.txt:13
-msgid "Hope it will help you make your services defitinions at QMS better!"
-msgstr "Надеемся, это сообщение поможет улучшить ваш сервис на QMS!"
-
-#: templates/qms_site/email/user_report_for_author_message.txt:15
-#: templates/qms_site/email/user_report_for_submitter_message.txt:17
+#: templates/qms_site/email/user_report_for_submitter_message.txt:15
 msgid "NextGIS QMS Team"
 msgstr "Команда NextGIS QMS"
 
@@ -758,10 +751,6 @@ msgid ""
 msgstr ""
 "Вы не оставили email для обратной связи. Автор сервиса не сможет вам "
 "ответить."
-
-#: templates/qms_site/email/user_report_for_submitter_message.txt:13
-msgid "Thanks for making QMS better!"
-msgstr "Спасибо, что делаете QMS лучше!"
 
 #: templates/services_snippets/general_info.html:7
 msgid "General info"
@@ -849,16 +838,12 @@ msgid "We will send this address to the service's author"
 msgstr "Мы сообщим ваш адрес автору сервиса."
 
 #: templates/snippets/report_problem.html:23
-msgid "Type of problem"
-msgstr "Тип проблемы"
+msgid "Message theme"
+msgstr "Тема сообщения"
 
 #: templates/snippets/report_problem.html:33
 msgid "Your message"
 msgstr "Ваше сообщение"
-
-#: templates/snippets/report_problem.html:35
-msgid "Describe the problem. You can also specify how it can be fixed."
-msgstr "Опишите проблему. Здесь также можно указать, как её исправить."
 
 #: templates/snippets/report_problem.html:51
 #: templates/snippets/report_problem.html:55
@@ -872,3 +857,18 @@ msgstr "Ваше сообщение было отправлено автору �
 #: views.py:170 views.py:173
 msgid "Invalid form param: service_type"
 msgstr "Ошибка параметра формы: service_type"
+
+#~ msgid "Report a problem"
+#~ msgstr "Сообщить о проблеме"
+
+#~ msgid "Hope it will help you make your services defitinions at QMS better!"
+#~ msgstr "Надеемся, это сообщение поможет улучшить ваш сервис на QMS!"
+
+#~ msgid "Thanks for making QMS better!"
+#~ msgstr "Спасибо, что делаете QMS лучше!"
+
+#~ msgid "Type of problem"
+#~ msgstr "Тип проблемы"
+
+#~ msgid "Describe the problem. You can also specify how it can be fixed."
+#~ msgstr "Опишите проблему. Здесь также можно указать, как её исправить."

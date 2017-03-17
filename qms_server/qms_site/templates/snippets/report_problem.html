@@ -6,7 +6,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <div class="modal-title">{% trans 'Report a problem' %}</div>
+                <div class="modal-title">{% trans 'Feedback' %}</div>
                 <div class="modal-subtitle"><a href="#" data-dismiss="modal" >{{ service.name }}</a></div>
                 <form action="." method="POST" class="form--margin_big form-validate">
                     {% csrf_token %}
@@ -20,7 +20,7 @@
                         <div class="help-block">{% trans "We will send this address to the service's author" %}</div>
                     </div>
                     <div class="form-group label-floating clearfix">
-                        <label class="control-label" for="{{report_form.report_type.id_for_label}}">{% trans 'Type of problem' %}</label>
+                        <label class="control-label" for="{{report_form.report_type.id_for_label}}">{% trans 'Message theme' %}</label>
                         <div class="select-wrapper">
                             <i class="select__icon material-icons">keyboard_arrow_down</i>
                             {{ report_form.report_type|add_class:'select--no-empty-option form-control required'|attr_with_id:'aria-describedby:$id-error' }}
@@ -29,10 +29,10 @@
                         <span id="{{ report_form.report_type.auto_id }}-error" class="has-error">{{ report_form.report_type.errors }}</span>
                         {% endif %}
                     </div>
-                    <div class="form-group clearfix ">
+                    <div class="form-group label-floating clearfix ">
                         <label class="control-label" for="{{report_form.report_message.id_for_label}}">{% trans 'Your message' %}</label>
                         {# {{ report_form.report_message|add_class:'form-control required'|attr_with_id:'aria-describedby:$id-error' }} #}
-                        <textarea aria-describedby="{{ report_form.report_message.auto_id }}-error" class="form-control required" id="{{ report_form.report_message.auto_id }}" name="{{ report_form.report_message.name }}" rows="5" placeholder="{% trans 'Describe the problem. You can also specify how it can be fixed.' %}"/>{{ report_form.report_message.value|default_if_none:"" }}</textarea>
+                        <textarea aria-describedby="{{ report_form.report_message.auto_id }}-error" class="form-control required" id="{{ report_form.report_message.auto_id }}" name="{{ report_form.report_message.name }}" rows="5" />{{ report_form.report_message.value|default_if_none:"" }}</textarea>
                         {% if report_form.report_message.errors %}
                         <span id="{{ report_form.report_message.auto_id }}-error" class="has-error">{{ report_form.report_message.errors }}</span>
                         {% endif %}

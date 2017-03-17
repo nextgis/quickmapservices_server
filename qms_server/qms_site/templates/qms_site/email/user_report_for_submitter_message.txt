@@ -10,8 +10,6 @@
 {% else %}
 {% blocktrans %}You chose not to disclose your email, so service author will not be able to contact you.{% endblocktrans %}
 {% endif %}
-{% blocktrans %}Thanks for making QMS better!{% endblocktrans %}
-
 
 
 {% blocktrans %}NextGIS QMS Team{% endblocktrans %}

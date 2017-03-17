@@ -10,8 +10,6 @@
 {% trans 'Service' %}: {{ service_url }}
 
 
-{% blocktrans %}Hope it will help you make your services defitinions at QMS better!{% endblocktrans %}
-
 {% blocktrans %}NextGIS QMS Team{% endblocktrans %}
 https://qms.nextgis.com
 https://t.me/nextgis_support
