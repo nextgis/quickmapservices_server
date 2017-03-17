@@ -27,7 +27,7 @@
                     </div>
                 {% endfor %}
             </div>
-            <a class="qms-type__help-link qms-type__help-link--mobile" href="/faq#add" target="_blank">{% trans 'Which one do I need?' %}</a>
+            <a class="qms-type__help-link qms-type__help-link--mobile" href="/faq#add" target="_blank">{% trans 'Which one do I choose?' %}</a>
         </nav>
         <!-- Tab panes -->
         <div class="tab-content">
@@ -40,6 +40,9 @@
             {% endfor %}
         </div>
     </div><!--/.modal--stretch__inner-->
+    <script>
+        var noLicenseConfirmText = "{% trans "You haven't provided any license information. It may result in some limitations (like lower ranking).\n\nWould you like to add service anyway?" %}";
+    </script>
 {% endblock %}
 
 {% block close_link %}{% url 'site_geoservice_list' %}{% endblock %}

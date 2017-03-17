@@ -18,6 +18,9 @@
             </div>
         </div>
     </div><!--/.modal--stretch__inner-->
+    <script>
+        var noLicenseConfirmText = "{% trans "You haven't provided any license information. It may result in some limitations (like lower ranking).\n\nWould you like to save service anyway?" %}";
+    </script>
 {% endblock %}
 
 {% block close_link %}{% url 'site_geoservice_list' %}{% endblock %}
