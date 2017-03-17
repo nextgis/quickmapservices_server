@@ -185,7 +185,7 @@ msgstr "Использование QMS в QGIS и NextGIS Mobile"
 #: templates/about.html:95 templates/detail.html:13
 #: templates/snippets/report_problem.html:9
 msgid "Feedback"
-msgstr "Обратная связь"
+msgstr "Написать автору"
 
 #: templates/about.html:97
 msgid ""
