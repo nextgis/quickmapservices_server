@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-17 13:21+0000\n"
+"POT-Creation-Date: 2017-03-17 13:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,17 +27,22 @@ msgstr ""
 "Неправильная ссылка на сервис! Ссылка должна включать переменные {x},{y},{z} "
 "или {q}."
 
-#: models.py:18
+#: models.py:19
 msgid "Service not working"
 msgstr "Сервис не работает"
 
-#: models.py:19
+#: models.py:20
 msgid "License violation"
 msgstr "Нарушение лицензии"
 
-#: models.py:20
+#: models.py:21
 msgid "Other problem"
 msgstr "Другая проблема"
+
+#: models.py:22
+#| msgid "General info"
+msgid "General feedback"
+msgstr "Общая информация"
 
 #: templates/about.html:6 templates/base_qms.html:15 templates/faq.html:6
 msgid "QMS"
