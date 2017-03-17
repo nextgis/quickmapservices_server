@@ -16,10 +16,10 @@ class ReportType:
     GENERAL_FEEDBACK = 'general_feedback'
 
     choices = {
+        GENERAL_FEEDBACK: _('General feedback'),
         SERVICE_NOT_WORKING: _('Service not working'),
         LICENSE_VIOLATION: _('License violation'),
-        OTHER_PROBLEM: _('Other problem'),
-        GENERAL_FEEDBACK: _('General feedback'),
+        OTHER_PROBLEM: _('Other'),
     }
 
 
