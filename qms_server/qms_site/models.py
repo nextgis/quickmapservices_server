@@ -13,11 +13,13 @@ class ReportType:
     SERVICE_NOT_WORKING = 'service_not_working'
     LICENSE_VIOLATION = 'license_violation'
     OTHER_PROBLEM = 'other_problem'
+    GENERAL_FEEDBACK = 'general_feedback'
 
     choices = {
         SERVICE_NOT_WORKING: _('Service not working'),
         LICENSE_VIOLATION: _('License violation'),
         OTHER_PROBLEM: _('Other problem'),
+        GENERAL_FEEDBACK: _('General feedback'),
     }
 
 
