@@ -6,7 +6,7 @@
   <div class="panel-body">
       <h4>{% trans 'WFS info' %}</h4>
       {% trans 'None' as n %}
-      URL: {{ service.wfsservice.url|link_or_val:n }} <br>
+      URL: <span class="break-word">{{ service.wfsservice.url|link_or_val:n }}</span> <br>
       {% trans "Layer" %}: {{ service.wfsservice.layer|default_if_not:n }} <br>
   </div>
 </div>

@@ -6,7 +6,7 @@
   <div class="panel-body">
       <h4>{% trans 'WMS info' %}</h4>
       {% trans 'None' as n %}
-      URL: {{ service.wmsservice.url|link_or_val:n }} <br>
+      URL: <span class="break-word">{{ service.wmsservice.url|link_or_val:n }}</span> <br>
       {% trans "GET parameters" %}: {{ service.wmsservice.params|default_if_not:n }} <br>
       {% trans "Layers" %}: {{ service.wmsservice.layers|default_if_not:n }} <br>
       {% trans "Turn over layers order" %}: {{ service.wmsservice.turn_over|default_if_none:n }} <br>
