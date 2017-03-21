@@ -250,7 +250,7 @@ msgid ""
 "limitations (like lower ranking).\\n\\nWould you like to save service anyway?"
 msgstr ""
 "Вы не указали лицензинную информацию для этого сервиса. Это может привести к "
-"ограничениями в отношении сервиса.\\n\\nСохранить сервис без лицензионной "
+"ограничениям в отношении сервиса.\\n\\nСохранить сервис без лицензионной "
 "информации?"
 
 #: qms_site/templates/edit_snippets/base_service.html:20
