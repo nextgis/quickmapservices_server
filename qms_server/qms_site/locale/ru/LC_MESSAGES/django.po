@@ -603,7 +603,7 @@ msgstr "Для создания сервиса WMS нужно учесть сл�
 msgid "You should use layer(s) NAME, not layer(s) TITLE."
 msgstr "Используйте NAME слоя (слоёв), а не TITLE."
 
-msgid "To check what layers are available, add your WMS to QGIS first Layer/Add Layer/WMS layer... and have a look what's there."
+msgid "To check what layers are available, add your WMS to QGIS first Layer/Add Layer/WMS layer... and have a look what’s there."
 msgstr "Легко определить какие слои доступны в сервисе WMS можно подключив его, например, в QGIS (меню Слой/Добавить слой/Слой WMS...)."
 
 #: qms_site/templates/faq.html:92
