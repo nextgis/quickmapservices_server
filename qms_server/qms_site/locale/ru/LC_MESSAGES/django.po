@@ -594,6 +594,18 @@ msgstr ""
 msgid "File can be hosted anywhere, as long as it’s valid GeoJSON"
 msgstr "Файл с данными может лежать на каком угодно сервере"
 
+msgid "What should I know to succesfully create WMS service?"
+msgstr "Что нужно учесть при создании сервиса WMS?"
+
+msgid "Please note the following particulars when creating a WMS service:"
+msgstr "Для создания сервиса WMS нужно учесть следующие особенности:"
+
+msgid "You should use layer(s) NAME, not layer(s) TITLE."
+msgstr "Используйте NAME слоя (слоёв), а не TITLE."
+
+msgid "To check what layers are available, add your WMS to QGIS first Layer/Add Layer/WMS layer... and have a look what's there."
+msgstr "Легко определить какие слои доступны в сервисе WMS можно подключив его, например, в QGIS (меню Слой/Добавить слой/Слой WMS...)."
+
 #: qms_site/templates/faq.html:92
 msgid ""
 "I’ve seen services links that are different from examples above, are there "
