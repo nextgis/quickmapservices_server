@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-17 14:30+0000\n"
+"POT-Creation-Date: 2017-05-22 08:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -420,7 +420,7 @@ msgstr "Использование сервисов"
 msgid "Adding a service"
 msgstr "Добавление сервисов"
 
-#: qms_site/templates/faq.html:29 qms_site/templates/faq.html.py:102
+#: qms_site/templates/faq.html:29 qms_site/templates/faq.html.py:108
 msgid "Fixing a service"
 msgstr "Исправление сервисов"
 
@@ -595,6 +595,26 @@ msgid "File can be hosted anywhere, as long as it’s valid GeoJSON"
 msgstr "Файл с данными может лежать на каком угодно сервере"
 
 #: qms_site/templates/faq.html:92
+msgid "What should I know to succesfully create WMS service?"
+msgstr "Что нужно учесть при создании сервиса WMS?"
+
+#: qms_site/templates/faq.html:93
+msgid "Please note the following particulars when creating a WMS service:"
+msgstr "Для создания сервиса WMS нужно учесть следующие особенности:"
+
+#: qms_site/templates/faq.html:95
+msgid "You should use layer(s) NAME, not layer(s) TITLE."
+msgstr "Используйте NAME слоя (слоёв), а не TITLE."
+
+#: qms_site/templates/faq.html:96
+msgid ""
+"To check what layers are available, add your WMS to QGIS first Layer/Add "
+"Layer/WMS layer... and have a look what’s there."
+msgstr ""
+"Легко определить какие слои доступны в сервисе WMS можно подключив его, "
+"например, в QGIS (меню Слой/Добавить слой/Слой WMS...)."
+
+#: qms_site/templates/faq.html:98
 msgid ""
 "I’ve seen services links that are different from examples above, are there "
 "other examples?"
@@ -602,7 +622,7 @@ msgstr ""
 "Я видел ссылки на сервисы отличающиеся от примеров выше, где посмотреть "
 "другие образцы?"
 
-#: qms_site/templates/faq.html:93
+#: qms_site/templates/faq.html:99
 msgid ""
 "Yes, there are lots of varieties and service link can look very differently. "
 "Just browse QMS clicking on service type and see what kind of links other "
@@ -611,15 +631,15 @@ msgstr ""
 "В целом ссылки на сервисы не стандартизованы и у них есть много вариантов. "
 "Просто полистайте каталог и посмотрите на другие примеры."
 
-#: qms_site/templates/faq.html:94
+#: qms_site/templates/faq.html:100
 msgid "Start with the ones down below."
 msgstr "Начните с более ранних."
 
-#: qms_site/templates/faq.html:95
+#: qms_site/templates/faq.html:101
 msgid "I’ve created a service, but type in incorrect, can I change it?"
 msgstr "Я создал сервис, но ошибся с его типом, могу я его поменять?"
 
-#: qms_site/templates/faq.html:96
+#: qms_site/templates/faq.html:102
 msgid ""
 "You can't change the type of a service once created. You'll need to create "
 "another one with the correct type."
@@ -627,21 +647,21 @@ msgstr ""
 "Вы не можете поменять тип сервиса после его создания. Создайте новый с "
 "правильным типом."
 
-#: qms_site/templates/faq.html:97
+#: qms_site/templates/faq.html:103
 msgid "How can I delete a service?"
 msgstr "Как удалить свой сервис?"
 
-#: qms_site/templates/faq.html:98
+#: qms_site/templates/faq.html:104
 msgid ""
 "You can't delete services at the moment. Report a problem and we'll remove "
 "it soon."
 msgstr "На данный момент удалять сервисы нельзя."
 
-#: qms_site/templates/faq.html:99
+#: qms_site/templates/faq.html:105
 msgid "How do I check that my service is OK?"
 msgstr "Как убедиться в том, что мой сервис — работает?"
 
-#: qms_site/templates/faq.html:100
+#: qms_site/templates/faq.html:106
 msgid ""
 "Find it through a client and add to see the data on a map. In QGIS you can "
 "use QuickMapServices plugin."
@@ -649,15 +669,15 @@ msgstr ""
 "Найдите и подключите его через свой клиент ГИС. Например, в QGIS можно "
 "использовать модуль QuickMapServices."
 
-#: qms_site/templates/faq.html:103
+#: qms_site/templates/faq.html:109
 msgid "I’ve found service, but it doesn’t work, how do I fix it?"
 msgstr "Я нашел нужный мне сервис, но он не работает, что делать?"
 
-#: qms_site/templates/faq.html:104
+#: qms_site/templates/faq.html:110
 msgid "Use ‘report a problem’ form."
 msgstr "Используйте форму обратной связи для связи с автором сервиса."
 
-#: qms_site/templates/faq.html:105
+#: qms_site/templates/faq.html:111
 msgid ""
 "Every service has it’s author (maintainer, submitter). Use the form to let "
 "the submitter know that the service is broken. Provide information how to "
@@ -667,13 +687,13 @@ msgstr ""
 "форму, чтобы сообщить ему, что сервис поломался. Если вы понимаете почему, "
 "сообщите так же как починить сервис."
 
-#: qms_site/templates/faq.html:106
+#: qms_site/templates/faq.html:112
 msgid ""
 "I’ve notified service maintainer about problem and provided solution, but "
 "maintainer is not reacting, what can I do?"
 msgstr "Я сообщил автору сервиса о проблеме, но он молчит, что делать?"
 
-#: qms_site/templates/faq.html:107
+#: qms_site/templates/faq.html:113
 msgid ""
 "If maintainer doesn’t reply for a long time – create a new service (you’ll "
 "become it’s maintainer). Old incorrect service will gradually be removed."
