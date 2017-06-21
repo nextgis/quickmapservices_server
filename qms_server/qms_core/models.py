@@ -172,8 +172,10 @@ class GeoService(models.Model):
     source = models.TextField(_('source'), blank=True, null=True)
     source_url = models.URLField(_('source url'), max_length=512, blank=True, null=True)
 
-    # tags
+    # status
+    last_status = models.ForeignKey('GeoServiceStatus', on_delete=models.SET_NULL, null=True, related_name='last_for')
 
+    # TODO: tags
 
     def __str__(self):
         return self.name
@@ -224,3 +226,50 @@ class GeoJsonService(GeoService):
     service_type = 'geojson'
 
     url = models.URLField(max_length=512, blank=False, null=False)
+
+
+# SERVICES STATUSES
+class CumulativeStatus:
+    FAILED = 'failed'
+    PROBLEMATIC = 'problematic'
+    WORKS = 'works'
+
+    choices = {
+        FAILED: FAILED,
+        PROBLEMATIC: PROBLEMATIC,
+        WORKS: WORKS
+    }
+
+
+class CheckStatusErrorType:
+    UNSUPPORTED_SERVICE = 'unsupported service'
+    TIMEOUT_ERROR = 'timeout'
+    INVALID_RESPONSE = 'invalid response'
+    NOT_FOUND_RESPONSE = 'not found response'
+    MISSING_LAYER = 'missing layer'
+    WRONG_URL = 'wrong url'
+
+    choices = {
+        UNSUPPORTED_SERVICE: UNSUPPORTED_SERVICE,
+        TIMEOUT_ERROR: TIMEOUT_ERROR,
+        INVALID_RESPONSE: INVALID_RESPONSE,
+        NOT_FOUND_RESPONSE: NOT_FOUND_RESPONSE,
+        MISSING_LAYER: MISSING_LAYER,
+        WRONG_URL: WRONG_URL
+    }
+
+
+
+class GeoServiceStatus(models.Model):
+    # general
+    geoservice = models.ForeignKey(GeoService, models.CASCADE, null=False)
+    check_at = models.DateTimeField(_('check state date/time'), auto_now_add=True)
+    check_duration = models.FloatField(null=True)
+
+    # statuses
+    cumulative_status = models.CharField(max_length=50, choices=CumulativeStatus.choices.items(), null=False)
+    http_code = models.IntegerField(null=True, blank=True)
+    http_response = models.CharField(max_length=2048, null=True, blank=True)
+    error_type = models.CharField(max_length=50, choices=CheckStatusErrorType.choices.items(), null=True, blank=True)
+    error_text = models.CharField(max_length=2048, null=True, blank=True)
+

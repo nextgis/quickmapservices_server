@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext as _
-from qms_core.models import NextgisUser, GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService
+from qms_core.models import NextgisUser, GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService, \
+    GeoServiceStatus
 
 
 @admin.register(NextgisUser)
@@ -21,10 +22,23 @@ class NextgisUserAdmin(UserAdmin):
 
 @admin.register(GeoService)
 class GeoServiceAdmin(admin.ModelAdmin):
-    readonly_fields = [f.name for f in GeoService._meta.get_fields()]
-    list_display = ('id', 'type', 'name', 'desc')
+    readonly_fields = (
+        'id', 'guid', 'name', 'desc', 'type', 'epsg', 'icon',
+        'license_name', 'license_url', 'copyright_text', 'copyright_url', 'terms_of_use_url',
+        'submitter', 'created_at', 'updated_at', 'source', 'source_url',
+        'cumulative_status', 'last_status'
+    )
+
+    list_display = ('id', 'type', 'name', 'desc', 'cumulative_status', )
     list_filter = ('type',)
     search_fields = ('name', 'desc')
+
+    def cumulative_status(self, obj):
+        return obj.last_status.cumulative_status if obj.last_status else obj.last_status
+
+    cumulative_status.admin_order_field = 'last_status__cumulative_status'
+    cumulative_status.admin_filter_field = 'last_status__cumulative_status'
+    cumulative_status.short_description = 'Cumulative status'
 
     def has_add_permission(self, request):
         return False
@@ -101,5 +115,12 @@ class GeoJsonServiceAdmin(admin.ModelAdmin):
 class ServiceIconAdmin(admin.ModelAdmin):
     list_display = ('id', 'name')
     search_fields = ('name', )
+
+
+@admin.register(GeoServiceStatus)
+class GeoServiceStatusAdmin(admin.ModelAdmin):
+    list_display = ('geoservice', 'check_at', 'check_duration', 'cumulative_status',
+                    'http_code', 'http_response', 'error_type', 'error_text')
+
 
 
