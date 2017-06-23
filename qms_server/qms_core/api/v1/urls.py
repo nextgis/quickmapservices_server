@@ -1,11 +1,20 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
+from rest_framework.routers import DefaultRouter
 
-from .views import GeoServiceListView, GeoServiceDetailedView, ApiRootView, ServiceIconListView, ServiceIconDetailedView, \
-    IconRetrieveView, DefaultIconRetrieveView
+from .views import GeoServiceListView, GeoServiceDetailedView, ApiRootView, ServiceIconListView, \
+    ServiceIconDetailedView, \
+    IconRetrieveView, DefaultIconRetrieveView, GeoServiceStatusViewSet
+
+
+router = DefaultRouter()
+router.register('geoservice_statuses', GeoServiceStatusViewSet)
+
 
 urlpatterns = [
     url(r'^$', ApiRootView.as_view(), name='api_root'),
+    url(r'^', include(router.urls)),
 
+    # services
     url(r'^geoservices/$', GeoServiceListView.as_view(), name='geoservice_list'),
     url(r'^geoservices/(?P<pk>[0-9]+)/$', GeoServiceDetailedView.as_view(), name='geoservice_detail'),
 

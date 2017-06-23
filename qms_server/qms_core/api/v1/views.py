@@ -3,42 +3,53 @@ from rest_framework.filters import SearchFilter, DjangoFilterBackend, OrderingFi
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
-from rest_framework.serializers import ModelSerializer, OrderedDict
+from rest_framework.serializers import ModelSerializer, OrderedDict, SlugRelatedField
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
+from rest_framework.viewsets import ReadOnlyModelViewSet
 
 from ...icon_renderer import IconRenderer
 from ...icon_serializer import IconSerializer
-from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService
+from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService, GeoServiceStatus
 
 
 # === Serializers
 
 class GeoServiceSerializer(ModelSerializer):
+    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
+
     class Meta:
         model = GeoService
-        fields = ('id', 'guid', 'name', 'desc', 'type', 'epsg', 'icon', 'submitter', 'created_at', 'updated_at')
+        fields = ('id', 'guid', 'name', 'desc', 'type', 'epsg', 'icon', 'submitter', 'created_at', 'updated_at', 'cumulative_status')
 
 
 class TmsServiceSerializer(ModelSerializer):
+    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
+
     class Meta:
         model = TmsService
         fields = '__all__'
 
 
 class WmsServiceSerializer(ModelSerializer):
+    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
+
     class Meta:
         model = WmsService
         fields = '__all__'
 
 
 class WfsServiceSerializer(ModelSerializer):
+    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
+
     class Meta:
         model = WfsService
         fields = '__all__'
 
 
 class GeoJsonServiceSerializer(ModelSerializer):
+    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
+
     class Meta:
         model = GeoJsonService
         fields = '__all__'
@@ -48,6 +59,13 @@ class ServiceIconSerializer(ModelSerializer):
     class Meta:
         model = ServiceIcon
         fields = ('id', 'guid', 'name')
+
+
+class GeoServiceStatusSerializer(ModelSerializer):
+    class Meta:
+        model = GeoServiceStatus
+        fields = '__all__'
+
 
 
 # === Views Geoservices
@@ -95,6 +113,14 @@ class GeoServiceDetailedView(RetrieveAPIView):
                 return GeoJsonServiceSerializer(instance)
 
         return GeoServiceSerializer(instance)
+
+# === Views statuses
+
+class GeoServiceStatusViewSet(ReadOnlyModelViewSet):
+    pagination_class = LimitOffsetPagination
+    queryset = GeoServiceStatus.objects.all()
+    serializer_class = GeoServiceStatusSerializer
+
 
 # === Views Icons
 
