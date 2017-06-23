@@ -149,6 +149,8 @@ class GeoService(models.Model):
     service_type = 'generic'
 
     def save(self, *args, **kwargs):
+        if self.service_type == GeoService.service_type:
+            raise Exception('Base geo service model can\'t be saved')
         self.type = self.service_type
         super(GeoService, self).save(*args, **kwargs)
 
@@ -173,12 +175,23 @@ class GeoService(models.Model):
     source_url = models.URLField(_('source url'), max_length=512, blank=True, null=True)
 
     # status
-    last_status = models.ForeignKey('GeoServiceStatus', on_delete=models.SET_NULL, null=True, related_name='last_for')
+    last_status = models.ForeignKey('GeoServiceStatus', on_delete=models.SET_NULL, null=True, related_name='last_for', blank=True)
 
     # TODO: tags
 
     def __str__(self):
         return self.name
+
+    def get_typed_instance(self):
+        if self.type == TmsService.service_type:
+            return self.tmsservice
+        if self.type == WmsService.service_type:
+            return self.wmsservice
+        if self.type == WfsService.service_type:
+            return self.wfsservice
+        if self.type == GeoJsonService.service_type:
+            return self.geojsonservice
+        return self
 
 
 class TmsService(GeoService):
