@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.core import urlresolvers
 from django.utils.translation import ugettext as _
 from qms_core.models import NextgisUser, GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService, \
     GeoServiceStatus
@@ -20,8 +21,30 @@ class NextgisUserAdmin(UserAdmin):
     )
 
 
+# GENERIC SERVICE
+common_fieldset = (_('Common'), {'fields': ('guid', 'type', 'name', 'desc', 'epsg', 'icon', 'cumulative_status')})
+license_fieldset = (_('License & Copyright'), {'fields': ('license_name', 'license_url', 'copyright_text', 'copyright_url', 'terms_of_use_url')})
+source_fieldset = (_('Source info'), {'fields': ('source', 'source_url')})
+
+class GenericServiceAdmin(admin.ModelAdmin):
+    readonly_fields = ('guid', 'type', 'cumulative_status')
+    list_display = ('id', 'name', 'cumulative_status', 'desc')
+    search_fields = ('name', 'desc')
+
+    def cumulative_status(self, obj):
+        if obj.last_status:
+            base_url = urlresolvers.reverse('admin:qms_core_geoservicestatus_change', args=(obj.last_status.id,))
+            return '<a href="%s" target=_blank>%s</a>' % (base_url, str(obj.last_status.cumulative_status))
+        else:
+            return None
+    cumulative_status.allow_tags = True
+    cumulative_status.admin_order_field = 'last_status__cumulative_status'
+    cumulative_status.admin_filter_field = 'last_status__cumulative_status'
+    cumulative_status.short_description = 'Cumulative status'
+
+
 @admin.register(GeoService)
-class GeoServiceAdmin(admin.ModelAdmin):
+class GeoServiceAdmin(GenericServiceAdmin):
     readonly_fields = (
         'id', 'guid', 'name', 'desc', 'type', 'epsg', 'icon',
         'license_name', 'license_url', 'copyright_text', 'copyright_url', 'terms_of_use_url',
@@ -30,15 +53,9 @@ class GeoServiceAdmin(admin.ModelAdmin):
     )
 
     list_display = ('id', 'type', 'name', 'desc', 'cumulative_status', )
-    list_filter = ('type',)
+    list_filter = ('type', )
     search_fields = ('name', 'desc')
 
-    def cumulative_status(self, obj):
-        return obj.last_status.cumulative_status if obj.last_status else obj.last_status
-
-    cumulative_status.admin_order_field = 'last_status__cumulative_status'
-    cumulative_status.admin_filter_field = 'last_status__cumulative_status'
-    cumulative_status.short_description = 'Cumulative status'
 
     def has_add_permission(self, request):
         return False
@@ -48,18 +65,8 @@ class GeoServiceAdmin(admin.ModelAdmin):
 
 
 
-service_readonly_fields = ('guid', 'type',)
-common_fieldset = (_('Common'), {'fields': ('guid', 'type', 'name', 'desc', 'epsg', 'icon')})
-license_fieldset = (_('License & Copyright'), {'fields': ('license_name', 'license_url', 'copyright_text', 'copyright_url', 'terms_of_use_url')})
-source_fieldset = (_('Source info'), {'fields': ('source', 'source_url')})
-common_list_display = ('id', 'name', 'desc')
-
-
 @admin.register(TmsService)
-class TmsServiceAdmin(admin.ModelAdmin):
-    readonly_fields = service_readonly_fields
-    list_display = common_list_display
-    search_fields = ('name', 'desc')
+class TmsServiceAdmin(GenericServiceAdmin):
 
     fieldsets = (
         common_fieldset,
@@ -70,10 +77,7 @@ class TmsServiceAdmin(admin.ModelAdmin):
 
 
 @admin.register(WmsService)
-class WmsServiceAdmin(admin.ModelAdmin):
-    readonly_fields = service_readonly_fields
-    list_display = common_list_display
-    search_fields = ('name', 'desc')
+class WmsServiceAdmin(GenericServiceAdmin):
 
     fieldsets = (
         common_fieldset,
@@ -84,10 +88,7 @@ class WmsServiceAdmin(admin.ModelAdmin):
 
 
 @admin.register(WfsService)
-class WfsServiceAdmin(admin.ModelAdmin):
-    readonly_fields = service_readonly_fields
-    list_display = common_list_display
-    search_fields = ('name', 'desc')
+class WfsServiceAdmin(GenericServiceAdmin):
 
     fieldsets = (
         common_fieldset,
@@ -98,10 +99,7 @@ class WfsServiceAdmin(admin.ModelAdmin):
 
 
 @admin.register(GeoJsonService)
-class GeoJsonServiceAdmin(admin.ModelAdmin):
-    readonly_fields = service_readonly_fields
-    list_display = common_list_display
-    search_fields = ('name', 'desc')
+class GeoJsonServiceAdmin(GenericServiceAdmin):
 
     fieldsets = (
         common_fieldset,
@@ -120,7 +118,9 @@ class ServiceIconAdmin(admin.ModelAdmin):
 @admin.register(GeoServiceStatus)
 class GeoServiceStatusAdmin(admin.ModelAdmin):
     list_display = ('geoservice', 'check_at', 'check_duration', 'cumulative_status',
-                    'http_code', 'http_response', 'error_type', 'error_text')
+                    'error_type', 'error_text', 'http_code', 'http_response', )
+    readonly_fields = ('geoservice', 'check_at', 'check_duration', 'cumulative_status',
+                    'error_type', 'error_text', 'http_code', 'http_response', )
 
 
 
