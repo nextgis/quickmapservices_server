@@ -10,6 +10,7 @@ from django.views.generic import TemplateView
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import UpdateView
 from django.views.generic.edit import FormMixin, ProcessFormView
+from django.db.models import functions
 
 from nextgis_common.email_utils import send_templated_mail
 from nextgis_common.supported_languages import SupportedLanguages
@@ -194,6 +195,7 @@ class CreateServiceView(LicenseErrorsMixin, LoginRequiredMixin, TemplateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.submitter = self.request.user
+        self.object.updated_at = functions.Now()
         self.object.save()
         return HttpResponseRedirect(reverse('site_geoservice_detail', kwargs={'pk': self.object.id},))
 
@@ -259,6 +261,12 @@ class EditServiceView(LicenseErrorsMixin, LoginRequiredMixin, UpdateView):
     def check_submitter(self, request):
         obj = self.get_object()
         return obj.submitter == request.user
+
+    def form_valid(self, form):
+        self.object = form.save()
+        self.object.updated_at = functions.Now()
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
 
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data(form=form, lic_error=self.has_license_error(form)))

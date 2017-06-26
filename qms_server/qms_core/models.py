@@ -169,7 +169,7 @@ class GeoService(models.Model):
     # creation & update info
     submitter = models.ForeignKey(NextgisUser, on_delete=models.SET_NULL, to_field='nextgis_guid', null=True)
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
-    updated_at = models.DateTimeField(_('updated at'), auto_now=True)
+    updated_at = models.DateTimeField(_('updated at'))
     # source info
     source = models.TextField(_('source'), blank=True, null=True)
     source_url = models.URLField(_('source url'), max_length=512, blank=True, null=True)
