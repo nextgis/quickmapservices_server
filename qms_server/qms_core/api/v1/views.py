@@ -124,9 +124,13 @@ class GeoServiceDetailedView(RetrieveAPIView):
         return GeoServiceSerializer(instance)
 
 # === Views statuses
+class ServiceStatusPaginator(LimitOffsetPagination):
+    default_limit = 100
+    max_limit = 500
+
 
 class GeoServiceStatusViewSet(ReadOnlyModelViewSet):
-    pagination_class = LimitOffsetPagination
+    pagination_class = ServiceStatusPaginator
     queryset = GeoServiceStatus.objects.all()
     serializer_class = GeoServiceStatusSerializer
     filter_backends = (OrderingFilter, SearchFilter, DjangoFilterBackend)
