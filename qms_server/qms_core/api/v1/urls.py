@@ -7,7 +7,7 @@ from .views import GeoServiceListView, GeoServiceDetailedView, ApiRootView, Serv
 
 
 router = DefaultRouter()
-router.register('geoservice_statuses', GeoServiceStatusViewSet)
+router.register('geoservice_status', GeoServiceStatusViewSet)
 
 
 urlpatterns = [
