@@ -1,44 +1,56 @@
 import os
-from rest_framework.filters import SearchFilter, DjangoFilterBackend, OrderingFilter
+from django_filters import CharFilter, AllValuesFilter
+from rest_framework.filters import SearchFilter, DjangoFilterBackend, OrderingFilter, FilterSet
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
-from rest_framework.serializers import ModelSerializer, OrderedDict
+from rest_framework.serializers import ModelSerializer, OrderedDict, SlugRelatedField
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
+from rest_framework.viewsets import ReadOnlyModelViewSet
 
 from ...icon_renderer import IconRenderer
 from ...icon_serializer import IconSerializer
-from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService
+from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService, GeoServiceStatus
 
 
 # === Serializers
 
 class GeoServiceSerializer(ModelSerializer):
+    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
+
     class Meta:
         model = GeoService
-        fields = ('id', 'guid', 'name', 'desc', 'type', 'epsg', 'icon', 'submitter', 'created_at', 'updated_at')
+        fields = ('id', 'guid', 'name', 'desc', 'type', 'epsg', 'icon', 'submitter', 'created_at', 'updated_at', 'cumulative_status')
 
 
 class TmsServiceSerializer(ModelSerializer):
+    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
+
     class Meta:
         model = TmsService
         fields = '__all__'
 
 
 class WmsServiceSerializer(ModelSerializer):
+    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
+
     class Meta:
         model = WmsService
         fields = '__all__'
 
 
 class WfsServiceSerializer(ModelSerializer):
+    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
+
     class Meta:
         model = WfsService
         fields = '__all__'
 
 
 class GeoJsonServiceSerializer(ModelSerializer):
+    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
+
     class Meta:
         model = GeoJsonService
         fields = '__all__'
@@ -50,14 +62,29 @@ class ServiceIconSerializer(ModelSerializer):
         fields = ('id', 'guid', 'name')
 
 
+class GeoServiceStatusSerializer(ModelSerializer):
+    class Meta:
+        model = GeoServiceStatus
+        fields = '__all__'
+
+
+
 # === Views Geoservices
+
+class GeoServiceFilterSet(FilterSet):
+    cumulative_status = AllValuesFilter(name="last_status__cumulative_status")
+
+    class Meta:
+        model = GeoService
+        fields = ['type', 'epsg', 'submitter', 'cumulative_status']
+
 
 class GeoServiceListView(ListAPIView):
     queryset = GeoService.objects.all()
     serializer_class = GeoServiceSerializer
     pagination_class = LimitOffsetPagination
     filter_backends = (OrderingFilter, SearchFilter, DjangoFilterBackend)
-    filter_fields = ('type', 'epsg', 'submitter')
+    filter_class = GeoServiceFilterSet
     search_fields = ('name', 'desc')
     ordering_fields = ('id', 'name', 'created_at', 'updated_at')
     ordering = ('name',)
@@ -95,6 +122,22 @@ class GeoServiceDetailedView(RetrieveAPIView):
                 return GeoJsonServiceSerializer(instance)
 
         return GeoServiceSerializer(instance)
+
+# === Views statuses
+class ServiceStatusPaginator(LimitOffsetPagination):
+    default_limit = 100
+    max_limit = 500
+
+
+class GeoServiceStatusViewSet(ReadOnlyModelViewSet):
+    pagination_class = ServiceStatusPaginator
+    queryset = GeoServiceStatus.objects.all()
+    serializer_class = GeoServiceStatusSerializer
+    filter_backends = (OrderingFilter, SearchFilter, DjangoFilterBackend)
+    filter_fields = ('geoservice', 'cumulative_status',)
+    ordering_fields = ('check_at', 'cumulative_status')
+    ordering = ('check_at',)
+
 
 # === Views Icons
 
@@ -141,10 +184,18 @@ class ApiRootView(APIView):
             ('geoservices_url', simple_url('geoservice_list')),
             ('geoservices_type_filter_url', simple_url('geoservice_list') + '?type={tms|wms|wfs|geojson}'),
             ('geoservices_epsg_filter_url', simple_url('geoservice_list') + '?epsg={any_epsg_code}'),
+            ('geoservices_status_filter_url', simple_url('geoservice_list') + '?cumulative_status={works|problematic|failed}'),
             ('geoservices_search_url', simple_url('geoservice_list') + '?search={q}'),
             ('geoservices_ordering_url', simple_url('geoservice_list') + '?ordering={name|-name|id|-id|created_at|-created_at|updated_at|-updated_at'),
             ('geoservices_pagination_url', simple_url('geoservice_list') + '?limit={int}&offset={int}'),
             ('geoservice_detail_url', repl_id_ulr('geoservice_detail')),
+
+            ('geoservice_status_url', simple_url('geoservicestatus-list')),
+            ('geoservice_status_detail_url', repl_id_ulr('geoservicestatus-detail')),
+            ('geoservice_status_service_filter_url', simple_url('geoservicestatus-list') + '?geoservice={id}'),
+            ('geoservice_status_cumulative_status_filter_url', simple_url('geoservicestatus-list') + '?cumulative_status={works|problematic|failed}'),
+            ('geoservice_status_check_at_ordering_url', simple_url('geoservicestatus-list') + '?ordering={check_at|-check_at}'),
+
             ('icons_url', simple_url('service_icon_list')),
             ('icons_search_url', simple_url('service_icon_list') + '?search={q}'),
             ('icons_pagination_url', simple_url('service_icon_list') + '?limit={int}&offset={int}'),
