@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'captcha',
+    'django_crontab',
 
     'widget_tweaks',
     'django_gravatar',
@@ -179,8 +180,16 @@ CORS_EXPOSE_HEADERS = (
     'x-content-range',
 )
 
+# crontab for update statuses
+CRONTAB_LOCK_JOBS = True
+CRONJOBS = [
+    ('0 0 * * *', 'django.core.management.call_command', ['check_services'], {}, '>> /tmp/update_service_statuces.log'),
+]
+
+
 # try to load local machine settings
 try:
     from settings_local import *
 except:
     pass
+
