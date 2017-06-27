@@ -2,12 +2,6 @@
 {% load staticfiles %}
 {% load i18n %}
 
-{% block extra_head %}
-    <link href="{% static 'qms_site/css/qms.css' %}" type="text/css" rel="stylesheet"/>
-{% endblock %}
-{% block extra_body %}
-    <script src="{% static 'qms_site/js/qms.js' %}"></script>
-{% endblock %}
 {% block head_title %}{% trans "Edit service" %} | QuickMapServices {% endblock %}
 
 {% block overlay_content %}

@@ -16,9 +16,6 @@
         L.tileLayer.wms("{{ service.wmsservice.url|safe }}?{{ service.wmsservice.params|safe }}", {
             layers: "{{ service.wmsservice.layers }}",
             transparent: true
-            {% if service.epsg == 3857 or service.epsg == 4326 or service.epsg == 3395 %}
-            ,crs: L.CRS.EPSG{{ service.epsg }}
-            {% endif %}
             {% if service.wmsservice.format %}
             ,format: "{{ service.wmsservice.format }}"
             {% endif %}
@@ -36,10 +33,10 @@
             },
             typeName: '{{ service.wfsservice.layer|wfs_layer_name }}'
             {% if service.wfsservice.layer|wfs_layer_namespace %}
-            ,typeNS: '{{ service.wfsservice.layer|wfs_layer_namespace }}'
+                ,typeNS: '{{ service.wfsservice.layer|wfs_layer_namespace }}'
             {% endif %}
             {% if service.epsg == 3857 or service.epsg == 4326 or service.epsg == 3395 %}
-            ,crs: L.CRS.EPSG{{ service.epsg }}
+                ,crs: L.CRS.EPSG{{ service.epsg }}
             {% endif %}
           }).addTo(preview_map)
             .once('load', function () {

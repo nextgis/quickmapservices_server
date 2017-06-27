@@ -1,0 +1,27 @@
+/* qms add service */
+
+.qms-add-service__license{
+	margin-top: 24px;
+}
+.qms-add-service__extra-form{
+	margin-top:10px;
+}
+
+.qms-add-service__license-form{
+	display: none;
+}
+
+.qms-add-service__license-info{
+	.qms-add-service__license-filled{
+		display: none;
+	}
+
+	&.filled{
+		.qms-add-service__license-filled{
+			display: block;
+		}
+		.qms-add-service__license-empty{
+			display: none;
+		}
+	}
+}

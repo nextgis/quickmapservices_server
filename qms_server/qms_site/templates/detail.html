@@ -2,6 +2,7 @@
 
 {% load i18n %}
 {% load staticfiles %}
+{% load wfs_layer_utils %}
 
 {% block body_content %}
     <div class="btn-group toolbar pull-right" role="group">
@@ -43,17 +44,42 @@
     {% include "snippets/report_problem.html" %}
 {% endblock %}
 
-{% block extra_head %}
-    {{ block.super }}
-    <link rel="stylesheet" href="{% static 'qms_site/css/leaflet.css' %}" />
-{% endblock %}
-
-{% block extra_body %}
+{% block script_variables %}
     {{block.super}}
-    <script src="{% static 'qms_site/js/vendor/leaflet.js' %}"></script>
-    <script src="{% static 'qms_site/js/vendor/proj4-compressed.js' %}"></script>
-    <script src="{% static 'qms_site/js/vendor/proj4leaflet.js' %}"></script>
-    <script src="{% static 'qms_site/js/vendor/Leaflet-WFST.min.js' %}"></script>
-
-    {% include 'services_snippets/preview_map_js.html' %}
+    <script>
+        var service = {
+            type: "{{ service.type }}",
+            epsg: "{{ service.epsg }}",
+            {% if service.type == 'tms' %}
+                tms: {
+                    url: "{{ service.tmsservice.url|safe }}",
+                    zmin: {{ service.tmsservice.z_min|default_if_none:0}},
+                    zmax: {{ service.tmsservice.z_max|default_if_none:18}}
+                }
+            {% endif %}
+            {% if service.type == 'wms' %}
+                wms:{
+                    url: "{{ service.wmsservice.url|safe }}?{{ service.wmsservice.params|safe }}",
+                    layers: "{{ service.wmsservice.layers }}"
+                    {% if service.wmsservice.format %}
+                      ,format: "{{ service.wmsservice.format }}"
+                    {% endif %}
+                }
+            {% endif %}
+            {% if service.type == 'wfs' %}
+                wfs:{
+                    url: '{{ service.wfsservice.url|safe }}',
+                    typeName: '{{ service.wfsservice.layer|wfs_layer_name }}'
+                    {% if service.wfsservice.layer|wfs_layer_namespace %}
+                        ,typeNS: '{{ service.wfsservice.layer|wfs_layer_namespace }}',
+                    {% endif %}
+                }
+            {% endif %}
+            {% if service.type == 'geojson' %}
+                geojson:{
+                    url: '{{ service.geojsonservice.url|safe }}'
+                }
+            {% endif %}
+        }
+    </script>
 {% endblock %}

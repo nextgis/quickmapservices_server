@@ -4,12 +4,6 @@
 {% load external_url %}
 {% load i18n %}
 
-
-{% block extra_head %}
-    <link href="{% static 'qms_site/css/qms.css' %}" type="text/css" rel="stylesheet"/>
-{% endblock %}
-
-
 {% block head_title %}{% trans 'QuickMapServices: discover, share and use geospatial data services' %}{% endblock %}
 {% block content_title %}
     <a class="withoutripple" href="{% url 'site_geoservice_list' %}">{% trans 'QMS' %}</a>
@@ -34,6 +28,22 @@
     <a class="btn btn-action btn-primary hide-on-sm" href="{% url 'create_service_view' %}">{% trans 'Add service' %}</a>
 {% endblock %}
 
+{% block script_variables %}
+    <script type="text/javascript">
+        var element_template_url = "{% static 'qms_site/templates/service_element.html' %}",
+            no_results_templ_url = "{% static 'qms_site/templates/no_results.html' %}",
+            default_icon_url = "{% url 'service_icon_default' %}",
+            icon_url = "/api/v1/icons/%id/content",  //REPLACE IT!
+            service_url = "/geoservices/%id", //REPLACE IT!
+            edit_url = "/edit/%id"; //REPLACE IT!
+
+            {% if request.user.is_authenticated %}
+                var user_guid = "{{ request.user.nextgis_guid }}";
+            {% else %}
+                var user_guid = "";
+            {% endif %}
+    </script>
+{% endblock %}
 
 {% block counters %}
     <!-- Yandex.Metrika counter -->
@@ -65,8 +75,4 @@
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/41676549" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
-{% endblock %}
-
-{% block extra_body %}
-    <script src="{% static 'qms_site/js/report-problem.js' %}"></script>
 {% endblock %}
