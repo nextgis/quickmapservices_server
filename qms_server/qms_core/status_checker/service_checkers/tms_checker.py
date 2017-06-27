@@ -24,9 +24,12 @@ class TmsChecker(BaseServiceChecker):
             elif self.service.z_max is not None:
                 test_url = self.service.url.format(z=self.service.z_max, x=0, y=0)
             else:
-                test_url = None
-                result.cumulative_status = CumulativeStatus.FAILED
-                result.error_text = 'Not set z_min and z_max for TMS'
+                # test_url = None
+                # result.cumulative_status = CumulativeStatus.FAILED
+                # result.error_text = 'Not set z_min and z_max for TMS'
+
+                # Try 0 0 0 tile now
+                test_url = self.service.url.format(z=0, x=0, y=0)
 
             if test_url:
                 response = requests.get(test_url, timeout=10)  # TODO: move timeout
