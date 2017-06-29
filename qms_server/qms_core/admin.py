@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.contrib.gis.admin import OSMGeoAdmin
 from django.core import urlresolvers
 from django.utils.translation import ugettext as _
 from qms_core.models import NextgisUser, GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService, \
@@ -9,7 +10,7 @@ from qms_core.models import NextgisUser, GeoService, TmsService, WmsService, Wfs
 @admin.register(NextgisUser)
 class NextgisUserAdmin(UserAdmin):
 
-    service_readonly_fields = ('nextgis_id', 'nextgis_guid',)
+    service_readonly_fields = ('nextgis_id', 'nextgis_guid')
 
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
@@ -25,8 +26,10 @@ class NextgisUserAdmin(UserAdmin):
 common_fieldset = (_('Common'), {'fields': ('guid', 'type', 'name', 'desc', 'epsg', 'icon', 'cumulative_status')})
 license_fieldset = (_('License & Copyright'), {'fields': ('license_name', 'license_url', 'copyright_text', 'copyright_url', 'terms_of_use_url')})
 source_fieldset = (_('Source info'), {'fields': ('source', 'source_url')})
+boundary_fields = (_('Boundary'), {'fields': ('extent', 'boundary')})
 
-class GenericServiceAdmin(admin.ModelAdmin):
+
+class GenericServiceAdmin(OSMGeoAdmin):
     readonly_fields = ('guid', 'type', 'cumulative_status')
     list_display = ('id', 'name', 'cumulative_status', 'desc')
     search_fields = ('name', 'desc')
@@ -41,6 +44,7 @@ class GenericServiceAdmin(admin.ModelAdmin):
     cumulative_status.admin_order_field = 'last_status__cumulative_status'
     cumulative_status.admin_filter_field = 'last_status__cumulative_status'
     cumulative_status.short_description = 'Cumulative status'
+
 
 
 @admin.register(GeoService)
@@ -72,6 +76,7 @@ class TmsServiceAdmin(GenericServiceAdmin):
         common_fieldset,
         license_fieldset,
         source_fieldset,
+        boundary_fields,
         (_('TMS'), {'fields': ('url', 'z_min', 'z_max', 'y_origin_top')}),
     )
 
@@ -83,6 +88,7 @@ class WmsServiceAdmin(GenericServiceAdmin):
         common_fieldset,
         license_fieldset,
         source_fieldset,
+        boundary_fields,
         (_('WMS'), {'fields': ('url', 'params', 'layers', 'turn_over', 'format')}),
     )
 
@@ -94,6 +100,7 @@ class WfsServiceAdmin(GenericServiceAdmin):
         common_fieldset,
         license_fieldset,
         source_fieldset,
+        boundary_fields,
         (_('WFS'), {'fields': ('url', 'layer')}),
     )
 
@@ -105,6 +112,7 @@ class GeoJsonServiceAdmin(GenericServiceAdmin):
         common_fieldset,
         license_fieldset,
         source_fieldset,
+        boundary_fields,
         (_('GeoJSON'), {'fields': ('url', )}),
     )
 
