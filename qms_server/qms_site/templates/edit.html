@@ -1,8 +1,15 @@
 {% extends "overlay_base.html" %}
 {% load staticfiles %}
 {% load i18n %}
+{% load get_chatra_groupid %}
 
 {% block head_title %}{% trans "Edit service" %} | QuickMapServices {% endblock %}
+
+{% block extra_head %}
+    <!-- Chatra -->
+    {% get_chatra_groupid 'qms' as chatra_groupid %}
+    {% include "snippets/contrib/chatra.html" %}
+{% endblock %}
 
 {% block overlay_content %}
     <div class="modal--stretch__inner">
