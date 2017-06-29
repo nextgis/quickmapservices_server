@@ -1,5 +1,5 @@
 import os
-from django_filters import AllValuesFilter
+from django_filters import AllValuesFilter, CharFilter
 from rest_framework.filters import SearchFilter, DjangoFilterBackend, OrderingFilter, FilterSet
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.pagination import LimitOffsetPagination
@@ -66,6 +66,8 @@ class GeoServiceStatusSerializer(ModelSerializer):
 
 class GeoServiceFilterSet(FilterSet):
     cumulative_status = AllValuesFilter(name="last_status__cumulative_status")
+    intersects_extent = CharFilter(name='extent', lookup_expr='intersects')
+    intersects_boundary = CharFilter(name='boundary', lookup_expr='intersects')
 
     class Meta:
         model = GeoService
@@ -179,8 +181,11 @@ class ApiRootView(APIView):
             ('geoservices_epsg_filter_url', simple_url('geoservice_list') + '?epsg={any_epsg_code}'),
             ('geoservices_status_filter_url', simple_url('geoservice_list') + '?cumulative_status={works|problematic|failed}'),
             ('geoservices_search_url', simple_url('geoservice_list') + '?search={q}'),
+            ('geoservices_intersects_extent_url', simple_url('geoservice_list') + '?intersects_extent={WKT|EWKT geometry}'),
+            ('geoservices_intersects_boundary_url', simple_url('geoservice_list') + '?intersects_boundary={WKT|EWKT geometry}'),
             ('geoservices_ordering_url', simple_url('geoservice_list') + '?ordering={name|-name|id|-id|created_at|-created_at|updated_at|-updated_at'),
             ('geoservices_pagination_url', simple_url('geoservice_list') + '?limit={int}&offset={int}'),
+
             ('geoservice_detail_url', repl_id_ulr('geoservice_detail')),
 
             ('geoservice_status_url', simple_url('geoservicestatus-list')),
