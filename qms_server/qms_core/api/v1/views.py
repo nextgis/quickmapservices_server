@@ -1,5 +1,5 @@
 import os
-from django_filters import CharFilter, AllValuesFilter
+from django_filters import AllValuesFilter
 from rest_framework.filters import SearchFilter, DjangoFilterBackend, OrderingFilter, FilterSet
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.pagination import LimitOffsetPagination
@@ -15,42 +15,35 @@ from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIco
 
 
 # === Serializers
-
-class GeoServiceSerializer(ModelSerializer):
+class GeoServiceGenericSerializer(ModelSerializer):
     cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
 
+
+class GeoServiceSerializer(GeoServiceGenericSerializer):
     class Meta:
         model = GeoService
-        fields = ('id', 'guid', 'name', 'desc', 'type', 'epsg', 'icon', 'submitter', 'created_at', 'updated_at', 'cumulative_status')
+        fields = ('id', 'guid', 'name', 'desc', 'type', 'epsg', 'icon', 'submitter', 'created_at', 'updated_at', 'cumulative_status', 'extent')
 
 
-class TmsServiceSerializer(ModelSerializer):
-    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
-
+class TmsServiceSerializer(GeoServiceGenericSerializer):
     class Meta:
         model = TmsService
         fields = '__all__'
 
 
-class WmsServiceSerializer(ModelSerializer):
-    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
-
+class WmsServiceSerializer(GeoServiceGenericSerializer):
     class Meta:
         model = WmsService
         fields = '__all__'
 
 
-class WfsServiceSerializer(ModelSerializer):
-    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
-
+class WfsServiceSerializer(GeoServiceGenericSerializer):
     class Meta:
         model = WfsService
         fields = '__all__'
 
 
-class GeoJsonServiceSerializer(ModelSerializer):
-    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
-
+class GeoJsonServiceSerializer(GeoServiceGenericSerializer):
     class Meta:
         model = GeoJsonService
         fields = '__all__'
