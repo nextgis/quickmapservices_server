@@ -7,7 +7,8 @@
                 <div class="form-group">
                     <input v-model="search"
                            @input="updateData(true)"
-                           class="form-control" id="txt_search" maxlength="256" :placeholder="$t('search_service')" type="search">
+                           class="form-control" id="txt_search" maxlength="256" :placeholder="$t('search_service')" type="search"
+                           style="border-radius:0">
                 </div>
             </div>
         </div>
