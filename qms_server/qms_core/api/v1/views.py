@@ -1,5 +1,5 @@
 import os
-from django_filters import CharFilter, AllValuesFilter
+from django_filters import AllValuesFilter, CharFilter
 from rest_framework.filters import SearchFilter, DjangoFilterBackend, OrderingFilter, FilterSet
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.pagination import LimitOffsetPagination
@@ -15,42 +15,35 @@ from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIco
 
 
 # === Serializers
-
-class GeoServiceSerializer(ModelSerializer):
+class GeoServiceGenericSerializer(ModelSerializer):
     cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
 
+
+class GeoServiceSerializer(GeoServiceGenericSerializer):
     class Meta:
         model = GeoService
-        fields = ('id', 'guid', 'name', 'desc', 'type', 'epsg', 'icon', 'submitter', 'created_at', 'updated_at', 'cumulative_status')
+        fields = ('id', 'guid', 'name', 'desc', 'type', 'epsg', 'icon', 'submitter', 'created_at', 'updated_at', 'cumulative_status', 'extent')
 
 
-class TmsServiceSerializer(ModelSerializer):
-    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
-
+class TmsServiceSerializer(GeoServiceGenericSerializer):
     class Meta:
         model = TmsService
         fields = '__all__'
 
 
-class WmsServiceSerializer(ModelSerializer):
-    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
-
+class WmsServiceSerializer(GeoServiceGenericSerializer):
     class Meta:
         model = WmsService
         fields = '__all__'
 
 
-class WfsServiceSerializer(ModelSerializer):
-    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
-
+class WfsServiceSerializer(GeoServiceGenericSerializer):
     class Meta:
         model = WfsService
         fields = '__all__'
 
 
-class GeoJsonServiceSerializer(ModelSerializer):
-    cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
-
+class GeoJsonServiceSerializer(GeoServiceGenericSerializer):
     class Meta:
         model = GeoJsonService
         fields = '__all__'
@@ -73,6 +66,8 @@ class GeoServiceStatusSerializer(ModelSerializer):
 
 class GeoServiceFilterSet(FilterSet):
     cumulative_status = AllValuesFilter(name="last_status__cumulative_status")
+    intersects_extent = CharFilter(name='extent', lookup_expr='intersects')
+    intersects_boundary = CharFilter(name='boundary', lookup_expr='intersects')
 
     class Meta:
         model = GeoService
@@ -186,8 +181,11 @@ class ApiRootView(APIView):
             ('geoservices_epsg_filter_url', simple_url('geoservice_list') + '?epsg={any_epsg_code}'),
             ('geoservices_status_filter_url', simple_url('geoservice_list') + '?cumulative_status={works|problematic|failed}'),
             ('geoservices_search_url', simple_url('geoservice_list') + '?search={q}'),
+            ('geoservices_intersects_extent_url', simple_url('geoservice_list') + '?intersects_extent={WKT|EWKT geometry}'),
+            ('geoservices_intersects_boundary_url', simple_url('geoservice_list') + '?intersects_boundary={WKT|EWKT geometry}'),
             ('geoservices_ordering_url', simple_url('geoservice_list') + '?ordering={name|-name|id|-id|created_at|-created_at|updated_at|-updated_at'),
             ('geoservices_pagination_url', simple_url('geoservice_list') + '?limit={int}&offset={int}'),
+
             ('geoservice_detail_url', repl_id_ulr('geoservice_detail')),
 
             ('geoservice_status_url', simple_url('geoservicestatus-list')),

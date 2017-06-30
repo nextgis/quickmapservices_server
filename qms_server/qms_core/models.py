@@ -7,7 +7,7 @@ from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.core import validators
 from django.core.mail import send_mail
-from django.db import models
+from django.contrib.gis.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext as _
 from django.utils.encoding import python_2_unicode_compatible
@@ -152,6 +152,7 @@ class GeoService(models.Model):
         if self.service_type == GeoService.service_type:
             raise Exception('Base geo service model can\'t be saved')
         self.type = self.service_type
+        self.extent = self.boundary.envelope if self.boundary else None
         super(GeoService, self).save(*args, **kwargs)
 
     guid = models.UUIDField(_('service guid'), default=uuid.uuid4, editable=False)
@@ -169,13 +170,16 @@ class GeoService(models.Model):
     # creation & update info
     submitter = models.ForeignKey(NextgisUser, on_delete=models.SET_NULL, to_field='nextgis_guid', null=True)
     created_at = models.DateTimeField(_('created at'), auto_now_add=True)
-    updated_at = models.DateTimeField(_('updated at'))
+    updated_at = models.DateTimeField(_('updated at'), null=True, blank=True)
     # source info
     source = models.TextField(_('source'), blank=True, null=True)
     source_url = models.URLField(_('source url'), max_length=512, blank=True, null=True)
-
     # status
     last_status = models.ForeignKey('GeoServiceStatus', on_delete=models.SET_NULL, null=True, related_name='last_for', blank=True)
+    # extent & boundary
+    extent = models.PolygonField(srid=4326, spatial_index=True, null=True, blank=True)
+    boundary = models.MultiPolygonField(srid=4326, spatial_index=True, null=True, blank=True)
+
 
     # TODO: tags
 
