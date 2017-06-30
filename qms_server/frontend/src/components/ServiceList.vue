@@ -65,6 +65,9 @@
       computed: {
          pageCount:function(){
             return this.data ? Math.ceil(this.data.count/this.itemsOnPage) : 0
+         },
+         ordering: function(){
+             return (this.search.length > 0)? "-updated_at" : "name"
          }
       },
       created(){
@@ -80,7 +83,8 @@
                     offset:(this.page - 1) * this.itemsOnPage,
                     type: this.type,
                     search: this.search,
-                    submitter: this.submitter
+                    submitter: this.submitter,
+                    ordering: this.ordering
                   }
               })
               .then(response => {
