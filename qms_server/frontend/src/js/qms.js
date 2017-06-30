@@ -4,8 +4,8 @@ export default class QMSAddForm{
       this.qmsAddForm = $(".qms-add-service");
       var that = this;
 
-      if (qmsAddForm.length){
-        qmsAddForm.each(function(){
+      if (this.qmsAddForm.length){
+        this.qmsAddForm.each(function(){
             var form = $(this),
                 licenseForm = form.find(".qms-add-service__license-form"),
                 licenseInfo = form.find(".qms-add-service__license-info");

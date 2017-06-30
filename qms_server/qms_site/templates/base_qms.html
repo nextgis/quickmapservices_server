@@ -38,18 +38,15 @@
 
 {% block script_variables %}
     <script type="text/javascript">
-        var element_template_url = "{% static 'qms_site/templates/service_element.html' %}",
-            no_results_templ_url = "{% static 'qms_site/templates/no_results.html' %}",
-            default_icon_url = "{% url 'service_icon_default' %}",
-            icon_url = "/api/v1/icons/%id/content",  //REPLACE IT!
-            service_url = "/geoservices/%id", //REPLACE IT!
-            edit_url = "/edit/%id"; //REPLACE IT!
-
+        var qmsConfig = {
+            default_icon_url : "{% url 'service_icon_default' %}",
+            icon_url : "/api/v1/icons/%id/content",  //REPLACE IT!
+            service_url : "/geoservices/%id", //REPLACE IT!
+            edit_url : "/edit/%id" //REPLACE IT!
             {% if request.user.is_authenticated %}
-                var user_guid = "{{ request.user.nextgis_guid }}";
-            {% else %}
-                var user_guid = "";
+                ,user_guid : "{{ request.user.nextgis_guid }}"
             {% endif %}
+        }
     </script>
 {% endblock %}
 
