@@ -15,7 +15,7 @@
           </div>
           <div class="qms-list__meta">
               <span class="qms-list__meta-item qms-list__type">{{ service.type }}</span>
-              <span class="qms-list__meta-item qms-list__date">{{ $t('last_update') }}: {{ service.updated_at.slice(0,10) }}</span>
+              <span class="qms-list__meta-item qms-list__date" v-if="service.updated_at">{{ $t('last_update') }}: {{ service.updated_at.slice(0,10) }}</span>
           </div>
       </div>
       <a class="qms-list__link" :href="url" target="_blank"></a>

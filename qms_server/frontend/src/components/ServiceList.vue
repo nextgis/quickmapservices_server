@@ -42,6 +42,7 @@
 </template>
 
 <script>
+  import Vue from 'vue'
   import axios from 'axios'
   import ServiceCard from "./ServiceCard.vue"
   import ServiceFilter from "./ServiceFilter.vue"
@@ -67,7 +68,7 @@
             return this.data ? Math.ceil(this.data.count/this.itemsOnPage) : 0
          },
          ordering: function(){
-             return (this.search.length > 0)? "-updated_at" : "name"
+             return (this.search.length > 0)? "name" : "-updated_at"
          }
       },
       created(){
