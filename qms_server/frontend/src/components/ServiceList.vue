@@ -46,6 +46,7 @@
   import axios from 'axios'
   import ServiceCard from "./ServiceCard.vue"
   import ServiceFilter from "./ServiceFilter.vue"
+  import UrlTemplate from 'url-template'
 
   export default {
       components:{
@@ -69,6 +70,12 @@
          },
          ordering: function(){
              return (this.search.length > 0)? "name" : "-updated_at"
+         },
+         serviceUrlTemplate(){
+            return UrlTemplate.parse(this.$config.apiUrl.geoservice_detail_url)
+         },
+         statusUrlTemplate(){
+            return UrlTemplate.parse(this.$config.apiUrl.geoservice_status_detail_url)
          }
       },
       created(){
@@ -91,7 +98,17 @@
               .then(response => {
                   // JSON responses are automatically parsed.
                   window.scrollTo(0,0)
+
+                  let servicesWithStatus = response.data.results.map((service) => {
+                      service.status_text = this.$t('status_' + service.cumulative_status)
+                      return service
+                  });
+                  response.data.results = servicesWithStatus
                   this.data = response.data
+
+                  this.data.results.forEach((service)=>{
+                     this.addStatusDescrTo(service)
+                  })
               })
               .catch(e => {
                   console.log(e)
@@ -103,6 +120,23 @@
 
               this[filter.key] = filter.value
               this.updateData(true)
+          },
+          addStatusDescrTo(service){
+              axios.get(this.serviceUrlTemplate.expand({ id: service.id }))
+              .then(response => {
+                  let statusId = response.data.last_status
+
+                  axios.get(this.statusUrlTemplate.expand({ id: statusId }))
+                  .then(response => {
+                      service.status_text = response.data.error_text ? response.data.error_text : this.$t('status_' + response.data.cumulative_status)
+                  })
+                  .catch(e => {
+                      console.log(e)
+                  })
+              })
+              .catch(e => {
+                  console.log(e)
+              })
           }
       }
   }

@@ -59,6 +59,8 @@
     "stylus-loader": "^3.0.1",
     "svg4everybody": "^2.1.8",
     "url-loader": "^0.5.8",
+    "url-template": "^2.0.8",
+    "vue-config": "^1.0.0",
     "vue-i18n": "^7.0.3",
     "vue-loader": "^12.1.0",
     "vue-style-loader": "^3.0.1",
