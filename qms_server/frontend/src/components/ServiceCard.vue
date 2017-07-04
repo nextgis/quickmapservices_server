@@ -86,7 +86,7 @@
       position: relative;
       transition: box-shadow .3s;
       width: 100%;
-      min-height: 100%;
+      min-height: 100px;
 
       &:hover
           box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .07),
