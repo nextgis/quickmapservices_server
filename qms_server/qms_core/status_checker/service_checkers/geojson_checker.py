@@ -23,7 +23,7 @@ class GeoJsonChecker(BaseServiceChecker):
 
         startTime = datetime.datetime.utcnow()
         try:
-            response = requests.get(self.service.url, timeout=10)  # TODO: move timeout
+            response = requests.get(self.service.url, timeout=self.timeout)
 
             result.http_code = response.status_code
             # content-type не проверяется, вместо этого проверяем код ответа

@@ -32,7 +32,7 @@ class TmsChecker(BaseServiceChecker):
                 test_url = self.service.url.format(z=0, x=0, y=0)
 
             if test_url:
-                response = requests.get(test_url, timeout=10)  # TODO: move timeout
+                response = requests.get(test_url, timeout=self.timeout)
                 content_type = response.headers['content-type']
 
                 result.http_code = response.status_code

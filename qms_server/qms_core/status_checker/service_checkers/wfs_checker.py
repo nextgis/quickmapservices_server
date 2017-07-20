@@ -21,7 +21,7 @@ class WfsChecker(BaseServiceChecker):
         startTime = datetime.datetime.utcnow()
 
         try:
-            wfs_service = WebFeatureService(self.service.url)
+            wfs_service = WebFeatureService(self.service.url, timeout=self.timeout)
 
             if self.service.layer in wfs_service.contents:
                 result.cumulative_status = CumulativeStatus.WORKS
