@@ -3,7 +3,6 @@ import 'proj4leaflet'
 import 'leaflet-wfst/dist/Leaflet-WFST.src'
 
 if ($("#mapid").length){
-
   var preview_map = L.map('mapid').setView([55, 44], 2);
 
   if (service.type == 'tms') {

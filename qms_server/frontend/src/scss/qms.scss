@@ -5,7 +5,7 @@ $mdb-shadow-ambient-shadow-opacity: .06;
 $square-list-item-width: 150px;
 $square-list-padding: 30px;
 
-@import "~@nextgis_common/scss/_bootstrap_variables";
+@import "~@nextgis_common/scss/variables/_bootstrap_variables";
 @import "bootstrap-material-design/sass/_shadows";
 
 @import "~leaflet/dist/leaflet.css";

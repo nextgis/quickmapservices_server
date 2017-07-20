@@ -4,44 +4,7 @@
 
 
 {% block body_content %}
-    <div class="qms__filter row">        
-        <div class="col-xs-12 col-sm-4 col-sm-push-8">
-            <div class="input-group">
-                <div class="input-group-addon"><i class="material-icons">search</i></div>
-                <div class="form-group">
-                    <input class="form-control" id="txt_search" maxlength="256" placeholder="{% trans 'Search map service...' %}" type="search">
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-8 col-sm-pull-4">
-            <ul class="qms__filter__list filter-links list-inline">
-                <li class="filter-links__item">
-                    <a class="filter-link active" id="flt_all" href="#"><span class="filter-link__inner">{% trans 'All services' %}</span></a>
-                </li>
-                <li class="filter-links__item">
-                    <a class="filter-link" id="flt_tms" href="#"><span class="filter-link__inner">TMS</span></a>
-                </li>
-                <li class="filter-links__item">
-                    <a class="filter-link" id="flt_wms" href="#"><span class="filter-link__inner">WMS</span></a>
-                </li>
-                <li class="filter-links__item">
-                    <a class="filter-link" id="flt_wfs" href="#"><span class="filter-link__inner">WFS</span></a>
-                </li>
-                <li class="filter-links__item">
-                    <a class="filter-link" id="flt_geojson" href="#"><span class="filter-link__inner">GeoJSON</span></a>
-                </li>
-                {% if request.user.is_authenticated %}
-                <li class="filter-links__item">
-                    <a class="filter-link" id="flt_my" href="#"><span class="filter-link__inner">{% trans 'My services' %}</span></a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
-    <div class="qms-service-count">
-        {% trans 'Services found' %}: <span class="qms-service-count__value" id="service-count"></span>
-    </div>
-    <div id="results"></div>
+    <div id="app"></div>
     <a class="btn-mobile-action btn btn-fab btn-primary" href="{% url 'create_service_view' %}"><i class="material-icons add"></i></a>
 {% endblock %}
 
