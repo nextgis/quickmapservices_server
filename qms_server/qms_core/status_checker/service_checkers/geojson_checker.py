@@ -13,9 +13,6 @@ from .baseservice_checker import BaseServiceChecker
 
 class GeoJsonChecker(BaseServiceChecker):
 
-    def __init__(self, service):
-        super(GeoJsonChecker, self).__init__(service)
-
     def check(self):
         result = CheckResult(geoservice_id=self.service.id,
                              geoservice_name=self.service.name,
