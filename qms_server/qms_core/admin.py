@@ -1,7 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.gis.admin import OSMGeoAdmin
+from django.contrib.gis.db.models import PolygonField, MultiPolygonField
+from django.contrib.gis.forms import OSMWidget
 from django.core import urlresolvers
+from django.templatetags.static import static
 from django.utils.translation import ugettext as _
 from qms_core.models import NextgisUser, GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService, \
     GeoServiceStatus
@@ -30,6 +33,8 @@ boundary_fields = (_('Boundary'), {'fields': ('extent', 'boundary')})
 
 
 class GenericServiceAdmin(OSMGeoAdmin):
+    openlayers_url = static('qms_core/js/OpenLayers.js')
+
     readonly_fields = ('guid', 'type', 'cumulative_status')
     list_display = ('id', 'name', 'cumulative_status', 'desc')
     search_fields = ('name', 'desc')
