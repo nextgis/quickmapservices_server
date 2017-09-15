@@ -75,7 +75,7 @@ class GeoServiceFilterSet(FilterSet):
 
 
 class GeoServiceListView(ListAPIView):
-    queryset = GeoService.objects.all()
+    queryset = GeoService.objects.select_related('last_status')
     serializer_class = GeoServiceSerializer
     pagination_class = LimitOffsetPagination
     filter_backends = (OrderingFilter, SearchFilter, DjangoFilterBackend)
@@ -90,7 +90,8 @@ class GeoServiceDetailedView(RetrieveAPIView):
         .select_related('tmsservice')\
         .select_related('wmsservice')\
         .select_related('wfsservice')\
-        .select_related('geojsonservice')
+        .select_related('geojsonservice')\
+        .select_related('last_status')
 
     def get_object(self):
         obj = super(GeoServiceDetailedView, self).get_object()
