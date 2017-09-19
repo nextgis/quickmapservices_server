@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'qms_site',
 
     'rest_framework',
+    'django_filters',
     'corsheaders',
     'captcha',
     'django_crontab',
