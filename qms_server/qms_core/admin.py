@@ -13,7 +13,7 @@ from qms_core.models import NextgisUser, GeoService, TmsService, WmsService, Wfs
 @admin.register(NextgisUser)
 class NextgisUserAdmin(UserAdmin):
 
-    service_readonly_fields = ('nextgis_id', 'nextgis_guid')
+    readonly_fields = ('nextgis_id', 'nextgis_guid')
 
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
