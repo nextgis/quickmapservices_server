@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.gis.admin import OSMGeoAdmin
 from django.contrib.gis.db.models import PolygonField, MultiPolygonField
-from django.contrib.gis.forms import OSMWidget
+from django import forms
 from django.core import urlresolvers
 from django.templatetags.static import static
 from django.utils.translation import ugettext as _
@@ -32,7 +32,12 @@ source_fieldset = (_('Source info'), {'fields': ('source', 'source_url')})
 boundary_fields = (_('Boundary'), {'fields': ('extent', 'boundary')})
 
 
-class GenericServiceAdmin(OSMGeoAdmin):
+class GenericServiceAdmin(admin.ModelAdmin):  #OSMGeoAdmin
+    formfield_overrides = {
+        PolygonField: {'widget': forms.Textarea},
+        MultiPolygonField: {'widget': forms.Textarea},
+    }
+
     openlayers_url = static('qms_core/js/OpenLayers.js')
 
     readonly_fields = ('guid', 'type', 'cumulative_status')
