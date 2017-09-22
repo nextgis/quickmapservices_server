@@ -29,7 +29,7 @@ class NextgisUserAdmin(UserAdmin):
 common_fieldset = (_('Common'), {'fields': ('guid', 'type', 'name', 'desc', 'epsg', 'icon', 'cumulative_status')})
 license_fieldset = (_('License & Copyright'), {'fields': ('license_name', 'license_url', 'copyright_text', 'copyright_url', 'terms_of_use_url')})
 source_fieldset = (_('Source info'), {'fields': ('source', 'source_url')})
-boundary_fields = (_('Boundary'), {'fields': ('extent', 'boundary')})
+boundary_fields = (_('Boundary'), {'fields': ('extent', 'boundary', 'boundary_area')})
 
 
 class GenericServiceAdmin(admin.ModelAdmin):  #OSMGeoAdmin

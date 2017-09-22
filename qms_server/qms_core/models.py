@@ -153,6 +153,7 @@ class GeoService(models.Model):
             raise Exception('Base geo service model can\'t be saved')
         self.type = self.service_type
         self.extent = self.boundary.envelope if self.boundary else None
+        self.boundary_area = self.boundary.area if self.boundary else None
         super(GeoService, self).save(*args, **kwargs)
 
     guid = models.UUIDField(_('service guid'), default=uuid.uuid4, editable=False)
@@ -179,7 +180,7 @@ class GeoService(models.Model):
     # extent & boundary
     extent = models.PolygonField(srid=4326, spatial_index=True, null=True, blank=True)
     boundary = models.MultiPolygonField(srid=4326, spatial_index=True, null=True, blank=True)
-
+    boundary_area = models.FloatField(null=True, blank=True)
 
     # TODO: tags
 
