@@ -30,11 +30,11 @@ class GeoJsonChecker(BaseServiceChecker):
                 if validation['valid'] == 'yes':
                     result.cumulative_status = CumulativeStatus.WORKS
                 else:
-                    result.cumulative_status = CumulativeStatus.FAILED
+                    result.cumulative_status = CumulativeStatus.PROBLEMATIC
                     result.error_text = validation['message']
                     result.error_type = CheckStatusErrorType.INVALID_RESPONSE
             else:
-                result.cumulative_status = CumulativeStatus.FAILED
+                result.cumulative_status = CumulativeStatus.PROBLEMATIC
                 result.error_text = 'Non 200 http code'
                 result.http_response = response.text
                 result.error_type = CheckStatusErrorType.INVALID_RESPONSE

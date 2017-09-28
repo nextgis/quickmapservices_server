@@ -43,11 +43,11 @@ class TmsChecker(BaseServiceChecker):
                     if content_type == 'image/png' or content_type == 'image/jpeg':
                         result.cumulative_status = CumulativeStatus.WORKS
                     else:
-                        result.cumulative_status = CumulativeStatus.FAILED
+                        result.cumulative_status = CumulativeStatus.PROBLEMATIC
                         result.error_type = CheckStatusErrorType.INVALID_RESPONSE
                         result.error_text = 'service response is not image'
                 else:
-                    result.cumulative_status = CumulativeStatus.FAILED
+                    result.cumulative_status = CumulativeStatus.PROBLEMATIC
                     result.error_text = 'Non 200 http code'
                     result.http_response = response.text
                     result.error_type = CheckStatusErrorType.INVALID_RESPONSE
