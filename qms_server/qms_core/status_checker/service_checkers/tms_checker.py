@@ -8,9 +8,16 @@ from requests.exceptions import HTTPError, Timeout
 from qms_core.models import CumulativeStatus, CheckStatusErrorType
 from ..check_result import CheckResult
 from .baseservice_checker import BaseServiceChecker
-
+import math
 
 class TmsChecker(BaseServiceChecker):
+
+    def deg2num(self, lat_deg, lon_deg, zoom):
+      lat_rad = math.radians(lat_deg)
+      n = 2.0 ** zoom
+      xtile = int((lon_deg + 180.0) / 360.0 * n)
+      ytile = int((1.0 - math.log(math.tan(lat_rad) + (1 / math.cos(lat_rad))) / math.pi) / 2.0 * n)
+      return (xtile, ytile)
 
     def check(self):
         result = CheckResult(geoservice_id=self.service.id,
@@ -19,17 +26,25 @@ class TmsChecker(BaseServiceChecker):
 
         startTime = datetime.datetime.utcnow()
         try:
+            extent_center = self.service.extent.centroid if self.service.extent else None
+            x, y = 0, 0
             if self.service.z_min is not None:
-                test_url = self.service.url.format(z=self.service.z_min, x=0, y=0)
+                if extent_center:
+                    x, y = self.deg2num(extent_center.y, extent_center.x, self.service.z_min)
+                test_url = self.service.url.format(z=self.service.z_min, x=x, y=y)
             elif self.service.z_max is not None:
-                test_url = self.service.url.format(z=self.service.z_max, x=0, y=0)
+                if extent_center:
+                    x, y = self.deg2num(extent_center.y, extent_center.x, self.service.z_max)
+                test_url = self.service.url.format(z=self.service.z_max, x=x, y=y)
             else:
                 # test_url = None
                 # result.cumulative_status = CumulativeStatus.FAILED
                 # result.error_text = 'Not set z_min and z_max for TMS'
 
                 # Try 0 0 0 tile now
-                test_url = self.service.url.format(z=0, x=0, y=0)
+                if extent_center:
+                    x, y = self.deg2num(extent_center.y, extent_center.x, 0)
+                test_url = self.service.url.format(z=0, x=x, y=y)
 
             if test_url:
                 response = requests.get(test_url, timeout=self.timeout)
