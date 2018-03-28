@@ -1,3 +1,5 @@
+import random
+
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages import add_message, INFO
@@ -127,6 +129,17 @@ class GeoserviceDetailView(TemplateView, ReportFormMixin):
                                     id=kwargs['pk'])
 
         kwargs['service'] = service
+        if service.type == TmsService.service_type:
+            tms_url_pattern, tms_subdomains = service.tmsservice.get_url_pattern_and_subdomains()
+
+            kwargs['leaflet_tms_url'] = tms_url_pattern % {'subdomain': '{s}'}
+            kwargs['leaflet_tms_subdomains'] = map(str, tms_subdomains)
+
+            # Remove this block when the leaflet map is fixed for use subdomain
+            if len(tms_subdomains) > 0:
+                random_subdomain_index = random.randint(0, len(tms_subdomains)-1)
+                kwargs['leaflet_tms_url'] = tms_url_pattern % {'subdomain': tms_subdomains[random_subdomain_index]}
+
         kwargs['body_class'] = 'admin'
 
         return super(GeoserviceDetailView, self).get_context_data(**kwargs)

@@ -52,7 +52,8 @@
             epsg: "{{ service.epsg }}",
             {% if service.type == 'tms' %}
                 tms: {
-                    url: "{{ service.tmsservice.url|safe }}",
+                    url: "{{ leaflet_tms_url|safe }}",
+                    subdomains: {{ leaflet_tms_subdomains|safe }},
                     zmin: {{ service.tmsservice.z_min|default_if_none:0}},
                     zmax: {{ service.tmsservice.z_max|default_if_none:18}}
                 }
