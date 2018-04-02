@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import random
 import datetime
 
 import requests
@@ -19,6 +20,24 @@ class TmsChecker(BaseServiceChecker):
       ytile = int((1.0 - math.log(math.tan(lat_rad) + (1 / math.cos(lat_rad))) / math.pi) / 2.0 * n)
       return (xtile, ytile)
 
+    def __generate_alt_urls(self, tms_service):
+        url_pattern, subdomains = tms_service.get_url_pattern_and_subdomains()
+        urls = []
+        for subdomain in subdomains:
+            urls.append(
+                url_pattern % {'subdomain': subdomain}
+            )
+        return urls
+
+    def __generate_url(self, tms_service):
+        alt_urls = self.__generate_alt_urls(tms_service)
+        if alt_urls:
+            tms_url = alt_urls[random.randint(0, len(alt_urls)-1)]
+        else:
+            tms_url = tms_service.url
+
+        return tms_url
+
     def check(self):
         result = CheckResult(geoservice_id=self.service.id,
                              geoservice_name=self.service.name,
@@ -28,14 +47,16 @@ class TmsChecker(BaseServiceChecker):
         try:
             extent_center = self.service.extent.centroid if self.service.extent else None
             x, y = 0, 0
+            tms_url = self.__generate_url(self.service)
+            
             if self.service.z_min is not None:
                 if extent_center:
                     x, y = self.deg2num(extent_center.y, extent_center.x, self.service.z_min)
-                test_url = self.service.url.format(z=self.service.z_min, x=x, y=y)
+                test_url = tms_url.format(z=self.service.z_min, x=x, y=y)
             elif self.service.z_max is not None:
                 if extent_center:
                     x, y = self.deg2num(extent_center.y, extent_center.x, self.service.z_max)
-                test_url = self.service.url.format(z=self.service.z_max, x=x, y=y)
+                test_url = tms_url.format(z=self.service.z_max, x=x, y=y)
             else:
                 # test_url = None
                 # result.cumulative_status = CumulativeStatus.FAILED
@@ -44,7 +65,7 @@ class TmsChecker(BaseServiceChecker):
                 # Try 0 0 0 tile now
                 if extent_center:
                     x, y = self.deg2num(extent_center.y, extent_center.x, 0)
-                test_url = self.service.url.format(z=0, x=x, y=y)
+                test_url = tms_url.format(z=0, x=x, y=y)
 
             if test_url:
                 response = requests.get(test_url, timeout=self.timeout)
