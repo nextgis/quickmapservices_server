@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-04 15:18+0000\n"
+"POT-Creation-Date: 2018-04-03 08:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -416,7 +416,7 @@ msgstr "Использование сервисов"
 msgid "Adding a service"
 msgstr "Добавление сервисов"
 
-#: templates/faq.html:29 templates/faq.html:108
+#: templates/faq.html:29 templates/faq.html:109
 msgid "Fixing a service"
 msgstr "Исправление сервисов"
 
@@ -562,23 +562,33 @@ msgstr ""
 "Обратите внимание на z, x, y — это номера тайлов соответствующие "
 "определенной территории"
 
-#: templates/faq.html:75
+#: templates/faq.html:71
+msgid ""
+"You can use {switch:1,2,3} to specify the list of domains. e.g. <a href="
+"\"http://{switch:a,b,c}.tile.openstreetmap.org/{z}/{x}/{y}.png\">http://"
+"{switch:a,b,c}.tile.openstreetmap.org/{z}/{x}/{y}.png</a>"
+msgstr ""
+"Вы можете использовать {switch:1,2,3} для указания перечня поддоменов. Например, <a href="
+"\"http://{switch:a,b,c}.tile.openstreetmap.org/{z}/{x}/{y}.png\">http://"
+"{switch:a,b,c}.tile.openstreetmap.org/{z}/{x}/{y}.png</a>"
+
+#: templates/faq.html:76
 msgid "This service provides untiled-imagery"
 msgstr "Этот сервис даёт доступ к нетайлированным изображениям"
 
-#: templates/faq.html:76
+#: templates/faq.html:77
 msgid "Note words like ‘wms’ or ‘wmsserver’ in the link"
 msgstr "Обратите внимание на слова ‘wms’ или ‘wmsserver’ в ссылке"
 
-#: templates/faq.html:81
+#: templates/faq.html:82
 msgid "This service provides vector data"
 msgstr "Этот сервис даёт доступ к векторным данным"
 
-#: templates/faq.html:82
+#: templates/faq.html:83
 msgid "Note words like ‘wfs’ or WFSserver’ in the link"
 msgstr "Обратите внимание на слова ‘wfs’ или WFSserver’ в ссылке"
 
-#: templates/faq.html:87
+#: templates/faq.html:88
 msgid ""
 "This service provides vector data and is probably the simplest, being just a "
 "file with data"
@@ -586,23 +596,23 @@ msgstr ""
 "Этот сервис даёт доступ к векторным данным. Это самый простой сервис, ссылка "
 "просто указывает на файл с данными"
 
-#: templates/faq.html:88
+#: templates/faq.html:89
 msgid "File can be hosted anywhere, as long as it’s valid GeoJSON"
 msgstr "Файл с данными может лежать на каком угодно сервере"
 
-#: templates/faq.html:92
+#: templates/faq.html:93
 msgid "What should I know to succesfully create WMS service?"
 msgstr "Что нужно учесть при создании сервиса WMS?"
 
-#: templates/faq.html:93
+#: templates/faq.html:94
 msgid "Please note the following particulars when creating a WMS service:"
 msgstr "Для создания сервиса WMS нужно учесть следующие особенности:"
 
-#: templates/faq.html:95
+#: templates/faq.html:96
 msgid "You should use layer(s) NAME, not layer(s) TITLE."
 msgstr "Используйте NAME слоя (слоёв), а не TITLE."
 
-#: templates/faq.html:96
+#: templates/faq.html:97
 msgid ""
 "To check what layers are available, add your WMS to QGIS first Layer/Add "
 "Layer/WMS layer... and have a look what’s there."
@@ -610,7 +620,7 @@ msgstr ""
 "Легко определить какие слои доступны в сервисе WMS можно подключив его, "
 "например, в QGIS (меню Слой/Добавить слой/Слой WMS...)."
 
-#: templates/faq.html:98
+#: templates/faq.html:99
 msgid ""
 "I’ve seen services links that are different from examples above, are there "
 "other examples?"
@@ -618,7 +628,7 @@ msgstr ""
 "Я видел ссылки на сервисы отличающиеся от примеров выше, где посмотреть "
 "другие образцы?"
 
-#: templates/faq.html:99
+#: templates/faq.html:100
 msgid ""
 "Yes, there are lots of varieties and service link can look very differently. "
 "Just browse QMS clicking on service type and see what kind of links other "
@@ -627,15 +637,15 @@ msgstr ""
 "В целом ссылки на сервисы не стандартизованы и у них есть много вариантов. "
 "Просто полистайте каталог и посмотрите на другие примеры."
 
-#: templates/faq.html:100
+#: templates/faq.html:101
 msgid "Start with the ones down below."
 msgstr "Начните с более ранних."
 
-#: templates/faq.html:101
+#: templates/faq.html:102
 msgid "I’ve created a service, but type in incorrect, can I change it?"
 msgstr "Я создал сервис, но ошибся с его типом, могу я его поменять?"
 
-#: templates/faq.html:102
+#: templates/faq.html:103
 msgid ""
 "You can't change the type of a service once created. You'll need to create "
 "another one with the correct type."
@@ -643,21 +653,21 @@ msgstr ""
 "Вы не можете поменять тип сервиса после его создания. Создайте новый с "
 "правильным типом."
 
-#: templates/faq.html:103
+#: templates/faq.html:104
 msgid "How can I delete a service?"
 msgstr "Как удалить свой сервис?"
 
-#: templates/faq.html:104
+#: templates/faq.html:105
 msgid ""
 "You can't delete services at the moment. Report a problem and we'll remove "
 "it soon."
 msgstr "На данный момент удалять сервисы нельзя."
 
-#: templates/faq.html:105
+#: templates/faq.html:106
 msgid "How do I check that my service is OK?"
 msgstr "Как убедиться в том, что мой сервис — работает?"
 
-#: templates/faq.html:106
+#: templates/faq.html:107
 msgid ""
 "Find it through a client and add to see the data on a map. In QGIS you can "
 "use QuickMapServices plugin."
@@ -665,15 +675,15 @@ msgstr ""
 "Найдите и подключите его через свой клиент ГИС. Например, в QGIS можно "
 "использовать модуль QuickMapServices."
 
-#: templates/faq.html:109
+#: templates/faq.html:110
 msgid "I’ve found service, but it doesn’t work, how do I fix it?"
 msgstr "Я нашел нужный мне сервис, но он не работает, что делать?"
 
-#: templates/faq.html:110
+#: templates/faq.html:111
 msgid "Use ‘report a problem’ form."
 msgstr "Используйте форму обратной связи для связи с автором сервиса."
 
-#: templates/faq.html:111
+#: templates/faq.html:112
 msgid ""
 "Every service has it’s author (maintainer, submitter). Use the form to let "
 "the submitter know that the service is broken. Provide information how to "
@@ -683,13 +693,13 @@ msgstr ""
 "форму, чтобы сообщить ему, что сервис поломался. Если вы понимаете почему, "
 "сообщите так же как починить сервис."
 
-#: templates/faq.html:112
+#: templates/faq.html:113
 msgid ""
 "I’ve notified service maintainer about problem and provided solution, but "
 "maintainer is not reacting, what can I do?"
 msgstr "Я сообщил автору сервиса о проблеме, но он молчит, что делать?"
 
-#: templates/faq.html:113
+#: templates/faq.html:114
 msgid ""
 "If maintainer doesn’t reply for a long time – create a new service (you’ll "
 "become it’s maintainer). Old incorrect service will gradually be removed."
@@ -767,6 +777,7 @@ msgid "General info"
 msgstr "Основное"
 
 #: templates/services_snippets/general_info.html:8
+#: templates/services_snippets/general_info.html:71
 #: templates/services_snippets/geojson_info.html:7
 #: templates/services_snippets/license_info.html:8
 #: templates/services_snippets/tms_info.html:8
@@ -800,20 +811,51 @@ msgid "Last update"
 msgstr "Последнее изменение"
 
 #: templates/services_snippets/general_info.html:18
+#: templates/services_snippets/general_info.html:39
 msgid "Status"
 msgstr "Статус"
 
-#: templates/services_snippets/general_info.html:20
+#: templates/services_snippets/general_info.html:21
 msgid "works"
 msgstr "работает"
 
-#: templates/services_snippets/general_info.html:22
+#: templates/services_snippets/general_info.html:24
 msgid "failed"
 msgstr "не работает"
 
-#: templates/services_snippets/general_info.html:24
+#: templates/services_snippets/general_info.html:26
 msgid "problematic"
 msgstr "есть проблемы"
+
+#: templates/services_snippets/general_info.html:29
+msgid "Show error info"
+msgstr ""
+
+#: templates/services_snippets/general_info.html:37
+#, fuzzy
+#| msgid "Services found"
+msgid "Service status info"
+msgstr "Найдено сервисов"
+
+#: templates/services_snippets/general_info.html:43
+msgid "Checked"
+msgstr ""
+
+#: templates/services_snippets/general_info.html:47
+msgid "Http response code"
+msgstr ""
+
+#: templates/services_snippets/general_info.html:51
+msgid "Http response"
+msgstr ""
+
+#: templates/services_snippets/general_info.html:55
+msgid "Error type"
+msgstr ""
+
+#: templates/services_snippets/general_info.html:59
+msgid "Error text"
+msgstr ""
 
 #: templates/services_snippets/geojson_info.html:6
 msgid "GeoJSON info"
@@ -876,11 +918,11 @@ msgstr "Ваше сообщение"
 msgid "Send message"
 msgstr "Отправить"
 
-#: views.py:107
+#: views.py:109
 msgid "Your message was sent to service author and QMS admins"
 msgstr "Ваше сообщение было отправлено автору сервиса и администраторам QMS"
 
-#: views.py:171 views.py:174
+#: views.py:184 views.py:187
 msgid "Invalid form param: service_type"
 msgstr "Ошибка параметра формы: service_type"
 
@@ -895,9 +937,6 @@ msgstr "Ошибка параметра формы: service_type"
 
 #~ msgid "My services"
 #~ msgstr "Мои сервисы"
-
-#~ msgid "Services found"
-#~ msgstr "Найдено сервисов"
 
 #~ msgid "Other problem"
 #~ msgstr "Другая проблема"
