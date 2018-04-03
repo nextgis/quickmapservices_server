@@ -3,7 +3,7 @@ import json
 from captcha.fields import ReCaptchaField
 from django.forms import ModelForm, ValidationError, FileField
 from django.utils.translation import ugettext as _
-from django.contrib.gis.geos import GEOSGeometry
+from django.contrib.gis.geos import GEOSGeometry, MultiPolygon
 
 from qms_core.models import TmsService, WmsService, WfsService, GeoJsonService
 from qms_site.models import UserReport
@@ -43,6 +43,9 @@ class BaseServiceForm(ModelForm):
 
             if geom.geom_typeid not in [3, 6]:
                 raise ValidationError(_('Wrong geometry type. Geometry type must be Polygon or MultiPolygon.'))
+
+            if geom.geom_typeid == 3:
+                geom = MultiPolygon(geom)
 
             return geom
 
