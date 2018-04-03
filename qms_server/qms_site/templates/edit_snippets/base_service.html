@@ -49,16 +49,18 @@
             <div id="{{ form_name }}-extra" class="qms-add-service__extra-form">
                 {% block extra_part %}{% endblock %}
             </div>
-            <div class="">
-                <label for="boundary" style="margin-bottom: 12px; color: rgba(0,0,0,.67)">{% trans 'Service boundaries (geoJSON)' %}</label>                
-                {{ form.boundary }}
-                <div style="font-size: 14px; color: rgba(0,0,0,.67); margin-top:12px; margin-bottom: 32px">
-                    Загрузите geoJSON в&nbsp;системе координат EPSG:4326В.<br>
-                    В&nbsp;качестве границы берется геометрия 1-го&nbsp;объекта.
-                </div>
+            <label for="boundary" style="margin-bottom: 12px; color: rgba(0,0,0,.67)">{% trans 'Service boundaries (geoJSON)' %}</label>                
+            {{ form.boundary }}
+
+            <div class="form-group" style="margin-top: 12px;">
                 {% if form.boundary.errors %}
                     <span id="{{ form.boundary.auto_id }}-error" class="has-error">{{ form.boundary.errors }}</span>
                 {% endif %}
+
+                <div style="font-size: 14px; color: rgba(0,0,0,.67); margin-top:12px;">
+                    Загрузите geoJSON в&nbsp;системе координат EPSG:4326В.<br>
+                    В&nbsp;качестве границы берется геометрия 1-го&nbsp;объекта.
+                </div>
             </div>
         </section><!--/.qms-add-service__extra-->
         <section class="qms-add-service__license"> {# license part #}
