@@ -1,7 +1,10 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.gis.admin import OSMGeoAdmin
+from django.contrib.gis.db.models import PolygonField, MultiPolygonField
+from django import forms
 from django.core import urlresolvers
+from django.templatetags.static import static
 from django.utils.translation import ugettext as _
 from qms_core.models import NextgisUser, GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService, \
     GeoServiceStatus
@@ -10,7 +13,7 @@ from qms_core.models import NextgisUser, GeoService, TmsService, WmsService, Wfs
 @admin.register(NextgisUser)
 class NextgisUserAdmin(UserAdmin):
 
-    service_readonly_fields = ('nextgis_id', 'nextgis_guid')
+    readonly_fields = ('nextgis_id', 'nextgis_guid')
 
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
@@ -26,10 +29,17 @@ class NextgisUserAdmin(UserAdmin):
 common_fieldset = (_('Common'), {'fields': ('guid', 'type', 'name', 'desc', 'epsg', 'icon', 'cumulative_status')})
 license_fieldset = (_('License & Copyright'), {'fields': ('license_name', 'license_url', 'copyright_text', 'copyright_url', 'terms_of_use_url')})
 source_fieldset = (_('Source info'), {'fields': ('source', 'source_url')})
-boundary_fields = (_('Boundary'), {'fields': ('extent', 'boundary')})
+boundary_fields = (_('Boundary'), {'fields': ('extent', 'boundary', 'boundary_area')})
 
 
-class GenericServiceAdmin(OSMGeoAdmin):
+class GenericServiceAdmin(admin.ModelAdmin):  #OSMGeoAdmin
+    formfield_overrides = {
+        PolygonField: {'widget': forms.Textarea},
+        MultiPolygonField: {'widget': forms.Textarea},
+    }
+
+    openlayers_url = static('qms_core/js/OpenLayers.js')
+
     readonly_fields = ('guid', 'type', 'cumulative_status')
     list_display = ('id', 'name', 'cumulative_status', 'desc')
     search_fields = ('name', 'desc')

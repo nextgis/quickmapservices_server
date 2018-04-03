@@ -1,10 +1,12 @@
 import os
+import random
+
 from django_filters import AllValuesFilter, CharFilter
 from rest_framework.filters import SearchFilter, DjangoFilterBackend, OrderingFilter, FilterSet
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
-from rest_framework.serializers import ModelSerializer, OrderedDict, SlugRelatedField
+from rest_framework.serializers import ModelSerializer, OrderedDict, SlugRelatedField, SerializerMethodField
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 from rest_framework.viewsets import ReadOnlyModelViewSet
@@ -26,10 +28,37 @@ class GeoServiceSerializer(GeoServiceGenericSerializer):
 
 
 class TmsServiceSerializer(GeoServiceGenericSerializer):
+    url = SerializerMethodField()
+    alt_urls = SerializerMethodField()
+    origin_url = SerializerMethodField()
+
     class Meta:
         model = TmsService
         fields = '__all__'
 
+    def get_origin_url(self, obj):
+        return obj.url
+
+    def get_alt_urls(self, obj):
+        return self.__generate_alt_urls(obj)
+
+    def get_url(self, obj):
+        alt_urls = self.__generate_alt_urls(obj)
+        if len(alt_urls) == 0:
+            tms_url = obj.url
+        else:
+            tms_url = alt_urls[random.randint(0, len(alt_urls)-1)]
+
+        return tms_url
+
+    def __generate_alt_urls(self, obj):
+        url_pattern, subdomains = obj.get_url_pattern_and_subdomains()
+        urls = []
+        for subdomain in subdomains:
+            urls.append(
+                url_pattern % {'subdomain': subdomain}
+            )
+        return urls
 
 class WmsServiceSerializer(GeoServiceGenericSerializer):
     class Meta:
@@ -75,7 +104,7 @@ class GeoServiceFilterSet(FilterSet):
 
 
 class GeoServiceListView(ListAPIView):
-    queryset = GeoService.objects.all()
+    queryset = GeoService.objects.select_related('last_status')
     serializer_class = GeoServiceSerializer
     pagination_class = LimitOffsetPagination
     filter_backends = (OrderingFilter, SearchFilter, DjangoFilterBackend)
@@ -90,7 +119,8 @@ class GeoServiceDetailedView(RetrieveAPIView):
         .select_related('tmsservice')\
         .select_related('wmsservice')\
         .select_related('wfsservice')\
-        .select_related('geojsonservice')
+        .select_related('geojsonservice')\
+        .select_related('last_status')
 
     def get_object(self):
         obj = super(GeoServiceDetailedView, self).get_object()

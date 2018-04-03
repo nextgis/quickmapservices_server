@@ -105,10 +105,6 @@
                   });
                   response.data.results = servicesWithStatus
                   this.data = response.data
-
-                  this.data.results.forEach((service)=>{
-                     this.addStatusDescrTo(service)
-                  })
               })
               .catch(e => {
                   console.log(e)
@@ -120,23 +116,6 @@
 
               this[filter.key] = filter.value
               this.updateData(true)
-          },
-          addStatusDescrTo(service){
-              axios.get(this.serviceUrlTemplate.expand({ id: service.id }))
-              .then(response => {
-                  let statusId = response.data.last_status
-
-                  axios.get(this.statusUrlTemplate.expand({ id: statusId }))
-                  .then(response => {
-                      service.status_text = response.data.error_text ? response.data.error_text : this.$t('status_' + response.data.cumulative_status)
-                  })
-                  .catch(e => {
-                      console.log(e)
-                  })
-              })
-              .catch(e => {
-                  console.log(e)
-              })
           }
       }
   }

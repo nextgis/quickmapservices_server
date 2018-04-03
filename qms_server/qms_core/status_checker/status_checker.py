@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from .service_checkers.wms_checker import WmsChecker
 from .service_checkers.wfs_checker import WfsChecker
 from .service_checkers.tms_checker import TmsChecker
@@ -21,7 +23,7 @@ def check(service):
     else:
         service_checker = UnknownChecker
 
-    service_checker_inst = service_checker(service)
+    service_checker_inst = service_checker(service, settings.SERVICE_CHECK_TIMEOUT)
 
     return service_checker_inst.check()
 

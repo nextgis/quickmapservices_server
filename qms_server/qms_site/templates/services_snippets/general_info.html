@@ -16,13 +16,59 @@
       {% trans "Date added" %}: {{ service.created_at }}<br>
       {% trans "Last update" %}: {{ service.updated_at }}<br>
       {% trans "Status" %}:
+      {% if service.last_status != None %}
           {% if service.last_status.cumulative_status == "works" %}
               <span class="success--text"> {% trans 'works' %}</span>
-          {% elif service.last_status.cumulative_status == "failed" %}
-              <span class="error--text">{% trans 'failed' %}</span> &mdash; {{ service.last_status.error_text }}
-          {% elif service.last_status.cumulative_status == "problematic" %}
-              <span class="warning--text">{% trans 'problematic' %}</span> &mdash; {{ service.last_status.error_text }}
+          {% else %}
+              {% if service.last_status.cumulative_status == "failed" %}
+              <span class="error--text">{% trans 'failed' %}</span>
+              {% elif service.last_status.cumulative_status == "problematic" %}
+              <span class="warning--text">{% trans 'problematic' %}</span>
+              {% endif %}
+              <a href="#" style="text-decoration: none; border-bottom:0">
+                  <i class="material-icons icon" title="{% trans 'Show error info' %}"
+                    data-toggle="modal"
+                    data-target=".status-info-popup">error</i>
+              </a>
+              <div class="modal status-info-popup fade tabindex=-1" role="dialog">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="modal-title ">{% trans 'Service status info' %}</div>
+                        <div class="form-group label-floating clearfix ">
+                            <label class="control-label">{% trans 'Status' %}</label>
+                            <input class="form-control" readonly value="{{ service.last_status.cumulative_status  }}">
+                        </div>
+                        <div class="form-group label-floating clearfix ">
+                            <label class="control-label">{% trans 'Checked' %}</label>
+                            <input class="form-control" readonly value="{{ service.last_status.check_at }}">
+                        </div>
+                        <div class="form-group label-floating clearfix ">
+                            <label class="control-label">{% trans 'Http response code' %}</label>
+                            <input class="form-control" readonly value="{{ service.last_status.http_code }}">
+                        </div>
+                        <div class="form-group label-floating clearfix ">
+                            <label class="control-label">{% trans 'Http response' %}</label>
+                            <input class="form-control" readonly value="{{ service.last_status.http_response }}">
+                        </div>
+                        <div class="form-group label-floating clearfix ">
+                            <label class="control-label">{% trans 'Error type' %}</label>
+                            <input class="form-control" readonly value="{{ service.last_status.error_type }}">
+                        </div>
+                        <div class="form-group label-floating clearfix ">
+                            <label class="control-label">{% trans 'Error text' %}</label>
+                            <textarea class="form-control" readonly rows="4">{{ service.last_status.error_text }}</textarea>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" data-dismiss="modal" class="material-icons icon-close close"></a>
+              </div>
+              </div>
+
           {% endif %}
 
+      {% else %}
+         {% trans "None" %}
+      {% endif %}
   </div>
 </div>

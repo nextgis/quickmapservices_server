@@ -20,7 +20,7 @@ class WmsChecker(BaseServiceChecker):
         startTime = datetime.datetime.utcnow()
 
         try:
-            wms_service = WebMapService(self.service.url)
+            wms_service = WebMapService(self.service.url + '?' + self.service.params, timeout=self.timeout)
 
             layers = self.service.layers.split(',')
 

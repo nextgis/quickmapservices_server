@@ -1,6 +1,7 @@
 # coding=utf-8
 from __future__ import unicode_literals
 
+import re
 import uuid
 
 from django.contrib.auth.base_user import BaseUserManager, AbstractBaseUser
@@ -153,6 +154,7 @@ class GeoService(models.Model):
             raise Exception('Base geo service model can\'t be saved')
         self.type = self.service_type
         self.extent = self.boundary.envelope if self.boundary else None
+        self.boundary_area = self.boundary.area if self.boundary else None
         super(GeoService, self).save(*args, **kwargs)
 
     guid = models.UUIDField(_('service guid'), default=uuid.uuid4, editable=False)
@@ -179,7 +181,7 @@ class GeoService(models.Model):
     # extent & boundary
     extent = models.PolygonField(srid=4326, spatial_index=True, null=True, blank=True)
     boundary = models.MultiPolygonField(srid=4326, spatial_index=True, null=True, blank=True)
-
+    boundary_area = models.FloatField(null=True, blank=True)
 
     # TODO: tags
 
@@ -198,13 +200,61 @@ class GeoService(models.Model):
         return self
 
 
+class TmsUrlField(models.CharField):
+
+    ul = '\u00a1-\uffff'  # unicode letters range (must not be a raw string)
+
+    # IP patterns
+    ipv4_re = r'(?:25[0-5]|2[0-4]\d|[0-1]?\d?\d)(?:\.(?:25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}'
+    ipv6_re = r'\[[0-9a-f:\.]+\]'  # (simple regex, validated later)
+
+    # Host patterns
+    hostname_re = r'[a-z' + ul + r'0-9](?:[a-z' + ul + r'0-9-]{0,61}[a-z' + ul + r'0-9])?'
+    subdomain_switch_re = r'(\{switch:((?:\w+)(?:,\w+)*)\})'
+    hostname_with_switch_re = '(' + hostname_re + '|' + subdomain_switch_re + ')'
+    
+    # Max length for domain name labels is 63 characters per RFC 1034 sec. 3.1
+    domain_re = r'(?:\.(?!-)[a-z' + ul + r'0-9-]{1,63}(?<!-))*'
+    tld_re = (
+        r'\.'                                # dot
+        r'(?!-)'                             # can't start with a dash
+        r'(?:[a-z' + ul + '-]{2,63}'         # domain label
+        r'|xn--[a-z0-9]{1,59})'              # or punycode label
+        r'(?<!-)'                            # can't end with a dash
+        r'\.?'                               # may have a trailing dot
+    )
+    host_re = '(' + hostname_with_switch_re + domain_re + tld_re + '|localhost)'
+    
+    regex = validators._lazy_re_compile(
+        r'^(?:[a-z0-9\.\-\+]*)://'  # scheme is validated separately
+        r'(?:\S+(?::\S*)?@)?'  # user:pass authentication
+        r'(?:' + ipv4_re + '|' + ipv6_re + '|' + host_re + ')'
+        r'(?::\d{2,5})?'  # port
+        r'(?:[/?#][^\s]*)?'  # resource path
+        r'\Z', re.IGNORECASE)
+
+    default_validators = [validators.URLValidator(schemes=['http','https'], regex=regex, message=_('Enter a valid TMS URL.'))]
+
+
 class TmsService(GeoService):
     service_type = 'tms'
-
-    url = models.URLField(max_length=512, blank=False, null=False)
+    url = TmsUrlField(max_length=512, blank=False, null=False)
+    # url = models.URLField(max_length=512, blank=False, null=False)
     z_min = models.IntegerField(blank=True, null=True)
     z_max = models.IntegerField(blank=True, null=True)
     y_origin_top = models.BooleanField(default=False, blank=True)
+
+    def get_url_pattern_and_subdomains(self):
+        switches = re.findall(TmsUrlField.subdomain_switch_re, self.url)[:1]
+
+        url_pattern = self.url
+        subdomains = []
+        
+        if switches:
+            url_pattern = url_pattern.replace(switches[0][0], '%(subdomain)s', 1)
+            subdomains = switches[0][1].split(',')
+
+        return url_pattern, subdomains
 
 
 class WmsService(GeoService):

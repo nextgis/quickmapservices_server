@@ -1,6 +1,9 @@
+import json
+
 from captcha.fields import ReCaptchaField
-from django.forms import ModelForm, ValidationError
+from django.forms import ModelForm, ValidationError, FileField
 from django.utils.translation import ugettext as _
+from django.contrib.gis.geos import GEOSGeometry
 
 from qms_core.models import TmsService, WmsService, WfsService, GeoJsonService
 from qms_site.models import UserReport
@@ -8,10 +11,42 @@ from qms_site.models import UserReport
 EXCLUDE_FIELDS = ['guid', 'submitter', 'created_at', 'updated_at',]
 
 
+def boundary_file_size_validation(value):
+    limit = 2 * 1024 * 1024
+    if value.size > limit:
+        raise ValidationError(_('File too large. Size should not exceed 2 MiB.'))
+
+
 class BaseServiceForm(ModelForm):
 
+    boundary = FileField(required=False, validators=[boundary_file_size_validation])
+    
     def __init__(self, *args, **kwargs):
         super(BaseServiceForm, self).__init__(auto_id=self.obj_type + '_id_%s', *args, **kwargs)
+
+    def clean_boundary(self):
+        boundary = self.cleaned_data['boundary']
+
+        boundaries_file = self.files.get('boundary')
+        if boundaries_file:
+            data = ""
+
+            for chunk in boundaries_file.chunks():
+                data += chunk
+            
+            try:
+                geojson = json.loads(data)
+                first_feature_geometry = geojson["features"][0]["geometry"]
+                geom = GEOSGeometry(json.dumps(first_feature_geometry))
+            except:
+                raise ValidationError(_('Invalid boundary file. Please check FAQ for requirements.'))
+
+            if geom.geom_typeid not in [3, 6]:
+                raise ValidationError(_('Wrong geometry type. Geometry type must be Polygon or MultiPolygon.'))
+
+            return geom
+
+        return None
 
 
 class TmsForm(BaseServiceForm):

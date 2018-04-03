@@ -13,9 +13,6 @@ from .baseservice_checker import BaseServiceChecker
 
 class GeoJsonChecker(BaseServiceChecker):
 
-    def __init__(self, service):
-        super(GeoJsonChecker, self).__init__(service)
-
     def check(self):
         result = CheckResult(geoservice_id=self.service.id,
                              geoservice_name=self.service.name,
@@ -23,7 +20,7 @@ class GeoJsonChecker(BaseServiceChecker):
 
         startTime = datetime.datetime.utcnow()
         try:
-            response = requests.get(self.service.url, timeout=10)  # TODO: move timeout
+            response = requests.get(self.service.url, timeout=self.timeout)
 
             result.http_code = response.status_code
             # content-type не проверяется, вместо этого проверяем код ответа
@@ -33,11 +30,11 @@ class GeoJsonChecker(BaseServiceChecker):
                 if validation['valid'] == 'yes':
                     result.cumulative_status = CumulativeStatus.WORKS
                 else:
-                    result.cumulative_status = CumulativeStatus.FAILED
+                    result.cumulative_status = CumulativeStatus.PROBLEMATIC
                     result.error_text = validation['message']
                     result.error_type = CheckStatusErrorType.INVALID_RESPONSE
             else:
-                result.cumulative_status = CumulativeStatus.FAILED
+                result.cumulative_status = CumulativeStatus.PROBLEMATIC
                 result.error_text = 'Non 200 http code'
                 result.http_response = response.text
                 result.error_type = CheckStatusErrorType.INVALID_RESPONSE
