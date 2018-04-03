@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-03 08:50+0000\n"
+"POT-Creation-Date: 2018-04-03 21:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,24 +20,28 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: forms.py:18
+#: forms.py:17
 msgid "File too large. Size should not exceed 2 MiB."
 msgstr "Файл слишком большой. Размер не должен превышать 2 Мб."
 
-#: forms.py:38
+#: forms.py:42
+msgid "Invalid boundary file. Please check FAQ for requirements."
+msgstr ""
+"Недопустимый файл границ. Пожалуйста, ознакомьтесь с требованиями в разделе "
+"\"Вопросы и ответы\"."
+
+#: forms.py:45
+msgid "Wrong geometry type. Geometry type must be Polygon or MultiPolygon."
+msgstr ""
+"Неправильный тип геометрии. Граница должна быть задана как Полигон или "
+"Мультиполигон."
+
+#: forms.py:61
 #, python-brace-format
 msgid "Invalid service url! Link must include {x},{y},{z} or {q} variables!"
 msgstr ""
 "Неправильная ссылка на сервис! Ссылка должна включать переменные {x},{y},{z} "
 "или {q}."
-
-#: forms.py:57
-msgid "Invalid boundary file. Please check FAQ for requirements."
-msgstr "Недопустимый файл границ. Пожалуйста, проверьте требования в FAQ."
-
-#: forms.py:60
-msgid "Wrong geometry type. Geometry type must be Polygon or MultiPolygon."
-msgstr "Неправильный тип геометрии. Граница должна быть задана как Полигон или Мультиполигон."
 
 #: models.py:19
 msgid "General feedback"
@@ -121,7 +125,7 @@ msgstr "Нажмите"
 
 #: templates/about.html:48 templates/base_qms.html:36 templates/create.html:6
 #: templates/edit_snippets/base_service.html:8
-#: templates/edit_snippets/base_service.html:113
+#: templates/edit_snippets/base_service.html:126
 msgid "Add service"
 msgstr "Добавить сервис"
 
@@ -240,7 +244,7 @@ msgstr ""
 "ограничениям в отношении сервиса.\\n\\nХотите добавить сервис без "
 "лицензионной информации?"
 
-#: templates/detail.html:16 templates/edit_snippets/base_service.html:65
+#: templates/detail.html:16 templates/edit_snippets/base_service.html:78
 msgid "Edit"
 msgstr "Изменить"
 
@@ -285,7 +289,19 @@ msgstr ""
 msgid "Additional settings"
 msgstr "Дополнительные настройки"
 
+#: templates/edit_snippets/base_service.html:52
+msgid "Service boundary (GeoJSON)"
+msgstr "Границы сервиса (GeoJSON)"
+
 #: templates/edit_snippets/base_service.html:61
+msgid ""
+"Upload GeoJSON with boundary. Boundary CRS must be EPSG:4326.<br>\n"
+"                    Service boundary will be defined by the first feature."
+msgstr ""
+"Загрузите geoJSON в&nbsp;системе координат EPSG:4326.<br>\n"
+"В&nbsp;качестве границы берется геометрия 1-го&nbsp;объекта."
+
+#: templates/edit_snippets/base_service.html:74
 #, python-format
 msgid ""
 "This information will become public on submission.<br>\n"
@@ -296,59 +312,59 @@ msgstr ""
 "                            Пожалуйста, <a href=\"#\" class=\"fake-link\" "
 "data-show=\"#%(form_name)s-license\">укажите лицензионную информацию</a>."
 
-#: templates/edit_snippets/base_service.html:65
-#: templates/edit_snippets/base_service.html:69
+#: templates/edit_snippets/base_service.html:78
+#: templates/edit_snippets/base_service.html:82
 msgid "License"
 msgstr "Лицензия"
 
-#: templates/edit_snippets/base_service.html:71
+#: templates/edit_snippets/base_service.html:84
 #: templates/services_snippets/license_info.html:9
 msgid "License name"
 msgstr "Название лицензии"
 
-#: templates/edit_snippets/base_service.html:72
+#: templates/edit_snippets/base_service.html:85
 msgid "e.g. CC BY 3.0, ODbL"
 msgstr "например, CC BY 3.0, ODbL"
 
-#: templates/edit_snippets/base_service.html:78
+#: templates/edit_snippets/base_service.html:91
 #: templates/services_snippets/license_info.html:10
 msgid "License URL"
 msgstr "Ссылка на лицензию"
 
-#: templates/edit_snippets/base_service.html:79
+#: templates/edit_snippets/base_service.html:92
 msgid "e.g. https://creativecommons.org/licenses/by/3.0/"
 msgstr "например, https://creativecommons.org/licenses/by/3.0/"
 
-#: templates/edit_snippets/base_service.html:85
+#: templates/edit_snippets/base_service.html:98
 msgid "Attribution(s)"
 msgstr "Текст подписи (атрибуция)"
 
-#: templates/edit_snippets/base_service.html:86
+#: templates/edit_snippets/base_service.html:99
 msgid "e.g. Map tiles by CARTO, under CC BY 3.0"
 msgstr "например, Map tiles by CARTO, under CC BY 3.0"
 
-#: templates/edit_snippets/base_service.html:92
+#: templates/edit_snippets/base_service.html:105
 msgid "Attribution(s) URL"
 msgstr "URL подписи (атрибуция)"
 
-#: templates/edit_snippets/base_service.html:93
+#: templates/edit_snippets/base_service.html:106
 msgid "e.g. https://carto.com/attributions"
 msgstr "например, https://carto.com/attributions"
 
-#: templates/edit_snippets/base_service.html:99
+#: templates/edit_snippets/base_service.html:112
 #: templates/services_snippets/license_info.html:13
 msgid "Terms of use URL"
 msgstr "Ссылка на правила использования"
 
-#: templates/edit_snippets/base_service.html:100
+#: templates/edit_snippets/base_service.html:113
 msgid "e.g. http://carto.com/legal"
 msgstr "например, http://carto.com/legal"
 
-#: templates/edit_snippets/base_service.html:106
+#: templates/edit_snippets/base_service.html:119
 msgid "Cancel"
 msgstr "Отмена"
 
-#: templates/edit_snippets/base_service.html:115
+#: templates/edit_snippets/base_service.html:128
 msgid "Save changes"
 msgstr "Сохранить изменения"
 
