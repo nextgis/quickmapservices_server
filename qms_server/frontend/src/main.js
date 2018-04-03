@@ -82,7 +82,8 @@ const configs = {
 
 Vue.use(vueConfig, configs)
 
-/* eslint-disable no-new */
+/* Service list */
+
 new Vue({
   i18n,
   el: '#app',

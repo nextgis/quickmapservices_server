@@ -1,4 +1,7 @@
 // QMS add form
+import Vue from 'vue'
+import FileUploader from '../components/FileUploader'
+
 export default class QMSAddForm{
     constructor() {
       this.qmsAddForm = $(".qms-add-service");
@@ -28,6 +31,14 @@ export default class QMSAddForm{
                 } else {
                     return false;
                 }
+            });
+
+            /* Service boundaries uploader*/
+
+            new Vue({
+              el: form[0].querySelector(".file-uploader"),
+              template: '<file-uploader/>',
+              components: { FileUploader }
             });
         })
       }

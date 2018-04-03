@@ -49,6 +49,13 @@
             <div id="{{ form_name }}-extra" class="qms-add-service__extra-form">
                 {% block extra_part %}{% endblock %}
             </div>
+            <div class="form-group">
+                <label for="boundary" style="margin-bottom: 8px">{% trans 'Service boundaries' %}</label>
+                <div class="file-uploader" name="boundary"></div>
+                {% if form.boundary.errors %}
+                    <span id="{{ form.boundary.auto_id }}-error" class="has-error">{{ form.boundary.errors }}</span>
+                {% endif %}
+            </div>
         </section><!--/.qms-add-service__extra-->
         <section class="qms-add-service__license"> {# license part #}
             <div class="panel panel--warm panel--bordered">
