@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-03 08:30+0000\n"
+"POT-Creation-Date: 2018-04-03 08:50+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,12 +20,24 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: forms.py:26
+#: forms.py:18
+msgid "File too large. Size should not exceed 2 MiB."
+msgstr "Файл слишком большой. Размер не должен превышать 2 Мб."
+
+#: forms.py:38
 #, python-brace-format
 msgid "Invalid service url! Link must include {x},{y},{z} or {q} variables!"
 msgstr ""
 "Неправильная ссылка на сервис! Ссылка должна включать переменные {x},{y},{z} "
 "или {q}."
+
+#: forms.py:57
+msgid "Invalid boundary file. Please check FAQ for requirements."
+msgstr "Недопустимый файл границ. Пожалуйста, проверьте требования в FAQ."
+
+#: forms.py:60
+msgid "Wrong geometry type. Geometry type must be Polygon or MultiPolygon."
+msgstr "Неправильный тип геометрии. Граница должна быть задана как Полигон или Мультиполигон."
 
 #: models.py:19
 msgid "General feedback"
@@ -568,9 +580,9 @@ msgid ""
 "\"http://{switch:a,b,c}.tile.openstreetmap.org/{z}/{x}/{y}.png\">http://"
 "{switch:a,b,c}.tile.openstreetmap.org/{z}/{x}/{y}.png</a>"
 msgstr ""
-"Вы можете использовать {switch:1,2,3} для указания перечня поддоменов. Например, <a href="
-"\"http://{switch:a,b,c}.tile.openstreetmap.org/{z}/{x}/{y}.png\">http://"
-"{switch:a,b,c}.tile.openstreetmap.org/{z}/{x}/{y}.png</a>"
+"Вы можете использовать {switch:1,2,3} для указания перечня поддоменов. "
+"Например, <a href=\"http://{switch:a,b,c}.tile.openstreetmap.org/{z}/{x}/{y}."
+"png\">http://{switch:a,b,c}.tile.openstreetmap.org/{z}/{x}/{y}.png</a>"
 
 #: templates/faq.html:76
 msgid "This service provides untiled-imagery"
