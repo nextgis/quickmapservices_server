@@ -2,7 +2,7 @@
 {% load widget_tweaks %}
 {% load attr_with_id %}
 
-<form id="{{ form_name }}" class="form-validate qms-add-service" method="POST">
+<form id="{{ form_name }}" class="form-validate qms-add-service" method="POST" enctype="multipart/form-data">
     <h1>
         {% if mode == "create" %}
             {% trans "Add service" %}
@@ -57,8 +57,8 @@
                     <span id="{{ form.boundary.auto_id }}-error" class="has-error">{{ form.boundary.errors }}</span>
                 {% endif %}
 
-                <div style="font-size: 14px; color: rgba(0,0,0,.67); margin-top:12px;">
-                    Загрузите geoJSON в&nbsp;системе координат EPSG:4326В.<br>
+                <div style="font-size: 14px; color: rgba(0,0,0,.67); margin-top:12px; line-height: 1.2">
+                    Загрузите geoJSON в&nbsp;системе координат EPSG:4326.<br>
                     В&nbsp;качестве границы берется геометрия 1-го&nbsp;объекта.
                 </div>
             </div>
