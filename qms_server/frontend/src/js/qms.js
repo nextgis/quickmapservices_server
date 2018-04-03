@@ -37,7 +37,7 @@ export default class QMSAddForm{
 
             new Vue({
               el: form[0].querySelector(".file-uploader"),
-              template: '<file-uploader/>',
+              template: '<file-uploader name="boundary"/>',
               components: { FileUploader }
             });
         })

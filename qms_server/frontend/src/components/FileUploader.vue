@@ -13,7 +13,6 @@
                 :dropDirectory="dropDirectory"
                 v-model="files"
                 @input-file="inputFile"
-                accept="image/*"
                 ref="upload">
             </file-upload>
             <div v-show="$refs.upload && $refs.upload.dropActive" class="drop-active"></div>
