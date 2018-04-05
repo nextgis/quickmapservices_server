@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-03 21:06+0000\n"
+"POT-Creation-Date: 2018-04-05 09:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,7 +36,7 @@ msgstr ""
 "Неправильный тип геометрии. Граница должна быть задана как Полигон или "
 "Мультиполигон."
 
-#: forms.py:61
+#: forms.py:64
 #, python-brace-format
 msgid "Invalid service url! Link must include {x},{y},{z} or {q} variables!"
 msgstr ""
@@ -444,7 +444,7 @@ msgstr "Использование сервисов"
 msgid "Adding a service"
 msgstr "Добавление сервисов"
 
-#: templates/faq.html:29 templates/faq.html:109
+#: templates/faq.html:29 templates/faq.html:123
 msgid "Fixing a service"
 msgstr "Исправление сервисов"
 
@@ -703,15 +703,87 @@ msgstr ""
 "Найдите и подключите его через свой клиент ГИС. Например, в QGIS можно "
 "использовать модуль QuickMapServices."
 
+#: templates/faq.html:108
+msgid "What is service boundary and why add it?"
+msgstr "Что такое граница сервиса и зачем она нужна?"
+
+#: templates/faq.html:109
+msgid ""
+"Service boundary describes its geographic extent. It is not mandatory, but "
+"if the service has boundary, several convenient feature become available. "
+"For example, service becomes discoverable by its location on the map, even "
+"if name is unknown."
+msgstr ""
+"Граница сервиса описывает его географический охват. Она не обязательна, но "
+"если у сервиса есть граница, то появляются новые полезные возможности. "
+"Например можно найти сервис по местоположению на карте, "
+"даже не зная его названия."
+
 #: templates/faq.html:110
+msgid "How do I add service boundary?"
+msgstr "Как добавить границу сервиса?"
+
+#: templates/faq.html:111
+msgid ""
+"Service boundary can be added while creating or editing a service. Service "
+"boundary is a GeoJSON file with the following parameters:"
+msgstr ""
+"Добавить границу сервиса можно при его создании или редактировании. "
+"Граница сервиса должна быть файлом GeoJSON со следующими параметрами:"
+
+#: templates/faq.html:113
+msgid "Coordinate system EPSG: 4326"
+msgstr "Система координат EPSG: 4326"
+
+#: templates/faq.html:114
+msgid "Geometry type: polygon or multipolygon"
+msgstr "Тип геометрии: полигон или мультиполигон"
+
+#: templates/faq.html:115
+msgid "File size: 2 MiB"
+msgstr "Размер файла до 2 Мб"
+
+#: templates/faq.html:116
+msgid ""
+"Number of feature in a file: one (can in fact be several, but only the first "
+"one will be used)."
+msgstr ""
+"Количество объектов в файле - один (может быть несколько, "
+"но для границы будет взят только первый)."
+
+#: templates/faq.html:118
+msgid "Where do I get GeoJSON file?"
+msgstr "Где взять файл GeoJSON?"
+
+#: templates/faq.html:119
+msgid "GeoJSON can be created in QGIS or at http://geojson.io"
+msgstr "GeoJSON можно создать в QGIS или на http://geojson.io"
+
+#: templates/faq.html:120
+msgid "I added service boundary, how do I check if it works ok?"
+msgstr "Как проверить, что граница добавилась нормально?"
+
+#: templates/faq.html:121
+msgid ""
+"After adding - find this service in QMS for QGIS and place a mouse cursor "
+"over the service in the search panel. If all went well, green rectangle "
+"defining service extent will appear on the map. If not - double check your "
+"GeoJSON and re-upload if there are problems."
+msgstr ""
+"После добавления - найдите сервис в QMS для QGIS и наведите мышь на его "
+"название в панели поиска. На карте должна появиться граница сервиса "
+"в виде прямоугольника. Если граница не появилась - "
+"перепроверьте свой GeoJSON."
+
+#: templates/faq.html:124
 msgid "I’ve found service, but it doesn’t work, how do I fix it?"
 msgstr "Я нашел нужный мне сервис, но он не работает, что делать?"
 
-#: templates/faq.html:111
+#: templates/faq.html:125
 msgid "Use ‘report a problem’ form."
 msgstr "Используйте форму обратной связи для связи с автором сервиса."
 
-#: templates/faq.html:112
+#: templates/faq.html:126
 msgid ""
 "Every service has it’s author (maintainer, submitter). Use the form to let "
 "the submitter know that the service is broken. Provide information how to "
@@ -721,13 +793,13 @@ msgstr ""
 "форму, чтобы сообщить ему, что сервис поломался. Если вы понимаете почему, "
 "сообщите так же как починить сервис."
 
-#: templates/faq.html:113
+#: templates/faq.html:127
 msgid ""
 "I’ve notified service maintainer about problem and provided solution, but "
 "maintainer is not reacting, what can I do?"
 msgstr "Я сообщил автору сервиса о проблеме, но он молчит, что делать?"
 
-#: templates/faq.html:114
+#: templates/faq.html:128
 msgid ""
 "If maintainer doesn’t reply for a long time – create a new service (you’ll "
 "become it’s maintainer). Old incorrect service will gradually be removed."

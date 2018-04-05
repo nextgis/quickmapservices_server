@@ -105,6 +105,20 @@
             A: {% trans "You can't delete services at the moment. Report a problem and we'll remove it soon." %}</p>
             <p><strong>Q: {% trans 'How do I check that my service is OK?' %}</strong><br>
             A: {% trans 'Find it through a client and add to see the data on a map. In QGIS you can use QuickMapServices plugin.' %}<br>
+            <p><strong>Q: {% trans 'What is service boundary and why add it?' %}</strong><br>
+            A: {% trans 'Service boundary describes its geographic extent. It is not mandatory, but if the service has boundary, several convenient feature become available. For example, service becomes discoverable by its location on the map, even if name is unknown.' %}<br>
+            <p><strong>Q: {% trans 'How do I add service boundary?' %}</strong><br>
+            A: {% trans 'Service boundary can be added while creating or editing a service. Service boundary is a GeoJSON file with the following parameters:' %}<br>
+            <ul>
+            <li>{% trans 'Coordinate system EPSG: 4326' %}</li>
+            <li>{% trans 'Geometry type: polygon or multipolygon' %}</li>
+            <li>{% trans 'File size: 2 MiB' %}</li>
+            <li>{% trans 'Number of feature in a file: one (can in fact be several, but only the first one will be used).' %}</li>
+            </ul>
+            <p><strong>Q: {% trans 'Where do I get GeoJSON file?' %}</strong><br>
+            A: {% trans 'GeoJSON can be created in QGIS or at http://geojson.io' %}<br>
+            <p><strong>Q: {% trans 'I added service boundary, how do I check if it works ok?' %}</strong><br>
+            A: {% trans 'After adding - find this service in QMS for QGIS and place a mouse cursor over the service in the search panel. If all went well, green rectangle defining service extent will appear on the map. If not - double check your GeoJSON and re-upload if there are problems.' %}<br>
             <a id="fix"></a></p>
             <h2>{% trans 'Fixing a service' %}</h2>
             <p><strong>Q: {% trans 'I’ve found service, but it doesn’t work, how do I fix it?' %}</strong><br>
