@@ -1,4 +1,5 @@
 import random
+import StringIO
 
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -6,9 +7,10 @@ from django.contrib.messages import add_message, INFO
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseForbidden
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.utils import translation
 from django.views.defaults import bad_request
-from django.views.generic import TemplateView
+from django.views.generic import View, TemplateView
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import UpdateView
 from django.views.generic.edit import FormMixin, ProcessFormView
@@ -285,3 +287,14 @@ class EditServiceView(LicenseErrorsMixin, LoginRequiredMixin, UpdateView):
         return self.render_to_response(self.get_context_data(form=form, lic_error=self.has_license_error(form)))
 
 
+class GeoserviceBoundaryView(LoginRequiredMixin, View):
+
+    def get(self, request, pk, *args, **kwargs):
+        geoservice = get_object_or_404(GeoService, pk=pk)
+
+        out= StringIO.StringIO()
+        out.write(geoservice.boundary.geojson)
+
+        response = HttpResponse(out.getvalue(), content_type='application/txt')
+        response['Content-Disposition'] = 'attachment; filename=boundary.geojson'
+        return response

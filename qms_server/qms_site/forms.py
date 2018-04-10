@@ -1,14 +1,14 @@
 import json
 
 from captcha.fields import ReCaptchaField
-from django.forms import ModelForm, ValidationError, FileField
+from django.forms import ModelForm, ValidationError, FileField, BooleanField
 from django.utils.translation import ugettext as _
 from django.contrib.gis.geos import GEOSGeometry, MultiPolygon
 
 from qms_core.models import TmsService, WmsService, WfsService, GeoJsonService
 from qms_site.models import UserReport
 
-EXCLUDE_FIELDS = ['guid', 'submitter', 'created_at', 'updated_at',]
+EXCLUDE_FIELDS = ['guid', 'submitter', 'created_at', 'updated_at', 'boundary']
 
 
 def boundary_file_size_validation(value):
@@ -19,15 +19,14 @@ def boundary_file_size_validation(value):
 
 class BaseServiceForm(ModelForm):
 
-    boundary = FileField(required=False, validators=[boundary_file_size_validation])
-    
+    boundary_file = FileField(required=False, validators=[boundary_file_size_validation])
+    boundary_remove = BooleanField(required=False)
+
     def __init__(self, *args, **kwargs):
         super(BaseServiceForm, self).__init__(auto_id=self.obj_type + '_id_%s', *args, **kwargs)
 
-    def clean_boundary(self):
-        boundary = self.cleaned_data['boundary']
-
-        boundaries_file = self.files.get('boundary')
+    def clean_boundary_file(self):
+        boundaries_file = self.files.get('boundary_file')
         if boundaries_file:
             data = ""
 
@@ -48,9 +47,23 @@ class BaseServiceForm(ModelForm):
                 geom = MultiPolygon(geom)
 
             return geom
-
         return None
 
+    def save(self, commit=True):
+        super(BaseServiceForm, self).save(False)
+
+        new_boundary = self.cleaned_data['boundary_file']
+        boundary_remove = self.cleaned_data['boundary_remove']
+
+        if new_boundary:
+            self.instance.boundary = new_boundary
+        elif boundary_remove:
+            self.instance.boundary = None
+
+        self.instance.save()
+        self.save_m2m()
+
+        return self.instance
 
 class TmsForm(BaseServiceForm):
     associated_template = 'edit_snippets/tms_service.html'
@@ -68,7 +81,6 @@ class TmsForm(BaseServiceForm):
     class Meta:
         model = TmsService
         exclude = EXCLUDE_FIELDS
-
 
 class WmsForm(BaseServiceForm):
     associated_template = 'edit_snippets/wms_service.html'
