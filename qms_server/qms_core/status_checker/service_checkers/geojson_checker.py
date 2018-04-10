@@ -26,8 +26,10 @@ class GeoJsonChecker(BaseServiceChecker):
             # content-type не проверяется, вместо этого проверяем код ответа
             # и если он равен 200, то выполняем валидацию содержимого ответа на geojson
             if response.status_code == 200:
-                validation = geojson.is_valid(geojson.loads(response.text))
+                geojson_obj = geojson.loads(response.text)
+                validation = geojson.is_valid(geojson_obj)
                 if validation['valid'] == 'yes':
+                    result.data = response.text
                     result.cumulative_status = CumulativeStatus.WORKS
                 else:
                     result.cumulative_status = CumulativeStatus.PROBLEMATIC

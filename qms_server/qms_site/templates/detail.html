@@ -48,6 +48,7 @@
     {{block.super}}
     <script>
         var service = {
+            id: "{{service.id}}",
             type: "{{ service.type }}",
             epsg: "{{ service.epsg }}",
             {% if service.type == 'tms' %}

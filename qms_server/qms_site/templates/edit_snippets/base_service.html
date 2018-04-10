@@ -56,12 +56,18 @@
             </div>
 
             <script type="text/x-template" id="file-uploader-template-{{ form_name }}">
-                <file-uploader multiple="false" name="boundary"
-                               valueName="{{form.boundary.value|default:''}}"
-                               valueLink="#"
+                <file-uploader multiple="false" name="boundary_file"
+                                {% if form.boundary_file.value %}
+                                    valueName="{{form.boundary_file.value}}"
+                                {% else %}
+                                    {% if form.instance.boundary %}
+                                        valueName="boundary.geojson"
+                                        valueLink="{% url 'site_geoservice_boundary' form.instance.pk %}"
+                                    {% endif %}
+                                {% endif %}
                                label="{% trans 'Service boundary' %}" 
                                hint="{% trans 'Boundary CRS must be EPSG:4326. Service boundary will be defined by the first feature.' %}"
-                               errorMessage='{{form.boundary.errors.as_text|safe|escape}}'
+                               errorMessage='{{form.boundary_file.errors.as_text|safe|escape}}'
                                uploadLabel="{% trans 'Upload GeoJSON' %}"
                                removeLabel="{% trans 'Delete' %}"
                                removeConfirmText = "{% trans 'Are you sure you want to delete this file?'%}"

@@ -1,4 +1,5 @@
 import random
+import StringIO
 
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -6,9 +7,10 @@ from django.contrib.messages import add_message, INFO
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseForbidden
 from django.http import HttpResponseRedirect
+from django.http import HttpResponse, JsonResponse
 from django.utils import translation
 from django.views.defaults import bad_request
-from django.views.generic import TemplateView
+from django.views.generic import View, TemplateView
 from django.shortcuts import get_object_or_404, redirect
 from django.views.generic import UpdateView
 from django.views.generic.edit import FormMixin, ProcessFormView
@@ -17,6 +19,7 @@ from django.db.models import functions
 from nextgis_common.email_utils import send_templated_mail
 from nextgis_common.supported_languages import SupportedLanguages
 from qms_core.models import GeoService, TmsService, WmsService, WfsService, GeoJsonService
+from qms_core.status_checker.service_checkers.geojson_checker import GeoJsonChecker
 from qms_site.forms import TmsForm, WmsForm, WfsForm, GeoJsonForm, AuthReportForm, NonAuthReportForm
 from django.utils.translation import gettext_lazy as _
 
@@ -283,5 +286,39 @@ class EditServiceView(LicenseErrorsMixin, LoginRequiredMixin, UpdateView):
 
     def form_invalid(self, form):
         return self.render_to_response(self.get_context_data(form=form, lic_error=self.has_license_error(form)))
+
+
+class GeoserviceBoundaryView(LoginRequiredMixin, View):
+
+    def get(self, request, pk, *args, **kwargs):
+        geoservice = get_object_or_404(GeoService, pk=pk)
+
+        out= StringIO.StringIO()
+        out.write(geoservice.boundary.geojson)
+
+        response = HttpResponse(out.getvalue(), content_type='application/txt')
+        response['Content-Disposition'] = 'attachment; filename=boundary.geojson'
+        return response
+
+
+class GeoserviceDataView(LoginRequiredMixin, View):
+
+    def get(self, request, pk, *args, **kwargs):
+        geoservice = get_object_or_404(GeoService, pk=pk)
+        response = {}
+        if geoservice.type == GeoJsonService.service_type:
+            service = geoservice.get_typed_instance()
+            checker = GeoJsonChecker(service=service)
+
+            service_check = checker.check()
+            if hasattr(service_check, "data"):
+                response["data"] = service_check.data
+            else:
+                response["cumulative_status"] = getattr(service_check, "cumulative_status")
+                response["error_text"] = getattr(service_check, "error_text")
+
+        return JsonResponse(response)
+
+
 
 

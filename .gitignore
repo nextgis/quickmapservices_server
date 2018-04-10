@@ -11,6 +11,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
+.env/
 build/
 !/qms_server/frontend/build/
 develop-eggs/
@@ -120,6 +121,9 @@ pip-selfcheck.json
 ### IPythonNotebook template
 # Temporary data
 .ipynb_checkpoints/
+
+# Visual Studio Code
+.vscode/
 
 # Test DB
 db.sqlite3

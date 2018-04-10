@@ -21,6 +21,7 @@
     </div>
     <template v-if="data.results && data.results.length > 0">
         <service-card v-for="item in data.results"
+                      v-bind:key="item"
                       :service = "item">
         </service-card>
     </template>
