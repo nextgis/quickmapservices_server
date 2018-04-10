@@ -25,6 +25,10 @@ $square-list-padding: 30px;
 @import "./partials/qms-type";
 @import "./partials/qms-add-service";
 
+html{
+	overflow-y: auto !important;
+}
+
 /* Input group */
 
 .input-group{

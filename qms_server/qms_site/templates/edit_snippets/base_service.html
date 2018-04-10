@@ -49,19 +49,24 @@
             <div id="{{ form_name }}-extra" class="qms-add-service__extra-form">
                 {% block extra_part %}{% endblock %}
             </div>
-            <label for="boundary" style="margin-bottom: 12px; color: rgba(0,0,0,.67)">{% trans 'Service boundary (GeoJSON)' %}</label>                
-            {{ form.boundary }}
-
-            <div class="form-group" style="margin-top: 12px;">
-                {% if form.boundary.errors %}
-                    <span id="{{ form.boundary.auto_id }}-error" class="has-error">{{ form.boundary.errors }}</span>
-                {% endif %}
-
-                <div style="font-size: 14px; color: rgba(0,0,0,.67); margin-top:12px; line-height: 1.2">
-                    {% blocktrans %}Upload GeoJSON with boundary. Boundary CRS must be EPSG:4326.<br>
-                    Service boundary will be defined by the first feature.{% endblocktrans %}
+            <div class="row">
+                <div class="col-xs-12 col-sm-8">
+                    <div class="file-uploader"></div>
                 </div>
             </div>
+
+            <script type="text/x-template" id="file-uploader-template-{{ form_name }}">
+                <file-uploader multiple="false" name="boundary"
+                               valueName="{{form.boundary.value|default:''}}"
+                               valueLink="#"
+                               label="{% trans 'Service boundary' %}" 
+                               hint="{% trans 'Boundary CRS must be EPSG:4326. Service boundary will be defined by the first feature.' %}"
+                               errorMessage='{{form.boundary.errors.as_text|safe|escape}}'
+                               uploadLabel="{% trans 'Upload GeoJSON' %}"
+                               removeLabel="{% trans 'Delete' %}"
+                               removeConfirmText = "{% trans 'Are you sure you want to delete this file?'%}"
+                />
+            </script>
         </section><!--/.qms-add-service__extra-->
         <section class="qms-add-service__license"> {# license part #}
             <div class="panel panel--warm panel--bordered">
