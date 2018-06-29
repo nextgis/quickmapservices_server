@@ -10,7 +10,7 @@
             </template>
         </div>
         <div class="file-uploader__actions">                
-            <a href="#" class="btn btn-tool file-uploader__action"
+            <a href="#" class="btn btn-tool file-uploader__action btn--depressed"
                     @click="onClick">{{ uploadLabel }}</a>
             <a href="#" v-if="filename" class="file-uploader__action secondary-link"
                         @click="removeFile">{{ removeLabel }}</a>
