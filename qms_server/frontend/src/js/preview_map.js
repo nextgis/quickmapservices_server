@@ -1,6 +1,7 @@
 import L from 'leaflet'
 import 'proj4leaflet'
 import 'leaflet-wfst/dist/Leaflet-WFST.src'
+import {prepareWmsUrl} from './map_utils';
 
 var MAPID = 'mapid';
 
@@ -90,12 +91,18 @@ if (mapWrapper) {
             maxZoom: opt.tms.zmax,
           })
         } else if (opt.type === 'wms') {
-          previewLayer = new L.TileLayer.WMS(opt.wms.url, {
+          var wmsLayerParam = {
             layers: opt.wms.layers,
             transparent: true,
-            crs: crs,
-            format: opt.wms.format
-          })
+          };
+          if (crs) {
+            wmsLayerParam.crs = crs;
+          }
+          if (opt.wms.format) {
+            wmsLayerParam.format = opt.wms.format;
+          }
+          var url = prepareWmsUrl(opt.wms.url);
+          previewLayer = new L.TileLayer.WMS(url, wmsLayerParam)
         } else if (opt.type === 'wfs') {
           previewLayer = new L.WFS({
             url: opt.wfs.url,
