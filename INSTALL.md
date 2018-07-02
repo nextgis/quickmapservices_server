@@ -122,5 +122,8 @@ npm run build
 
 На данный момент это команда и собирает итоговую сборку для продакшна, и при этом отслеживает изменения в коде.
 
+## Используемые UI фреймворки
+В проекте сосуществуют 2 UI-фреймворка — [Bootstrap Material Design](https://fezvrasta.github.io/bootstrap-material-design/) и [Vuetify](https://vuetifyjs.com/ru/). Постепенно должен быть осуществлен полный переход на Vuetify.
+
 
 
