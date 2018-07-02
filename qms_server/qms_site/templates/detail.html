@@ -49,6 +49,7 @@
     <script>
         var service = {
             id: "{{service.id}}",
+            name: "{{ service.name }}",
             type: "{{ service.type }}",
             epsg: "{{ service.epsg }}",
             {% if service.type == 'tms' %}

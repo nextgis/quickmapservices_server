@@ -1,7 +1,21 @@
 import L from 'leaflet'
 import 'proj4leaflet'
 import 'leaflet-wfst/dist/Leaflet-WFST.src'
-import {prepareWmsUrl} from './map_utils';
+import { prepareWmsUrl } from './map_utils';
+
+import "leaflet/dist/leaflet.css";
+// stupid hack so that leaflet's images work after going through webpack
+import marker from 'leaflet/dist/images/marker-icon.png';
+import marker2x from 'leaflet/dist/images/marker-icon-2x.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: marker2x,
+  iconUrl: marker,
+  shadowUrl: markerShadow
+});
 
 var MAPID = 'mapid';
 
@@ -9,47 +23,84 @@ var mapWrapper = document.getElementById(MAPID);
 
 if (mapWrapper) {
 
+  var createBaseLayer = function () {
+    return new L.TileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    });
+  }
+
   /**
    * Add preview layer to the map.
    * if the layer is overlay, add a base layer as well
    * @param {Object} data
    * @param {L.Layer} [data.previewLayer]
-   * @param {boolean} [data.baseLayer]
+   * @param {string} [data.name]
+   * @param {string} [data.id]
    */
   var buildMap = function (data) {
 
+    var baseMaps = {};
+    var overlayMaps = {};
+
     var previewMap = new L.Map(MAPID).setView([55, 44], 2);
 
-    var createBaseLayer = function () {
-      return new L.TileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-      });
-    }
-    if (data.baseLayer) {
-      createBaseLayer().addTo(previewMap);
-    }
+    var baseLayer = createBaseLayer().addTo(previewMap);
+    baseMaps["OSM"] = baseLayer;
+
     if (data.previewLayer) {
       data.previewLayer.addTo(previewMap);
+      overlayMaps[data.name] = data.previewLayer;
 
       var fitBounds = function () {
-        if (data.previewLayer.getBounds) {
-          previewMap.fitBounds(data.previewLayer.getBounds());
-        }
+        return new Promise(function (resolve) {
+          var fitLayerBounds = function (boundary) {
+            boundary = boundary || data.previewLayer;
+            if (boundary.getBounds) {
+              previewMap.fitBounds(boundary.getBounds());
+            }
+            resolve();
+          }
+
+          $.ajax({
+            url: '/geoservices/' + data.id + '/boundary',
+            dataType: 'json',
+            type: 'GET',
+            success: function (response) {
+              if (response) {
+                var boundary = new L.GeoJSON(response, { color: "red", fillOpacity: 0 }).addTo(previewMap);
+                if (boundary && boundary.getBounds)
+                overlayMaps["Boundary"] = boundary;
+                fitLayerBounds(boundary);
+              } else {
+                fitLayerBounds()
+              }
+            },
+            error: function () {
+              fitLayerBounds();
+            }
+          });
+        });
+
       }
 
-      fitBounds();
-
+      fitBounds().then(function () {
+        L.control.layers(baseMaps, overlayMaps).addTo(previewMap);
+      });
       data.previewLayer.once('load', fitBounds);
     }
+
+
   }
 
   /**
    *
    * @param {Object} opt - service data
    */
-  var getData = function (opt) {
+  var getPreviewLayer = function (opt) {
 
     return new Promise(function (resolve, reject) {
+
+      var toReturn = Object.assign({}, opt);
 
       var crs = (opt.epsg == 3857 || opt.epsg == 4326 || opt.epsg == 3395) ?
         L.CRS["EPSG" + opt.epsg] : undefined;
@@ -58,21 +109,19 @@ if (mapWrapper) {
 
         $.ajax({
           // url: opt.geojson.url,
-          url: '/geoservices/' + service.id + '/data',
+          url: '/geoservices/' + opt.id + '/data',
           dataType: 'json',
           type: 'GET',
           contentType: "application/json",
           success: function (response) {
             var data = response && response.data;
             if (data) {
-              resolve({
-                previewLayer: L.Proj.geoJson(JSON.parse(data), {
-                    style: { color: 'blue', weight: 2 }
-                  }),
-                  baseLayer: true
-                })
+              resolve(Object.assign(toReturn, {
+                previewLayer: L.Proj.geoJson(JSON.parse(data)),
+              }
+              ));
             } else {
-              reject(response.error_text || "could not load geojson data")
+              reject(response.error_text || "could not load geojson data");
             }
           },
           error: function (jqXHR, exception) {
@@ -82,10 +131,8 @@ if (mapWrapper) {
       } else {
 
         var previewLayer;
-        var baseLayer = true;
 
         if (opt.type === 'tms') {
-          baseLayer = false;
           previewLayer = new L.TileLayer(opt.tms.url, {
             minZoom: opt.tms.zmin,
             maxZoom: opt.tms.zmax,
@@ -116,7 +163,7 @@ if (mapWrapper) {
           })
         }
         if (previewLayer) {
-          resolve({ baseLayer: baseLayer, previewLayer: previewLayer });
+          resolve(Object.assign(toReturn, { previewLayer: previewLayer }));
         } else {
           reject(opt.type + " is not supported layer type");
         }
@@ -124,8 +171,10 @@ if (mapWrapper) {
     })
   }
 
-  getData(service).then(buildMap).catch(function (er) {
-    console.error(er)
-    mapWrapper.innerHTML = "Preview is not available"
-  })
+  getPreviewLayer(service)
+    .then(buildMap)
+    .catch(function (er) {
+      console.error(er)
+      mapWrapper.innerHTML = "Preview is not available"
+    })
 }
