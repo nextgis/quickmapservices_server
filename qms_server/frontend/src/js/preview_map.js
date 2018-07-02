@@ -17,7 +17,7 @@ if (mapWrapper) {
    */
   var buildMap = function (data) {
 
-    var previewMap = new L.Map('mapid').setView([55, 44], 2);
+    var previewMap = new L.Map(MAPID).setView([55, 44], 2);
 
     var createBaseLayer = function () {
       return new L.TileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {

@@ -13,9 +13,6 @@ var env = config.build.env
 
 var webpackConfig = merge(baseWebpackConfig, {
   watch: true,
-  watchOptions: {
-    poll: true
-  },
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
