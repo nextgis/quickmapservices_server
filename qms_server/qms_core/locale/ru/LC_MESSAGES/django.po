@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-22 12:06+0000\n"
+"POT-Creation-Date: 2018-07-03 06:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,43 +20,51 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: qms_core/admin.py:14
+#: qms_core/admin.py:20
 msgid "NextGIS ID"
 msgstr ""
 
-#: qms_core/admin.py:15
+#: qms_core/admin.py:21
 msgid "Personal info"
 msgstr ""
 
-#: qms_core/admin.py:16
+#: qms_core/admin.py:22
 msgid "Permissions"
 msgstr ""
 
-#: qms_core/admin.py:18
+#: qms_core/admin.py:24
 msgid "Important dates"
 msgstr ""
 
-#: qms_core/admin.py:38
+#: qms_core/admin.py:29
 msgid "Common"
 msgstr ""
 
-#: qms_core/admin.py:39
+#: qms_core/admin.py:30
 msgid "License & Copyright"
 msgstr ""
 
-#: qms_core/admin.py:52
+#: qms_core/admin.py:31
+msgid "Source info"
+msgstr ""
+
+#: qms_core/admin.py:32
+msgid "Boundary"
+msgstr ""
+
+#: qms_core/admin.py:90
 msgid "TMS"
 msgstr ""
 
-#: qms_core/admin.py:65
+#: qms_core/admin.py:102
 msgid "WMS"
 msgstr ""
 
-#: qms_core/admin.py:78
+#: qms_core/admin.py:114
 msgid "WFS"
 msgstr ""
 
-#: qms_core/admin.py:91
+#: qms_core/admin.py:126
 msgid "GeoJSON"
 msgstr ""
 
@@ -64,152 +72,160 @@ msgstr ""
 msgid "NextGIS QMS"
 msgstr ""
 
-#: qms_core/models.py:62
+#: qms_core/models.py:63
 msgid "username"
 msgstr ""
 
-#: qms_core/models.py:65
+#: qms_core/models.py:66
 msgid "Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only."
 msgstr ""
 
-#: qms_core/models.py:69
+#: qms_core/models.py:70
 msgid ""
 "Enter a valid username. This value may contain only letters, numbers and @/./"
 "+/-/_ characters."
 msgstr ""
 
-#: qms_core/models.py:74
+#: qms_core/models.py:75
 msgid "A user with that username already exists."
 msgstr ""
 
-#: qms_core/models.py:77
+#: qms_core/models.py:78
 msgid "first name"
 msgstr ""
 
-#: qms_core/models.py:78
+#: qms_core/models.py:79
 msgid "last name"
 msgstr ""
 
-#: qms_core/models.py:79
+#: qms_core/models.py:80
 msgid "email address"
 msgstr ""
 
-#: qms_core/models.py:81
+#: qms_core/models.py:82
 msgid "staff status"
 msgstr ""
 
-#: qms_core/models.py:83
+#: qms_core/models.py:84
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 
-#: qms_core/models.py:86
+#: qms_core/models.py:87
 msgid "active"
 msgstr ""
 
-#: qms_core/models.py:89
+#: qms_core/models.py:90
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
 
-#: qms_core/models.py:93
+#: qms_core/models.py:94
 msgid "date joined"
 msgstr ""
 
-#: qms_core/models.py:95
+#: qms_core/models.py:96
 msgid "nextgis guid"
 msgstr ""
 
-#: qms_core/models.py:96
+#: qms_core/models.py:97
 msgid "user locale"
 msgstr ""
 
-#: qms_core/models.py:100
+#: qms_core/models.py:101
 msgid "mail confirmed"
 msgstr ""
 
-#: qms_core/models.py:112
+#: qms_core/models.py:113
 msgid "user"
 msgstr ""
 
-#: qms_core/models.py:113
+#: qms_core/models.py:114
 msgid "users"
 msgstr ""
 
-#: qms_core/models.py:136
+#: qms_core/models.py:137
 msgid "icon guid"
 msgstr ""
 
-#: qms_core/models.py:137
+#: qms_core/models.py:138
 msgid "icon"
 msgstr ""
 
-#: qms_core/models.py:139
+#: qms_core/models.py:140
 msgid "icon name"
 msgstr ""
 
-#: qms_core/models.py:140
+#: qms_core/models.py:141
 msgid "icon is private"
 msgstr ""
 
-#: qms_core/models.py:155
+#: qms_core/models.py:160
 msgid "service guid"
 msgstr ""
 
-#: qms_core/models.py:156
+#: qms_core/models.py:161
 msgid "service name"
 msgstr ""
 
-#: qms_core/models.py:157
+#: qms_core/models.py:162
 msgid "description"
 msgstr ""
 
-#: qms_core/models.py:158
+#: qms_core/models.py:163
 msgid "service type"
 msgstr ""
 
-#: qms_core/models.py:159
+#: qms_core/models.py:164
 msgid "EPSG Code"
 msgstr ""
 
-#: qms_core/models.py:162
+#: qms_core/models.py:167
 msgid "license name"
 msgstr ""
 
-#: qms_core/models.py:163
+#: qms_core/models.py:168
 msgid "license url"
 msgstr ""
 
-#: qms_core/models.py:164
+#: qms_core/models.py:169
 msgid "copyright text"
 msgstr ""
 
-#: qms_core/models.py:165
+#: qms_core/models.py:170
 msgid "copyright url"
 msgstr ""
 
-#: qms_core/models.py:166
+#: qms_core/models.py:171
 msgid "terms of use url"
 msgstr ""
 
-#: qms_core/models.py:169
+#: qms_core/models.py:174
 msgid "created at"
 msgstr ""
 
-#: qms_core/models.py:170
+#: qms_core/models.py:175
 msgid "updated at"
 msgstr ""
 
-#: qms_core/models.py:172
+#: qms_core/models.py:177
 msgid "source"
 msgstr ""
 
-#: qms_core/models.py:173
+#: qms_core/models.py:178
 msgid "source url"
 msgstr ""
 
-#: qms_core/models.py:220
+#: qms_core/models.py:236
+msgid "Enter a valid TMS URL."
+msgstr ""
+
+#: qms_core/models.py:289
 msgid "Layer name ([namespace:]featuretype)"
+msgstr ""
+
+#: qms_core/models.py:333
+msgid "check state date/time"
 msgstr ""
 
 #: qms_core/size_restricted_image_field.py:16

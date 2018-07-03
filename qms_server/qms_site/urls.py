@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 
-from qms_site.views import GeoserviceListView, GeoserviceDetailView, GeoserviceBoundaryView, CreateServiceView, EditServiceView, AboutView, FAQView
+from qms_site.views import GeoserviceListView, GeoserviceDetailView, GeoserviceBoundaryView, CreateServiceView, EditServiceView, AboutView, FAQView, GeoserviceDataView
 
 urlpatterns = [
     url(r'^$', GeoserviceListView.as_view(), name='site_geoservice_list'),
@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^faq$', FAQView.as_view(), name='site_faq'),
     url(r'^geoservices/(?P<pk>[0-9]+)/$', GeoserviceDetailView.as_view(), name='site_geoservice_detail'),
     url(r'^geoservices/(?P<pk>[0-9]+)/boundary$', GeoserviceBoundaryView.as_view(), name='site_geoservice_boundary'),
+    url(r'^geoservices/(?P<pk>[0-9]+)/data$', GeoserviceDataView.as_view(), name='site_geoservice_data'),
     url(r'', include('nextgis_common.ngid_auth.urls')),
 
     url(r'^create$', CreateServiceView.as_view(), name='create_service_view'),
