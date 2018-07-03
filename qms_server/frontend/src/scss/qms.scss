@@ -8,8 +8,6 @@ $square-list-padding: 30px;
 @import "~@nextgis_common/scss/variables/_bootstrap_variables";
 @import "bootstrap-material-design/sass/_shadows";
 
-@import "~leaflet/dist/leaflet.css";
-
 @import "~@nextgis_common/scss/partials/mixins";
 @import "~@nextgis_common/scss/partials/square-list";
 @import "~@nextgis_common/scss/partials/header-menu";
@@ -120,3 +118,10 @@ html{
 	.qms-service-count__value{
 		color: $text-color;
 	}
+
+
+/* Leaflet */
+
+.leaflet-control-layers-list {
+  margin-top: 0;
+}

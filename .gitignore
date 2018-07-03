@@ -11,6 +11,7 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
+.env/
 build/
 !/qms_server/frontend/build/
 develop-eggs/
@@ -121,6 +122,9 @@ pip-selfcheck.json
 # Temporary data
 .ipynb_checkpoints/
 
+# Visual Studio Code
+.vscode/
+
 # Test DB
 db.sqlite3
 maindb.sqlite
@@ -137,3 +141,4 @@ settings_local.py
 
 # frontend
 node_modules
+qms_server/frontend/dist
