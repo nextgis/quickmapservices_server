@@ -38,6 +38,7 @@ if (mapWrapper) {
    * @param {string} [data.name]
    * @param {string} [data.id] - service pk
    * @param {string} [data.boundary] - geojson
+   * @param {Object} [data.locale] - i18n aliases
    */
   var buildMap = function (data) {
 
@@ -47,7 +48,7 @@ if (mapWrapper) {
     var previewMap = new L.Map(MAPID).setView([55, 44], 2);
 
     var baseLayer = createBaseLayer().addTo(previewMap);
-    baseMaps['Empty'] = new L.TileLayer('');
+    baseMaps[data.locale['Empty']] = new L.TileLayer('');
     baseMaps['OSM'] = baseLayer;
 
     if (data.previewLayer) {
@@ -66,9 +67,9 @@ if (mapWrapper) {
 
           var applyBoundary = function (geojson) {
             if (geojson) {
-              var boundary = new L.GeoJSON(geojson, { color: "red", fillOpacity: 0 }).addTo(previewMap);
-              if (boundary && boundary.getBounds)
-                overlayMaps["Boundary"] = boundary;
+              var boundary = new L.GeoJSON(geojson, { color: 'red', fillOpacity: 0 });
+              boundary.addTo(previewMap);
+              overlayMaps[data.locale['Boundary']] = boundary;
               fitLayerBounds(boundary);
             } else {
               fitLayerBounds()
@@ -98,7 +99,9 @@ if (mapWrapper) {
       };
 
       fitBounds().then(createLayersControl).catch(createLayersControl);
-      data.previewLayer.once('load', fitBounds);
+      if (!data.boundary) {
+        data.previewLayer.once('load', fitBounds);
+      }
     }
   }
 
@@ -131,7 +134,7 @@ if (mapWrapper) {
               }
               ));
             } else {
-              reject(response.error_text || "could not load geojson data");
+              reject(response.error_text || opt.locale["could not load geojson data"]);
             }
           },
           error: function (jqXHR, exception) {
@@ -180,11 +183,17 @@ if (mapWrapper) {
       }
     })
   }
+  var loadingIndicator = document.createElement("div");
+  loadingIndicator.innerHTML = service.locale["Loading preview data..."];
+  mapWrapper.appendChild(loadingIndicator);
 
   getPreviewLayer(service)
-    .then(buildMap)
+    .then(function (data) {
+      loadingIndicator.parentNode.removeChild(loadingIndicator);
+      buildMap(data);
+    })
     .catch(function (er) {
       console.error(er)
-      mapWrapper.innerHTML = "Preview is not available"
+      mapWrapper.innerHTML = service.locale["Preview is not available"];
     })
 }
