@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-03 13:38+0000\n"
+"POT-Creation-Date: 2018-07-03 16:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -256,6 +256,26 @@ msgstr "Изменить"
 #: qms_site/templates/detail.html:42
 msgid "Back to services list"
 msgstr "Вернуться к списку сервисов"
+
+#: qms_site/templates/detail.html:54
+msgid "Boundary"
+msgstr "Граница"
+
+#: qms_site/templates/detail.html:55
+msgid "Empty"
+msgstr ""
+
+#: qms_site/templates/detail.html:56
+msgid "could not load geojson data"
+msgstr "не удалось загрузить данные geojson"
+
+#: qms_site/templates/detail.html:57
+msgid "Preview is not available"
+msgstr "Предварительный просмотр недоступен"
+
+#: qms_site/templates/detail.html:58
+msgid "Loading preview data..."
+msgstr "Загрузка данных предварительного просмотра..."
 
 #: qms_site/templates/edit.html:6
 #: qms_site/templates/edit_snippets/base_service.html:10
@@ -1051,9 +1071,6 @@ msgstr "Ваше сообщение было отправлено автору �
 #: qms_site/views.py:187 qms_site/views.py:190
 msgid "Invalid form param: service_type"
 msgstr "Ошибка параметра формы: service_type"
-
-#~ msgid "Boundary"
-#~ msgstr "Uраница"
 
 #~ msgid "Yes"
 #~ msgstr "Есть"

@@ -50,6 +50,13 @@
     {{block.super}}
     <script>
         var service = {
+            locale: {
+                'Boundary': '{% trans "Boundary" %}',
+                'Empty': '{% trans "Empty" %}',
+                'could not load geojson data': '{% trans "could not load geojson data" %}',
+                'Preview is not available': '{% trans "Preview is not available" %}',
+                'Loading preview data...': '{% trans "Loading preview data..." %}',
+            },
             id: "{{service.id}}",
             name: "{{ service.name }}",
             type: "{{ service.type }}",
