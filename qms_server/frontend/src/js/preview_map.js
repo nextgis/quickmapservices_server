@@ -77,6 +77,8 @@ if (mapWrapper) {
 
           if (data.boundary) {
             applyBoundary(JSON.parse(data.boundary));
+          } else {
+            applyBoundary();
           }
           // obsolete condition
           // else {
@@ -89,12 +91,13 @@ if (mapWrapper) {
           //   });
           // }
         });
-
       }
 
-      fitBounds().then(function () {
+      var createLayersControl = function () {
         L.control.layers(baseMaps, overlayMaps).addTo(previewMap);
-      });
+      };
+
+      fitBounds().then(createLayersControl).catch(createLayersControl);
       data.previewLayer.once('load', fitBounds);
     }
   }
