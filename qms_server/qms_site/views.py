@@ -301,7 +301,7 @@ class GeoserviceBoundaryView(LoginRequiredMixin, View):
         return response
 
 
-class GeoserviceDataView(LoginRequiredMixin, View):
+class GeoserviceDataView(View):
 
     def get(self, request, pk, *args, **kwargs):
         geoservice = get_object_or_404(GeoService, pk=pk)
