@@ -141,3 +141,4 @@ settings_local.py
 
 # frontend
 node_modules
+qms_server/frontend/dist

@@ -4,6 +4,7 @@ import 'leaflet-wfst/dist/Leaflet-WFST.src'
 import { prepareWmsUrl } from './map_utils';
 
 import "leaflet/dist/leaflet.css";
+
 // stupid hack so that leaflet's images work after going through webpack
 import marker from 'leaflet/dist/images/marker-icon.png';
 import marker2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -35,7 +36,8 @@ if (mapWrapper) {
    * @param {Object} data
    * @param {L.Layer} [data.previewLayer]
    * @param {string} [data.name]
-   * @param {string} [data.id]
+   * @param {string} [data.id] - service pk
+   * @param {string} [data.boundary] - geojson
    */
   var buildMap = function (data) {
 
@@ -45,7 +47,8 @@ if (mapWrapper) {
     var previewMap = new L.Map(MAPID).setView([55, 44], 2);
 
     var baseLayer = createBaseLayer().addTo(previewMap);
-    baseMaps["OSM"] = baseLayer;
+    baseMaps['Empty'] = new L.TileLayer('');
+    baseMaps['OSM'] = baseLayer;
 
     if (data.previewLayer) {
       data.previewLayer.addTo(previewMap);
@@ -61,24 +64,30 @@ if (mapWrapper) {
             resolve();
           }
 
-          $.ajax({
-            url: '/geoservices/' + data.id + '/boundary',
-            dataType: 'json',
-            type: 'GET',
-            success: function (response) {
-              if (response) {
-                var boundary = new L.GeoJSON(response, { color: "red", fillOpacity: 0 }).addTo(previewMap);
-                if (boundary && boundary.getBounds)
+          var applyBoundary = function (geojson) {
+            if (geojson) {
+              var boundary = new L.GeoJSON(geojson, { color: "red", fillOpacity: 0 }).addTo(previewMap);
+              if (boundary && boundary.getBounds)
                 overlayMaps["Boundary"] = boundary;
-                fitLayerBounds(boundary);
-              } else {
-                fitLayerBounds()
-              }
-            },
-            error: function () {
-              fitLayerBounds();
+              fitLayerBounds(boundary);
+            } else {
+              fitLayerBounds()
             }
-          });
+          }
+
+          if (data.boundary) {
+            applyBoundary(JSON.parse(data.boundary));
+          }
+          // obsolete condition
+          // else {
+          //   $.ajax({
+          //     url: '/geoservices/' + data.id + '/boundary',
+          //     dataType: 'json',
+          //     type: 'GET',
+          //     success: applyBoundary,
+          //     error: fitLayerBounds
+          //   });
+          // }
         });
 
       }
@@ -88,8 +97,6 @@ if (mapWrapper) {
       });
       data.previewLayer.once('load', fitBounds);
     }
-
-
   }
 
   /**

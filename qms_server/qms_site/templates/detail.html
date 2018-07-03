@@ -35,7 +35,9 @@
     {% elif service.type == 'geojson' %}
         {% include 'services_snippets/geojson_info.html' %}
     {% endif %}
-    {% include 'services_snippets/preview_map.html' %}
+    {% if service.last_status != None and service.last_status.cumulative_status != "failed" %}
+        {% include 'services_snippets/preview_map.html' %}
+    {% endif %}
     <br>
     <a href="{% url 'site_geoservice_list' %}">{% trans 'Back to services list' %}</a>
 {% endblock %}
@@ -52,6 +54,7 @@
             name: "{{ service.name }}",
             type: "{{ service.type }}",
             epsg: "{{ service.epsg }}",
+            boundary: "{{ service.boundary.geojson | escapejs  }}",
             {% if service.type == 'tms' %}
                 tms: {
                     url: "{{ leaflet_tms_url|safe }}",
