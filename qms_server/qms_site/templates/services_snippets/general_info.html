@@ -15,7 +15,7 @@
       {% trans "Source" %}: {{ service.source|default_if_not:n }}<br>
       {% trans "Date added" %}: {{ service.created_at }}<br>
       {% trans "Last update" %}: {{ service.updated_at }}<br>
-      {% trans "Boundary" %}: {% if service.boundary %} {% trans "Yes" %} {% else %} {% trans "No" %} {% endif %}</br>
+      {% trans "Service boundary" %}: {% if service.boundary %} {% trans "present" %} {% else %} {% trans "none" %} {% endif %}</br>
       {% trans "Status" %}:
       {% if service.last_status != None %}
           {% if service.last_status.cumulative_status == "works" %}

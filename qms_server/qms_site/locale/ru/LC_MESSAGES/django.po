@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-07-03 06:08+0000\n"
+"POT-Creation-Date: 2018-07-03 13:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -296,6 +296,7 @@ msgid "Additional settings"
 msgstr "Дополнительные настройки"
 
 #: qms_site/templates/edit_snippets/base_service.html:68
+#: qms_site/templates/services_snippets/general_info.html:18
 msgid "Service boundary"
 msgstr "Границы сервиса"
 
@@ -324,7 +325,7 @@ msgstr "Вы уверены, что хотите удалить этот фай�
 msgid ""
 "This information will become public on submission.<br>\n"
 "                            Please <a href=\"#\" class=\"fake-link\" data-"
-"show=\"#%(form_name)s-license\">specify licensing details.</a>."
+"show=\"#%(form_name)s-license\">specify licensing details</a>."
 msgstr ""
 "После добавления сервис станет общедоступным.<br>\n"
 "                            Пожалуйста, <a href=\"#\" class=\"fake-link\" "
@@ -928,18 +929,12 @@ msgid "Last update"
 msgstr "Последнее изменение"
 
 #: qms_site/templates/services_snippets/general_info.html:18
-msgid "Boundary"
-msgstr "Uраница"
+msgid "present"
+msgstr "заданы"
 
 #: qms_site/templates/services_snippets/general_info.html:18
-msgid "Yes"
-msgstr "Есть"
-
-#: qms_site/templates/services_snippets/general_info.html:18
-#, fuzzy
-#| msgid "None"
-msgid "No"
-msgstr "Нет"
+msgid "none"
+msgstr "не заданы"
 
 #: qms_site/templates/services_snippets/general_info.html:19
 #: qms_site/templates/services_snippets/general_info.html:40
@@ -1056,6 +1051,17 @@ msgstr "Ваше сообщение было отправлено автору �
 #: qms_site/views.py:187 qms_site/views.py:190
 msgid "Invalid form param: service_type"
 msgstr "Ошибка параметра формы: service_type"
+
+#~ msgid "Boundary"
+#~ msgstr "Uраница"
+
+#~ msgid "Yes"
+#~ msgstr "Есть"
+
+#, fuzzy
+#~| msgid "None"
+#~ msgid "No"
+#~ msgstr "Нет"
 
 #~ msgid ""
 #~ "Upload GeoJSON with boundary. Boundary CRS must be EPSG:4326.<br>\n"
