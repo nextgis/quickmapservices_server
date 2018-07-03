@@ -173,12 +173,19 @@
         display: flex;
         margin:0;
 
+        &:hover
+          &:before
+            background-color: transparent
+
+          .v-icon
+            color: $theme.primary  
+
     &--s
       .icon-toolbar__btn
         width: 32px;
         height: 32px;
 
-        .icon
+        .v-icon
           font-size: 22px;
 
 </style>

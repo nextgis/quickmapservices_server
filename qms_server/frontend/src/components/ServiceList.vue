@@ -31,14 +31,11 @@
             </div>
         </div>
     </template>
-
-    <div class="text-xs-center">
-      <v-pagination v-if="pageCount>1"
-                    :length.number="pageCount"
-                    v-model="page"
-                    total-visible="10"
-                    @input="updateData()"></v-pagination>
-    </div>
+    <v-pagination v-if="pageCount>1"
+                  :length.number="pageCount"
+                  v-model="page"
+                  total-visible="10"
+                  @input="updateData()"></v-pagination>
   </div>
 </template>
 
