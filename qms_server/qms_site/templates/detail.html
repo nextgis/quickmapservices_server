@@ -5,41 +5,43 @@
 {% load wfs_layer_utils %}
 
 {% block body_content %}
-    <div class="btn-group toolbar pull-right" role="group">
-        <a href="#" class="btn btn-tool btn--depressed"
-            data-toggle="modal"
-            data-target=".report-problem-popup"
-            data-service-title="{{ service.name }}"
-            data-service-id="{{ service.id }}"
-            data-service-url="">{% trans 'Feedback' %}</a>
-        {% if request.user.is_authenticated and  service.submitter_id == request.user.nextgis_guid  %}
-            <a href="{% url 'edit_service_view' pk=service.id %}" class="btn btn-tool btn--depressed">{% trans 'Edit' %}</a>
+    <div class="service">
+        <div class="btn-group toolbar pull-right" role="group">
+            <a href="#" class="btn btn-tool btn--depressed"
+                data-toggle="modal"
+                data-target=".report-problem-popup"
+                data-service-title="{{ service.name }}"
+                data-service-id="{{ service.id }}"
+                data-service-url="">{% trans 'Feedback' %}</a>
+            {% if request.user.is_authenticated and  service.submitter_id == request.user.nextgis_guid  %}
+                <a href="{% url 'edit_service_view' pk=service.id %}" class="btn btn-tool btn--depressed">{% trans 'Edit' %}</a>
+            {% endif %}
+        </div>
+        <h1>
+            {% if service.icon %}
+            <img src="{% url 'service_icon_retrieve' pk=service.icon.id %}" />
+            {% else %}
+            <img src="{% url 'service_icon_default' %}" />
+            {% endif %}
+            {{ service.name }}
+        </h1>
+        {% include 'services_snippets/general_info.html' %}
+        {% include 'services_snippets/license_info.html' %}
+        {% if service.type == 'tms' %}
+            {% include 'services_snippets/tms_info.html' %}
+        {% elif service.type == 'wms' %}
+            {% include 'services_snippets/wms_info.html' %}
+        {% elif service.type == 'wfs' %}
+            {% include 'services_snippets/wfs_info.html' %}
+        {% elif service.type == 'geojson' %}
+            {% include 'services_snippets/geojson_info.html' %}
         {% endif %}
-    </div>
-    <h1>
-        {% if service.icon %}
-        <img src="{% url 'service_icon_retrieve' pk=service.icon.id %}" />
-        {% else %}
-        <img src="{% url 'service_icon_default' %}" />
+        {% if service.last_status != None and service.last_status.cumulative_status != "failed" %}
+            {% include 'services_snippets/preview_map.html' %}
         {% endif %}
-        {{ service.name }}
-    </h1>
-    {% include 'services_snippets/general_info.html' %}
-    {% include 'services_snippets/license_info.html' %}
-    {% if service.type == 'tms' %}
-        {% include 'services_snippets/tms_info.html' %}
-    {% elif service.type == 'wms' %}
-        {% include 'services_snippets/wms_info.html' %}
-    {% elif service.type == 'wfs' %}
-        {% include 'services_snippets/wfs_info.html' %}
-    {% elif service.type == 'geojson' %}
-        {% include 'services_snippets/geojson_info.html' %}
-    {% endif %}
-    {% if service.last_status != None and service.last_status.cumulative_status != "failed" %}
-        {% include 'services_snippets/preview_map.html' %}
-    {% endif %}
-    <br>
-    <a href="{% url 'site_geoservice_list' %}">{% trans 'Back to services list' %}</a>
+        <br>
+        <a href="{% url 'site_geoservice_list' %}">{% trans 'Back to services list' %}</a>
+    </div>    
 {% endblock %}
 
 {% block popups %}
