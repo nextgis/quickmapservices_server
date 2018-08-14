@@ -5,14 +5,14 @@
                :class="['service-card__status', statusClass]"
                :title="service.status_text"></div>
           <div class="service-card__toolbar icon-toolbar icon-toolbar--v icon-toolbar--s">
-            <v-btn icon class="icon-toolbar__btn grey--text text--lighten-1"
+            <v-btn icon class="icon-toolbar__btn grey--text text--lighten-1 btn-link"
                         tag="a"
                         v-if="isMy"
                         :href="editUrl"
                         :title="$t('edit')">
               <v-icon>edit</v-icon>
             </v-btn>
-            <v-btn icon class="icon-toolbar__btn grey--text text--lighten-1"
+            <v-btn icon class="icon-toolbar__btn grey--text text--lighten-1 btn-link"
                         tag="a"
                         :href="url + '?show-report-problem=1'"
                         :title="$t('feedback')">
@@ -172,6 +172,7 @@
       .icon-toolbar__btn
         display: flex;
         margin:0;
+        text-decoration: none;
 
         &:hover
           &:before

@@ -6,7 +6,9 @@ import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 Vue.use(VueI18n)
 
+import Vuetify from 'vuetify'
 import App from './App'
+import ServiceList from "./components/ServiceList"
 
 import main from '@nextgis_common/js/main'
 import './js/report-problem'
@@ -14,7 +16,18 @@ import QmsAddForm from './js/qms'
 import './js/preview_map'
 import vueConfig from 'vue-config'
 
-main();
+Vue.use(Vuetify, { 
+    theme: {
+        primary: '#0070c5',
+        accent: '#00b77e',
+        secondary: '#e5eef7',
+        info: '#2196f3',
+        warning: '#ffc107',
+        error: '#ff5252',
+        success: '#4caf50'
+    }   
+});
+
 var qms = new QmsAddForm()
 
 Vue.config.productionTip = false
@@ -82,11 +95,10 @@ const configs = {
 
 Vue.use(vueConfig, configs)
 
-/* Service list */
-
 new Vue({
   i18n,
   el: '#app',
-  template: '<App/>',
-  components: { App }
+  components: { App, ServiceList }
 })
+
+main();

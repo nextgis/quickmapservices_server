@@ -10,7 +10,7 @@
                 <div class="modal-subtitle"><a href="#" data-dismiss="modal" >{{ service.name }}</a></div>
                 <form action="." method="POST" class="form--margin_big form-validate">
                     {% csrf_token %}
-                    <input type="hidden" value="{{ service.id }}"" id="report_service_id" name="report_service_id">
+                    <input type="hidden" value="{{ service.id }}" id="report_service_id" name="report_service_id">
                     <div class="form-group label-floating clearfix ">
                         <label class="control-label" for="{{report_form.reported_email.id_for_label}}">{% trans 'Your e-mail (optional)' %}</label>
                         {{ report_form.reported_email|add_class:'form-control form-control--notignore'|attr_with_id:'aria-describedby:$id-error' }}
