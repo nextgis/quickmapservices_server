@@ -4,7 +4,9 @@
 
 
 {% block body_content %}
-    <service-list></service-list>
+	<div class="container">
+    	<service-list></service-list>
+    </div>	
     <a class="btn-mobile-action btn btn-fab btn-primary" href="{% url 'create_service_view' %}"><i class="material-icons add"></i></a>
 {% endblock %}
 

@@ -28,8 +28,6 @@ Vue.use(Vuetify, {
     }   
 });
 
-var qms = new QmsAddForm()
-
 Vue.config.productionTip = false
 
 const i18n = new VueI18n({
@@ -102,3 +100,5 @@ new Vue({
 })
 
 main();
+
+var qms = new QmsAddForm()
