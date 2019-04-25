@@ -61,12 +61,14 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'corsheaders',
-    'captcha',
+    # 'captcha',
     'django_crontab',
 
     'widget_tweaks',
     'django_gravatar',
     'nextgis_common',
+
+    'sslserver'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -194,5 +196,5 @@ CRONJOBS = [
 try:
     from settings_local import *
 except:
-    pass
+    raise
 

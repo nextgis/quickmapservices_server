@@ -20,7 +20,11 @@ from nextgis_common.email_utils import send_templated_mail
 from nextgis_common.supported_languages import SupportedLanguages
 from qms_core.models import GeoService, TmsService, WmsService, WfsService, GeoJsonService
 from qms_core.status_checker.service_checkers.geojson_checker import GeoJsonChecker
-from qms_site.forms import TmsForm, WmsForm, WfsForm, GeoJsonForm, AuthReportForm, NonAuthReportForm
+from qms_site.forms import (
+    TmsForm, WmsForm, WfsForm, GeoJsonForm,
+    AuthReportForm,
+    #  NonAuthReportForm
+)
 from django.utils.translation import gettext_lazy as _
 
 from qms_site.models import ReportType
@@ -63,10 +67,11 @@ class ReportFormMixin(FormMixin, ProcessFormView):
             return {}
 
     def get_form_class(self):
-        if self.request.user.is_authenticated():
-            return AuthReportForm
-        else:
-            return NonAuthReportForm
+        return AuthReportForm
+        # if self.request.user.is_authenticated():
+        #     return AuthReportForm
+        # else:
+        #     return NonAuthReportForm
 
     def form_valid(self, form):
         report_form = form

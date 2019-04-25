@@ -1,6 +1,6 @@
 import json
 
-from captcha.fields import ReCaptchaField
+# from captcha.fields import ReCaptchaField
 from django.forms import ModelForm, ValidationError, FileField, BooleanField
 from django.utils.translation import ugettext as _
 from django.contrib.gis.geos import GEOSGeometry, MultiPolygon
@@ -32,7 +32,7 @@ class BaseServiceForm(ModelForm):
 
             for chunk in boundaries_file.chunks():
                 data += chunk
-            
+
             try:
                 geojson = json.loads(data)
                 first_feature_geometry = geojson["features"][0]["geometry"]
@@ -122,5 +122,5 @@ class AuthReportForm(ModelForm):
         exclude = ['reported', 'geo_service']
 
 
-class NonAuthReportForm(AuthReportForm):
-    captcha = ReCaptchaField(required=True)
+# class NonAuthReportForm(AuthReportForm):
+#     captcha = ReCaptchaField(required=True)
