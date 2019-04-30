@@ -3,7 +3,7 @@ import 'proj4leaflet'
 import 'leaflet-wfst/dist/Leaflet-WFST.src'
 import { prepareWmsUrl } from './map_utils';
 
-import "leaflet/dist/leaflet.css";
+import 'leaflet/dist/leaflet.css';
 
 // stupid hack so that leaflet's images work after going through webpack
 import marker from 'leaflet/dist/images/marker-icon.png';

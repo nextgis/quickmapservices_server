@@ -7,6 +7,7 @@
 </script>
 
 <style lang="scss">
+  @import '~leaflet/dist/leaflet.css';
   @import "~@nextgis_common/scss/main";
   @import "./scss/qms";
 </style>
