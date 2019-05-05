@@ -38,8 +38,8 @@
     </template>
     <v-pagination
       v-if="pageCount > 1"
-      :length = "pageCount"
-      v-model = "page"
+      :length="pageCount"
+      v-model="page"
       total-visible="10"
       @input="updateData()"
     ></v-pagination>
@@ -91,7 +91,6 @@ export default {
     updateData(resetPage) {
       if (resetPage) this.page = 1;
 
-      const url = new URL(this.url, location.origin);
       const params = {
         limit: this.itemsOnPage,
         offset: (this.page - 1) * this.itemsOnPage,
@@ -100,14 +99,19 @@ export default {
         submitter: this.submitter,
         ordering: this.ordering
       };
-      url.search = new URLSearchParams(params);
+      const esc = encodeURIComponent;
+      const query = Object.keys(params)
+        .map(k => esc(k) + "=" + esc(params[k]))
+        .join("&");
+
+      const url = `${this.url}?` + query;
       fetch(url)
         .then(resp => resp.json())
         .then(json => {
           // JSON responses are automatically parsed.
           window.scrollTo(0, 0);
 
-          let servicesWithStatus = json.results.map(service => {
+          const servicesWithStatus = json.results.map(service => {
             service.status_text = this.$t(
               "status_" + service.cumulative_status
             );
