@@ -1,79 +1,89 @@
 <template>
-  <div class="service-card service-card panel panel-default" >
-      <div class="panel-body">
-          <div v-if="service.cumulative_status"
-               :class="['service-card__status', statusClass]"
-               :title="service.status_text"></div>
-          <div class="service-card__toolbar icon-toolbar icon-toolbar--v icon-toolbar--s">
-            <v-btn icon class="icon-toolbar__btn grey--text text--lighten-1 btn-link"
-                        tag="a"
-                        v-if="isMy"
-                        :href="editUrl"
-                        :title="$t('edit')">
-              <v-icon>edit</v-icon>
-            </v-btn>
-            <v-btn icon class="icon-toolbar__btn grey--text text--lighten-1 btn-link"
-                        tag="a"
-                        :href="url + '?show-report-problem=1'"
-                        :title="$t('feedback')">
-              <v-icon>feedback</v-icon>
-            </v-btn>
-          </div>
-          <div class="service-card__title">
-              <img class="service-card__icon" :src="iconUrl+ '?width=24&height=24'" />
-              {{ service.name }}
-          </div>
-          <div v-if="service.desc" class="service-card__descr">
-              {{ service.desc }}
-          </div>
-          <div class="service-card__meta">
-              <span class="service-card__meta-item service-card__type">{{ service.type }}</span>
-              <span class="service-card__meta-item service-card__date" v-if="service.updated_at">{{ $t('last_update') }}: {{ service.updated_at.slice(0,10) }}</span>
-          </div>
+  <div class="service-card service-card panel panel-default">
+    <div class="panel-body">
+      <div
+        v-if="service.cumulative_status"
+        :class="['service-card__status', statusClass]"
+        :title="service.status_text"
+      ></div>
+      <div class="service-card__toolbar icon-toolbar icon-toolbar--v icon-toolbar--s">
+        <v-btn
+          icon
+          class="icon-toolbar__btn grey--text text--lighten-1 btn-link"
+          tag="a"
+          v-if="isMy"
+          :href="editUrl"
+          :title="$t('edit')"
+        >
+          <v-icon>edit</v-icon>
+        </v-btn>
+        <v-btn
+          icon
+          class="icon-toolbar__btn grey--text text--lighten-1 btn-link"
+          tag="a"
+          :href="url + '?show-report-problem=1'"
+          :title="$t('feedback')"
+        >
+          <v-icon>feedback</v-icon>
+        </v-btn>
       </div>
-      <a class="service-card__link" :href="url" target="_blank"></a>
+      <div class="service-card__title">
+        <img class="service-card__icon" :src="iconUrl+ '?width=24&height=24'">
+        {{ service.name }}
+      </div>
+      <div v-if="service.desc" class="service-card__descr">{{ service.desc }}</div>
+      <div class="service-card__meta">
+        <span class="service-card__meta-item service-card__type">{{ service.type }}</span>
+        <span
+          class="service-card__meta-item service-card__date"
+          v-if="service.updated_at"
+        >{{ $t('last_update') }}: {{ service.updated_at.slice(0,10) }}</span>
+      </div>
+    </div>
+    <a class="service-card__link" :href="url" target="_blank"></a>
   </div>
 </template>
 
 <script>
-    import Vue from 'vue'
-    import axios from 'axios'
+import Vue from "vue";
 
-    export default {
-        props: ["service"],
-        data () {
-            return {
-
-            }
-        },
-        computed:{
-            url(){
-                return "/geoservices/" + this.service.id
-            },
-            iconUrl(){
-                return this.service.icon ? "/api/v1/icons/" + this.service.icon +"/content" : "/api/v1/icons/default"
-            },
-            editUrl(){
-                return "/edit/" + this.service.id
-            },
-            isMy() {
-                return (qmsConfig.user_guid && qmsConfig.user_guid === this.service.submitter)
-            },
-            statusClass() {
-                switch (this.service.cumulative_status) {
-                  case 'works':
-                    return 'success';
-                    break;
-                  case 'failed':
-                    return 'error';
-                    break;
-                  case 'problematic':
-                    return 'warning';
-                    break;
-                }
-            }
-        }
+export default {
+  props: ["service"],
+  data() {
+    return {};
+  },
+  computed: {
+    url() {
+      return "/geoservices/" + this.service.id;
+    },
+    iconUrl() {
+      return this.service.icon
+        ? "/api/v1/icons/" + this.service.icon + "/content"
+        : "/api/v1/icons/default";
+    },
+    editUrl() {
+      return "/edit/" + this.service.id;
+    },
+    isMy() {
+      return (
+        qmsConfig.user_guid && qmsConfig.user_guid === this.service.submitter
+      );
+    },
+    statusClass() {
+      switch (this.service.cumulative_status) {
+        case "works":
+          return "success";
+          break;
+        case "failed":
+          return "error";
+          break;
+        case "problematic":
+          return "warning";
+          break;
+      }
     }
+  }
+};
 </script>
 
 
@@ -179,7 +189,7 @@
             background-color: transparent
 
           .v-icon
-            color: $theme.primary  
+            color: $theme.primary
 
     &--s
       .icon-toolbar__btn

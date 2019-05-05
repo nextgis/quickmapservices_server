@@ -37,7 +37,6 @@
     "@babel/runtime": "^7.4.4",
     "@kazupon/vue-i18n-loader": "^0.3.0",
     "autoprefixer": "^9.5.1",
-    "axios": "^0.18.0",
     "babel-loader": "^8.0.5",
     "bootstrap-sass": "3.4.1",
     "bourbon": "^4.3.4",
