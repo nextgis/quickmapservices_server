@@ -8,6 +8,7 @@
 {% block head_title %}{% trans 'QuickMapServices: discover, share and use geospatial data services' %}{% endblock %}
 
 {% block extra_head %}
+    <link href="{% static 'css/vendor.css' %}" type="text/css" rel="stylesheet"/>
     <!-- Chatra -->
     {% get_chatra_groupid 'qms' as chatra_groupid %}
     {% include "snippets/contrib/chatra.html" %}

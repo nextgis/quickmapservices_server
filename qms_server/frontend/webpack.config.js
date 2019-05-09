@@ -1,9 +1,9 @@
 const path = require('path');
 const utils = require('./build/utils');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const safeParser = require('postcss-safe-parser');
 
 function resolve(dir) {
@@ -18,12 +18,6 @@ module.exports = (env, argv) => {
     {
       test: /\.vue$/,
       loader: 'vue-loader',
-      options: {
-        loaders: utils.cssLoaders({
-          sourceMap: isProduction ? false : true,
-          extract: true
-        })
-      }
     },
     {
       test: /\.js$/,
@@ -56,7 +50,7 @@ module.exports = (env, argv) => {
       'process.env.NODE_ENV': JSON.stringify(argv.mode)
     }),
 
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: 'css/[name].css',
       allChunks: true,
     }),
@@ -83,7 +77,7 @@ module.exports = (env, argv) => {
       })
     );
     plugins.push(
-      new OptimizeCSSPlugin({
+      new OptimizeCssAssetsPlugin({
         cssProcessorOptions: {
           parser: safeParser,
           discardComments: {
@@ -96,7 +90,6 @@ module.exports = (env, argv) => {
 
   // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
   // plugins.push(new BundleAnalyzerPlugin());
-
 
   return {
 
@@ -127,6 +120,7 @@ module.exports = (env, argv) => {
     },
 
     optimization: {
+
       splitChunks: {
         cacheGroups: {
           vendor: {
@@ -134,6 +128,12 @@ module.exports = (env, argv) => {
             chunks: 'initial',
             name: 'vendor',
             priority: 10,
+            enforce: true
+          },
+          'styles-compiled': {
+            name: 'styles-compiled',
+            test: /\.css$/,
+            chunks: 'all',
             enforce: true
           }
         }
