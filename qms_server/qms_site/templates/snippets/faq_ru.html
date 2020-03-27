@@ -1,108 +1,129 @@
 {% load i18n %}
 
-<h1>Frequently Asked Questions about QMS</h1>
-<p>If you don’t see an answer to your question below, let us know in comments or <a href="http://nextgis.com/contact" target="_blank">send</a> it to us directly, we’ll add it here.</p>
+<h1>
+  <self-link href="faq">Часто задаваемые вопросы про QMS</self-link>
+</h1>
+<p>Если вы не нашли ответ на свой вопрос ниже, дайте знать в комментариях или <a href="http://nextgis.ru/contact" target="_blank">присылайте нам вопрос напрямую</a>, мы добавим его на эту страницу.</p>
 <ul>
-<li><a class="scrollto-link fake-link" href="#general">General</a></li>
-<li><a class="scrollto-link fake-link" href="#use">{Using a service</a></li>
-<li><a class="scrollto-link fake-link" href="#add">{Adding a service</a></li>
-<li><a class="scrollto-link fake-link" href="#fix">Fixing a service</a></li>
+<li><a class="scrollto-link fake-link" href="#general">Общие</a></li>
+<li><a class="scrollto-link fake-link" href="#use">Использование сервисов</a></li>
+<li><a class="scrollto-link fake-link" href="#add">Добавление сервисов</a></li>
+<li><a class="scrollto-link fake-link" href="#fix">Исправление сервисов</a></li>
 </ul>
 <p><a id="general"></a></p>
-<h2>General</h2>
-<p><strong>Q: What’s QuickMapServices?</strong><br>
-A: QuickMapServices (QMS) is an open catalog of geodata sources and a way to add them to your GIS in one click (<a href="https://qms.nextgis.com/about">read more</a>).</p>
-<p><strong>Q: What is the goal of QMS</strong><br>
-A: To make geospatial services more accessible.</p>
-<p><strong>Q: Why add services to QMS?</strong><br>
-A: To easily find them and plug-in to your GIS project. Literally in just few clicks.</p>
-<p><strong>Q: Can I add services to GIS without QMS?</strong><br>
-A: Sure! But you’ll have to enter cumbersome links and parameters.<br>
+<h2>
+  <self-link href="general">Общие</self-link>
+</h2>
+<p><strong><self-link href="whatisqms">Q: Что такое QuickMapServices?</self-link></strong><br>
+A: QuickMapServices (QMS) это открытый каталог источников геоданных (т.н. сервисов) и способ использовать их в любой ГИС в один клик (<a href="https://qms.nextgis.com/about">подробнее</a>).</p>
+<p><strong><self-link href="whatispoint">Q: В чем смысл QMS?</self-link></strong><br>
+A: Основная задача QMS — сделать более удобным использование геосервисов.</p>
+<p><strong><self-link href="whyaddservices">Q: Зачем добавлять сервисы в QMS?</self-link></strong><br>
+A: Чтобы их можно было легко находить и подключать в ГИС. Буквально в одно нажатие.</p>
+<p><strong><self-link href="addwithout">Q: Могу ли я подключать сервисы в ГИС, не используя QMS?</self-link></strong><br>
+A: Конечно, но вам придется каждый раз вводить сложные ссылки и параметры сервисов.<br>
 <a id="use"></a></p>
-<h2>Using a service</h2>
-<p><strong>Q: How do I use one of the services from QMS?</strong><br>
-A: Search and add it in your GIS. Currently there are clients for <a href="http://nextgis.com/blog/quickmapservices/">QGIS</a>, <a href="https://my.nextgis.com/downloads/software/arcqms/ArcQMSInstaller.msi">ArcGIS</a> and <a href="http://nextgis.com/blog/ngm-2-4/">NextGIS Mobile.</a></p>
-<p><strong>Q: What kind of data I will get by using one of QMS services?</strong><br>
-A: This depends on a service. Through QMS you can get access to vector data, basemaps and rasters.<br>
+<h2>
+  <self-link href="usingservices">Использование сервисов</self-link>
+</h2>
+<p><strong><self-link href="howuse">Q: Как использовать сервисы QMS?</self-link></strong><br>
+A: Находите и добавляйте их в свою ГИС. На данный момент есть клиенты для <a href="http://nextgis.com/blog/quickmapservices/">QGIS</a>, <a href="https://my.nextgis.com/downloads/software/arcqms/ArcQMSInstaller.msi">ArcGIS</a> и <a href="http://nextgis.com/blog/ngm-2-4/">NextGIS Mobile</a>. Список расширяется.</p>
+<p><strong><self-link href="datatype">Q: Какие данные я получу, подключив один из сервисов QMS?</self-link></strong><br>
+A: Это зависит от типа сервиса. Через QMS вы можете получить векторные данные, картографические подложки или растры.<br>
 </p>
 <a id="add"></a>
-<h2>Adding a service</h2>
-<p><strong>Q: What kind of services I can add to QMS?</strong><br>
-A: You can add:</p>
+<h2>
+  <self-link href="datatype">Добавление сервисов</self-link>
+</h2>
+<p><strong><self-link href="servicetype">Q: Какие сервисы я могу добавить в QMS?</self-link></strong><br>
+A: Вы можете добавить:</p>
 <ul>
 <li>TMS – <a href="https://en.wikipedia.org/wiki/Tile_Map_Service">Tile Map Service</a>.</li>
 <li>WMS – <a href="https://en.wikipedia.org/wiki/Web_Map_Service">Web Map Service</a>.</li>
 <li>WFS – <a href="https://en.wikipedia.org/wiki/Web_Feature_Service">Web Feature Service</a>.</li>
-<li>GeoJSON – geodata in GeoJSON format. Link to file or data stream.</li>
+<li>GeoJSON – геоданные в формате GeoJSON. Ссылка на файл или поток данных.</li>
 </ul>
-<p><strong>Q: What are minimum needs to add a service?</strong><br>
-A: You’ll need to provide a correct service url at the very least.</p>
-<p><strong>Q: All these abbreviations mean absolutely nothing to me, can I still add a service?</strong><br>
-A: Unfortunately, not at this point, you’ll need to learn the basics first.</p>
-<p><strong>Q: Ok. I’ve found a website with a map a like and copied it’s link, can I use it?</strong><br>
-A: Most probably not, links copied from browsers address bar are typically not service links that you can use with QMS.</p>
-<p id="correct-links"><strong>Q: What do correct service links look like?</strong><br>
-A: Here are few examples and their particular features:</p>
+<p><strong><self-link href="mininfo">Q: Какая минимальная информация нужна, чтобы добавить сервис?</self-link></strong><br>
+A: Как минимум нужно знать правильную ссылку на сервис.</p>
+<p><strong><self-link href="zeroknowledge">Q: Все эти аббревиатуры для меня пустой звук, я смогу добавить сервис?</self-link></strong><br>
+A: Скорее всего нет, сначала вам придется немного разобраться о каких сервисах идет речь.</p>
+<p><strong><self-link href="fewknowledge">Q: Хорошо, я нашел сайт и скопировал его ссылку, я могу её добавить?</self-link></strong><br>
+A: Скорее всего нет, ссылки из адресной строки браузеров как правило не являются сервисами, которые вы сможете использовать через QMS. Добавить такую ссылку и создать сервис вы сможете, но работать он не будет и вскоре будет удален.</p>
+<p id="correct-links"><strong><self-link href="correctlinks">Q: Как выглядят правильные примеры ссылок?</self-link></strong><br>
+A: Вот несколько примеров правильных ссылок и их характерные черты:</p>
 <ul>
 <li>TMS – <a href="http://tile.openstreetmap.org/{z}/{x}/{y}.png">http://tile.openstreetmap.org/{z}/{x}/{y}.png</a>
 <ul>
-<li>This service provides tiled images</li>
-<li>Note z, x, y – those are tile numbers, they correspond to a particular area</li>
-<li>You can use {switch:1,2,3} to specify the list of domains. e.g. <a href="http://{switch:a,b,c}.tile.openstreetmap.org/{z}/{x}/{y}.png">http://{switch:a,b,c}.tile.openstreetmap.org/{z}/{x}/{y}.png</a></li>
+<li>Этот сервис даёт доступ к тайлированным изображениям</li>
+<li>Обратите внимание на z, x, y — это номера тайлов соответствующие определенной территории</li>
+<li>Вы можете использовать {switch:1,2,3} для указания перечня поддоменов. Например, <a href="http://{switch:a,b,c}.tile.openstreetmap.org/{z}/{x}/{y}.png">http://{switch:a,b,c}.tile.openstreetmap.org/{z}/{x}/{y}.png</a></li>
 </ul>
 </li>
 <li>WMS – <a href="http://cartoweb.cma.gva.es/arcgis/services/cartografia_tematica/MapServer/WMSServer">http://cartoweb.cma.gva.es/arcgis/services/cartografia_tematica/MapServer/WMSServer</a>
 <ul>
-<li>This service provides untiled-imagery</li>
-<li>Note words like ‘wms’ or ‘wmsserver’ in the link</li>
+<li>Этот сервис даёт доступ к нетайлированным изображениям</li>
+<li>Обратите внимание на слова ‘wms’ или ‘wmsserver’ в ссылке</li>
 </ul>
 </li>
 <li>WFS – <a href="http://www.wfs.nrw.de/geobasis/wfs_nw_alkis_vereinfacht?REQUEST=GetCapabilities&amp;SERVICE=WFS">http://www.wfs.nrw.de/geobasis/wfs_nw_alkis_vereinfacht?REQUEST=GetCapabilities&amp;SERVICE=WFS</a>
 <ul>
-<li>This service provides vector data</li>
-<li>Note words like ‘wfs’ or WFSserver’ in the link</li>
+<li>Этот сервис даёт доступ к векторным данным</li>
+<li>Обратите внимание на слова ‘wfs’ или WFSserver’ в ссылке</li>
 </ul>
 </li>
 <li>GeoJSON – <a href="http://opengeo.intetics.com.ua/osm/pa/data/protected_area_polygon.geojson">http://opengeo.intetics.com.ua/osm/pa/data/protected_area_polygon.geojson</a>
 <ul>
-<li>This service provides vector data and is probably the simplest, being just a file with data</li>
-<li>File can be hosted anywhere, as long as it’s valid GeoJSON</li>
+<li>Этот сервис даёт доступ к векторным данным. Это самый простой сервис, ссылка просто указывает на файл с данными</li>
+<li>Файл с данными может лежать на каком угодно сервере</li>
 </ul>
 </li>
 </ul>
-<p><strong>Q: What should I know to succesfully create WMS service?</strong><br>
-A: Please note the following particulars when creating a WMS service:</p>
+<p><strong><self-link href="importantpoints">Q: Что нужно учесть при создании сервиса WMS?</self-link></strong><br>
+A: Для создания сервиса WMS нужно учесть следующие особенности:</p>
 <ul>
-<li>You should use layer(s) NAME, not layer(s) TITLE.</li>
-<li>To check what layers are available, add your WMS to QGIS first Layer/Add Layer/WMS layer... and have a look what’s there.</li>
+<li>Используйте NAME слоя (слоёв), а не TITLE.</li>
+<li>Легко определить какие слои доступны в сервисе WMS можно подключив его, например, в QGIS (меню Слой/Добавить слой/Слой WMS...).</li>
 </ul>
-<p><strong>Q: I’ve seen services links that are different from examples above, are there other examples?</strong><br>
-A: Yes, there are lots of varieties and service link can look very differently. Just browse QMS clicking on service type and see what kind of links other services show.</p>
-<p>Start with the ones down below.</p>
-<p><strong>Q: I’ve created a service, but type in incorrect, can I change it?</strong><br>
-A: You can't change the type of a service once created. You'll need to create another one with the correct type.</p>
-<p><strong>Q: How can I delete a service?</strong><br>
-A: You can't delete services at the moment. Report a problem and we'll remove it soon.</p>
-<p><strong>Q: How do I check that my service is OK?</strong><br>
-A: Find it through a client and add to see the data on a map. In QGIS you can use QuickMapServices plugin.<br>
-<p><strong>Q: What is service boundary and why add it?</strong><br>
-A: Service boundary describes its geographic extent. It is not mandatory, but if the service has boundary, several convenient feature become available. For example, service becomes discoverable by its location on the map, even if name is unknown.<br>
-<p><strong>Q: How do I add service boundary?</strong><br>
-A: Service boundary can be added while creating or editing a service. Service boundary is a GeoJSON file with the following parameters:<br>
+<p><strong><self-link href="othersevices">Q: Я видел ссылки на сервисы отличающиеся от примеров выше, где посмотреть другие образцы?</self-link></strong><br>
+A: В целом ссылки на сервисы не стандартизованы и у них есть много вариантов. Просто полистайте каталог и посмотрите на другие примеры.</p>
+<p>Начните с более ранних.</p>
+<p><strong><self-link href="wrongtype">Q: Я создал сервис, но ошибся с его типом, могу я его поменять?</self-link></strong><br>
+A: Вы не можете поменять тип сервиса после его создания. Создайте новый с правильным типом.</p>
+<p><strong><self-link href="howdelete">Q: Как удалить свой сервис?</self-link></strong><br>
+A: На данный момент удалять сервисы нельзя.</p>
+<p><strong><self-link href="doesitwork">Q: Как убедиться в том, что мой сервис — работает?</self-link></strong><br>
+A: Найдите и подключите его через свой клиент ГИС. Например, в QGIS можно использовать модуль QuickMapServices.<br>
+<p><strong><self-link href="serviceboundary">Q: Что такое граница сервиса и зачем она нужна?</self-link></strong><br>
+A: Граница сервиса описывает его географический охват. Она не обязательна, но если у сервиса есть граница, то появляются новые полезные возможности. Например можно найти сервис по местоположению на карте, даже не зная его названия.<br>
+<p><strong><self-link href="addboundary">Q: Как добавить границу сервиса?</self-link></strong><br>
+A: Добавить границу сервиса можно при его создании или редактировании. Граница сервиса должна быть файлом GeoJSON со следующими параметрами:<br>
 <ul>
-<li>Coordinate system EPSG: 4326</li>
-<li>Geometry type: polygon or multipolygon</li>
-<li>File size: 2 MiB</li>
-<li>Number of feature in a file: one (can in fact be several, but only the first one will be used).</li>
+<li>Система координат EPSG: 4326</li>
+<li>Тип геометрии: полигон или мультиполигон</li>
+<li>Размер файла до 2 Мб</li>
+<li>Количество объектов в файле - один (может быть несколько, но для границы будет взят только первый).</li>
 </ul>
-<p><strong>Q: Where do I get GeoJSON file?</strong><br>
-A: GeoJSON can be created in QGIS or at http://geojson.io<br>
-<p><strong>Q: I added service boundary, how do I check if it works ok?</strong><br>
-A: After adding - find this service in QMS for QGIS and place a mouse cursor over the service in the search panel. If all went well, green rectangle defining service extent will appear on the map. If not - double check your GeoJSON and re-upload if there are problems.<br>
+<p><strong><self-link href="getgeojson">Q: Где взять файл GeoJSON?</self-link></strong><br>
+A: GeoJSON можно создать в QGIS или на http://geojson.io<br>
+<p><strong><self-link href="checkboundary">Q: Как проверить, что граница добавилась нормально?</self-link></strong><br>
+A: После добавления - найдите сервис в QMS для QGIS и наведите мышь на его название в панели поиска. На карте должна появиться граница сервиса в виде прямоугольника. Если граница не появилась - перепроверьте свой GeoJSON.<br>
 <a id="fix"></a></p>
-<h2>Fixing a service</h2>
-<p><strong>Q: I’ve found service, but it doesn’t work, how do I fix it?</strong><br>
-A: Use ‘report a problem’ form.</p>
-<p>Every service has it’s author (maintainer, submitter). Use the form to let the submitter know that the service is broken. Provide information how to fix it.</p>
-<p><strong>Q: I’ve notified service maintainer about problem and provided solution, but maintainer is not reacting, what can I do?</strong><br>
-A: If maintainer doesn’t reply for a long time – create a new service (you’ll become it’s maintainer). Old incorrect service will gradually be removed.</p>
+<h2>
+  <self-link href="fixservice">Исправление сервисов</self-link>
+</h2>
+<p><strong><self-link href="doesntwork">Q: Я нашел нужный мне сервис, но он не работает, что делать?</self-link></strong><br>
+A: Используйте форму обратной связи для связи с автором сервиса.</p>
+<p>У каждого сервиса есть автор, человек который завел его в QMS. Используйте форму, чтобы сообщить ему, что сервис поломался. Если вы понимаете почему, сообщите так же как починить сервис.</p>
+<p><strong><self-link href="notreply">Q: Я сообщил автору сервиса о проблеме, но он молчит, что делать?</self-link></strong><br>
+A: Если автор не отвечает в течение длительного времени — создайте новый сервис с правильными параметрами (вы станете его автором). Старый неправильный сервис постепенно будет удален.</p>
+<a id="delete"></a>
+<h2>
+  <self-link href="removalservices">Удаление сервисов</self-link>
+</h2>
+<p><strong><self-link href="whydeleted">Q: Я создал сервис, но он был удален. Почему?</self-link></strong><br>
+A: Существует несколько причин, почему мы удаляем сервисы: <br>
+<ul>
+<li>они не работают, ссылки явно не рабочие</li>
+<li>это дубликат уже существующего сервиса</li>
+<li>у сервиса нет нормально названия или описания, он явно сделан "для себя". QMS - публичный сервис и сервисы должны быть сделаны с расчетом на публичность.</li>
+</ul>
