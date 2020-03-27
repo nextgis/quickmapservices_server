@@ -16,6 +16,8 @@ import QmsAddForm from './js/qms'
 import './js/preview_map'
 import vueConfig from 'vue-config'
 
+import SelfLink from '@nextgis_common/components/SelfLink/SelfLink.vue';
+
 Vue.use(Vuetify, { 
     theme: {
         primary: '#0070c5',
@@ -96,7 +98,7 @@ Vue.use(vueConfig, configs)
 new Vue({
   i18n,
   el: '#app',
-  components: { App, ServiceList }
+  components: { App, ServiceList, SelfLink }
 })
 
 main();
