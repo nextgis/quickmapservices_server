@@ -1,6 +1,8 @@
 {% load i18n %}
 
-<h1>Frequently Asked Questions about QMS</h1>
+<h1>
+  <self-link href="faq">Frequently Asked Questions about QMS</self-link>
+</h1>
 <p>If you don’t see an answer to your question below, let us know in comments or <a href="http://nextgis.com/contact" target="_blank">send</a> it to us directly, we’ll add it here.</p>
 <ul>
 <li><a class="scrollto-link fake-link" href="#general">General</a></li>
@@ -9,25 +11,45 @@
 <li><a class="scrollto-link fake-link" href="#fix">Fixing a service</a></li>
 </ul>
 <p><a id="general"></a></p>
-<h2>General</h2>
-<p><strong>Q: What’s QuickMapServices?</strong><br>
+<h2>
+   <self-link href="general">General</self-link>
+</h2>
+<p><strong>
+  <self-link href="whatisqms">Q: What’s QuickMapServices?</self-link>
+  </strong><br>
 A: QuickMapServices (QMS) is an open catalog of geodata sources and a way to add them to your GIS in one click (<a href="https://qms.nextgis.com/about">read more</a>).</p>
-<p><strong>Q: What is the goal of QMS</strong><br>
+<p><strong>
+  <self-link href="whatispoint">Q: What is the goal of QMS</self-link>
+  </strong><br>
 A: To make geospatial services more accessible.</p>
-<p><strong>Q: Why add services to QMS?</strong><br>
+<p><strong>
+  <self-link href="whyaddservices">Q: Why add services to QMS?</self-link>
+  </strong><br>
 A: To easily find them and plug-in to your GIS project. Literally in just few clicks.</p>
-<p><strong>Q: Can I add services to GIS without QMS?</strong><br>
+<p><strong>
+  <self-link href="addwithout">Q: Can I add services to GIS without QMS?</self-link>
+  </strong><br>
 A: Sure! But you’ll have to enter cumbersome links and parameters.<br>
 <a id="use"></a></p>
-<h2>Using a service</h2>
-<p><strong>Q: How do I use one of the services from QMS?</strong><br>
+<h2
+    <self-link href="usingservices">>Using a service</self-link>
+</h2>
+<p><strong>
+  ><self-link href="howuse"Q: How do I use one of the services from QMS?</self-link>
+  </strong><br>
 A: Search and add it in your GIS. Currently there are clients for <a href="http://nextgis.com/blog/quickmapservices/">QGIS</a>, <a href="https://my.nextgis.com/downloads/software/arcqms/ArcQMSInstaller.msi">ArcGIS</a> and <a href="http://nextgis.com/blog/ngm-2-4/">NextGIS Mobile.</a></p>
-<p><strong>Q: What kind of data I will get by using one of QMS services?</strong><br>
+<p><strong>
+  <self-link href="datatype">Q: What kind of data I will get by using one of QMS services?</self-link>
+  </strong><br>
 A: This depends on a service. Through QMS you can get access to vector data, basemaps and rasters.<br>
 </p>
 <a id="add"></a>
-<h2>Adding a service</h2>
-<p><strong>Q: What kind of services I can add to QMS?</strong><br>
+<h2>
+  <self-link href="addingservices">Adding a service</self-link>
+</h2>
+<p><strong>
+  <self-link href="servicetype">Q: What kind of services I can add to QMS?</self-link>
+  </strong><br>
 A: You can add:</p>
 <ul>
 <li>TMS – <a href="https://en.wikipedia.org/wiki/Tile_Map_Service">Tile Map Service</a>.</li>
@@ -35,13 +57,21 @@ A: You can add:</p>
 <li>WFS – <a href="https://en.wikipedia.org/wiki/Web_Feature_Service">Web Feature Service</a>.</li>
 <li>GeoJSON – geodata in GeoJSON format. Link to file or data stream.</li>
 </ul>
-<p><strong>Q: What are minimum needs to add a service?</strong><br>
+<p><strong>
+  <self-link href="mininfo">Q: What are minimum needs to add a service?</self-link>
+  </strong><br>
 A: You’ll need to provide a correct service url at the very least.</p>
-<p><strong>Q: All these abbreviations mean absolutely nothing to me, can I still add a service?</strong><br>
+<p><strong>
+  <self-link href="zeroknowledge">Q: All these abbreviations mean absolutely nothing to me, can I still add a service?</self-link>
+  </strong><br>
 A: Unfortunately, not at this point, you’ll need to learn the basics first.</p>
-<p><strong>Q: Ok. I’ve found a website with a map a like and copied it’s link, can I use it?</strong><br>
+<p><strong><self-link href="fewknowledge">
+  Q: Ok. I’ve found a website with a map a like and copied it’s link, can I use it?</self-link>
+  </strong><br>
 A: Most probably not, links copied from browsers address bar are typically not service links that you can use with QMS.</p>
-<p id="correct-links"><strong>Q: What do correct service links look like?</strong><br>
+<p id="correct-links"><strong><
+  self-link href="correctlinks">Q: What do correct service links look like?</self-link>
+  </strong><br>
 A: Here are few examples and their particular features:</p>
 <ul>
 <li>TMS – <a href="http://tile.openstreetmap.org/{z}/{x}/{y}.png">http://tile.openstreetmap.org/{z}/{x}/{y}.png</a>
@@ -70,24 +100,32 @@ A: Here are few examples and their particular features:</p>
 </ul>
 </li>
 </ul>
-<p><strong>Q: What should I know to succesfully create WMS service?</strong><br>
+<p><strong>
+  <self-link href="importantpoints">Q: What should I know to succesfully create WMS service?</self-link>
+  </strong><br>
 A: Please note the following particulars when creating a WMS service:</p>
 <ul>
 <li>You should use layer(s) NAME, not layer(s) TITLE.</li>
 <li>To check what layers are available, add your WMS to QGIS first Layer/Add Layer/WMS layer... and have a look what’s there.</li>
 </ul>
-<p><strong>Q: I’ve seen services links that are different from examples above, are there other examples?</strong><br>
+<p><strong>
+  <self-link href="othersevices">Q: I’ve seen services links that are different from examples above, are there other examples?</self-link>
+  </strong><br>
 A: Yes, there are lots of varieties and service link can look very differently. Just browse QMS clicking on service type and see what kind of links other services show.</p>
 <p>Start with the ones down below.</p>
-<p><strong>Q: I’ve created a service, but type in incorrect, can I change it?</strong><br>
+<p><strong>
+  <self-link href="wrongtype">Q: I’ve created a service, but type in incorrect, can I change it?</self-link>
+  </strong><br>
 A: You can't change the type of a service once created. You'll need to create another one with the correct type.</p>
-<p><strong>Q: How can I delete a service?</strong><br>
-A: You can't delete services at the moment. Report a problem and we'll remove it soon.</p>
-<p><strong>Q: How do I check that my service is OK?</strong><br>
+<p><strong>
+  <self-link href="doesitwork">Q: How do I check that my service is OK?</self-link>
+  </strong><br>
 A: Find it through a client and add to see the data on a map. In QGIS you can use QuickMapServices plugin.<br>
 <p><strong>Q: What is service boundary and why add it?</strong><br>
 A: Service boundary describes its geographic extent. It is not mandatory, but if the service has boundary, several convenient feature become available. For example, service becomes discoverable by its location on the map, even if name is unknown.<br>
-<p><strong>Q: How do I add service boundary?</strong><br>
+<p><strong>
+  <self-link href="serviceboundary">Q: How do I add service boundary?</self-link>
+  </strong><br>
 A: Service boundary can be added while creating or editing a service. Service boundary is a GeoJSON file with the following parameters:<br>
 <ul>
 <li>Coordinate system EPSG: 4326</li>
@@ -95,14 +133,38 @@ A: Service boundary can be added while creating or editing a service. Service bo
 <li>File size: 2 MiB</li>
 <li>Number of feature in a file: one (can in fact be several, but only the first one will be used).</li>
 </ul>
-<p><strong>Q: Where do I get GeoJSON file?</strong><br>
+<p><strong>
+  <self-link href="getgeojson">Q: Where do I get GeoJSON file?</self-link>
+  </strong><br>
 A: GeoJSON can be created in QGIS or at http://geojson.io<br>
-<p><strong>Q: I added service boundary, how do I check if it works ok?</strong><br>
+<p><strong>
+  <self-link href="checkboundary">Q: I added service boundary, how do I check if it works ok?</self-link>
+  </strong><br>
 A: After adding - find this service in QMS for QGIS and place a mouse cursor over the service in the search panel. If all went well, green rectangle defining service extent will appear on the map. If not - double check your GeoJSON and re-upload if there are problems.<br>
 <a id="fix"></a></p>
-<h2>Fixing a service</h2>
-<p><strong>Q: I’ve found service, but it doesn’t work, how do I fix it?</strong><br>
+<h2>
+  <self-link href="fixservice"Fixing a service</self-link>
+</h2>
+<p><strong>
+  <self-link href="doesntwork">Q: I’ve found service, but it doesn’t work, how do I fix it?</self-link>
+  </strong><br>
 A: Use ‘report a problem’ form.</p>
 <p>Every service has it’s author (maintainer, submitter). Use the form to let the submitter know that the service is broken. Provide information how to fix it.</p>
-<p><strong>Q: I’ve notified service maintainer about problem and provided solution, but maintainer is not reacting, what can I do?</strong><br>
+<p><strong>
+  <self-link href="notreply">Q: I’ve notified service maintainer about problem and provided solution, but maintainer is not reacting, what can I do?</self-link>
+  </strong><br>
 A: If maintainer doesn’t reply for a long time – create a new service (you’ll become it’s maintainer). Old incorrect service will gradually be removed.</p>
+<h2>
+  <self-link href="removalservices">Removing Services</self-link>
+</h2>
+<p><strong><self-link href="whydeleted">Q: I've created service, but it was removed. Why?</self-link></strong><br>
+A: There are several reasons why we remove services:<br>
+<ul>
+<li>the service is not working for a long time (due to a broken link or other parameters)/li>
+<li>he service is a duplicate of an already created one</li>
+<li>the service lacks proper name and/or description. QMS is a public collection, all services must have explicit metadata.</li>
+</ul>
+<p><strong>
+  <self-link href="howdelete">Q: How can I delete a service?</self-link>
+  </strong><br>
+A: You can't delete services at the moment. Report a problem and we'll remove it soon.</p>
