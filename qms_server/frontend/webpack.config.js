@@ -103,8 +103,12 @@ module.exports = (env, argv) => {
       alias: {
         'vue$': 'vue/dist/vue.esm.js',
         '@': resolve('src'),
-        '@nextgis_common': resolve('../nextgis_common/frontend/src')
-      }
+        '@nextgis_common': resolve('../nextgis_common/frontend/src'),
+      },
+      modules: [ 
+        path.resolve(__dirname, '../node_modules'), 
+        path.resolve(__dirname, '../nextgis_common/node_modules/'), 
+      ]
     },
     module: {
       rules

@@ -15,12 +15,12 @@
     "@babel/polyfill": "^7.4.4",
     "leaflet": "^1.4.0",
     "leaflet-wfst": "^2.0.0",
-    "nextgis_common": "file:./nextgis_common",
+    "nextgis_common": "file:nextgis_common",
+    "nouislider": "^13.1.5",
     "proj4leaflet": "^1.0.2",
     "vue": "2.6.10",
     "vuetify": "1.3.9",
-    "whatwg-fetch": "^3.0.0",
-    "nouislider": "^13.1.5"
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
