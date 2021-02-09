@@ -160,7 +160,7 @@ class GeoService(models.Model):
     guid = models.UUIDField(_('service guid'), default=uuid.uuid4, editable=False)
     name = models.CharField(_('service name'), unique=True, max_length=100, blank=False, null=False)
     desc = models.TextField(_('description'), blank=True, null=True)
-    type = models.CharField(_('service type'), max_length=20, editable=False, null=False)
+    type = models.CharField(_('service type'), max_length=20, null=False)
     epsg = models.IntegerField(_('EPSG Code'), null=True, blank=True)
     icon = models.ForeignKey(ServiceIcon, models.SET_NULL, blank=True, null=True)
     # license
@@ -198,6 +198,18 @@ class GeoService(models.Model):
         if self.type == GeoJsonService.service_type:
             return self.geojsonservice
         return self
+    
+    @classmethod
+    def get_typed_class(cls, service_type):
+        if service_type == TmsService.service_type:
+            return TmsService
+        if service_type == WmsService.service_type:
+            return WmsService
+        if service_type == WfsService.service_type:
+            return WfsService
+        if service_type == GeoJsonService.service_type:
+            return GeoJsonService
+        return cls
 
 
 class TmsUrlField(models.CharField):

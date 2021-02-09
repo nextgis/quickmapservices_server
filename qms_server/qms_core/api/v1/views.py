@@ -3,18 +3,22 @@ import random
 
 from django_filters import AllValuesFilter, CharFilter
 from rest_framework.filters import SearchFilter, DjangoFilterBackend, OrderingFilter, FilterSet
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer, OrderedDict, SlugRelatedField, SerializerMethodField
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 from rest_framework.viewsets import ReadOnlyModelViewSet
+from rest_framework import status
+from rest_framework import authentication
+from rest_framework import permissions
 
 from ...icon_renderer import IconRenderer
 from ...icon_serializer import IconSerializer
-from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService, GeoServiceStatus
+from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService, GeoServiceStatus, CumulativeStatus
 
+from qms_core.status_checker.status_checker import check_by_id_and_save
 
 # === Serializers
 class GeoServiceGenericSerializer(ModelSerializer):
@@ -26,6 +30,43 @@ class GeoServiceSerializer(GeoServiceGenericSerializer):
         model = GeoService
         fields = ('id', 'guid', 'name', 'desc', 'type', 'epsg', 'icon', 'submitter', 'created_at', 'updated_at', 'cumulative_status', 'extent')
 
+class GeoServiceCreationSerializer(GeoServiceGenericSerializer):
+    class Meta:
+        model = GeoService
+        fields = (
+            'name', 
+            'desc', 
+            'type', 
+            'epsg', 
+            'icon', 
+            'license_name',
+            'license_url',
+            'copyright_text',
+            'copyright_url',
+            'terms_of_use_url',
+            'extent',
+            'boundary',
+            'boundary_area',
+            # TmsService
+            'url',
+            'z_min',
+            'z_max',
+            'y_origin_top',
+            # WmsService
+            'params',
+            'layers',
+            'turn_over',
+            'format',
+            # WfsService
+            'layer'
+        )
+
+    def create(self, validated_data):
+        service_type = validated_data['type']
+        self.Meta.model = self.Meta.model.get_typed_class(service_type)
+        obj = super(GeoServiceCreationSerializer, self).create(validated_data)
+        check_by_id_and_save(obj.id)
+        return obj
 
 class TmsServiceSerializer(GeoServiceGenericSerializer):
     url = SerializerMethodField()
@@ -112,6 +153,38 @@ class GeoServiceListView(ListAPIView):
     search_fields = ('name', 'desc')
     ordering_fields = ('id', 'name', 'created_at', 'updated_at')
     ordering = ('name',)
+
+class AuthorizedCompanyUser(permissions.BasePermission):
+    def has_permission(self, request, view):
+        whoami = request.user
+        return True
+        # return bool(request.user and request.user.is_corporate_user)
+
+class GeoServiceCreateView(CreateAPIView):
+    queryset = GeoService.objects.all()
+    serializer_class = GeoServiceCreationSerializer
+    authentication_classes = (authentication.SessionAuthentication,)
+    permission_classes = (AuthorizedCompanyUser,)
+
+    # https://stackoverflow.com/a/54993327
+    def create(self, request, *args, **kwargs):
+        str_status = 'ok'
+        guid = ''
+        try:
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            instance = serializer.save() 
+            
+            guid = instance.guid
+        except Exception as e:
+            print(e.detail)
+            str_status = 'failed'
+
+        result = {'status': str_status}
+        if guid:
+            result['guid'] = guid
+        
+        return Response(result, status=status.HTTP_201_CREATED)
 
 
 class GeoServiceDetailedView(RetrieveAPIView):
