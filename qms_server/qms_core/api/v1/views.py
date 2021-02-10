@@ -3,7 +3,7 @@ import random
 
 from django_filters import AllValuesFilter, CharFilter
 from rest_framework.filters import SearchFilter, DjangoFilterBackend, OrderingFilter, FilterSet
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, RetrieveUpdateAPIView, DestroyAPIView
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer, OrderedDict, SlugRelatedField, SerializerMethodField
@@ -52,10 +52,11 @@ class GeoServiceCreationSerializer(GeoServiceGenericSerializer):
             'boundary_area'
         )
 
-    def create(self, validated_data):
-        obj = super(GeoServiceCreationSerializer, self).create(validated_data)
-        check_by_id_and_save(obj.id)
-        return obj
+    # def create(self, validated_data):
+        # obj = super(GeoServiceCreationSerializer, self).create(validated_data)
+        # checking may take a long time
+        # check_by_id_and_save(obj.id)
+        # return obj
 
 
 class TmsServiceModificationSerializer(GeoServiceCreationSerializer):
@@ -88,6 +89,12 @@ class WfsServiceModificationSerializer(GeoServiceCreationSerializer):
             'url',
             'layer'
         )
+        extra_kwargs_on_update = {
+            'url': {'required': False}, 
+            'layer': {'required': False},
+            'type': {'required': False},
+            'name': {'required': False}
+        }
 
 
 class GeoJsonServiceModificationSerializer(GeoServiceCreationSerializer):
@@ -191,19 +198,46 @@ class AuthorizedCompanyUser(permissions.BasePermission):
             return True
         return False
 
-class GeoServiceCreateView(CreateAPIView):
+
+class GeoServiceModificationMixin:
     queryset = GeoService.objects.all()
-    serializer_class = GeoServiceCreationSerializer
     authentication_classes = (authentication.SessionAuthentication,)
     permission_classes = (AuthorizedCompanyUser,)
 
+    def get_object(self):
+        kw = self.kwargs
+        guid_val = kw.get('guid')
+        obj_type = GeoService.objects.filter(guid=guid_val).values_list('type', flat=True).get()
+        cls = GeoService.get_typed_class(obj_type)
+        obj = cls.objects.filter(guid=guid_val).first()
+        return obj
+
+    def _make_result(self, str_status, str_message, guid):
+        result = {'status': str_status}
+        if guid:
+            result['guid'] = guid
+        if str_message:
+            result['message'] = str_message
+
+        return result
+
+    def _handle_exception(self, str_status, str_message, e):
+        str_status = 'failed'
+        str_message = e.message
+        if hasattr(e, 'detail'):
+            str_message = e.detail
+
+        return str_status, str_message
+
+    
+class GeoServiceCreateView(GeoServiceModificationMixin, CreateAPIView):
     # https://stackoverflow.com/a/54993327
     # https://stackoverflow.com/a/36786134
     def create(self, request, *args, **kwargs):
         str_status = 'ok'
         str_message = ''
         guid = ''
-        # self.service_type = kwargs.get('service_type')
+        
         self.service_type = request.data.get('type')
 
         types = GeoService.get_valid_service_types()
@@ -213,21 +247,13 @@ class GeoServiceCreateView(CreateAPIView):
         try:
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
-            # serializer.errors
             instance = serializer.save() 
             
             guid = instance.guid
         except Exception as e:
-            str_status = 'failed'
-            str_message = e.message
-            if hasattr(e, 'detail'):
-                str_message = e.detail
+            str_status, str_message = self._handle_exception(str_status, str_message, e)
 
-        result = {'status': str_status}
-        if guid:
-            result['guid'] = guid
-        if str_message:
-            result['message'] = str_message
+        result = self._make_result(str_status, str_message, guid)
         
         return Response(result, status=status.HTTP_201_CREATED)
 
@@ -246,6 +272,56 @@ class GeoServiceCreateView(CreateAPIView):
         if service_type == GeoJsonService.service_type:
             return GeoJsonServiceModificationSerializer
         return cls
+
+
+class GeoServiceUpdateView(GeoServiceModificationMixin, RetrieveUpdateAPIView):
+    lookup_field = 'guid'
+
+    def update(self, request, *args, **kwargs):
+        str_status = 'ok'
+        str_message = ''
+        guid = ''
+
+        instance = self.get_object()
+        self.service_type = instance.type
+        request_service_type = request.data.get('type')
+
+        if request_service_type:
+            raise Exception('do not specify service type in update operation')
+
+        try:
+            serializer = self.get_serializer(data=request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            instance = serializer.update(instance, serializer.validated_data) 
+            
+            guid = instance.guid
+        except Exception as e:
+            str_status, str_message = self._handle_exception(str_status, str_message, e)
+
+        result = self._make_result(str_status, str_message, guid)
+        
+        return Response(result, status=status.HTTP_200_OK)
+
+
+class GeoServiceDeleteView(GeoServiceModificationMixin, DestroyAPIView):
+    lookup_field = 'guid'
+
+    def delete(self, request, *args, **kwargs):
+        str_status = 'ok'
+        str_message = ''
+        guid = ''
+
+        try:
+            instance = self.get_object()
+            guid = instance.guid
+            self.perform_destroy(instance)
+
+        except Exception as e:
+            str_status, str_message = self._handle_exception(str_status, str_message, e)
+
+        result = self._make_result(str_status, str_message, guid)
+        
+        return Response(result, status=status.HTTP_200_OK)
 
 
 class GeoServiceDetailedView(RetrieveAPIView):
