@@ -20,6 +20,8 @@ from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIco
 
 from qms_core.status_checker.status_checker import check_by_id_and_save
 
+from django.conf import settings
+
 # === Serializers
 class GeoServiceGenericSerializer(ModelSerializer):
     cumulative_status = SlugRelatedField(many=False, source='last_status', slug_field='cumulative_status', read_only=True)
@@ -29,6 +31,7 @@ class GeoServiceSerializer(GeoServiceGenericSerializer):
     class Meta:
         model = GeoService
         fields = ('id', 'guid', 'name', 'desc', 'type', 'epsg', 'icon', 'submitter', 'created_at', 'updated_at', 'cumulative_status', 'extent')
+
 
 class GeoServiceCreationSerializer(GeoServiceGenericSerializer):
     class Meta:
@@ -46,27 +49,54 @@ class GeoServiceCreationSerializer(GeoServiceGenericSerializer):
             'terms_of_use_url',
             'extent',
             'boundary',
-            'boundary_area',
-            # TmsService
+            'boundary_area'
+        )
+
+    def create(self, validated_data):
+        obj = super(GeoServiceCreationSerializer, self).create(validated_data)
+        check_by_id_and_save(obj.id)
+        return obj
+
+
+class TmsServiceModificationSerializer(GeoServiceCreationSerializer):
+    class Meta:
+        model = TmsService
+        fields = GeoServiceCreationSerializer.Meta.fields + (
             'url',
             'z_min',
             'z_max',
             'y_origin_top',
-            # WmsService
+        )
+    
+   
+class WmsServiceModificationSerializer(GeoServiceCreationSerializer):
+    class Meta:
+        model = WmsService
+        fields = GeoServiceCreationSerializer.Meta.fields + (
+            'url',
             'params',
             'layers',
             'turn_over',
-            'format',
-            # WfsService
+            'format'
+        )
+
+
+class WfsServiceModificationSerializer(GeoServiceCreationSerializer):
+    class Meta:
+        model = WfsService
+        fields = GeoServiceCreationSerializer.Meta.fields + (
+            'url',
             'layer'
         )
 
-    def create(self, validated_data):
-        service_type = validated_data['type']
-        self.Meta.model = self.Meta.model.get_typed_class(service_type)
-        obj = super(GeoServiceCreationSerializer, self).create(validated_data)
-        check_by_id_and_save(obj.id)
-        return obj
+
+class GeoJsonServiceModificationSerializer(GeoServiceCreationSerializer):
+    class Meta:
+        model = GeoJsonService
+        fields = GeoServiceCreationSerializer.Meta.fields + (
+            'url',
+        )
+
 
 class TmsServiceSerializer(GeoServiceGenericSerializer):
     url = SerializerMethodField()
@@ -156,9 +186,10 @@ class GeoServiceListView(ListAPIView):
 
 class AuthorizedCompanyUser(permissions.BasePermission):
     def has_permission(self, request, view):
-        whoami = request.user
-        return True
-        # return bool(request.user and request.user.is_corporate_user)
+        user = request.user
+        if user.id in settings.API_MODIFY_USERS:
+            return True
+        return False
 
 class GeoServiceCreateView(CreateAPIView):
     queryset = GeoService.objects.all()
@@ -167,24 +198,54 @@ class GeoServiceCreateView(CreateAPIView):
     permission_classes = (AuthorizedCompanyUser,)
 
     # https://stackoverflow.com/a/54993327
+    # https://stackoverflow.com/a/36786134
     def create(self, request, *args, **kwargs):
         str_status = 'ok'
+        str_message = ''
         guid = ''
+        # self.service_type = kwargs.get('service_type')
+        self.service_type = request.data.get('type')
+
+        types = GeoService.get_valid_service_types()
+        if self.service_type not in types:
+            raise Exception('wrong service type ')
+
         try:
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
+            # serializer.errors
             instance = serializer.save() 
             
             guid = instance.guid
         except Exception as e:
-            print(e.detail)
             str_status = 'failed'
+            str_message = e.message
+            if hasattr(e, 'detail'):
+                str_message = e.detail
 
         result = {'status': str_status}
         if guid:
             result['guid'] = guid
+        if str_message:
+            result['message'] = str_message
         
         return Response(result, status=status.HTTP_201_CREATED)
+
+    def get_serializer_class(self):
+        service_type = self.service_type
+        serializer_class = self.get_modification_serializer_class( service_type )
+        return serializer_class
+
+    def get_modification_serializer_class(self, service_type):
+        if service_type == TmsService.service_type:
+            return TmsServiceModificationSerializer
+        if service_type == WmsService.service_type:
+            return WmsServiceModificationSerializer
+        if service_type == WfsService.service_type:
+            return WfsServiceModificationSerializer
+        if service_type == GeoJsonService.service_type:
+            return GeoJsonServiceModificationSerializer
+        return cls
 
 
 class GeoServiceDetailedView(RetrieveAPIView):
