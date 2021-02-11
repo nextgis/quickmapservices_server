@@ -289,10 +289,11 @@ class GeoServiceUpdateView(GeoServiceModificationMixin, RetrieveUpdateAPIView):
         self.service_type = instance.type
         request_service_type = request.data.get('type')
 
-        if request_service_type:
-            raise Exception('do not specify service type in update operation')
-
         try:
+            if request_service_type:
+                raise Exception('do not specify service type in update operation')
+            if not request.data:
+                raise Exception('empty data not allowed in update operation')
             serializer = self.get_serializer(data=request.data, partial=True)
             serializer.is_valid(raise_exception=True)
             instance.updated_at = datetime.datetime.now()
