@@ -203,7 +203,7 @@ class AuthorizedCompanyUser(permissions.BasePermission):
 class GeoServiceModificationMixin:
     queryset = GeoService.objects.all()
     authentication_classes = (authentication.SessionAuthentication,)
-    # permission_classes = (AuthorizedCompanyUser,)
+    permission_classes = (AuthorizedCompanyUser,)
     serializer_class = GeoServiceCreationSerializer
 
     def get_object(self):
