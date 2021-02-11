@@ -1,5 +1,6 @@
 import os
 import random
+import datetime
 
 from django_filters import AllValuesFilter, CharFilter
 from rest_framework.filters import SearchFilter, DjangoFilterBackend, OrderingFilter, FilterSet
@@ -202,7 +203,8 @@ class AuthorizedCompanyUser(permissions.BasePermission):
 class GeoServiceModificationMixin:
     queryset = GeoService.objects.all()
     authentication_classes = (authentication.SessionAuthentication,)
-    permission_classes = (AuthorizedCompanyUser,)
+    # permission_classes = (AuthorizedCompanyUser,)
+    serializer_class = GeoServiceCreationSerializer
 
     def get_object(self):
         kw = self.kwargs
@@ -211,6 +213,22 @@ class GeoServiceModificationMixin:
         cls = GeoService.get_typed_class(obj_type)
         obj = cls.objects.filter(guid=guid_val).first()
         return obj
+
+    def get_serializer_class(self):
+        service_type = self.service_type
+        serializer_class = self._get_modification_serializer_class( service_type )
+        return serializer_class
+
+    def _get_modification_serializer_class(self, service_type):
+        if service_type == TmsService.service_type:
+            return TmsServiceModificationSerializer
+        if service_type == WmsService.service_type:
+            return WmsServiceModificationSerializer
+        if service_type == WfsService.service_type:
+            return WfsServiceModificationSerializer
+        if service_type == GeoJsonService.service_type:
+            return GeoJsonServiceModificationSerializer
+        return cls
 
     def _make_result(self, str_status, str_message, guid):
         result = {'status': str_status}
@@ -244,10 +262,11 @@ class GeoServiceCreateView(GeoServiceModificationMixin, CreateAPIView):
         if self.service_type not in types:
             raise Exception('wrong service type ')
 
+        user = request.user
         try:
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
-            instance = serializer.save() 
+            instance = serializer.save(submitter=user) 
             
             guid = instance.guid
         except Exception as e:
@@ -256,22 +275,6 @@ class GeoServiceCreateView(GeoServiceModificationMixin, CreateAPIView):
         result = self._make_result(str_status, str_message, guid)
         
         return Response(result, status=status.HTTP_201_CREATED)
-
-    def get_serializer_class(self):
-        service_type = self.service_type
-        serializer_class = self.get_modification_serializer_class( service_type )
-        return serializer_class
-
-    def get_modification_serializer_class(self, service_type):
-        if service_type == TmsService.service_type:
-            return TmsServiceModificationSerializer
-        if service_type == WmsService.service_type:
-            return WmsServiceModificationSerializer
-        if service_type == WfsService.service_type:
-            return WfsServiceModificationSerializer
-        if service_type == GeoJsonService.service_type:
-            return GeoJsonServiceModificationSerializer
-        return cls
 
 
 class GeoServiceUpdateView(GeoServiceModificationMixin, RetrieveUpdateAPIView):
@@ -292,6 +295,7 @@ class GeoServiceUpdateView(GeoServiceModificationMixin, RetrieveUpdateAPIView):
         try:
             serializer = self.get_serializer(data=request.data, partial=True)
             serializer.is_valid(raise_exception=True)
+            instance.updated_at = datetime.datetime.now()
             instance = serializer.update(instance, serializer.validated_data) 
             
             guid = instance.guid
