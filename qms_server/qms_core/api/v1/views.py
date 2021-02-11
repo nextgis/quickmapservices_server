@@ -20,6 +20,8 @@ from ...icon_serializer import IconSerializer
 from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService, GeoServiceStatus, CumulativeStatus
 
 from qms_core.status_checker.status_checker import check_by_id_and_save
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
 
 from django.conf import settings
 
@@ -200,9 +202,14 @@ class AuthorizedCompanyUser(permissions.BasePermission):
         return False
 
 
+class CsrfExemptSessionAuthentication(authentication.SessionAuthentication):
+    def enforce_csrf(self, request):
+        return
+
+
 class GeoServiceModificationMixin:
     queryset = GeoService.objects.all()
-    authentication_classes = (authentication.SessionAuthentication,)
+    authentication_classes = (CsrfExemptSessionAuthentication,)
     permission_classes = (AuthorizedCompanyUser,)
     serializer_class = GeoServiceCreationSerializer
 
@@ -215,7 +222,9 @@ class GeoServiceModificationMixin:
         return obj
 
     def get_serializer_class(self):
-        service_type = self.service_type
+        service_type = None
+        if hasattr(self, 'service_type'):
+            service_type = self.service_type
         serializer_class = self._get_modification_serializer_class( service_type )
         return serializer_class
 
@@ -228,7 +237,7 @@ class GeoServiceModificationMixin:
             return WfsServiceModificationSerializer
         if service_type == GeoJsonService.service_type:
             return GeoJsonServiceModificationSerializer
-        return cls
+        return GeoServiceModificationMixin
 
     def _make_result(self, str_status, str_message, guid):
         result = {'status': str_status}
