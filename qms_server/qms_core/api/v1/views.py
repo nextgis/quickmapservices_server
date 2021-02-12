@@ -22,6 +22,8 @@ from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIco
 from qms_core.status_checker.status_checker import check_by_id_and_save
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AnonymousUser
 
 from django.conf import settings
 
@@ -196,8 +198,15 @@ class GeoServiceListView(ListAPIView):
 
 class AuthorizedCompanyUser(permissions.BasePermission):
     def has_permission(self, request, view):
+
+        meta = request.META
+        http_auth = meta.get('HTTP_AUTHORIZATION')
+        if http_auth:
+            if http_auth == settings.MODIFICATION_API_BASIC_AUTH:
+                return True
+
         user = request.user
-        if user.id in settings.API_MODIFY_USERS:
+        if user.id in settings.MODIFICATION_API_USERS:
             return True
         return False
 
@@ -273,6 +282,10 @@ class GeoServiceCreateView(GeoServiceModificationMixin, CreateAPIView):
 
         user = request.user
         try:
+            if isinstance(user, AnonymousUser):
+                user_model = get_user_model()
+                users_api = settings.MODIFICATION_API_USERS
+                user = user_model.objects.filter(id=users_api[0]).get()
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
             instance = serializer.save(submitter=user) 

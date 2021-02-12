@@ -142,7 +142,7 @@ class GeoserviceDetailView(TemplateView, ReportFormMixin):
         kwargs['can_user_delete'] = False
         user = self.request.user
         if user.id:
-            if user.id in settings.API_MODIFY_USERS:
+            if user.id in settings.MODIFICATION_API_USERS:
                 kwargs['can_user_delete'] = True
 
         if service.type == TmsService.service_type:
