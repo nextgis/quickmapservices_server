@@ -206,7 +206,7 @@ class AuthorizedCompanyUser(permissions.BasePermission):
                 return True
 
         user = request.user
-        if user.id in settings.MODIFICATION_API_USERS:
+        if user.groups.filter(name='MODIFICATION_API_USERS').exists():
             return True
         return False
 
@@ -283,7 +283,7 @@ class GeoServiceCreateView(GeoServiceModificationMixin, CreateAPIView):
             if isinstance(user, AnonymousUser):
                 user_model = get_user_model()
                 users_api = settings.MODIFICATION_API_USERS
-                user = user_model.objects.filter(id=users_api[0]).get()
+                user = user_model.objects.filter(name='sim').get()
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
             instance = serializer.save(submitter=user) 
