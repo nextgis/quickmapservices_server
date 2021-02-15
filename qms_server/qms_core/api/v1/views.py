@@ -259,9 +259,7 @@ class GeoServiceModificationMixin:
 
     def _handle_exception(self, str_status, str_message, e):
         str_status = 'failed'
-        str_message = e.message
-        if hasattr(e, 'detail'):
-            str_message = e.detail
+        str_message = str(e)
 
         return str_status, str_message
 
