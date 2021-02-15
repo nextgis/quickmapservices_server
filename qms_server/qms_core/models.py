@@ -14,8 +14,8 @@ from django.utils.translation import ugettext as _
 from django.utils.encoding import python_2_unicode_compatible
 
 # Create your models here.
-from size_restricted_image_field import SizeRestrictedImageField
-from supported_languages import SupportedLanguages
+from qms_core.size_restricted_image_field import SizeRestrictedImageField
+from qms_core.supported_languages import SupportedLanguages
 
 # USERS
 class NextgisUserManager(BaseUserManager):

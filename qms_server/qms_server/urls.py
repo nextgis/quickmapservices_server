@@ -18,7 +18,7 @@ from django.contrib import admin
 
 
 # noinspection PyUnresolvedReferences
-import admin as localadmin  # For admin customization
+import qms_server.admin as localadmin  # For admin customization
 
 
 urlpatterns = [

@@ -194,7 +194,7 @@ CRONJOBS = [
 
 # try to load local machine settings
 try:
-    from settings_local import *
+    from qms_server.settings_local import *
 except:
     raise
 
