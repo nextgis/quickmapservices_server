@@ -160,7 +160,7 @@ class GeoService(models.Model):
     guid = models.UUIDField(_('service guid'), default=uuid.uuid4, editable=False)
     name = models.CharField(_('service name'), unique=True, max_length=100, blank=False, null=False)
     desc = models.TextField(_('description'), blank=True, null=True)
-    type = models.CharField(_('service type'), max_length=20, null=False)
+    type = models.CharField(_('service type'), max_length=20, editable=False, null=False)
     epsg = models.IntegerField(_('EPSG Code'), null=True, blank=True)
     icon = models.ForeignKey(ServiceIcon, models.SET_NULL, blank=True, null=True)
     # license
