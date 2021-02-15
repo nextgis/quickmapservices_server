@@ -274,13 +274,13 @@ class GeoServiceCreateView(GeoServiceModificationMixin, CreateAPIView):
         
         self.service_type = request.data.get('type')
 
-        types = GeoService.get_valid_service_types()
-        if self.service_type not in types:
-            raise Exception('wrong service type ')
-
         user = request.user
         submitter = None
         try:
+            types = GeoService.get_valid_service_types()
+            if self.service_type not in types:
+                raise Exception('wrong service type ')
+
             if isinstance(user, AnonymousUser):
                 user_model = get_user_model()
                 user = user_model.objects.filter(username=settings.CREATION_THROUGH_API_SUBMITTER)
