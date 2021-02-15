@@ -29,7 +29,7 @@ class UserReport(models.Model):
     reported = models.ForeignKey(NextgisUser, on_delete=models.SET_NULL, to_field='nextgis_guid', blank=True, null=True)
     reported_email = models.EmailField(blank=True, null=True)
 
-    geo_service = models.ForeignKey(GeoService, blank=False, null=False)
+    geo_service = models.ForeignKey(GeoService, blank=False, null=False, on_delete=models.DO_NOTHING)
 
     report_type = models.CharField(max_length=20, choices=ReportType.choices.items(), null=False, blank=False)
     report_message = models.TextField(blank=True, null=True)

@@ -2,7 +2,9 @@ import os
 import random
 
 from django_filters import AllValuesFilter, CharFilter
-from rest_framework.filters import SearchFilter, DjangoFilterBackend, OrderingFilter, FilterSet
+#from django_filters import rest_framework as filters
+from rest_framework.filters import SearchFilter, OrderingFilter 
+from django_filters.rest_framework import DjangoFilterBackend, FilterSet
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
@@ -94,13 +96,15 @@ class GeoServiceStatusSerializer(ModelSerializer):
 # === Views Geoservices
 
 class GeoServiceFilterSet(FilterSet):
-    cumulative_status = AllValuesFilter(name="last_status__cumulative_status")
+    # cumulative_status = AllValuesFilter(name="last_status__cumulative_status")
     intersects_extent = CharFilter(name='extent', lookup_expr='intersects')
     intersects_boundary = CharFilter(name='boundary', lookup_expr='intersects')
 
     class Meta:
         model = GeoService
-        fields = ['type', 'epsg', 'submitter', 'cumulative_status']
+        fields = ['type', 'epsg', 'submitter' 
+        # 'last_status__cumulative_status'
+        ]
 
 
 class GeoServiceListView(ListAPIView):

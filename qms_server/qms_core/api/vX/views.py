@@ -1,5 +1,6 @@
 from django_filters import AllValuesFilter, CharFilter
-from rest_framework.filters import SearchFilter, DjangoFilterBackend, OrderingFilter, FilterSet
+from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend, FilterSet
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import IsAdminUser
 from rest_framework.serializers import ModelSerializer, SlugRelatedField, ChoiceField
