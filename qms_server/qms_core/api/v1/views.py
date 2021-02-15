@@ -279,14 +279,17 @@ class GeoServiceCreateView(GeoServiceModificationMixin, CreateAPIView):
             raise Exception('wrong service type ')
 
         user = request.user
+        submitter = None
         try:
             if isinstance(user, AnonymousUser):
                 user_model = get_user_model()
-                users_api = settings.MODIFICATION_API_USERS
-                user = user_model.objects.filter(name='sim').get()
+                user = user_model.objects.filter(username=settings.CREATION_THROUGH_API_SUBMITTER)
+                if user:
+                    user = user.get()
+                    submitter = user
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
-            instance = serializer.save(submitter=user) 
+            instance = serializer.save(submitter=submitter) 
             
             guid = instance.guid
         except Exception as e:

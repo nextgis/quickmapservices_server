@@ -106,6 +106,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'qms@nextgis.com'
 EMAIL_SUBJECT_PREFIX = '[NextGIS QMS feedback] '
 
+CREATION_THROUGH_API_SUBMITTER = 'sim'
 MODIFICATION_API_BASIC_AUTH = 'Basic cW1zX2FwaV9tb2RpZmljYXRvcjpmOFJqNEdEb3cyUFE='
 
 # Database
