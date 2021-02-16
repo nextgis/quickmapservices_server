@@ -141,7 +141,7 @@ class GeoserviceDetailView(TemplateView, ReportFormMixin):
             tms_url_pattern, tms_subdomains = service.tmsservice.get_url_pattern_and_subdomains()
 
             kwargs['leaflet_tms_url'] = tms_url_pattern % {'subdomain': '{s}'}
-            kwargs['leaflet_tms_subdomains'] = map(str, tms_subdomains)
+            kwargs['leaflet_tms_subdomains'] = list(map(str, tms_subdomains))
 
             # Remove this block when the leaflet map is fixed for use subdomain
             if len(tms_subdomains) > 0:

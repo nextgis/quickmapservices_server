@@ -130,10 +130,7 @@ class GeoServiceListView(ListAPIView):
         # TODO: SANITIZE ?
         #
 
-        #
-        # TODO: order by ?
-        #
-        queryset = GeoService.objects.select_related('last_status')
+        queryset = GeoService.objects.select_related('last_status').order_by('-created_at')
         if p_type:
             queryset = queryset.filter(type=p_type)
         if p_submitter:
