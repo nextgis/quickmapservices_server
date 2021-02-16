@@ -5,9 +5,9 @@ FROM ubuntu:20.04
 RUN apt-get update
 RUN mkdir -p /opt/app
 
-COPY ../../qms.docker/quickmapservices_server /opt/app/quickmapservices_server
+COPY qms.docker/quickmapservices_server /opt/app/quickmapservices_server
 
-RUN apt-get update --fix-missing && apt-get -y install python3.6 python3-dev libpq-dev
+RUN apt-get update --fix-missing && apt-get -y install python3.6 python3-dev libpq-dev gdal-bin
 RUN apt-get -y install python3-pip
 
 

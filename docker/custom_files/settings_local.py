@@ -1,6 +1,7 @@
 """
 Django settings for qms_site project.
 """
+import os
 
 # Override
 DEBUG = True

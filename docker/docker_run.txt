@@ -1,6 +1,5 @@
 # https://stackoverflow.com/a/35595021
-docker build --no-cache -t qms:dj22py36 .
-
+docker build --no-cache -t qms:dj22py36 -f docker/Dockerfile .
 
 
 # https://stackoverflow.com/a/37232961
