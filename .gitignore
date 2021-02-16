@@ -130,7 +130,7 @@ db.sqlite3
 maindb.sqlite
 
 # Local settings
-settings_local.py
+qms_server/qms_server/settings_local.py
 
 # CSS compiling source
 /layout/sass

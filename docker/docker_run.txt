@@ -1,0 +1,28 @@
+# https://stackoverflow.com/a/35595021
+docker build --no-cache -t qms:dj22py36 .
+
+
+
+# https://stackoverflow.com/a/37232961
+# https://stackoverflow.com/a/24326540
+# https://stackoverflow.com/a/30494145
+# https://docs.docker.com/engine/reference/builder/#expose
+docker run \
+-dit \
+--network="host" \
+--name qms_dj22py36 \
+-e DATABASE_NAME='qms_server3' \
+-e DATABASE_USER='qms_server' \
+-e DATABASE_PASS='tf7yi8kd' \
+-e DATABASE_HOST='localhost' \
+-e DATABASE_PORT='5432' \
+-P \
+qms:dj22py36
+
+
+
+docker ps -a
+
+
+
+docker exec -it qms_dj22py36 /bin/bash
