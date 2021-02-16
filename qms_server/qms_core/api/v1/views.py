@@ -96,26 +96,53 @@ class GeoServiceStatusSerializer(ModelSerializer):
 # === Views Geoservices
 
 class GeoServiceFilterSet(FilterSet):
-    # cumulative_status = AllValuesFilter(name="last_status__cumulative_status")
+    cumulative_status = AllValuesFilter(name="last_status__cumulative_status")
     intersects_extent = CharFilter(name='extent', lookup_expr='intersects')
     intersects_boundary = CharFilter(name='boundary', lookup_expr='intersects')
 
     class Meta:
         model = GeoService
-        fields = ['type', 'epsg', 'submitter' 
-        # 'last_status__cumulative_status'
-        ]
+        fields = ['type', 'epsg', 'submitter', 'cumulative_status']
 
 
 class GeoServiceListView(ListAPIView):
-    queryset = GeoService.objects.select_related('last_status')
-    serializer_class = GeoServiceSerializer
-    pagination_class = LimitOffsetPagination
-    filter_backends = (OrderingFilter, SearchFilter, DjangoFilterBackend)
-    filter_class = GeoServiceFilterSet
-    search_fields = ('name', 'desc')
-    ordering_fields = ('id', 'name', 'created_at', 'updated_at')
-    ordering = ('name',)
+    # queryset = GeoService.objects.select_related('last_status')
+    # serializer_class = GeoServiceSerializer
+    # pagination_class = LimitOffsetPagination
+    # filter_backends = (OrderingFilter, SearchFilter, DjangoFilterBackend)
+    # filter_class = GeoServiceFilterSet
+    # search_fields = ('name', 'desc')
+    # ordering_fields = ('id', 'name', 'created_at', 'updated_at')
+    # ordering = ('name',)
+
+    def get(self, request, *args, **kwargs):
+        # return self.list(request, *args, **kwargs)
+
+        params = request.query_params
+        p_type = params['type']
+        p_submitter = params['submitter']
+        queryset = GeoService.objects.select_related('last_status')
+        if p_type:
+            queryset = queryset.filter(type=p_type)
+        if p_submitter:
+            queryset = queryset.filter(submitter=p_submitter)
+        
+        results_count = queryset.count()
+        results = queryset.all()[:10]
+
+
+        serialized_results = []
+        for result in results:
+            s = GeoServiceSerializer(result)
+            serialized_results.append(s.data)
+
+        result = {
+            'count': results_count,
+            'next': "https://qms.nextgis.com/api/v1/geoservices/?limit=10&offset=10&ordering=-updated_at&search=&submitter=&type=",
+            'previous': None,
+            'results': serialized_results
+        }
+        return Response(result)
 
 
 class GeoServiceDetailedView(RetrieveAPIView):

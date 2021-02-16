@@ -61,14 +61,14 @@ class ReportFormMixin(FormMixin, ProcessFormView):
         return super(ReportFormMixin, self).get_context_data(**kwargs)
 
     def get_initial(self):
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated:
             return {'reported_email': self.request.user.email}
         else:
             return {}
 
     def get_form_class(self):
         return AuthReportForm
-        # if self.request.user.is_authenticated():
+        # if self.request.user.is_authenticated:
         #     return AuthReportForm
         # else:
         #     return NonAuthReportForm
@@ -83,7 +83,7 @@ class ReportFormMixin(FormMixin, ProcessFormView):
         report = report_form.save(commit=False)
         report.geo_service = service
 
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated:
             report.reported = self.request.user
 
         report.save()
@@ -104,7 +104,7 @@ class ReportFormMixin(FormMixin, ProcessFormView):
         # send copy to message submitter
         if report.reported_email:
             send_templated_mail('qms_site/email/user_report_for_submitter', report.reported_email, context)
-        elif self.request.user.is_authenticated() and self.request.user.email:
+        elif self.request.user.is_authenticated and self.request.user.email:
             with translation.override(self.request.user.locale):
                 send_templated_mail('qms_site/email/user_report_for_submitter', self.request.user.email, context)
 
