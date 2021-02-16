@@ -89,7 +89,7 @@ class ReportFormMixin(FormMixin, ProcessFormView):
         report.save()
 
         context = {
-            'reported_user': unicode(report.reported) if report.reported else None,
+            'reported_user': str(report.reported) if report.reported else None,
             'reported_email': report.reported_email,
             'service_url': self.request.build_absolute_uri(reverse('site_geoservice_detail', kwargs={'pk': service.id})),
             'report_type': ReportType.choices[report.report_type],
