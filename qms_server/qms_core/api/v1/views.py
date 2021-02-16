@@ -2,6 +2,7 @@ import os
 import random
 
 from django_filters import AllValuesFilter, CharFilter
+from django.db.models import Q
 #from django_filters import rest_framework as filters
 from rest_framework.filters import SearchFilter, OrderingFilter 
 from django_filters.rest_framework import DjangoFilterBackend, FilterSet
@@ -121,14 +122,35 @@ class GeoServiceListView(ListAPIView):
         params = request.query_params
         p_type = params['type']
         p_submitter = params['submitter']
+        p_search = params['search']
+        
+        p_limit = int(params['limit']) if 'limit' in params else 0 
+        p_offset = int(params['offset']) if 'offset' in params else 0
+        #
+        # TODO: SANITIZE ?
+        #
+
+        #
+        # TODO: order by ?
+        #
         queryset = GeoService.objects.select_related('last_status')
         if p_type:
             queryset = queryset.filter(type=p_type)
         if p_submitter:
             queryset = queryset.filter(submitter=p_submitter)
+        if p_search:
+            queryset = queryset.filter(
+                Q(name__contains=p_search) |
+                Q(desc__contains=p_search)
+            )
         
         results_count = queryset.count()
-        results = queryset.all()[:10]
+        results = queryset.all()
+        if p_offset:
+            results = results[p_offset:]
+        if p_limit:
+            results = results[:p_limit]
+        
 
 
         serialized_results = []
