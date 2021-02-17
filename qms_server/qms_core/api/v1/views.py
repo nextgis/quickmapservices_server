@@ -97,9 +97,9 @@ class GeoServiceStatusSerializer(ModelSerializer):
 # === Views Geoservices
 
 class GeoServiceFilterSet(FilterSet):
-    cumulative_status = AllValuesFilter(name="last_status__cumulative_status")
-    intersects_extent = CharFilter(name='extent', lookup_expr='intersects')
-    intersects_boundary = CharFilter(name='boundary', lookup_expr='intersects')
+    cumulative_status = AllValuesFilter(field_name="last_status__cumulative_status")
+    intersects_extent = CharFilter(field_name='extent', lookup_expr='intersects')
+    intersects_boundary = CharFilter(field_name='boundary', lookup_expr='intersects')
 
     class Meta:
         model = GeoService
@@ -120,9 +120,12 @@ class GeoServiceListView(ListAPIView):
         # return self.list(request, *args, **kwargs)
 
         params = request.query_params
-        p_type = params['type']
-        p_submitter = params['submitter']
-        p_search = params['search']
+        p_type = params.get('type')
+        p_submitter = params.get('submitter')
+        p_search = params.get('search')
+        p_epsg = int(params.get('epsg',0))
+
+        p_cumulative_status = params.get('cumulative_status','')
         
         p_limit = int(params['limit']) if 'limit' in params else 0 
         p_offset = int(params['offset']) if 'offset' in params else 0
@@ -133,6 +136,10 @@ class GeoServiceListView(ListAPIView):
         queryset = GeoService.objects.select_related('last_status').order_by('-created_at')
         if p_type:
             queryset = queryset.filter(type=p_type)
+        if p_epsg:
+            queryset = queryset.filter(epsg=p_epsg)
+        if p_cumulative_status:
+            queryset = queryset.filter(last_status__cumulative_status=p_cumulative_status)
         if p_submitter:
             queryset = queryset.filter(submitter=p_submitter)
         if p_search:
