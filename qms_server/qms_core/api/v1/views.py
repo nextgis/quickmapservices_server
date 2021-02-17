@@ -308,16 +308,22 @@ class GeoServiceUpdateView(GeoServiceModificationMixin, RetrieveUpdateAPIView):
         str_message = ''
         guid = ''
 
-        instance = self.get_object()
-        self.service_type = instance.type
-        request_service_type = request.data.get('type')
-
         try:
+            instance = self.get_object()
+            self.service_type = instance.type
+            request_service_type = request.data.get('type')
+
             if request_service_type:
                 raise Exception('do not specify service type in update operation')
             if not request.data:
                 raise Exception('empty data not allowed in update operation')
             serializer = self.get_serializer(data=request.data, partial=True)
+
+            serializer_fields = serializer.Meta.fields
+            for field in request.data:
+                if field not in serializer_fields:
+                    raise Exception(field + ' field is not allowed. Allowed fields: ' + str(serializer_fields))
+
             serializer.is_valid(raise_exception=True)
             instance.updated_at = datetime.datetime.now()
             instance = serializer.update(instance, serializer.validated_data) 
