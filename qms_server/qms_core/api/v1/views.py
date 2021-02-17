@@ -248,6 +248,12 @@ class GeoServiceModificationMixin:
             return GeoJsonServiceModificationSerializer
         return GeoServiceModificationMixin
 
+    def check_fields(self, serializer, request):
+        serializer_fields = serializer.Meta.fields
+        for field in request.data:
+            if field not in serializer_fields:
+                raise Exception(field + ' field is not allowed. Allowed fields: ' + str(serializer_fields))
+
     def _make_result(self, str_status, str_message, guid):
         result = {'status': str_status}
         if guid:
@@ -288,6 +294,9 @@ class GeoServiceCreateView(GeoServiceModificationMixin, CreateAPIView):
                     user = user.get()
                     submitter = user
             serializer = self.get_serializer(data=request.data)
+
+            self.check_fields(serializer, request)
+            
             serializer.is_valid(raise_exception=True)
             instance = serializer.save(submitter=submitter) 
             
@@ -319,10 +328,7 @@ class GeoServiceUpdateView(GeoServiceModificationMixin, RetrieveUpdateAPIView):
                 raise Exception('empty data not allowed in update operation')
             serializer = self.get_serializer(data=request.data, partial=True)
 
-            serializer_fields = serializer.Meta.fields
-            for field in request.data:
-                if field not in serializer_fields:
-                    raise Exception(field + ' field is not allowed. Allowed fields: ' + str(serializer_fields))
+            self.check_fields(serializer, request)
 
             serializer.is_valid(raise_exception=True)
             instance.updated_at = datetime.datetime.now()
