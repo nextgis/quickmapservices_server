@@ -334,9 +334,9 @@ class GeoServiceStatus(models.Model):
     check_duration = models.FloatField(null=True)
 
     # statuses
-    cumulative_status = models.CharField(max_length=50, choices=CumulativeStatus.choices.items(), null=False)
+    cumulative_status = models.CharField(max_length=50, choices=list(CumulativeStatus.choices.items()), null=False)
     http_code = models.IntegerField(null=True, blank=True)
     http_response = models.CharField(max_length=2048, null=True, blank=True)
-    error_type = models.CharField(max_length=50, choices=CheckStatusErrorType.choices.items(), null=True, blank=True)
+    error_type = models.CharField(max_length=50, choices=list(CheckStatusErrorType.choices.items()), null=True, blank=True)
     error_text = models.CharField(max_length=2048, null=True, blank=True)
 
