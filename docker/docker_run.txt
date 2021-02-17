@@ -15,6 +15,7 @@ docker run \
 -e DATABASE_PASS='tf7yi8kd' \
 -e DATABASE_HOST='localhost' \
 -e DATABASE_PORT='5432' \
+-e ALLOWED_HOST='127.0.0.1' \
 -P \
 qms:dj22py36
 

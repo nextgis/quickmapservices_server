@@ -1,7 +1,7 @@
 # Dockerfile
 
 FROM ubuntu:20.04
-
+ENV EXPOSE_PORT=8080
 RUN apt-get update
 RUN mkdir -p /opt/app
 
@@ -15,8 +15,9 @@ RUN apt-get update --fix-missing && apt-get -y install netcat iproute2
 
 WORKDIR /opt/app/quickmapservices_server
 RUN pip3 install -r requirements.txt
-
-EXPOSE 8080
+WORKDIR /opt/app/quickmapservices_server/qms_server
+CMD python3 manage.py runserver ${EXPOSE_PORT}
+EXPOSE ${EXPOSE_PORT}
 
 
 

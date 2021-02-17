@@ -5,7 +5,7 @@ import os
 
 # Override
 DEBUG = True
-ALLOWED_HOSTS = ['qms.nextgis.com', '127.0.0.1']
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOST','')]
 
 DATABASE_NAME = os.getenv('DATABASE_NAME','')
 DATABASE_USER = os.getenv('DATABASE_USER','')
