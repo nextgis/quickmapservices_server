@@ -8,4 +8,5 @@ cp ./custom_files/settings_local.py ../../qms.docker/quickmapservices_server/qms
 cp ./custom_files/views.py ../../qms.docker/quickmapservices_server/qms_server/nextgis_common/ngid_auth/views.py
 cd ../..
 docker build --no-cache -t qms:dj22py36 -f quickmapservices_server/docker/Dockerfile .
+rm -rf qms.docker
 
