@@ -31,7 +31,7 @@ SITE_ID = 1
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'nextgis_common.ngid_auth.auth_backend.NgidBackend',
+    'nextgis_common.ngid_auth.auth_backend.OAuthNGIdBackend'
 )
 
 AUTH_USER_MODEL = 'qms_core.NextgisUser'
@@ -95,6 +95,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'nextgis_common.menu.get_menu',
+                'nextgis_common.constants.get_constants',
             ],
         },
     },
@@ -189,6 +191,19 @@ CORS_EXPOSE_HEADERS = (
 CRONTAB_LOCK_JOBS = True
 CRONJOBS = [
     ('0 0 * * *', 'django.core.management.call_command', ['check_services'], {}, '>> /tmp/update_service_statuces.log'),
+]
+
+# Menu
+NEXTGISID_MENU = [
+    {   'url_name': 'site_geoservice_list',
+        'title': {'en': u'Services', 'ru': u'Сервисы'}
+    },
+    {   'url_name': 'site_about',
+        'title': {'en': u'How to use', 'ru': u'Как использовать'}
+    },
+    {   'url_name': 'site_faq',
+        'title': {'en': u'FAQ', 'ru': u'Вопросы и ответы'}
+    },
 ]
 
 

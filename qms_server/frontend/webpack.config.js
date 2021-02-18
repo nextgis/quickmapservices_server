@@ -1,10 +1,12 @@
 const path = require('path');
 const utils = require('./build/utils');
 const webpack = require('webpack');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const safeParser = require('postcss-safe-parser');
+
+const fs = require('fs');
 
 function resolve(dir) {
   return path.join(__dirname, '.', dir)
@@ -18,6 +20,17 @@ module.exports = (env, argv) => {
     {
       test: /\.vue$/,
       loader: 'vue-loader',
+      options: {
+        loaders: utils.cssLoaders({
+          sourceMap: isProduction ? false : true,
+          extract: true
+        })
+      }
+    },
+    {
+      resourceQuery: /blockType=i18n/,
+      type: 'javascript/auto',
+      loader: '@kazupon/vue-i18n-loader'
     },
     {
       test: /\.js$/,
@@ -50,7 +63,7 @@ module.exports = (env, argv) => {
       'process.env.NODE_ENV': JSON.stringify(argv.mode)
     }),
 
-    new MiniCssExtractPlugin({
+    new ExtractTextPlugin({
       filename: 'css/[name].css',
       allChunks: true,
     }),
@@ -77,7 +90,7 @@ module.exports = (env, argv) => {
       })
     );
     plugins.push(
-      new OptimizeCssAssetsPlugin({
+      new OptimizeCSSPlugin({
         cssProcessorOptions: {
           parser: safeParser,
           discardComments: {
@@ -91,40 +104,51 @@ module.exports = (env, argv) => {
   // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
   // plugins.push(new BundleAnalyzerPlugin());
 
+  let alias = {
+    'vue': 'vue/dist/vue.esm.js',
+    '@': resolve('src'),
+  }
+  let alias_ext = JSON.parse(fs.readFileSync(__dirname + '/webpack.config.alias.ext.json', 'utf8'));
+  alias = Object.assign({}, alias, alias_ext);
+
+  let entry = {
+    app: [
+      '@babel/polyfill',
+      'whatwg-fetch',
+      './src/main.js'
+    ]
+  }
+  let entry_ext = JSON.parse(fs.readFileSync(__dirname + '/webpack.config.entry.ext.json', 'utf8'));
+  entry = Object.assign({}, entry, entry_ext);
+
   return {
 
     mode: 'development',
 
-    entry: {
-      app: ['@babel/polyfill', 'whatwg-fetch', './frontend/src/main.js']
-    },
+    entry: entry,
+
     resolve: {
       extensions: ['.js', '.vue', '.json'],
-      alias: {
-        'vue$': 'vue/dist/vue.esm.js',
-        '@': resolve('src'),
-        '@nextgis_common': resolve('../nextgis_common/frontend/src'),
-      },
+      alias: alias,
       modules: [ 
-        path.resolve(__dirname, '../node_modules'), 
+        path.resolve(__dirname, './node_modules'), 
         path.resolve(__dirname, '../nextgis_common/node_modules/'), 
       ]
     },
     module: {
       rules
     },
-    // cheap-module-eval-source-map is faster for development
+    // cheap-module-eval-source-map is postcss-safe-parseraster for development
     devtool: isProduction ? 'none' : '#cheap-module-eval-source-map',
 
     output: {
       path: path.resolve(__dirname, './dist/'),
       filename: 'js/[name].js',
       chunkFilename: 'js/[name].js',
-      publicPath: '../'
+      publicPath: '/static/'
     },
 
     optimization: {
-
       splitChunks: {
         cacheGroups: {
           vendor: {
@@ -132,12 +156,6 @@ module.exports = (env, argv) => {
             chunks: 'initial',
             name: 'vendor',
             priority: 10,
-            enforce: true
-          },
-          'styles-compiled': {
-            name: 'styles-compiled',
-            test: /\.css$/,
-            chunks: 'all',
             enforce: true
           }
         }
@@ -149,5 +167,7 @@ module.exports = (env, argv) => {
 
     plugins
   }
+
+
 }
 

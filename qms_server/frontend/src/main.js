@@ -1,22 +1,29 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 
-import Vue from 'vue'
+import Vue from 'vue';
 
-import VueI18n from 'vue-i18n'
-Vue.use(VueI18n)
+import VueI18n from 'vue-i18n';
+Vue.use(VueI18n);
 
-import Vuetify from 'vuetify'
-import App from './App'
-import ServiceList from "./components/ServiceList"
+import Vuetify from 'vuetify';
+import ServiceList from "./components/ServiceList";
 
-import main from '@nextgis_common/js/main'
-import './js/report-problem'
-import QmsAddForm from './js/qms'
-import './js/preview_map'
-import vueConfig from 'vue-config'
+import '@nextgis_common/js/ngkit-components';
+import main from '@nextgis_common/js/main';
+import './js/report-problem';
+import QmsAddForm from './js/qms';
+import './js/preview_map';
+import vueConfig from 'vue-config';
 
+
+import SidebarMenu from '@nextgis_common/components/SidebarMenu/SidebarMenu.vue';
 import SelfLink from '@nextgis_common/components/SelfLink/SelfLink.vue';
+
+//styles
+import "@nextgis_common/scss/main.scss";
+import "@nextgis_common/scss/vuetify.styl";
+import './scss/qms.scss';
 
 Vue.use(Vuetify, { 
     theme: {
@@ -98,7 +105,12 @@ Vue.use(vueConfig, configs)
 new Vue({
   i18n,
   el: '#app',
-  components: { App, ServiceList, SelfLink }
+  components: { ServiceList, SelfLink, SidebarMenu },
+  data() {
+    return {
+      sidebarMenuShown: false
+    }
+  }
 })
 
 main();

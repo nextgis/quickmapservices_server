@@ -18,16 +18,14 @@
 
 {% block body_content %}
     {% get_current_language as LANGUAGE_CODE %}
-    <section class="section text-content">
-        <div class="container">
-            {% get_current_language as CURRENT_LANGUAGE %}
-            
-            {% if CURRENT_LANGUAGE == "ru" %}
-              {% include "snippets/faq_ru.html" %}
-            {% else %}
-              {% include "snippets/faq_en.html" %}
-            {% endif %}
-        </div><!--/.container -->
+    <section class="text-content container py-0">
+        {% get_current_language as CURRENT_LANGUAGE %}
+        
+        {% if CURRENT_LANGUAGE == "ru" %}
+            {% include "snippets/faq_ru.html" %}
+        {% else %}
+            {% include "snippets/faq_en.html" %}
+        {% endif %}
     </section>
 {% endblock %}
 
