@@ -7,5 +7,5 @@ urlpatterns = [
     url(r'^v1/', include('qms_core.api.v1.urls')),
 
     # Experimental API
-    url(r'^vX/', include('qms_core.api.vX.urls'))
+    # url(r'^vX/', include('qms_core.api.vX.urls'))
 ]
