@@ -193,6 +193,11 @@ CRONJOBS = [
     ('0 0 * * *', 'django.core.management.call_command', ['check_services'], {}, '>> /tmp/update_service_statuces.log'),
 ]
 
+### NextGIS Common
+# Auth
+OAUTH_PROVIDER = 'nextgis_common.ngid_auth.ngid_provider.NgidProvider'
+
+OAUTH_SERVER_INTROSPECTION = ''
 # Menu
 NEXTGISID_MENU = [
     {   'url_name': 'site_geoservice_list',

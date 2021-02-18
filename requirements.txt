@@ -21,3 +21,6 @@ geojson==1.3.5
 
 django-crontab>=0.7.1
 django-sslserver==0.22
+
+# nextgis_common
+pyjwt
