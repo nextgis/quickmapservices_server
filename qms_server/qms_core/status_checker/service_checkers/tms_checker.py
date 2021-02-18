@@ -42,6 +42,8 @@ class TmsChecker(BaseServiceChecker):
         result = CheckResult(geoservice_id=self.service.id,
                              geoservice_name=self.service.name,
                              geoservice_type=self.service.type)
+        result.cumulative_status = CumulativeStatus.FAILED
+        result.error_text = ''
 
         startTime = datetime.datetime.utcnow()
         try:

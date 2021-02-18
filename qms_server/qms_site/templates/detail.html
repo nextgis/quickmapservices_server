@@ -14,6 +14,17 @@
                     data-service-title="{{ service.name }}"
                     data-service-id="{{ service.id }}"
                     data-service-url="">{% trans 'Feedback' %}</a>
+
+                    {% if can_user_delete  %}
+                        <a 
+                            href="#" 
+                            onclick="delete_service('{{ service_guid }}')" 
+                            class="btn btn-tool btn--depressed"
+                            data-service-url="">
+                            Delete service
+                        </a> 
+                    {% endif %}
+
                 {% if request.user.is_authenticated and  service.submitter_id == request.user.nextgis_guid  %}
                     <a href="{% url 'edit_service_view' pk=service.id %}" class="btn btn-tool btn--depressed">{% trans 'Edit' %}</a>
                 {% endif %}
@@ -53,6 +64,32 @@
 {% block script_variables %}
     {{block.super}}
     <script>
+
+        function delete_service(guid)
+        {
+            fetch('/api/v1/geoservices/delete/'+guid, {
+                method: 'delete',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json'
+                }
+            }).then(
+                function (response) {
+                    response.text().then(function (text) {
+                        var result = JSON.parse(text);
+                        if( result.status != 'ok' )
+                        {
+                            alert("Error while deleting. API response: " + text);
+                        }
+                        else
+                        {
+                            window.location.href='/';
+                        }
+                    });
+                }
+            );
+        }
+
         var service = {
             locale: {
                 'Boundary': '{% trans "Boundary" %}',

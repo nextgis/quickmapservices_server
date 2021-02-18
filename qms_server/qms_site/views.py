@@ -136,7 +136,15 @@ class GeoserviceDetailView(TemplateView, ReportFormMixin):
                                                       .select_related('wfsservice'),
                                     id=kwargs['pk'])
 
+
         kwargs['service'] = service
+        kwargs['service_guid'] = str(service.guid)
+        kwargs['can_user_delete'] = False
+        user = self.request.user
+        if user.id:
+            if user.groups.filter(name='MODIFICATION_API_USERS').exists():
+                kwargs['can_user_delete'] = True
+
         if service.type == TmsService.service_type:
             tms_url_pattern, tms_subdomains = service.tmsservice.get_url_pattern_and_subdomains()
 

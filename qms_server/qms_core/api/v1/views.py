@@ -1,5 +1,6 @@
 import os
 import random
+import datetime
 
 from django_filters import AllValuesFilter, CharFilter
 from django.db.models import Q
@@ -13,11 +14,21 @@ from rest_framework.serializers import ModelSerializer, OrderedDict, SlugRelated
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 from rest_framework.viewsets import ReadOnlyModelViewSet
+from rest_framework import status
+from rest_framework import authentication
+from rest_framework import permissions
 
 from ...icon_renderer import IconRenderer
 from ...icon_serializer import IconSerializer
-from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService, GeoServiceStatus
+from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService, GeoServiceStatus, CumulativeStatus
 
+from qms_core.status_checker.status_checker import check_by_id_and_save
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import AnonymousUser
+
+from django.conf import settings
 
 # === Serializers
 class GeoServiceGenericSerializer(ModelSerializer):
@@ -28,6 +39,78 @@ class GeoServiceSerializer(GeoServiceGenericSerializer):
     class Meta:
         model = GeoService
         fields = ('id', 'guid', 'name', 'desc', 'type', 'epsg', 'icon', 'submitter', 'created_at', 'updated_at', 'cumulative_status', 'extent')
+
+
+class GeoServiceCreationSerializer(GeoServiceGenericSerializer):
+    class Meta:
+        model = GeoService
+        fields = (
+            'name', 
+            'desc', 
+            'type', 
+            'epsg', 
+            'icon', 
+            'license_name',
+            'license_url',
+            'copyright_text',
+            'copyright_url',
+            'terms_of_use_url',
+            'extent',
+            'boundary',
+            'boundary_area'
+        )
+
+    # def create(self, validated_data):
+        # obj = super(GeoServiceCreationSerializer, self).create(validated_data)
+        # checking may take a long time
+        # check_by_id_and_save(obj.id)
+        # return obj
+
+
+class TmsServiceModificationSerializer(GeoServiceCreationSerializer):
+    class Meta:
+        model = TmsService
+        fields = GeoServiceCreationSerializer.Meta.fields + (
+            'url',
+            'z_min',
+            'z_max',
+            'y_origin_top',
+        )
+    
+   
+class WmsServiceModificationSerializer(GeoServiceCreationSerializer):
+    class Meta:
+        model = WmsService
+        fields = GeoServiceCreationSerializer.Meta.fields + (
+            'url',
+            'params',
+            'layers',
+            'turn_over',
+            'format'
+        )
+
+
+class WfsServiceModificationSerializer(GeoServiceCreationSerializer):
+    class Meta:
+        model = WfsService
+        fields = GeoServiceCreationSerializer.Meta.fields + (
+            'url',
+            'layer'
+        )
+        extra_kwargs_on_update = {
+            'url': {'required': False}, 
+            'layer': {'required': False},
+            'type': {'required': False},
+            'name': {'required': False}
+        }
+
+
+class GeoJsonServiceModificationSerializer(GeoServiceCreationSerializer):
+    class Meta:
+        model = GeoJsonService
+        fields = GeoServiceCreationSerializer.Meta.fields + (
+            'url',
+        )
 
 
 class TmsServiceSerializer(GeoServiceGenericSerializer):
@@ -115,6 +198,173 @@ class GeoServiceListView(ListAPIView):
     search_fields = ('name', 'desc')
     ordering_fields = ('id', 'name', 'created_at', 'updated_at')
     ordering = ('name',)
+
+class AuthorizedCompanyUser(permissions.BasePermission):
+    def has_permission(self, request, view):
+
+        meta = request.META
+        http_auth = meta.get('HTTP_AUTHORIZATION')
+        if http_auth:
+            if http_auth == settings.MODIFICATION_API_BASIC_AUTH:
+                return True
+
+        user = request.user
+        if user.groups.filter(name='MODIFICATION_API_USERS').exists():
+            return True
+        return False
+
+
+class CsrfExemptSessionAuthentication(authentication.SessionAuthentication):
+    def enforce_csrf(self, request):
+        return
+
+
+class GeoServiceModificationMixin:
+    queryset = GeoService.objects.all()
+    authentication_classes = (CsrfExemptSessionAuthentication,)
+    permission_classes = (AuthorizedCompanyUser,)
+    serializer_class = GeoServiceCreationSerializer
+
+    def get_object(self):
+        kw = self.kwargs
+        guid_val = kw.get('guid')
+        obj_type = GeoService.objects.filter(guid=guid_val).values_list('type', flat=True).get()
+        cls = GeoService.get_typed_class(obj_type)
+        obj = cls.objects.filter(guid=guid_val).first()
+        return obj
+
+    def get_serializer_class(self):
+        service_type = None
+        if hasattr(self, 'service_type'):
+            service_type = self.service_type
+        serializer_class = self._get_modification_serializer_class( service_type )
+        return serializer_class
+
+    def _get_modification_serializer_class(self, service_type):
+        if service_type == TmsService.service_type:
+            return TmsServiceModificationSerializer
+        if service_type == WmsService.service_type:
+            return WmsServiceModificationSerializer
+        if service_type == WfsService.service_type:
+            return WfsServiceModificationSerializer
+        if service_type == GeoJsonService.service_type:
+            return GeoJsonServiceModificationSerializer
+        return GeoServiceModificationMixin
+
+    def check_fields(self, serializer, request):
+        serializer_fields = serializer.Meta.fields
+        for field in request.data:
+            if field not in serializer_fields:
+                raise Exception(field + ' field is not allowed. Allowed fields: ' + str(serializer_fields))
+
+    def _make_result(self, str_status, str_message, guid):
+        result = {'status': str_status}
+        if guid:
+            result['guid'] = guid
+        if str_message:
+            result['message'] = str_message
+
+        return result
+
+    def _handle_exception(self, str_status, str_message, e):
+        str_status = 'failed'
+        str_message = str(e)
+
+        return str_status, str_message
+
+    
+class GeoServiceCreateView(GeoServiceModificationMixin, CreateAPIView):
+    # https://stackoverflow.com/a/54993327
+    # https://stackoverflow.com/a/36786134
+    def create(self, request, *args, **kwargs):
+        str_status = 'ok'
+        str_message = ''
+        guid = ''
+        
+        self.service_type = request.data.get('type')
+
+        user = request.user
+        submitter = None
+        try:
+            types = GeoService.get_valid_service_types()
+            if self.service_type not in types:
+                raise Exception('wrong service type ')
+
+            if isinstance(user, AnonymousUser):
+                user_model = get_user_model()
+                user = user_model.objects.filter(username=settings.CREATION_THROUGH_API_SUBMITTER)
+                if user:
+                    user = user.get()
+                    submitter = user
+            serializer = self.get_serializer(data=request.data)
+
+            self.check_fields(serializer, request)
+            
+            serializer.is_valid(raise_exception=True)
+            instance = serializer.save(submitter=submitter) 
+            
+            guid = instance.guid
+        except Exception as e:
+            str_status, str_message = self._handle_exception(str_status, str_message, e)
+
+        result = self._make_result(str_status, str_message, guid)
+        
+        return Response(result, status=status.HTTP_201_CREATED)
+
+
+class GeoServiceUpdateView(GeoServiceModificationMixin, RetrieveUpdateAPIView):
+    lookup_field = 'guid'
+
+    def update(self, request, *args, **kwargs):
+        str_status = 'ok'
+        str_message = ''
+        guid = ''
+
+        try:
+            instance = self.get_object()
+            self.service_type = instance.type
+            request_service_type = request.data.get('type')
+
+            if request_service_type:
+                raise Exception('do not specify service type in update operation')
+            if not request.data:
+                raise Exception('empty data not allowed in update operation')
+            serializer = self.get_serializer(data=request.data, partial=True)
+
+            self.check_fields(serializer, request)
+
+            serializer.is_valid(raise_exception=True)
+            instance.updated_at = datetime.datetime.now()
+            instance = serializer.update(instance, serializer.validated_data) 
+            
+            guid = instance.guid
+        except Exception as e:
+            str_status, str_message = self._handle_exception(str_status, str_message, e)
+
+        result = self._make_result(str_status, str_message, guid)
+        
+        return Response(result, status=status.HTTP_200_OK)
+
+
+class GeoServiceDeleteView(GeoServiceModificationMixin, DestroyAPIView):
+    lookup_field = 'guid'
+
+    def delete(self, request, *args, **kwargs):
+        str_status = 'ok'
+        str_message = ''
+        guid = ''
+
+        try:
+            instance = self.get_object()
+            guid = instance.guid
+            self.perform_destroy(instance)
+
+        except Exception as e:
+            str_status, str_message = self._handle_exception(str_status, str_message, e)
+
+        result = self._make_result(str_status, str_message, guid)
+        
+        return Response(result, status=status.HTTP_200_OK)
 
 
 class GeoServiceDetailedView(RetrieveAPIView):

@@ -198,6 +198,27 @@ class GeoService(models.Model):
         if self.type == GeoJsonService.service_type:
             return self.geojsonservice
         return self
+    
+    @classmethod
+    def get_typed_class(cls, service_type):
+        if service_type == TmsService.service_type:
+            return TmsService
+        if service_type == WmsService.service_type:
+            return WmsService
+        if service_type == WfsService.service_type:
+            return WfsService
+        if service_type == GeoJsonService.service_type:
+            return GeoJsonService
+        return cls
+    
+    @classmethod
+    def get_valid_service_types(cls):
+        return [
+            TmsService.service_type,
+            WmsService.service_type,
+            WfsService.service_type,
+            GeoJsonService.service_type
+        ]
 
 
 class TmsUrlField(models.CharField):
