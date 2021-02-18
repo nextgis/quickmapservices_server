@@ -7,7 +7,7 @@ from django.db.models import Q
 #from django_filters import rest_framework as filters
 from rest_framework.filters import SearchFilter, OrderingFilter 
 from django_filters.rest_framework import DjangoFilterBackend, FilterSet
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, RetrieveUpdateAPIView, DestroyAPIView
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 from rest_framework.serializers import ModelSerializer, OrderedDict, SlugRelatedField, SerializerMethodField
