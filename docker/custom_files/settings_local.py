@@ -5,6 +5,8 @@ import os
 
 # Override
 DEBUG = True
+if DEBUG:
+    os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 ALLOWED_HOSTS = [os.getenv('ALLOWED_HOST','')]
 
 DATABASE_NAME = os.getenv('DATABASE_NAME','')
