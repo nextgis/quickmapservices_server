@@ -22,7 +22,7 @@ from ...icon_renderer import IconRenderer
 from ...icon_serializer import IconSerializer
 from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService, GeoServiceStatus, CumulativeStatus
 
-from qms_core.status_checker.status_checker import check_by_id_and_save
+# from qms_core.status_checker.status_checker import check_by_id_and_save
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.contrib.auth import get_user_model

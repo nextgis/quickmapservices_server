@@ -42,7 +42,6 @@ def check_by_id(id):
 def check_by_id_and_save(id):
     result = check_by_id(id)
 
-    print result.__dict__
 
     # add new service status
     status_obj = GeoServiceStatus()
