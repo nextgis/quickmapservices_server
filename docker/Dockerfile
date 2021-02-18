@@ -17,6 +17,12 @@ WORKDIR /opt/app/quickmapservices_server
 RUN pip3 install -r requirements.txt
 WORKDIR /opt/app/quickmapservices_server/qms_server
 CMD python3 manage.py runserver ${EXPOSE_PORT}
+
+# https://stackoverflow.com/a/42873832
+# For development in docker using IDE. 
+# We need docker doesn't stop when 'manage.py runserver' stops.
+# ENTRYPOINT ["tail", "-f", "/dev/null"] 
+
 EXPOSE ${EXPOSE_PORT}
 
 

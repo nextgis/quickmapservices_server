@@ -107,68 +107,14 @@ class GeoServiceFilterSet(FilterSet):
 
 
 class GeoServiceListView(ListAPIView):
-    # queryset = GeoService.objects.select_related('last_status')
-    # serializer_class = GeoServiceSerializer
-    # pagination_class = LimitOffsetPagination
-    # filter_backends = (OrderingFilter, SearchFilter, DjangoFilterBackend)
-    # filter_class = GeoServiceFilterSet
-    # search_fields = ('name', 'desc')
-    # ordering_fields = ('id', 'name', 'created_at', 'updated_at')
-    # ordering = ('name',)
-
-    def get(self, request, *args, **kwargs):
-        # return self.list(request, *args, **kwargs)
-
-        params = request.query_params
-        p_type = params.get('type')
-        p_submitter = params.get('submitter')
-        p_search = params.get('search')
-        p_epsg = int(params.get('epsg',0))
-
-        p_cumulative_status = params.get('cumulative_status','')
-        
-        p_limit = int(params['limit']) if 'limit' in params else 0 
-        p_offset = int(params['offset']) if 'offset' in params else 0
-        #
-        # TODO: SANITIZE ?
-        #
-
-        queryset = GeoService.objects.select_related('last_status').order_by('-created_at')
-        if p_type:
-            queryset = queryset.filter(type=p_type)
-        if p_epsg:
-            queryset = queryset.filter(epsg=p_epsg)
-        if p_cumulative_status:
-            queryset = queryset.filter(last_status__cumulative_status=p_cumulative_status)
-        if p_submitter:
-            queryset = queryset.filter(submitter=p_submitter)
-        if p_search:
-            queryset = queryset.filter(
-                Q(name__contains=p_search) |
-                Q(desc__contains=p_search)
-            )
-        
-        results_count = queryset.count()
-        results = queryset.all()
-        if p_offset:
-            results = results[p_offset:]
-        if p_limit:
-            results = results[:p_limit]
-        
-
-
-        serialized_results = []
-        for result in results:
-            s = GeoServiceSerializer(result)
-            serialized_results.append(s.data)
-
-        result = {
-            'count': results_count,
-            'next': "https://qms.nextgis.com/api/v1/geoservices/?limit=10&offset=10&ordering=-updated_at&search=&submitter=&type=",
-            'previous': None,
-            'results': serialized_results
-        }
-        return Response(result)
+    queryset = GeoService.objects.select_related('last_status')
+    serializer_class = GeoServiceSerializer
+    pagination_class = LimitOffsetPagination
+    filter_backends = (OrderingFilter, SearchFilter, DjangoFilterBackend)
+    filter_class = GeoServiceFilterSet
+    search_fields = ('name', 'desc')
+    ordering_fields = ('id', 'name', 'created_at', 'updated_at')
+    ordering = ('name',)
 
 
 class GeoServiceDetailedView(RetrieveAPIView):
