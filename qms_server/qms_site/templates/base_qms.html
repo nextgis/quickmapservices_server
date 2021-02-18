@@ -34,13 +34,13 @@
 
 
 {% block header_action_login %}
-    {{block.super}}
     <ng-button 
         color="primary" 
         small
         href="{% url 'create_service_view' %}">
         {% trans 'Add service' %}
     </ng-button>
+    {{block.super}}
 {% endblock %}
 
 {% block script_variables %}
