@@ -1,5 +1,5 @@
 # https://stackoverflow.com/a/35595021
-docker build --no-cache -t qms:dj22py36 -f docker/Dockerfile .
+docker build --no-cache -t qms:dj22py38 -f docker/Dockerfile .
 
 
 # https://stackoverflow.com/a/37232961
@@ -9,7 +9,7 @@ docker build --no-cache -t qms:dj22py36 -f docker/Dockerfile .
 docker run \
 -dit \
 --network="host" \
---name qms_dj22py36 \
+--name qms_dj22py38 \
 -e DATABASE_NAME='qms_server3' \
 -e DATABASE_USER='qms_server' \
 -e DATABASE_PASS='tf7yi8kd' \
@@ -17,7 +17,7 @@ docker run \
 -e DATABASE_PORT='5432' \
 -e ALLOWED_HOST='127.0.0.1' \
 -P \
-qms:dj22py36
+qms:dj22py38
 
 
 
@@ -26,3 +26,7 @@ docker ps -a
 
 
 docker exec -it qms_dj22py36 /bin/bash
+
+# cd <project_root>
+docker build --no-cache -t registry.nextgis.com/qms:dj22py38 -f docker/Dockerfile.dev .
+

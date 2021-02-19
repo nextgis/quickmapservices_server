@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+    # db:
+    #   image: registry.nextgis.com/postgis:latest
+    #   expose:
+    #     - 5432
+    #   volumes:
+    #     - db_dir:/var/lib/postgresql/data
+    #   environment:
+    #     - POSTGRES_DB=QMS_TEST_DB
+    #     - POSTGRES_USER=QMS_TEST_DB_USER
+    #     - POSTGRES_PASSWORD=QMS_TEST_DB_USER_PASS
+    #   networks:
+    #       - default
+
+    web:
+      build:
+        context: ../
+        dockerfile: ./docker/Dockerfile
+      image: registry.nextgis.com/qms:dj22py38
+      ports:
+        - 8000:8080
+      environment:
+        - DATABASE_NAME=qms_server3
+        - DATABASE_USER=qms_server
+        - DATABASE_PASS=tf7yi8kd
+        - DATABASE_HOST=localhost
+        - DATABASE_PORT=5432
+        - ALLOWED_HOST=*
+        - OAUTHLIB_INSECURE_TRANSPORT=1
+      command: "python3 manage.py runserver 0.0.0.0:8080"
+      networks:
+        - default
+      network_mode: host
+      volumes:
+        - ../qms_server:/opt/app/qms_server
+        - ./custom_files/settings_local.py:/opt/app/qms_server/qms_server/settings_local.py
+
+volumes:
+  db_dir: {}
