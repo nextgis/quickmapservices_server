@@ -20,7 +20,7 @@ ENV EXPOSE_PORT=8080
 
 EXPOSE ${EXPOSE_PORT}
 
-CMD python3 manage.py runserver ${EXPOSE_PORT}
+# CMD python3 manage.py runserver ${EXPOSE_PORT}
 
 # https://stackoverflow.com/a/42873832
 # For development in docker using IDE. I need docker doesn't stop when 'manage.py runserver' stops.
