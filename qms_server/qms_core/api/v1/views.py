@@ -57,7 +57,9 @@ class GeoServiceCreationSerializer(GeoServiceGenericSerializer):
             'terms_of_use_url',
             'extent',
             'boundary',
-            'boundary_area'
+            'boundary_area',
+            'source',
+            'source_url'
         )
 
     # def create(self, validated_data):
