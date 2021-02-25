@@ -303,7 +303,9 @@ class GeoServiceCreateView(GeoServiceModificationMixin, CreateAPIView):
             self.check_fields(serializer, request)
             
             serializer.is_valid(raise_exception=True)
-            instance = serializer.save(submitter=submitter) 
+            instance = serializer.save(submitter=submitter)
+            instance.updated_at = datetime.datetime.now()
+            instance.save() 
             
             guid = instance.guid
         except Exception as e:

@@ -24,3 +24,4 @@ django-sslserver==0.22
 
 # nextgis_common
 pyjwt
+uwsgi==2.0.19.1
