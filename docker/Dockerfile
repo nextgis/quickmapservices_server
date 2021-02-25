@@ -9,6 +9,8 @@ RUN apt-get update -y && \
 RUN mkdir -p /opt/app
 COPY ./qms_server /opt/app/qms_server
 COPY ./requirements.txt /opt/app/qms_server/requirements.txt
+COPY ./uwsgi.ini /opt/app/qms_server/uwsgi.ini
+COPY ./static /opt/app/qms_server/static
 RUN pip3 install -r /opt/app/qms_server/requirements.txt
 
 # customize
@@ -20,11 +22,12 @@ ENV EXPOSE_PORT=8080
 
 EXPOSE ${EXPOSE_PORT}
 
+CMD uwsgi uwsgi.ini
 # CMD python3 manage.py runserver ${EXPOSE_PORT}
 
 # https://stackoverflow.com/a/42873832
 # For development in docker using IDE. I need docker doesn't stop when 'manage.py runserver' stops.
-ENTRYPOINT ["tail", "-f", "/dev/null"] 
+# ENTRYPOINT ["tail", "-f", "/dev/null"] 
 
 # Alias python=python3
 # /root/.bashrc https://askubuntu.com/a/321000

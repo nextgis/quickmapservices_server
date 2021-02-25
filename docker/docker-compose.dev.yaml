@@ -29,7 +29,7 @@ services:
         - DATABASE_PORT=5432
         - ALLOWED_HOST=*
         - OAUTHLIB_INSECURE_TRANSPORT=1
-      command: "python3 manage.py runserver 0.0.0.0:8080"
+      command: "uwsgi uwsgi.ini"
       networks:
         - default
       volumes:

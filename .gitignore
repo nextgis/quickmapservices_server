@@ -144,3 +144,4 @@ node_modules
 qms_server/frontend/dist
 qms_server/frontend/webpack.config.alias.ext.json
 qms_server/frontend/webpack.config.entry.ext.json
+static
