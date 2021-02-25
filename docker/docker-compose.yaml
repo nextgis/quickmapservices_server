@@ -1,19 +1,6 @@
 version: '3.7'
 
 services:
-    # db:
-    #   image: registry.nextgis.com/postgis:latest
-    #   expose:
-    #     - 5432
-    #   volumes:
-    #     - db_dir:/var/lib/postgresql/data
-    #   environment:
-    #     - POSTGRES_DB=QMS_TEST_DB
-    #     - POSTGRES_USER=QMS_TEST_DB_USER
-    #     - POSTGRES_PASSWORD=QMS_TEST_DB_USER_PASS
-    #   networks:
-    #       - default
-
     web:
       build:
         context: ../
@@ -29,9 +16,7 @@ services:
         - DATABASE_PORT=5432
         - ALLOWED_HOST=*
         - OAUTHLIB_INSECURE_TRANSPORT=1
-      command: "python3 manage.py runserver 0.0.0.0:8080"
-      networks:
-        - default
+      command: "uwsgi --ini uwsgi.ini"
       network_mode: host
       volumes:
         - ../qms_server:/opt/app/qms_server

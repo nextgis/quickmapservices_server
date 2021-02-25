@@ -9,8 +9,6 @@ RUN apt-get update -y && \
 RUN mkdir -p /opt/app
 COPY ./qms_server /opt/app/qms_server
 COPY ./requirements.txt /opt/app/qms_server/requirements.txt
-COPY ./uwsgi.ini /opt/app/qms_server/uwsgi.ini
-COPY ./static /opt/app/qms_server/static
 RUN pip3 install -r /opt/app/qms_server/requirements.txt
 
 # customize
