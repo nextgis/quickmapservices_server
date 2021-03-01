@@ -29,6 +29,7 @@ services:
         - DATABASE_PORT=5432
         - ALLOWED_HOST=*
         - OAUTHLIB_INSECURE_TRANSPORT=1
+        - IS_DEBUG=false
       command: "uwsgi --ini uwsgi.ini"
       networks:
         - default
