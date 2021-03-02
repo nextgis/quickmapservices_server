@@ -5,56 +5,47 @@
 {% load wfs_layer_utils %}
 
 {% block body_content %}
-    <div class="container py-0">
-        <div class="service">
-            <div class="btn-group toolbar pull-right" role="group">
-                <a href="#" class="btn btn-tool btn--depressed"
-                    data-toggle="modal"
-                    data-target=".report-problem-popup"
-                    data-service-title="{{ service.name }}"
-                    data-service-id="{{ service.id }}"
-                    data-service-url="">{% trans 'Feedback' %}</a>
+    <Detail
+        :service="{
+            id: {{ service.id }},
+            guid: '{{service_guid}}',
+            name: '{{ service.name }}'
+        }"
+        edit-url="{% url 'edit_service_view' pk=service.id %}"
 
-                    {% if can_user_delete  %}
-                        <a 
-                            href="#" 
-                            onclick="delete_service('{{ service_guid }}')" 
-                            class="btn btn-tool btn--depressed"
-                            data-service-url="">
-                            Delete service
-                        </a> 
-                    {% endif %}
+        {% if request.user.is_authenticated and  service.submitter_id == request.user.nextgis_guid  %}
+        is-editing-allowed
+        {% endif %}
 
-                {% if request.user.is_authenticated and  service.submitter_id == request.user.nextgis_guid  %}
-                    <a href="{% url 'edit_service_view' pk=service.id %}" class="btn btn-tool btn--depressed">{% trans 'Edit' %}</a>
-                {% endif %}
-            </div>
-            <h1>
-                {% if service.icon %}
-                <img src="{% url 'service_icon_retrieve' pk=service.icon.id %}" />
-                {% else %}
-                <img src="{% url 'service_icon_default' %}" />
-                {% endif %}
-                {{ service.name }}
-            </h1>
-            {% include 'services_snippets/general_info.html' %}
-            {% include 'services_snippets/license_info.html' %}
-            {% if service.type == 'tms' %}
-                {% include 'services_snippets/tms_info.html' %}
-            {% elif service.type == 'wms' %}
-                {% include 'services_snippets/wms_info.html' %}
-            {% elif service.type == 'wfs' %}
-                {% include 'services_snippets/wfs_info.html' %}
-            {% elif service.type == 'geojson' %}
-                {% include 'services_snippets/geojson_info.html' %}
+        {% if can_user_delete  %}
+        is-deletion-allowed
+        {% endif %}
+    >
+        <h1>
+            {% if service.icon %}
+            <img src="{% url 'service_icon_retrieve' pk=service.icon.id %}" />
+            {% else %}
+            <img src="{% url 'service_icon_default' %}" />
             {% endif %}
-            {% if service.last_status != None and service.last_status.cumulative_status != "failed" %}
-                {% include 'services_snippets/preview_map.html' %}
-            {% endif %}
-            <br>
-            <a href="{% url 'site_geoservice_list' %}">{% trans 'Back to services list' %}</a>
-        </div>
-    </div>
+            {{ service.name }}
+        </h1>
+        {% include 'services_snippets/general_info.html' %}
+        {% include 'services_snippets/license_info.html' %}
+        {% if service.type == 'tms' %}
+            {% include 'services_snippets/tms_info.html' %}
+        {% elif service.type == 'wms' %}
+            {% include 'services_snippets/wms_info.html' %}
+        {% elif service.type == 'wfs' %}
+            {% include 'services_snippets/wfs_info.html' %}
+        {% elif service.type == 'geojson' %}
+            {% include 'services_snippets/geojson_info.html' %}
+        {% endif %}
+        {% if service.last_status != None and service.last_status.cumulative_status != "failed" %}
+            {% include 'services_snippets/preview_map.html' %}
+        {% endif %}
+        <br>
+        <a href="{% url 'site_geoservice_list' %}">{% trans 'Back to services list' %}</a>
+</Detail>
 {% endblock %}
 
 {% block popups %}
@@ -64,32 +55,6 @@
 {% block script_variables %}
     {{block.super}}
     <script>
-
-        function delete_service(guid)
-        {
-            fetch('/api/v1/geoservices/delete/'+guid, {
-                method: 'delete',
-                headers: {
-                    'Accept': 'application/json, text/plain, */*',
-                    'Content-Type': 'application/json'
-                }
-            }).then(
-                function (response) {
-                    response.text().then(function (text) {
-                        var result = JSON.parse(text);
-                        if( result.status != 'ok' )
-                        {
-                            alert("Error while deleting. API response: " + text);
-                        }
-                        else
-                        {
-                            window.location.href='/';
-                        }
-                    });
-                }
-            );
-        }
-
         var service = {
             locale: {
                 'Boundary': '{% trans "Boundary" %}',

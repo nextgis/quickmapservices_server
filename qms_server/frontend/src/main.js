@@ -8,6 +8,7 @@ Vue.use(VueI18n);
 
 import Vuetify from 'vuetify';
 import ServiceList from "./components/ServiceList";
+import Detail from "./components/Detail";
 
 import '@nextgis_common/js/ngkit-components';
 import main from '@nextgis_common/js/main';
@@ -55,6 +56,13 @@ const i18n = new VueI18n({
       "status_works": "works",
       "status_problematic": "problematic",
       "status_failed": "failed",
+      "geoservice": {
+        "deleteConfirmation": {
+          "title": "Delete this service?",
+          "text": "Are you about to delete <strong>{name}</strong>. This&nbsp;is&nbsp;not&nbsp;recoverable.",
+          "btnTrueText": "Delete",
+        }
+      }
     },
     "ru": {
       "all_services": "Все сервисы",
@@ -69,6 +77,13 @@ const i18n = new VueI18n({
       "status_works": "работает",
       "status_problematic": "есть проблемы",
       "status_failed": "не работает",
+      "geoservice": {
+        "deleteConfirmation": {
+          "title": "Удалить сервис?",
+          "text": "Вы собираетесь удалить <strong>{name}</strong>. Это&nbsp;действие нельзя отменить.",
+          "btnTrueText": "Удалить",
+        }
+      }
     }
   }
 })
@@ -105,7 +120,7 @@ Vue.use(vueConfig, configs)
 new Vue({
   i18n,
   el: '#app',
-  components: { ServiceList, SelfLink, SidebarMenu },
+  components: { ServiceList, SelfLink, SidebarMenu, Detail },
   data() {
     return {
       sidebarMenuShown: false
