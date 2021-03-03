@@ -2,11 +2,12 @@ FROM ubuntu:20.04
 
 
 RUN apt-get update -y && \
-	apt-get update --fix-missing && apt-get -y install python3.6 python3-dev libpq-dev gdal-bin && \
+	apt-get update --fix-missing && apt-get -y install python3.6 python3-dev libpq-dev gdal-bin libpcre3 libpcre3-dev && \
 	apt-get -y install python3-pip && \
 	apt-get update --fix-missing && apt-get -y install netcat iproute2
 
 RUN mkdir -p /opt/app
+RUN groupadd -r runner && useradd -s /bin/bash -g runner runner
 COPY ./qms_server /opt/app/qms_server
 COPY ./requirements.txt /opt/app/qms_server/requirements.txt
 RUN pip3 install -r /opt/app/qms_server/requirements.txt
@@ -19,7 +20,7 @@ WORKDIR /opt/app/qms_server
 ENV EXPOSE_PORT=8080
 
 EXPOSE ${EXPOSE_PORT}
-
+USER runner
 CMD uwsgi uwsgi.ini
 # CMD python3 manage.py runserver ${EXPOSE_PORT}
 
