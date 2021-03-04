@@ -169,7 +169,7 @@ STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.path.pardir, 'qms_server
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend/dist'), ]
 
-MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.path.pardir, os.path.pardir, 'media'))
+MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.path.pardir, 'qms_server', 'media'))
 
 # URLs
 ROOT_URLCONF = 'qms_server.urls'

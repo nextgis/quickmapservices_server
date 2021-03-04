@@ -17,7 +17,7 @@ services:
         - ALLOWED_HOST=*
         - OAUTHLIB_INSECURE_TRANSPORT=1
         - IS_DEBUG=false
-      command: "uwsgi --ini uwsgi.ini"
+      command: "./start.sh"
       network_mode: host
       volumes:
         - ../qms_server:/opt/app/qms_server

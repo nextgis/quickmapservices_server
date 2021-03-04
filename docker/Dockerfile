@@ -2,7 +2,7 @@ FROM ubuntu:20.04
 
 
 RUN apt-get update -y && \
-	apt-get update --fix-missing && apt-get -y install python3.6 python3-dev libpq-dev gdal-bin libpcre3 libpcre3-dev && \
+	apt-get update --fix-missing && apt-get -y install python3.6 python3-dev libpq-dev gdal-bin libpcre3 libpcre3-dev unzip && \
 	apt-get -y install python3-pip && \
 	apt-get update --fix-missing && apt-get -y install netcat iproute2
 
@@ -10,18 +10,20 @@ RUN mkdir -p /opt/app
 RUN groupadd -r runner && useradd -s /bin/bash -g runner runner
 COPY ./qms_server /opt/app/qms_server
 COPY ./requirements.txt /opt/app/qms_server/requirements.txt
-RUN pip3 install -r /opt/app/qms_server/requirements.txt
-
 # customize
 COPY ./docker/custom_files/settings_local.py /opt/app/qms_server/qms_server/settings_local.py
+COPY ./docker/custom_files/service_icon.zip /opt/app/qms_server/service_icon.zip
+RUN ls -la /opt/app/qms_server
+RUN pip3 install -r /opt/app/qms_server/requirements.txt
 
 WORKDIR /opt/app/qms_server
-
+# bugfix https://serverfault.com/a/900708
+RUN /bin/bash -c 'chmod +x /opt/app/qms_server/start.sh' 
+RUN chown -R runner:runner /opt/app/qms_server
 ENV EXPOSE_PORT=8080
 
 EXPOSE ${EXPOSE_PORT}
-USER runner
-CMD uwsgi uwsgi.ini
+# USER runner
 # CMD python3 manage.py runserver ${EXPOSE_PORT}
 
 # https://stackoverflow.com/a/42873832
