@@ -8,7 +8,7 @@ Vue.use(VueI18n);
 
 import Vuetify from 'vuetify';
 import ServiceList from "./components/ServiceList";
-import Detail from "./components/Detail";
+import ServiceDetail from "./components/ServiceDetail";
 
 import '@nextgis_common/js/ngkit-components';
 import main from '@nextgis_common/js/main';
@@ -120,7 +120,7 @@ Vue.use(vueConfig, configs)
 new Vue({
   i18n,
   el: '#app',
-  components: { ServiceList, SelfLink, SidebarMenu, Detail },
+  components: { ServiceList, SelfLink, SidebarMenu, ServiceDetail },
   data() {
     return {
       sidebarMenuShown: false

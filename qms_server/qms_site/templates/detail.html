@@ -5,7 +5,7 @@
 {% load wfs_layer_utils %}
 
 {% block body_content %}
-    <Detail
+    <service-detail
         :service="{
             id: {{ service.id }},
             guid: '{{service_guid}}',
@@ -45,7 +45,7 @@
         {% endif %}
         <br>
         <a href="{% url 'site_geoservice_list' %}">{% trans 'Back to services list' %}</a>
-</Detail>
+</service-detail>
 {% endblock %}
 
 {% block popups %}
