@@ -19,7 +19,8 @@ from django.contrib import admin
 
 # noinspection PyUnresolvedReferences
 import qms_server.admin as localadmin  # For admin customization
-
+handler404 = 'qms_site.views.handler404'
+handler500 = 'qms_site.views.handler500'
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

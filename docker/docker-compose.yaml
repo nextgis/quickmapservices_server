@@ -19,6 +19,7 @@ services:
         - IS_DEBUG=false
       command: "./start.sh"
       network_mode: host
+      # BE CAREFUL: volumes may damage unzipping of /media contents (see start.sh)
       # volumes:
         # - ../qms_server:/opt/app/qms_server
         # - ./custom_files/settings_local.py:/opt/app/qms_server/qms_server/settings_local.py
