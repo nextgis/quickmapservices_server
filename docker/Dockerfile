@@ -13,7 +13,7 @@ COPY ./requirements.txt /opt/app/qms_server/requirements.txt
 # customize
 COPY ./docker/custom_files/settings_local.py /opt/app/qms_server/qms_server/settings_local.py
 COPY ./docker/custom_files/service_icon.zip /opt/app/qms_server/service_icon.zip
-RUN mkdir /opt/app/qms_server/media
+RUN mkdir -p /opt/app/qms_server/media
 RUN pip3 install -r /opt/app/qms_server/requirements.txt
 
 WORKDIR /opt/app/qms_server
