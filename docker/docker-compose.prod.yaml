@@ -1,0 +1,38 @@
+version: '3.7'
+
+services:
+    db:
+      image: registry.nextgis.com/postgis:latest
+      expose:
+        - 5432
+      volumes:
+        - db_dir:/var/lib/postgresql/data
+      environment:
+        - POSTGRES_DB=QMS_TEST_DB
+        - POSTGRES_USER=QMS_TEST_DB_USER
+        - POSTGRES_PASSWORD=QMS_TEST_DB_USER_PASS
+      networks:
+          - default
+
+    web:
+      build:
+        context: ../
+        dockerfile: ./docker/Dockerfile
+      image: registry.nextgis.com/qms:dj22py38
+      ports:
+        - 8000:8080
+      environment:
+        - DATABASE_NAME=QMS_TEST_DB
+        - DATABASE_USER=QMS_TEST_DB_USER
+        - DATABASE_PASS=QMS_TEST_DB_USER_PASS
+        - DATABASE_HOST=db
+        - DATABASE_PORT=5432
+        - ALLOWED_HOST=*
+        - OAUTHLIB_INSECURE_TRANSPORT=1
+        - IS_DEBUG=true # cose ManifestStaticFilesStorage use
+      command: "./start.sh"
+      networks:
+        - default
+
+volumes:
+  db_dir: {}
