@@ -36,7 +36,10 @@ services:
         - default
       # BE CAREFUL: volumes may damage unzipping of /media contents (see start.sh)
       volumes:
-        - ../qms_server:/opt/app/qms_server
+        - ../qms_server/frontend:/opt/app/qms_server/frontend
+        - ../qms_server/qms_core:/opt/app/qms_server/qms_core
+        - ../qms_server/qms_server:/opt/app/qms_server/qms_server
+        - ../qms_server/qms_site:/opt/app/qms_server/qms_site
         - ./custom_files/settings_local.py:/opt/app/qms_server/qms_server/settings_local.py
 
 volumes:

@@ -17,6 +17,8 @@ RUN mkdir /opt/app/qms_server/media
 RUN pip3 install -r /opt/app/qms_server/requirements.txt
 
 WORKDIR /opt/app/qms_server
+RUN mkdir -p /opt/app/qms_server/static
+RUN chown -R runner:runner /opt/app/qms_server/static
 # bugfix https://serverfault.com/a/900708
 RUN /bin/bash -c 'chmod +x /opt/app/qms_server/start.sh' 
 RUN chown -R runner:runner /opt/app/qms_server/media
