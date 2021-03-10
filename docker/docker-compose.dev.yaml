@@ -29,14 +29,15 @@ services:
         - DATABASE_PORT=5432
         - ALLOWED_HOST=*
         - OAUTHLIB_INSECURE_TRANSPORT=1
-        - IS_DEBUG=false
-      command: "./start.sh"
+        - IS_DEBUG=true
+      # command: "./start.sh"
+      command: "python3 manage.py runserver 0.0.0.0:8080"
       networks:
         - default
       # BE CAREFUL: volumes may damage unzipping of /media contents (see start.sh)
-      # volumes:
-        # - ../qms_server:/opt/app/qms_server
-        # - ./custom_files/settings_local.py:/opt/app/qms_server/qms_server/settings_local.py
+      volumes:
+        - ../qms_server:/opt/app/qms_server
+        - ./custom_files/settings_local.py:/opt/app/qms_server/qms_server/settings_local.py
 
 volumes:
   db_dir: {}
