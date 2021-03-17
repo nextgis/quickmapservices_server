@@ -104,8 +104,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'qms_server.wsgi.application'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'qms@nextgis.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.getenv('EMAIL_HOST','')
+EMAIL_USE_TLS =False
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL','')
+
 EMAIL_SUBJECT_PREFIX = '[NextGIS QMS feedback] '
 
 CREATION_THROUGH_API_SUBMITTER = 'sim'

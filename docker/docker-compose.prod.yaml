@@ -27,9 +27,11 @@ services:
         - DATABASE_PASS=QMS_TEST_DB_USER_PASS
         - DATABASE_HOST=db
         - DATABASE_PORT=5432
+        - EMAIL_HOST=prod.vpn.nextgis.net
+        - DEFAULT_FROM_EMAIL=qms@nextgis.com
         - ALLOWED_HOST=*
         - OAUTHLIB_INSECURE_TRANSPORT=1
-        - IS_DEBUG=true # cose ManifestStaticFilesStorage use
+        - IS_DEBUG=false # cose ManifestStaticFilesStorage use
       command: "./start.sh"
       networks:
         - default

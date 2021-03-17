@@ -14,6 +14,8 @@ services:
         - DATABASE_PASS=tf7yi8kd
         - DATABASE_HOST=localhost
         - DATABASE_PORT=5432
+        - EMAIL_HOST=prod.vpn.nextgis.net
+        - DEFAULT_FROM_EMAIL=qms@nextgis.com
         - ALLOWED_HOST=*
         - OAUTHLIB_INSECURE_TRANSPORT=1
         - IS_DEBUG=false
