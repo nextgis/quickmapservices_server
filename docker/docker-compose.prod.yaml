@@ -28,7 +28,8 @@ services:
         - DATABASE_HOST=db
         - DATABASE_PORT=5432
         - EMAIL_HOST=prod.vpn.nextgis.net
-        - DEFAULT_FROM_EMAIL=qms@nextgis.com
+        - DEFAULT_FROM_EMAIL=qms[dev]@nextgis.com
+        - EMAIL_SUBJECT_PREFIX=[NextGIS QMS Dev feedback]
         - ALLOWED_HOST=*
         - OAUTHLIB_INSECURE_TRANSPORT=1
         - IS_DEBUG=false # cose ManifestStaticFilesStorage use

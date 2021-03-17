@@ -108,8 +108,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST','')
 EMAIL_USE_TLS =False
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL','')
-
-EMAIL_SUBJECT_PREFIX = '[NextGIS QMS feedback] '
+EMAIL_SUBJECT_PREFIX = os.getenv('EMAIL_SUBJECT_PREFIX', '[NextGIS QMS feedback]')
 
 CREATION_THROUGH_API_SUBMITTER = 'sim'
 MODIFICATION_API_BASIC_AUTH = 'Basic cW1zX2FwaV9tb2RpZmljYXRvcjpmOFJqNEdEb3cyUFE='

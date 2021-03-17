@@ -50,14 +50,14 @@ NOCAPTCHA = True
 
 
 # Email
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = ''                     # SET THIS!
-EMAIL_PORT = 587                    # SET THIS!
-EMAIL_HOST_USER = ''                # SET THIS!
-EMAIL_HOST_PASSWORD = ''            # SET THIS!
-EMAIL_USE_TLS = True                # SET THIS!
-EMAIL_USE_SSL = False               # SET THIS!
-DEFAULT_FROM_EMAIL = ''             # SET THIS!
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_HOST = ''                     # SET THIS!
+# EMAIL_PORT = 587                    # SET THIS!
+# EMAIL_HOST_USER = ''                # SET THIS!
+# EMAIL_HOST_PASSWORD = ''            # SET THIS!
+# EMAIL_USE_TLS = True                # SET THIS!
+# EMAIL_USE_SSL = False               # SET THIS!
+# DEFAULT_FROM_EMAIL = ''             # SET THIS!
 
 # Checker settings
 SERVICE_CHECK_TIMEOUT = 10  # secs
