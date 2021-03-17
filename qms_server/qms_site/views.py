@@ -155,6 +155,8 @@ class GeoserviceDetailView(TemplateView, ReportFormMixin):
         kwargs['service_guid'] = str(service.guid)
         kwargs['can_user_delete'] = False
         user = self.request.user
+        if service.submitter == user:
+            kwargs['can_user_delete'] = True   
         if user.id:
             if user.groups.filter(name='MODIFICATION_API_USERS').exists():
                 kwargs['can_user_delete'] = True

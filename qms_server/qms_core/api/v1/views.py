@@ -213,6 +213,23 @@ class AuthorizedCompanyUser(permissions.BasePermission):
         user = request.user
         if user.groups.filter(name='MODIFICATION_API_USERS').exists():
             return True
+
+        if request.method == 'DELETE':
+            #
+            #   TODO: refactor
+            #
+            pc = request.parser_context['kwargs']
+            if not pc:
+                return False
+            guid = pc.get('guid')
+            if not guid:
+                return False
+            geo_service = GeoService.objects.filter(guid=guid).get()
+            if not geo_service:
+                return False
+            if geo_service.submitter == user:
+                return True
+
         return False
 
 
