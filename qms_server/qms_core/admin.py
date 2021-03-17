@@ -38,7 +38,7 @@ class GenericServiceAdmin(admin.ModelAdmin):  #OSMGeoAdmin
         MultiPolygonField: {'widget': forms.Textarea},
     }
 
-    openlayers_url = static('qms_core/js/OpenLayers.js')
+    # openlayers_url = static('qms_core/js/OpenLayers.js') # usage undefined
 
     readonly_fields = ('guid', 'type', 'cumulative_status')
     list_display = ('id', 'name', 'cumulative_status', 'desc')
