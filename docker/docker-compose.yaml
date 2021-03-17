@@ -17,6 +17,8 @@ services:
         - EMAIL_HOST=prod.vpn.nextgis.net
         - DEFAULT_FROM_EMAIL=qms@nextgis.com
         - EMAIL_SUBJECT_PREFIX=[NextGIS QMS Dev feedback]
+        - NGID_CLIENT_ID=jQBKtVVaEWTIZT9yZQt9pet6168iTD5sR27dYXT8
+        - NGID_CLIENT_SECRET=AlWUFBZXWT0a7wzuFt1rvajgVDuyQXwIOvEWPRVjAJm1Wcx9b0vPTYCPgPfaaqpEGGmZNK9MKNQpfl9n1V2VUwaAG8XrFAybxpCDz1r8m5wvfnQZZdxBZ3aHhmZkVw77
         - ALLOWED_HOST=*
         - OAUTHLIB_INSECURE_TRANSPORT=1
         - IS_DEBUG=false
