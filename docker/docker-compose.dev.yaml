@@ -38,6 +38,7 @@ services:
       # BE CAREFUL: volumes may damage unzipping of /media contents (see start.sh)
       volumes:
         - ../qms_server/frontend:/opt/app/qms_server/frontend
+        - ../qms_server/nextgis_common:/opt/app/qms_server/nextgis_common
         - ../qms_server/qms_core:/opt/app/qms_server/qms_core
         - ../qms_server/qms_server:/opt/app/qms_server/qms_server
         - ../qms_server/qms_site:/opt/app/qms_server/qms_site
