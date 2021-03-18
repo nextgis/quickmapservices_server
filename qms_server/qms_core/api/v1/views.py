@@ -18,6 +18,8 @@ from rest_framework import status
 from rest_framework import authentication
 from rest_framework import permissions
 
+from qms_site.models import UserReport
+
 from ...icon_renderer import IconRenderer
 from ...icon_serializer import IconSerializer
 from ...models import GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService, GeoServiceStatus, CumulativeStatus
@@ -378,6 +380,9 @@ class GeoServiceDeleteView(GeoServiceModificationMixin, DestroyAPIView):
         try:
             instance = self.get_object()
             guid = instance.guid
+            service_id = instance.id
+            reports = UserReport.objects.filter(geo_service_id=service_id)
+            reports.delete()
             self.perform_destroy(instance)
 
         except Exception as e:
