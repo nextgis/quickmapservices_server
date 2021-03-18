@@ -17,7 +17,7 @@ COPY ./docker/custom_files/service_icon.zip /opt/app/qms_server/service_icon.zip
 RUN pip3 install -r /opt/app/qms_server/requirements.txt
 
 # This is hack - for to avoid check_service error for wfs layers
-RUN pip3 install pip3 install pyproj==1.9.6
+RUN pip3 install pyproj==1.9.6
 
 WORKDIR /opt/app/qms_server
 # RUN chown -R runner:runner /opt/app/qms_server
