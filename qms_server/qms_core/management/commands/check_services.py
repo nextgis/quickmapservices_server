@@ -20,7 +20,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         thread_count = options['threads']
 
-        if 'service' in options:
+        if options.get('service'):
             service_ids = [options['service']]
         else:
             service_ids = GeoService.objects.all().only('id').values_list(flat=True)
