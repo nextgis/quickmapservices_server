@@ -1,5 +1,7 @@
+import datetime
 import multiprocessing
 import pprint
+import time
 
 from django.core.management import BaseCommand
 
@@ -23,6 +25,8 @@ class Command(BaseCommand):
         parser.add_argument('-t', '--threads', help='Threads count for checkers', type=int, default=20)
         parser.add_argument('--service_type', choices=service_type_choices, help='Service type')
         parser.add_argument('--service', help='Internal service id', type=int)
+        
+        parser.add_argument('--sleep_afte_check_until_endofday', action='store_true', help='Wait end of day after check')
 
 
 
@@ -39,8 +43,16 @@ class Command(BaseCommand):
 
         print('Try to check %s services' % len(service_ids))
 
+        start_day = datetime.date.today()
+
         checkers_pool = multiprocessing.Pool(thread_count)
         checkers_pool.imap(check_by_id_and_save, service_ids)
         checkers_pool.close()
         checkers_pool.join()
 
+
+        if options.get('sleep_afte_check_until_endofday'):
+            print('Wait end of day ...')
+            while start_day == datetime.date.today():
+                time.sleep(60 * 5)
+            print('Bye!')
