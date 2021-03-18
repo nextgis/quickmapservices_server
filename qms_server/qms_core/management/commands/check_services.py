@@ -13,13 +13,17 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('-t', '--threads', help='Threads count for checkers', type=int, default=20)
+        parser.add_argument('--service', help='Internal service id', type=int)
 
 
 
     def handle(self, *args, **options):
         thread_count = options['threads']
 
-        service_ids = GeoService.objects.all().only('id').values_list(flat=True)
+        if 'service' in options:
+            service_ids = [options['service']]
+        else:
+            service_ids = GeoService.objects.all().only('id').values_list(flat=True)
 
         checkers_pool = multiprocessing.Pool(thread_count)
         checkers_pool.imap(check_by_id_and_save, service_ids)
