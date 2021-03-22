@@ -1,0 +1,51 @@
+version: '3.7'
+
+services:
+    db:
+      image: registry.nextgis.com/postgis:latest
+      expose:
+        - 5432
+      volumes:
+        - db_dir:/var/lib/postgresql/data
+      environment:
+        - POSTGRES_DB=QMS_TEST_DB
+        - POSTGRES_USER=QMS_TEST_DB_USER
+        - POSTGRES_PASSWORD=QMS_TEST_DB_USER_PASS
+      networks:
+          - default
+
+    web:
+      build:
+        context: ../
+        dockerfile: ./docker/Dockerfile
+      image: registry.nextgis.com/qms:dj22py38
+      ports:
+        - 8000:8080
+      environment:
+        - DATABASE_NAME=QMS_TEST_DB
+        - DATABASE_USER=QMS_TEST_DB_USER
+        - DATABASE_PASS=QMS_TEST_DB_USER_PASS
+        - DATABASE_HOST=db
+        - DATABASE_PORT=5432
+        - EMAIL_HOST=prod.vpn.nextgis.net
+        - DEFAULT_FROM_EMAIL=qms[dev]@nextgis.com
+        - EMAIL_SUBJECT_PREFIX=[NextGIS QMS Dev feedback]
+        - NGID_CLIENT_ID=jQBKtVVaEWTIZT9yZQt9pet6168iTD5sR27dYXT8
+        - NGID_CLIENT_SECRET=AlWUFBZXWT0a7wzuFt1rvajgVDuyQXwIOvEWPRVjAJm1Wcx9b0vPTYCPgPfaaqpEGGmZNK9MKNQpfl9n1V2VUwaAG8XrFAybxpCDz1r8m5wvfnQZZdxBZ3aHhmZkVw77
+        - ALLOWED_HOST=*
+        - OAUTHLIB_INSECURE_TRANSPORT=1
+        - IS_DEBUG=true
+      command: "python3 manage.py runserver 0.0.0.0:8080"
+      networks:
+        - default
+      # BE CAREFUL: volumes may damage unzipping of /media contents (see start.sh)
+      volumes:
+        - ../qms_server/frontend:/opt/app/qms_server/frontend
+        - ../qms_server/nextgis_common:/opt/app/qms_server/nextgis_common
+        - ../qms_server/qms_core:/opt/app/qms_server/qms_core
+        - ../qms_server/qms_server:/opt/app/qms_server/qms_server
+        - ../qms_server/qms_site:/opt/app/qms_server/qms_site
+        # - ./custom_files/settings_local.py:/opt/app/qms_server/qms_server/settings_local.py
+
+volumes:
+  db_dir: {}

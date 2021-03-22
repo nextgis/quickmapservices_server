@@ -1,22 +1,30 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 
-import Vue from 'vue'
+import Vue from 'vue';
 
-import VueI18n from 'vue-i18n'
-Vue.use(VueI18n)
+import VueI18n from 'vue-i18n';
+Vue.use(VueI18n);
 
-import Vuetify from 'vuetify'
-import App from './App'
-import ServiceList from "./components/ServiceList"
+import Vuetify from 'vuetify';
+import ServiceList from "./components/ServiceList";
+import ServiceDetail from "./components/ServiceDetail";
 
-import main from '@nextgis_common/js/main'
-import './js/report-problem'
-import QmsAddForm from './js/qms'
-import './js/preview_map'
-import vueConfig from 'vue-config'
+import '@nextgis_common/js/ngkit-components';
+import main from '@nextgis_common/js/main';
+import './js/report-problem';
+import QmsAddForm from './js/qms';
+import './js/preview_map';
+import vueConfig from 'vue-config';
 
+
+import SidebarMenu from '@nextgis_common/components/SidebarMenu/SidebarMenu.vue';
 import SelfLink from '@nextgis_common/components/SelfLink/SelfLink.vue';
+
+//styles
+import "@nextgis_common/scss/main.scss";
+import "@nextgis_common/scss/vuetify.styl";
+import './scss/qms.scss';
 
 Vue.use(Vuetify, { 
     theme: {
@@ -48,6 +56,13 @@ const i18n = new VueI18n({
       "status_works": "works",
       "status_problematic": "problematic",
       "status_failed": "failed",
+      "geoservice": {
+        "deleteConfirmation": {
+          "title": "Delete this service?",
+          "text": "Are you about to delete <strong>{name}</strong>. This&nbsp;is&nbsp;not&nbsp;recoverable.",
+          "btnTrueText": "Delete",
+        }
+      }
     },
     "ru": {
       "all_services": "Все сервисы",
@@ -62,6 +77,13 @@ const i18n = new VueI18n({
       "status_works": "работает",
       "status_problematic": "есть проблемы",
       "status_failed": "не работает",
+      "geoservice": {
+        "deleteConfirmation": {
+          "title": "Удалить сервис?",
+          "text": "Вы собираетесь удалить <strong>{name}</strong>. Это&nbsp;действие нельзя отменить.",
+          "btnTrueText": "Удалить",
+        }
+      }
     }
   }
 })
@@ -98,7 +120,12 @@ Vue.use(vueConfig, configs)
 new Vue({
   i18n,
   el: '#app',
-  components: { App, ServiceList, SelfLink }
+  components: { ServiceList, SelfLink, SidebarMenu, ServiceDetail },
+  data() {
+    return {
+      sidebarMenuShown: false
+    }
+  }
 })
 
 main();

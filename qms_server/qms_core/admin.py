@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.gis.admin import OSMGeoAdmin
 from django.contrib.gis.db.models import PolygonField, MultiPolygonField
 from django import forms
-from django.core import urlresolvers
+from django.urls import reverse
 from django.templatetags.static import static
 from django.utils.translation import ugettext as _
 from qms_core.models import NextgisUser, GeoService, TmsService, WmsService, WfsService, ServiceIcon, GeoJsonService, \
@@ -38,7 +38,7 @@ class GenericServiceAdmin(admin.ModelAdmin):  #OSMGeoAdmin
         MultiPolygonField: {'widget': forms.Textarea},
     }
 
-    openlayers_url = static('qms_core/js/OpenLayers.js')
+    # openlayers_url = static('qms_core/js/OpenLayers.js') # usage undefined
 
     readonly_fields = ('guid', 'type', 'cumulative_status')
     list_display = ('id', 'name', 'cumulative_status', 'desc')
@@ -46,7 +46,7 @@ class GenericServiceAdmin(admin.ModelAdmin):  #OSMGeoAdmin
 
     def cumulative_status(self, obj):
         if obj.last_status:
-            base_url = urlresolvers.reverse('admin:qms_core_geoservicestatus_change', args=(obj.last_status.id,))
+            base_url = reverse('admin:qms_core_geoservicestatus_change', args=(obj.last_status.id,))
             return '<a href="%s" target=_blank>%s</a>' % (base_url, str(obj.last_status.cumulative_status))
         else:
             return None

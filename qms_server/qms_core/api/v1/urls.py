@@ -1,7 +1,7 @@
 from django.conf.urls import url, include
 from rest_framework.routers import DefaultRouter
 
-from .views import GeoServiceListView, GeoServiceDetailedView, ApiRootView, ServiceIconListView, \
+from .views import GeoServiceListView, GeoServiceCreateView, GeoServiceUpdateView, GeoServiceDeleteView, GeoServiceDetailedView, ApiRootView, ServiceIconListView, \
     ServiceIconDetailedView, \
     IconRetrieveView, DefaultIconRetrieveView, GeoServiceStatusViewSet
 
@@ -16,6 +16,9 @@ urlpatterns = [
 
     # services
     url(r'^geoservices/$', GeoServiceListView.as_view(), name='geoservice_list'),
+    url(r'^geoservices/create$', GeoServiceCreateView.as_view(), name='geoservice_create'),
+    url(r'^geoservices/update/(?P<guid>[-\w]+)$', GeoServiceUpdateView.as_view(), name='geoservice_update'),
+    url(r'^geoservices/delete/(?P<guid>[-\w]+)$', GeoServiceDeleteView.as_view(), name='geoservice_delete'),
     url(r'^geoservices/(?P<pk>[0-9]+)/$', GeoServiceDetailedView.as_view(), name='geoservice_detail'),
 
     # icons

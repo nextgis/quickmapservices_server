@@ -1,10 +1,10 @@
 import random
-import StringIO
+from io import StringIO
 
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages import add_message, INFO
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.http import HttpResponseForbidden
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse, JsonResponse
@@ -29,6 +29,8 @@ from django.utils.translation import gettext_lazy as _
 
 from qms_site.models import ReportType
 
+from django.shortcuts import render
+from django.template import RequestContext
 
 class GeoserviceListView(TemplateView):
     template_name = 'list.html'
@@ -39,6 +41,18 @@ class AboutView(TemplateView):
 
 class FAQView(TemplateView):
     template_name = 'faq.html'
+
+def handler404(request, exception):
+    template_name = '404.html'
+    response = render(request, template_name)
+    response.status_code = 404
+    return response
+
+def handler500(request, *args, **argv):
+    template_name = '500.html'
+    response = render(request, template_name)
+    response.status_code = 500
+    return response
 
 
 class ReportFormMixin(FormMixin, ProcessFormView):
@@ -61,14 +75,14 @@ class ReportFormMixin(FormMixin, ProcessFormView):
         return super(ReportFormMixin, self).get_context_data(**kwargs)
 
     def get_initial(self):
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated:
             return {'reported_email': self.request.user.email}
         else:
             return {}
 
     def get_form_class(self):
         return AuthReportForm
-        # if self.request.user.is_authenticated():
+        # if self.request.user.is_authenticated:
         #     return AuthReportForm
         # else:
         #     return NonAuthReportForm
@@ -83,13 +97,13 @@ class ReportFormMixin(FormMixin, ProcessFormView):
         report = report_form.save(commit=False)
         report.geo_service = service
 
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated:
             report.reported = self.request.user
 
         report.save()
 
         context = {
-            'reported_user': unicode(report.reported) if report.reported else None,
+            'reported_user': str(report.reported) if report.reported else None,
             'reported_email': report.reported_email,
             'service_url': self.request.build_absolute_uri(reverse('site_geoservice_detail', kwargs={'pk': service.id})),
             'report_type': ReportType.choices[report.report_type],
@@ -104,7 +118,7 @@ class ReportFormMixin(FormMixin, ProcessFormView):
         # send copy to message submitter
         if report.reported_email:
             send_templated_mail('qms_site/email/user_report_for_submitter', report.reported_email, context)
-        elif self.request.user.is_authenticated() and self.request.user.email:
+        elif self.request.user.is_authenticated and self.request.user.email:
             with translation.override(self.request.user.locale):
                 send_templated_mail('qms_site/email/user_report_for_submitter', self.request.user.email, context)
 
@@ -136,12 +150,22 @@ class GeoserviceDetailView(TemplateView, ReportFormMixin):
                                                       .select_related('wfsservice'),
                                     id=kwargs['pk'])
 
+
         kwargs['service'] = service
+        kwargs['service_guid'] = str(service.guid)
+        kwargs['can_user_delete'] = False
+        user = self.request.user
+        if service.submitter == user:
+            kwargs['can_user_delete'] = True   
+        if user.id:
+            if user.groups.filter(name='MODIFICATION_API_USERS').exists():
+                kwargs['can_user_delete'] = True
+
         if service.type == TmsService.service_type:
             tms_url_pattern, tms_subdomains = service.tmsservice.get_url_pattern_and_subdomains()
 
             kwargs['leaflet_tms_url'] = tms_url_pattern % {'subdomain': '{s}'}
-            kwargs['leaflet_tms_subdomains'] = map(str, tms_subdomains)
+            kwargs['leaflet_tms_subdomains'] = list(map(str, tms_subdomains))
 
             # Remove this block when the leaflet map is fixed for use subdomain
             if len(tms_subdomains) > 0:

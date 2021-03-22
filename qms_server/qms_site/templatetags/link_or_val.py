@@ -11,7 +11,7 @@ def link_or_val(value, arg):
         return arg
 
     link_tmpl = u'<a target="_blank" href="{0}">{0}</a>'
-    if not isinstance(value, unicode):
+    if not isinstance(value, str):
         link_tmpl = link_tmpl.encode('utf-8')
     link = link_tmpl.format(value)
 

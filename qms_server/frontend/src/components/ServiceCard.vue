@@ -184,7 +184,10 @@ export default {
         margin:0;
         text-decoration: none;
 
-        &:hover
+        &:hover,
+        &:focus,
+        &:active
+          text-decoration: none;
           &:before
             background-color: transparent
 

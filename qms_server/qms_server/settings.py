@@ -31,7 +31,7 @@ SITE_ID = 1
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'nextgis_common.ngid_auth.auth_backend.NgidBackend',
+    'nextgis_common.ngid_auth.auth_backend.OAuthNGIdBackend'
 )
 
 AUTH_USER_MODEL = 'qms_core.NextgisUser'
@@ -71,7 +71,7 @@ INSTALLED_APPS = [
     'sslserver'
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -79,7 +79,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    # 'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -95,6 +95,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'nextgis_common.menu.get_menu',
+                'nextgis_common.constants.get_constants',
             ],
         },
     },
@@ -102,9 +104,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'qms_server.wsgi.application'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-DEFAULT_FROM_EMAIL = 'qms@nextgis.com'
-EMAIL_SUBJECT_PREFIX = '[NextGIS QMS feedback] '
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = os.getenv('EMAIL_HOST','')
+EMAIL_USE_TLS =False
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL','')
+EMAIL_SUBJECT_PREFIX = os.getenv('EMAIL_SUBJECT_PREFIX', '[NextGIS QMS feedback]')
+
+NGID_CLIENT_ID = os.getenv('NGID_CLIENT_ID', '')
+NGID_CLIENT_SECRET = os.getenv('NGID_CLIENT_SECRET', '')
+
+CREATION_THROUGH_API_SUBMITTER = 'sim'
+MODIFICATION_API_BASIC_AUTH = 'Basic cW1zX2FwaV9tb2RpZmljYXRvcjpmOFJqNEdEb3cyUFE='
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
@@ -160,11 +170,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.path.pardir, os.path.pardir, 'static'))
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.path.pardir, 'qms_server', 'static'))
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'frontend/dist'), ]
 
-MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.path.pardir, os.path.pardir, 'media'))
+MEDIA_ROOT = os.path.abspath(os.path.join(BASE_DIR, os.path.pardir, 'qms_server', 'media'))
 
 # URLs
 ROOT_URLCONF = 'qms_server.urls'
@@ -191,10 +201,60 @@ CRONJOBS = [
     ('0 0 * * *', 'django.core.management.call_command', ['check_services'], {}, '>> /tmp/update_service_statuces.log'),
 ]
 
+### NextGIS Common
+# Auth
+OAUTH_PROVIDER = 'nextgis_common.ngid_auth.ngid_provider.NgidProvider'
+
+OAUTH_SERVER_INTROSPECTION = ''
+# Menu
+NEXTGISID_MENU = [
+    {   'url_name': 'site_geoservice_list',
+        'title': {'en': u'Services', 'ru': u'Сервисы'}
+    },
+    {   'url_name': 'site_about',
+        'title': {'en': u'How to use', 'ru': u'Как использовать'}
+    },
+    {   'url_name': 'site_faq',
+        'title': {'en': u'FAQ', 'ru': u'Вопросы и ответы'}
+    },
+]
+
 
 # try to load local machine settings
 try:
-    from settings_local import *
+    from qms_server.settings_local import *
 except:
     raise
 
+# Logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt': "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+
+        'common': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'nextgis_common': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        }
+    }
+}

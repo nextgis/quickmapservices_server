@@ -44,7 +44,7 @@ class GeoJsonChecker(BaseServiceChecker):
         # если requests вернул код ошибки веб-сервера
         except HTTPError as error:
             result.cumulative_status = CumulativeStatus.FAILED
-            result.error_text = unicode(error)
+            result.error_text = str(error)
 
         # исключение по таймауту 10 секунд
         except Timeout as error:
@@ -53,7 +53,7 @@ class GeoJsonChecker(BaseServiceChecker):
 
         except Exception as error:
             result.cumulative_status = CumulativeStatus.FAILED
-            result.error_text = unicode(error)
+            result.error_text = str(error)
 
         duration_time = datetime.datetime.utcnow() - startTime
         result.check_duration = duration_time.total_seconds()

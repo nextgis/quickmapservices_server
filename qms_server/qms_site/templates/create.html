@@ -18,7 +18,7 @@
             <a class="qms-type__help-link" href="/faq#add" target="_blank">{% trans "Which one do I need?" %}</a>
             <h1 class="qms-type__title">{% trans 'Select service type' %}</h1>
             <div class="square-list">
-                {% for form_obj_name, form_obj in forms.iteritems %}
+                {% for form_obj_name, form_obj in forms.items %}
                     <div class="square-list__item">
                         <a href="#{{form_obj_name}}" aria-controls="{{form_obj_name}}" role="tab" data-toggle="tab">
                             <div class="square-list__panel panel">
@@ -32,7 +32,7 @@
         </nav>
         <!-- Tab panes -->
         <div class="tab-content">
-            {% for form_obj_name, form_obj in forms.iteritems %}
+            {% for form_obj_name, form_obj in forms.items %}
                 <div role="tabpanel" class="panel panel--big tab-pane {% if error_form_type == form_obj_name %} active {% endif %}" id="{{form_obj_name}}">
                     <div class="panel-body">
                         {% include form_obj.associated_template with form=form_obj form_name=form_obj_name mode="create" %}

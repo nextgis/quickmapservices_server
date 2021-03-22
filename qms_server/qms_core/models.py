@@ -14,8 +14,8 @@ from django.utils.translation import ugettext as _
 from django.utils.encoding import python_2_unicode_compatible
 
 # Create your models here.
-from size_restricted_image_field import SizeRestrictedImageField
-from supported_languages import SupportedLanguages
+from qms_core.size_restricted_image_field import SizeRestrictedImageField
+from qms_core.supported_languages import SupportedLanguages
 
 # USERS
 class NextgisUserManager(BaseUserManager):
@@ -198,6 +198,27 @@ class GeoService(models.Model):
         if self.type == GeoJsonService.service_type:
             return self.geojsonservice
         return self
+    
+    @classmethod
+    def get_typed_class(cls, service_type):
+        if service_type == TmsService.service_type:
+            return TmsService
+        if service_type == WmsService.service_type:
+            return WmsService
+        if service_type == WfsService.service_type:
+            return WfsService
+        if service_type == GeoJsonService.service_type:
+            return GeoJsonService
+        return cls
+    
+    @classmethod
+    def get_valid_service_types(cls):
+        return [
+            TmsService.service_type,
+            WmsService.service_type,
+            WfsService.service_type,
+            GeoJsonService.service_type
+        ]
 
 
 class TmsUrlField(models.CharField):
@@ -334,9 +355,9 @@ class GeoServiceStatus(models.Model):
     check_duration = models.FloatField(null=True)
 
     # statuses
-    cumulative_status = models.CharField(max_length=50, choices=CumulativeStatus.choices.items(), null=False)
+    cumulative_status = models.CharField(max_length=50, choices=list(CumulativeStatus.choices.items()), null=False)
     http_code = models.IntegerField(null=True, blank=True)
     http_response = models.CharField(max_length=2048, null=True, blank=True)
-    error_type = models.CharField(max_length=50, choices=CheckStatusErrorType.choices.items(), null=True, blank=True)
+    error_type = models.CharField(max_length=50, choices=list(CheckStatusErrorType.choices.items()), null=True, blank=True)
     error_text = models.CharField(max_length=2048, null=True, blank=True)
 

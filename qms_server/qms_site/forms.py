@@ -71,7 +71,9 @@ class TmsForm(BaseServiceForm):
 
     def clean_url(self):
         data_url = self.cleaned_data['url']
-        xyz_scheme = all(map(lambda x: x in data_url, ['{x}', '{y}', '{z}']))
+        xyz_map = map(lambda x: x in data_url, ['{x}', '{y}', '{z}'])
+        xyz_map = list(xyz_map)
+        xyz_scheme = all(xyz_map)
         q_scheme = '{q}' in data_url
         if not xyz_scheme and not q_scheme:
             raise ValidationError(_("Invalid service url! Link must include {x},{y},{z} or {q} variables!"))

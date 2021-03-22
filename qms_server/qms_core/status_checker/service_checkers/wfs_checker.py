@@ -33,12 +33,12 @@ class WfsChecker(BaseServiceChecker):
         except AttributeError as error:
             result.cumulative_status = CumulativeStatus.FAILED
             result.error_type = CheckStatusErrorType.INVALID_RESPONSE
-            result.error_text = u'Not WFS service: ' + unicode(error)
+            result.error_text = u'Not WFS service: ' + str(error)
 
         # если requests вернул код ошибки веб-сервера
         except HTTPError as error:
             result.cumulative_status = CumulativeStatus.FAILED
-            result.error_text = unicode(error)
+            result.error_text = str(error)
 
         except Timeout as error:
             result.cumulative_status = CumulativeStatus.FAILED
@@ -46,7 +46,7 @@ class WfsChecker(BaseServiceChecker):
 
         except Exception as error:
             result.cumulative_status = CumulativeStatus.FAILED
-            result.error_text = unicode(error)
+            result.error_text = str(error)
 
         duration_time = datetime.datetime.utcnow() - startTime
         result.check_duration = duration_time.total_seconds()

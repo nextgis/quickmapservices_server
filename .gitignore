@@ -130,7 +130,7 @@ db.sqlite3
 maindb.sqlite
 
 # Local settings
-settings_local.py
+qms_server/qms_server/settings_local.py
 
 # CSS compiling source
 /layout/sass
@@ -142,3 +142,8 @@ settings_local.py
 # frontend
 node_modules
 qms_server/frontend/dist
+qms_server/frontend/webpack.config.alias.ext.json
+qms_server/frontend/webpack.config.entry.ext.json
+static
+media
+media2

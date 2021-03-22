@@ -33,8 +33,14 @@
 {% block logout_link %}{% url 'ngid_logout' %}{% endblock %}
 
 
-{% block header_action %}    
-    <a class="btn btn-action btn-primary hide-on-sm" href="{% url 'create_service_view' %}">{% trans 'Add service' %}</a>
+{% block header_action_login %}
+    <ng-button 
+        color="primary" 
+        small
+        href="{% url 'create_service_view' %}">
+        {% trans 'Add service' %}
+    </ng-button>
+    {{block.super}}
 {% endblock %}
 
 {% block script_variables %}

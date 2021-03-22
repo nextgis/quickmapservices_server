@@ -42,6 +42,8 @@ class TmsChecker(BaseServiceChecker):
         result = CheckResult(geoservice_id=self.service.id,
                              geoservice_name=self.service.name,
                              geoservice_type=self.service.type)
+        result.cumulative_status = CumulativeStatus.FAILED
+        result.error_text = ''
 
         startTime = datetime.datetime.utcnow()
         try:
@@ -91,7 +93,7 @@ class TmsChecker(BaseServiceChecker):
         # если requests вернул код ошибки веб-сервера
         except HTTPError as error:
             result.cumulative_status = CumulativeStatus.FAILED
-            result.error_text = unicode(error)
+            result.error_text = str(error)
 
         except Timeout as error:
             result.cumulative_status = CumulativeStatus.FAILED
@@ -99,7 +101,7 @@ class TmsChecker(BaseServiceChecker):
 
         except Exception as error:
             result.cumulative_status = CumulativeStatus.FAILED
-            result.error_text = unicode(error)
+            result.error_text = str(error)
 
         duration_time = datetime.datetime.utcnow() - startTime
         result.check_duration = duration_time.total_seconds()
