@@ -8,16 +8,16 @@
           :data-service-title="service.name"
           :data-service-id="service.id"
           data-service-url=""
-        >Feedback</a>
+        >{{$t('feedback')}}</a>
         <a v-if="isEditingAllowed"
           :href="editUrl"
           class="btn btn-tool btn--depressed"
-        >Edit</a>
+        >{{$t('edit')}}</a>
         <a v-if="isDeletionAllowed" 
           href="#" 
           class="btn btn-tool btn--depressed"
           @click="isDeleteConfirmationShown = true">
-          Delete
+          {{$t('delete')}}
         </a>
       </div>
       <slot></slot>
@@ -33,6 +33,21 @@
     </div>
   </div>
 </template>
+
+<i18n>
+  {
+    "en": {
+      "edit": "Edit",
+      "feedback": "Feedback",
+      "delete": "Delete"
+    },
+    "ru": {
+      "edit": "Изменить",
+      "feedback": "Написать автору",
+      "delete": "Удалить"
+    }
+  }
+</i18n>
 
 <script>
 import geoserviceService from '@/services/geoserviceService';
