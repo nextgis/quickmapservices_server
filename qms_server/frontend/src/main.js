@@ -53,6 +53,7 @@ const i18n = new VueI18n({
                             Try to change search parameters",
       "edit":"Edit",
       "feedback": "Feedback",
+      "delete": "Delete",
       "status_works": "works",
       "status_problematic": "problematic",
       "status_failed": "failed",
@@ -72,8 +73,9 @@ const i18n = new VueI18n({
       "search_service": "Поиск сервиса",
       "no_search_results": "<h2>Ничего не найдено</h2>\
                             Попробуйте изменить условия поиска",
-      "edit":"Редактировать",
+      "edit":"Изменить",
       "feedback": "Написать автору",
+      "delete": "Удалить",
       "status_works": "работает",
       "status_problematic": "есть проблемы",
       "status_failed": "не работает",

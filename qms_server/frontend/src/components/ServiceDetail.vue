@@ -34,21 +34,6 @@
   </div>
 </template>
 
-<i18n>
-  {
-    "en": {
-      "edit": "Edit",
-      "feedback": "Feedback",
-      "delete": "Delete"
-    },
-    "ru": {
-      "edit": "Изменить",
-      "feedback": "Написать автору",
-      "delete": "Удалить"
-    }
-  }
-</i18n>
-
 <script>
 import geoserviceService from '@/services/geoserviceService';
 import ConfirmationDialog from '@nextgis_common/components/ConfirmationDialog/ConfirmationDialog.vue';
