@@ -35,7 +35,7 @@ services:
         - ALLOWED_HOST=*
         - OAUTHLIB_INSECURE_TRANSPORT=1
         - IS_DEBUG=false # cose ManifestStaticFilesStorage use
-      command: "./start.sh"
+      command: "./start_http.sh"
       networks:
         - default
 

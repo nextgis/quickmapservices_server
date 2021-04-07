@@ -28,7 +28,7 @@ RUN mkdir -p /opt/app/qms_server/static
 RUN mkdir -p /opt/app/qms_server/media
 # RUN chown -R runner:runner /opt/app/qms_server/media
 
-RUN /bin/bash -c 'chmod +x /opt/app/qms_server/start.sh' 
+RUN /bin/bash -c 'chmod +x /opt/app/qms_server/start_http.sh' 
 
 COPY ./docker/custom_files/settings_local.py /opt/app/qms_server/qms_server/settings_local.py
 
