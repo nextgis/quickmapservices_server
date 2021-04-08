@@ -7,10 +7,16 @@ RUN apt-get update -y && \
 	apt-get -y install python3-pip && \
 	apt-get update --fix-missing && apt-get -y install netcat iproute2
 
-RUN mkdir -p /opt/app
 RUN groupadd -r runner && useradd -s /bin/bash -g runner runner
+RUN mkdir -p /opt/app
+RUN mkdir -p /opt/socket
+
 COPY ./qms_server /opt/app/qms_server
 COPY ./requirements.txt /opt/app/qms_server/requirements.txt
+
+RUN chown -R runner:runner /opt/app/qms_server/static
+RUN chown -R runner:runner /opt/socket
+
 # customize
 COPY ./docker/custom_files/settings_local.py /opt/app/qms_server/qms_server/settings_local.py
 COPY ./docker/custom_files/service_icon.zip /opt/app/qms_server/service_icon.zip
@@ -28,9 +34,14 @@ RUN mkdir -p /opt/app/qms_server/static
 RUN mkdir -p /opt/app/qms_server/media
 # RUN chown -R runner:runner /opt/app/qms_server/media
 
-RUN /bin/bash -c 'chmod +x /opt/app/qms_server/start_http.sh' 
-
 COPY ./docker/custom_files/settings_local.py /opt/app/qms_server/qms_server/settings_local.py
+COPY ./docker/custom_files/start_socket.sh /opt/app/qms_server/start_socket.sh
+COPY ./docker/custom_files/start_http.sh /opt/app/qms_server/start_http.sh
+COPY ./docker/custom_files/uwsgi_http.ini /opt/app/qms_server/uwsgi_http.ini 
+COPY ./docker/custom_files/uwsgi_socket.ini  /opt/app/qms_server/uwsgi_socket.ini
+COPY ./docker/custom_files/nginx  /opt/app/nginx
+
+RUN /bin/bash -c 'chmod +x /opt/app/qms_server/start_http.sh' 
 
 ENV EXPOSE_PORT=8080
 

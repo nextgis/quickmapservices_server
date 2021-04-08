@@ -14,4 +14,4 @@ echo "Collect static ...."
 python3 manage.py collectstatic --noinput
 
 echo "Start app ...."
-runuser -u runner -- uwsgi --ini uwsgi.ini
+runuser -u runner -- uwsgi --ini uwsgi_http.ini

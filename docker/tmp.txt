@@ -1,0 +1,6 @@
+cd ~/py3/quickmapservices_server
+uwsgi --ini qms_server/uwsgi_socket.ini
+
+
+sudo ln -s /home/sk/py3/quickmapservices_server/docker/custom_files/nginx_qms.conf /etc/nginx/sites-enabled/
+sudo /etc/init.d/nginx restart
