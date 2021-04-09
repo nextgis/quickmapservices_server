@@ -24,30 +24,32 @@ services:
       - IS_DEBUG=false
     command: "./start_socket.sh"
     network_mode: host
-    # volumes: 
-    #   - nginx-conf:/opt/app/nginx
-    #   - socket:/opt/socket
-    #   - django-media: /opt/app/qms_server/media
-    #   - django-static: /opt/app/qms_server/static
+    volumes: 
+      - socket:/opt/socket
+      - django-media:/opt/app/qms_server/media
+      - django-static:/opt/app/qms_server/static
+      - nginx-conf:/opt/app/nginx
 
   nginx:
     depends_on: 
       - web
     image: nginx
-    # volumes:
-    #   - nginx-conf:/etc/nginx/sites-enabled/
-    #   - socket:/opt/socket
-    #   - django-media: /django-media
-    #   - django-static: /django-static
-    ports:
-    - "8081:80"
-    - "8082:8000"
-    environment:
+    volumes:
+      - socket:/opt/socket
+      - django-media:/django-media
+      - django-static:/django-static
+      - nginx-conf:/etc/nginx-conf
+    network_mode: host
+    # ports:
+    # - "8081:80"
+    # - "8082:8000"
+    # environment:
     # - NGINX_HOST=foobar.com
-    - NGINX_PORT=80
-    command: [nginx-debug, '-g', 'daemon off;']
+    # - NGINX_PORT=8000
+    # command: [nginx-debug, '-g', 'daemon off;']
+    command: [nginx, '-c', '/etc/nginx-conf/nginx_qms.conf', '-g', 'daemon off;']
 volumes:
-  nginx-conf:
   socket:
   django-media:
   django-static:
+  nginx-conf:
