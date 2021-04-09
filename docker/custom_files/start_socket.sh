@@ -1,6 +1,9 @@
 #!/bin/bash
 unzip -o ./service_icon.zip -d ./media
 
+echo "Make database migrations ...."
+python3 manage.py makemigrations
+
 echo "Apply database migrations ...."
 python3 manage.py migrate
 
