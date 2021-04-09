@@ -34,11 +34,14 @@ services:
     depends_on: 
       - web
     image: nginx
+    # user: nginx
     volumes:
       - socket:/opt/socket
       - django-media:/django-media
       - django-static:/django-static
+      # - /home/sk/py3/quickmapservices_server/docker/custom_files/nginx:/etc/nginx-conf
       - nginx-conf:/etc/nginx-conf
+
     network_mode: host
     # ports:
     # - "8081:80"
