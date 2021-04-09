@@ -6,8 +6,6 @@ services:
       context: ../
       dockerfile: ./docker/Dockerfile
     image: registry.nextgis.com/qms_dj22py38:1.0.2
-    ports:
-      - 8000:8080
     environment:
       - DATABASE_NAME=qms_server3
       - DATABASE_USER=qms_server
@@ -23,36 +21,33 @@ services:
       - OAUTHLIB_INSECURE_TRANSPORT=1
       - IS_DEBUG=false
     command: "./start_socket.sh"
+    # command: "./start_http.sh"
     network_mode: host
     volumes: 
       - socket:/opt/socket
       - django-media:/opt/app/qms_server/media
       - django-static:/opt/app/qms_server/static
+      - tmp-nginx:/tmp/nginx
       - nginx-conf:/opt/app/nginx
 
   nginx:
     depends_on: 
       - web
     image: nginx
-    # user: nginx
+    user: nginx
     volumes:
       - socket:/opt/socket
       - django-media:/django-media
       - django-static:/django-static
-      # - /home/sk/py3/quickmapservices_server/docker/custom_files/nginx:/etc/nginx-conf
+      - tmp-nginx:/tmp
       - nginx-conf:/etc/nginx-conf
-
-    network_mode: host
-    # ports:
-    # - "8081:80"
-    # - "8082:8000"
-    # environment:
-    # - NGINX_HOST=foobar.com
-    # - NGINX_PORT=8000
-    # command: [nginx-debug, '-g', 'daemon off;']
+      # - /home/sk/py3/quickmapservices_server/docker/custom_files/nginx:/etc/nginx-conf
+    ports:
+    - "80:8000"
     command: [nginx, '-c', '/etc/nginx-conf/nginx_qms.conf', '-g', 'daemon off;']
 volumes:
   socket:
   django-media:
   django-static:
   nginx-conf:
+  tmp-nginx:

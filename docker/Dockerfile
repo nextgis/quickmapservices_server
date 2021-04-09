@@ -8,14 +8,17 @@ RUN apt-get update -y && \
 	apt-get update --fix-missing && apt-get -y install netcat iproute2
 
 RUN groupadd -r runner && useradd -s /bin/bash -g runner runner
+RUN groupadd -r nginx && useradd -s /bin/bash -g nginx nginx
 RUN mkdir -p /opt/app
 RUN mkdir -p /opt/socket
+RUN mkdir -p /tmp/nginx
 
 COPY ./qms_server /opt/app/qms_server
 COPY ./requirements.txt /opt/app/qms_server/requirements.txt
 
 RUN chown -R runner:runner /opt/app/qms_server/static
 RUN chown -R runner:runner /opt/socket
+RUN chown -R nginx:nginx /tmp/nginx
 
 # customize
 COPY ./docker/custom_files/settings_local.py /opt/app/qms_server/qms_server/settings_local.py
