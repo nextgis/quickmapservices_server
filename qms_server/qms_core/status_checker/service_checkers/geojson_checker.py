@@ -21,15 +21,23 @@ class GeoJsonChecker(BaseServiceChecker):
         startTime = datetime.datetime.utcnow()
         try:
             response = requests.get(self.service.url, timeout=self.timeout)
-
+            response_text = ''
             result.http_code = response.status_code
             # content-type не проверяется, вместо этого проверяем код ответа
             # и если он равен 200, то выполняем валидацию содержимого ответа на geojson
             if response.status_code == 200:
-                geojson_obj = geojson.loads(response.text)
+                #
+                #   WARNING: это исправление ошибки: иногда при статусе 200 нельзя было получить response.text
+                #   из-за этого проверка зависала
+                #
+                bin = response.content
+                response_text = bin.decode("utf-8")
+                # response_text = response.text
+
+                geojson_obj = geojson.loads(response_text)
                 validation = geojson.is_valid(geojson_obj)
                 if validation['valid'] == 'yes':
-                    result.data = response.text
+                    result.data = response_text
                     result.cumulative_status = CumulativeStatus.WORKS
                 else:
                     result.cumulative_status = CumulativeStatus.PROBLEMATIC
@@ -38,7 +46,7 @@ class GeoJsonChecker(BaseServiceChecker):
             else:
                 result.cumulative_status = CumulativeStatus.PROBLEMATIC
                 result.error_text = 'Non 200 http code'
-                result.http_response = response.text
+                result.http_response = response_text
                 result.error_type = CheckStatusErrorType.INVALID_RESPONSE
 
         # если requests вернул код ошибки веб-сервера
