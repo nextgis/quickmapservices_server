@@ -32,7 +32,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         thread_count = options['threads']
-
+        thread_count = 4
         service_ids = GeoService.objects.all().only('id').values_list(flat=True)
         
         if options.get('service'):
@@ -45,10 +45,14 @@ class Command(BaseCommand):
 
         start_day = datetime.date.today()
 
+        from django import db
+        db.connections.close_all()
+
         checkers_pool = multiprocessing.Pool(thread_count)
-        checkers_pool.imap(check_by_id_and_save, service_ids)
-        checkers_pool.close()
-        checkers_pool.join()
+        with checkers_pool as pool:
+            pool.imap(check_by_id_and_save, service_ids)
+            pool.close()
+            pool.join()
 
 
         if options.get('sleep_afte_check_until_endofday'):

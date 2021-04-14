@@ -255,6 +255,11 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True,
-        }
+        },
+        'qms_checking': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True
+        },
     }
 }

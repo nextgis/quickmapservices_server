@@ -4,6 +4,7 @@ import random
 import datetime
 
 import requests
+import logging
 from requests.exceptions import HTTPError, Timeout
 
 from qms_core.models import CumulativeStatus, CheckStatusErrorType
@@ -39,6 +40,13 @@ class TmsChecker(BaseServiceChecker):
         return tms_url
 
     def check(self):
+        logger = logging.getLogger('qms_checking')
+        str_status_exception = 'EXCEPTION! '
+        str_status_http = ''
+        str_status_whole = 'RED'
+        str_exception_type = ''
+        str_exception_name = ''
+
         result = CheckResult(geoservice_id=self.service.id,
                              geoservice_name=self.service.name,
                              geoservice_type=self.service.type)
@@ -71,6 +79,7 @@ class TmsChecker(BaseServiceChecker):
 
             if test_url:
                 response = requests.get(test_url, timeout=self.timeout)
+                str_status_http = f'{response.status_code}'
                 content_type = response.headers['content-type']
 
                 result.http_code = response.status_code
@@ -80,30 +89,49 @@ class TmsChecker(BaseServiceChecker):
                 if response.status_code == 200:
                     if content_type == 'image/png' or content_type == 'image/jpeg':
                         result.cumulative_status = CumulativeStatus.WORKS
+                        str_status_whole = 'GREEN'
                     else:
                         result.cumulative_status = CumulativeStatus.PROBLEMATIC
+                        str_status_whole = 'YELLOW'
                         result.error_type = CheckStatusErrorType.INVALID_RESPONSE
                         result.error_text = 'service response is not image'
                 else:
                     result.cumulative_status = CumulativeStatus.PROBLEMATIC
+                    str_status_whole = 'YELLOW'
                     result.error_text = 'Non 200 http code'
                     result.http_response = response.text
                     result.error_type = CheckStatusErrorType.INVALID_RESPONSE
-
+            str_status_exception = ''
         # если requests вернул код ошибки веб-сервера
         except HTTPError as error:
+            str_exception_type = 'HTTPError'
+            str_exception_name = str(error)
             result.cumulative_status = CumulativeStatus.FAILED
             result.error_text = str(error)
 
         except Timeout as error:
+            str_exception_type = 'Timeout'
+            str_exception_name = str(error)
             result.cumulative_status = CumulativeStatus.FAILED
             result.error_type = CheckStatusErrorType.TIMEOUT_ERROR
 
         except Exception as error:
+            str_exception_type = 'Exception'
+            str_exception_name = str(error)
             result.cumulative_status = CumulativeStatus.FAILED
             result.error_text = str(error)
 
-        duration_time = datetime.datetime.utcnow() - startTime
-        result.check_duration = duration_time.total_seconds()
+        finally:
+            _id = self.service.id
+            _type = self.service.type
+
+            duration_time = datetime.datetime.utcnow() - startTime
+            result.check_duration = duration_time.total_seconds()
+
+            duration_seconds = duration_time.total_seconds()
+            duration_seconds = "%.2f" % duration_seconds
+            str_log = f'[{_id} {_type}] [{str_status_whole}] {duration_seconds} sec: http: ' \
+                      f'{str_status_http} {str_status_exception} {str_exception_type} {str_exception_name}'
+            logger.info(str_log)
 
         return result
