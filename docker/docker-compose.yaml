@@ -5,7 +5,7 @@ services:
     build:
       context: ../
       dockerfile: ./docker/Dockerfile
-    image: registry.nextgis.com/qms_dj22py38:1.0.2
+    image: registry.nextgis.com/qms_dj22py38:1.0.4
     environment:
       - DATABASE_NAME=qms_server3
       - DATABASE_USER=qms_server
@@ -13,6 +13,9 @@ services:
       - DATABASE_HOST=localhost
       - DATABASE_PORT=5432
       - EMAIL_HOST=prod.vpn.nextgis.net
+      - EMAIL_PORT=587
+      - EMAIL_HOST_USER=service@nextgis.com
+      - EMAIL_HOST_PASSWORD=sbOqj96DwIX7avIe
       - DEFAULT_FROM_EMAIL=qms@nextgis.com
       - EMAIL_SUBJECT_PREFIX=[NextGIS QMS Dev feedback]
       - NGID_CLIENT_ID=jQBKtVVaEWTIZT9yZQt9pet6168iTD5sR27dYXT8

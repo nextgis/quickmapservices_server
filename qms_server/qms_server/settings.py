@@ -105,9 +105,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'qms_server.wsgi.application'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = os.getenv('EMAIL_HOST','')
-EMAIL_USE_TLS =False
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL','')
+EMAIL_HOST = os.getenv('EMAIL_HOST','prod.vpn.nextgis.net')
+EMAIL_PORT = os.getenv('EMAIL_PORT', 587)
+EMAIL_PORT = int(EMAIL_PORT)
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'service@nextgis.com')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'sbOqj96DwIX7avIe')
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'qms@nextgis.com')
 EMAIL_SUBJECT_PREFIX = os.getenv('EMAIL_SUBJECT_PREFIX', '[NextGIS QMS feedback]')
 
 NGID_CLIENT_ID = os.getenv('NGID_CLIENT_ID', '')
