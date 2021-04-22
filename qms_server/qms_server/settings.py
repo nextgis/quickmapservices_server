@@ -102,6 +102,9 @@ TEMPLATES = [
     },
 ]
 
+CHECKING_SERVICES_HOUR_UTC = os.getenv('CHECKING_SERVICES_HOUR_UTC', '1')
+CHECKING_SERVICES_HOUR_UTC = int(CHECKING_SERVICES_HOUR_UTC)
+
 WSGI_APPLICATION = 'qms_server.wsgi.application'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

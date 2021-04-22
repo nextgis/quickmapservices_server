@@ -1,7 +1,9 @@
 import datetime
+import logging
 import multiprocessing
-import pprint
 import time
+from django.conf import settings
+from django import db
 
 from django.core.management import BaseCommand
 
@@ -31,6 +33,22 @@ class Command(BaseCommand):
 
 
     def handle(self, *args, **options):
+        logger = logging.getLogger('qms_checking')
+        while True:
+            today = datetime.datetime.today()
+            curr_hour = today.hour
+            hour = settings.CHECKING_SERVICES_HOUR_UTC
+            if curr_hour == hour:
+                self._do_handle(options, logger)
+                seconds_sleep = 3600 + 1
+                logger.info(f'sleeping {seconds_sleep} seconds after checking services')
+                time.sleep(seconds_sleep)
+            else:
+                seconds_sleep = 60 * 30
+                logger.info(f'bad time for checking services (waiting for hour {hour} UTC, now is hour {curr_hour} UTC), sleeping {seconds_sleep} seconds')
+                time.sleep(seconds_sleep)
+
+    def _do_handle(self, options, logger):
         thread_count = options['threads']
 
         service_ids = GeoService.objects.all().only('id').values_list(flat=True)
@@ -41,22 +59,16 @@ class Command(BaseCommand):
         if options.get('service_type'):
             service_ids = service_ids.filter(type=options['service_type'])
 
-        print('Try to check %s services' % len(service_ids))
+        services_count = len(service_ids)
+        logger.info(f'trying to check {services_count} services in {thread_count} threads')
 
-        start_day = datetime.date.today()
-
-        from django import db
         db.connections.close_all()
 
         checkers_pool = multiprocessing.Pool(thread_count)
         with checkers_pool as pool:
-            pool.imap(check_by_id_and_save, service_ids)
+            imap_result = pool.imap(check_by_id_and_save, service_ids)
+            for i, _ in enumerate(imap_result):
+                logger.info('\rchecking progress: {0:%}'.format(i / services_count))
             pool.close()
             pool.join()
-
-
-        if options.get('sleep_afte_check_until_endofday'):
-            print('Wait end of day ...')
-            while start_day == datetime.date.today():
-                time.sleep(60 * 5)
-            print('Bye!')
+            logger.info('checking finished')
