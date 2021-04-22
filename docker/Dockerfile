@@ -40,6 +40,7 @@ RUN mkdir -p /opt/app/qms_server/media
 COPY ./docker/custom_files/settings_local.py /opt/app/qms_server/qms_server/settings_local.py
 COPY ./docker/custom_files/start_socket.sh /opt/app/qms_server/start_socket.sh
 COPY ./docker/custom_files/start_http.sh /opt/app/qms_server/start_http.sh
+COPY ./docker/custom_files/start_checking.sh /opt/app/qms_server/start_checking.sh
 COPY ./docker/custom_files/uwsgi_http.ini /opt/app/qms_server/uwsgi_http.ini 
 COPY ./docker/custom_files/uwsgi_socket.ini  /opt/app/qms_server/uwsgi_socket.ini
 COPY ./docker/custom_files/nginx  /opt/app/nginx

@@ -24,7 +24,6 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         service_type_choices = [TmsService.service_type, WmsService.service_type, WfsService.service_type, GeoJsonService.service_type]
 
-        parser.add_argument('-t', '--threads', help='Threads count for checkers', type=int, default=20)
         parser.add_argument('--service_type', choices=service_type_choices, help='Service type')
         parser.add_argument('--service', help='Internal service id', type=int)
         
@@ -49,7 +48,7 @@ class Command(BaseCommand):
                 time.sleep(seconds_sleep)
 
     def _do_handle(self, options, logger):
-        thread_count = options['threads']
+        processes_count = settings.CHECKING_SERVICES_PROCESSES_AMOUNT
 
         service_ids = GeoService.objects.all().only('id').values_list(flat=True)
         
@@ -60,11 +59,11 @@ class Command(BaseCommand):
             service_ids = service_ids.filter(type=options['service_type'])
 
         services_count = len(service_ids)
-        logger.info(f'trying to check {services_count} services in {thread_count} threads')
+        logger.info(f'trying to check {services_count} services in {processes_count} processes')
 
         db.connections.close_all()
 
-        checkers_pool = multiprocessing.Pool(thread_count)
+        checkers_pool = multiprocessing.Pool(processes_count)
         with checkers_pool as pool:
             imap_result = pool.imap(check_by_id_and_save, service_ids)
             for i, _ in enumerate(imap_result):
