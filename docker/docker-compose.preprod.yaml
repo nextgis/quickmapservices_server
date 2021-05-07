@@ -19,7 +19,7 @@ services:
     build:
       context: ../
       dockerfile: ./docker/Dockerfile
-    image: registry.nextgis.com/qms_dj22py38:1.0.6
+    image: registry.nextgis.com/qms_dj22py38:1.0.7
     environment:
       - DATABASE_NAME=QMS_TEST_DB
       - DATABASE_USER=QMS_TEST_DB_USER

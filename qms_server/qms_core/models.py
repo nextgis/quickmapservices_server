@@ -231,7 +231,7 @@ class TmsUrlField(models.CharField):
 
     # Host patterns
     hostname_re = r'[a-z' + ul + r'0-9](?:[a-z' + ul + r'0-9-]{0,61}[a-z' + ul + r'0-9])?'
-    subdomain_switch_re = r'(\{switch:((?:\w+)(?:,\w+)*)\})'
+    subdomain_switch_re = r'((-|\w)*\{switch:((?:\w+)(?:,\w+)*)\})'
     hostname_with_switch_re = '(' + hostname_re + '|' + subdomain_switch_re + ')'
     
     # Max length for domain name labels is 63 characters per RFC 1034 sec. 3.1
